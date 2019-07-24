@@ -89,69 +89,82 @@
       <div class="row">
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-             <input id="" value="<?= h($reqLeave->emp_name) ?>" type="text" nae="emp_name" placeholder="Employee Name" class="form-control rounded-0" width="100%" disabled/> 
+          <label class="labelform">Employee Name</label>
+             <input id="" value="<?= h($reqLeave->emp_name) ?>" type="text" nae="emp_name" placeholder="Employee Name" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="" value="<?= h($reqLeave->designationId) ?>" type="text" name="designationId" placeholder="Designation" class="form-control rounded-0" width="100%" disabled/> 
+          <label class="labelform">Designation</label>
+            <input id="" value="<?= h($reqLeave->designationId) ?>" type="text" name="designationId" placeholder="Designation" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-          <input id="" value="<?= h($reqLeave->department) ?>" type="text" name="department" placeholder="Department" class="form-control rounded-0" width="100%" disabled/>  
+          <label class="labelform">Department</label>
+          <input id="" value="<?= h($reqLeave->department) ?>" type="text" name="department" placeholder="Department" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/>  
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="" value="<?= h($reqLeave->no_of_day_requested) ?>" type="text" name="no_of_day_requested" placeholder="No. of Days Requested" class="form-control rounded-0" width="100%" disabled/> 
+          <label class="labelform">No. of Days Requested</label>
+            <input id="" value="<?= h($reqLeave->no_of_day_requested) ?>" type="text" name="no_of_day_requested" placeholder="No. of Days Requested" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="" value="<?= h($reqLeave->leave_type) ?>" type="text" name="leave_type" placeholder="No. of Days Requested" class="form-control rounded-0" width="100%" disabled/> 
+          <label class="labelform">Leave Type</label>
+            <input id="" value="<?= h($reqLeave->leave_type) ?>" type="text" name="leave_type" placeholder="No. of Days Requested" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="" value="<?= h($reqLeave->balance_leave) ?>" type="text" name="balance_leave" placeholder="Current Leave Balance" class="form-control rounded-0" width="100%" disabled/> 
+          <label class="labelform">Current Leave Balance</label>
+            <input id="" value="<?= h($reqLeave->balance_leave) ?>" type="text" name="balance_leave" placeholder="Current Leave Balance" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input value="<?= h($reqLeave->starting_date) ?>" name="starting_date" placeholder="Leave Starting Date" class="form-control rounded-0" width="100%" disabled/>
+          <label class="labelform">Leave Starting Date</label>
+            <input value="<?= h($reqLeave->starting_date) ?>" name="starting_date" placeholder="Leave Starting Date" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/>
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input value="<?= h($reqLeave->ending_date) ?>" name="ending_date" placeholder="Leave Ending Date" class="form-control rounded-0" width="100%" disabled/> 
+          <label class="labelform">Leave Ending Date</label>
+            <input value="<?= h($reqLeave->ending_date) ?>" name="ending_date" placeholder="Leave Ending Date" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="" type="text" value="<?= h($reqLeave->supervisor_name) ?>" name="supervisor_name" class="form-control rounded-0" width="100%" disabled/> 
+          <label class="labelform">Supervisor Name</label>
+            <input id="" type="text" value="<?= h($reqLeave->supervisor_name) ?>" name="supervisor_name" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-          <input id="" type="text" value="<?= h($reqLeave->approval_states) ?>" name="approval_states" class="form-control rounded-0" width="100%" disabled/> 
+          <label class="labelform">Approval Status</label>
+          <input id="" type="text" value="<?= h($reqLeave->approval_states) ?>" name="approval_states" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
-          <div class="form-group addcustomcss">          
-            <input id="" type="text" value="<?= h($reqLeave->fullday_half) ?>" name="fullday_half" class="form-control rounded-0" width="100%" disabled/> 
+          <div class="form-group addcustomcss">
+          <label class="labelform">Day Type</label>          
+            <input id="" type="text" value="<?= h($reqLeave->fullday_half) ?>" name="fullday_half" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
-          <div class="form-group addcustomcss">          
-            <input id="" type="text" value="<?= h($reqLeave->documentName) ?>" name="documentName" class="form-control rounded-0" width="100%" disabled/>             
+          <div class="form-group addcustomcss">
+          <label class="labelform">Document</label>          
+            <input id="" type="text" value="<?= h($reqLeave->documentName) ?>" name="documentName" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/>             
           </div>
         </div>
 
 
         <div class="col-sm-12 mb-2">
           <div class="form-group addcustomcss">
-          <input id="" type="text" value="<?= h($reqLeave->reason) ?>" name="reason" class="form-control rounded-0" width="100%" disabled/> 
+          <label class="labelform">Reason</label>
+          <input id="" type="text" value="<?= h($reqLeave->reason) ?>" name="reason" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         

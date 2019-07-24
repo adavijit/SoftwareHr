@@ -122,7 +122,7 @@ use Cake\Routing\Router;
           <label class="labelform">Holiday Group</label>
             <!-- <input id="" value="<?= h($leaveSetting->holiday_group) ?>" name="holiday_group" class="form-control rounded-0" width="100%"    />  -->
               <select name="holiday_group" class="form-control rounded-0">
-              <option value="h($leaveSetting->holiday_group)"><?php echo "$leaveSetting->holiday_group" ?></option>
+              <option value="<?php h($leaveSetting->holiday_group) ?>"><?php echo "$leaveSetting->holiday_group" ?></option>
               <?php
                 $conn = mysqli_connect("localhost","root","","hr_software");
                 $dd_res=mysqli_query($conn,"Select group_name,leave_year from set_holiday");
@@ -146,12 +146,26 @@ use Cake\Routing\Router;
           <div class="form-group addcustomcss">
           <label class="labelform">Default Shift</label>
             <input id="" value="<?= h($leaveSetting->shift) ?>" name="shift"  class="form-control rounded-0" width="100%"   /> 
+            
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Week Starts on</label>
-            <input id="" value="<?= h($leaveSetting->week_start) ?>" name="week_start" class="form-control rounded-0" width="100%"   />             
+            <!-- <input id="" value="<?= h($leaveSetting->week_start) ?>" name="week_start" class="form-control rounded-0" width="100%"   />              -->
+            <select name="week_start" class="form-control rounded-0">
+            <option value=<?= h($leaveSetting->week_start) ?>><?php echo "$leaveSetting->week_start" ?></option>          
+          <?php 
+            $days = array("Monday", "Tuesday", "Wednesday","Thursday","Friday","Saturday","Sunday");
+            $arrlength = count($days);
+
+            for($x = 0; $x < $arrlength; $x++){
+              if(strtolower($leaveSetting->week_start)!=strtolower($days[$x])){
+                echo "<option>$days[$x]</option>";
+              }
+            }
+          ?>
+          </select>
           </div>
         </div>
         <div class="col-sm-3 mb-2">
@@ -165,7 +179,7 @@ use Cake\Routing\Router;
           <label class="labelform">Leave Type</label>
             <!-- <input id="" value="<?= h($leaveSetting->leave_type) ?>" name="leave_type" class="form-control rounded-0" width="100%"   />  -->
             <select name="leave_type" class="form-control rounded-0">
-              <option value="h($leaveSetting->leave_type)"><?php echo "$leaveSetting->leave_type" ?></option>
+              <option value="<?= h($leaveSetting->leave_type) ?>"><?php echo "$leaveSetting->leave_type" ?></option>
               <?php
                 $conn = mysqli_connect("localhost","root","","hr_software");
                 $dd_res=mysqli_query($conn,"Select leave_type,status from new_leave");
