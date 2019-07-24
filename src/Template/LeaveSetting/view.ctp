@@ -89,67 +89,80 @@ use Cake\Routing\Router;
       <div class="row">
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-          <input id="" value="<?= h($leaveSetting->financial_year) ?>" class="form-control rounded-0" width="100%" disabled/>  
+          <label class="labelform">Financial Year</label>
+          <input id="" value="<?= h($leaveSetting->financial_year) ?>" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/>  
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="" value="<?= h($leaveSetting->starting_date) ?>" class="form-control rounded-0" width="100%" disabled/> 
+          <label class="labelform">Season Tenure Start Date</label>
+            <input id="" value="<?= h($leaveSetting->starting_date) ?>" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="" value="<?= h($leaveSetting->ending_date) ?>" class="form-control rounded-0" width="100%" disabled/>
+          <label class="labelform">Season Tenure End Date</label>
+            <input id="" value="<?= h($leaveSetting->ending_date) ?>" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/>
+          </div>
+        </div>
+        <div class="col-sm-4 mb-2">        
+          <div class="form-group addcustomcss">
+          <label class="labelform">Holiday Group</label>
+            <input id="" value="<?= h($leaveSetting->holiday_group) ?>" class="form-control rounded-0" width="100%" style="background-color:white;" disabled /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="" value="<?= h($leaveSetting->holiday_group) ?>" class="form-control rounded-0" width="100%" disabled /> 
+          <label class="labelform">No. of hours in full day</label>
+            <input id="" value="<?= $this->Number->format($leaveSetting->no_of_hours) ?>" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="" value="<?= $this->Number->format($leaveSetting->no_of_hours) ?>" class="form-control rounded-0" width="100%" disabled/> 
+          <label class="labelform">Default Shift</label>
+            <input id="" value="<?= h($leaveSetting->shift) ?>" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
+          </div>
+        </div>
+        <div class="col-sm-3 mb-2">
+          <div class="form-group addcustomcss">
+          <label class="labelform">Week Starts on</label>
+            <input id="" value="<?= h($leaveSetting->week_start) ?>" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/>             
+          </div>
+        </div>
+        <div class="col-sm-3 mb-2">
+          <div class="form-group addcustomcss">
+          <label class="labelform">Week Days Off</label>
+            <input id="" value="<?= h($leaveSetting->weekly_days_off) ?>" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/>                          
+          </div>
+        </div>
+        <div class="col-sm-3 mb-2">
+          <div class="form-group addcustomcss">
+          <label class="labelform">Leave Type</label>
+            <input id="" value="<?= h($leaveSetting->leave_type) ?>" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
+          </div>
+        </div>
+        <div class="col-sm-3 mb-2">
+          <div class="form-group addcustomcss">
+          <label class="labelform">No. of Holidays</label>
+            <input id="" value="<?= $this->Number->format($leaveSetting->no_of_holiday) ?>" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="" value="<?= h($leaveSetting->shift) ?>" class="form-control rounded-0" width="100%" disabled/> 
-          </div>
-        </div>
-        <div class="col-sm-3 mb-2">
-          <div class="form-group addcustomcss">
-            <input id="" value="<?= h($leaveSetting->week_start) ?>" class="form-control rounded-0" width="100%" disabled/>             
-          </div>
-        </div>
-        <div class="col-sm-3 mb-2">
-          <div class="form-group addcustomcss">
-            <input id="" value="<?= h($leaveSetting->weekly_days_off) ?>" class="form-control rounded-0" width="100%" disabled/>                          
-          </div>
-        </div>
-        <div class="col-sm-3 mb-2">
-          <div class="form-group addcustomcss">
-            <input id="" value="<?= h($leaveSetting->leave_type) ?>" class="form-control rounded-0" width="100%" disabled/> 
-          </div>
-        </div>
-        <div class="col-sm-3 mb-2">
-          <div class="form-group addcustomcss">
-            <input id="" value="<?= $this->Number->format($leaveSetting->no_of_holiday) ?>" class="form-control rounded-0" width="100%" disabled/> 
-          </div>
-        </div>
-        <div class="col-sm-3 mb-2">
-          <div class="form-group addcustomcss">
-            <input id="" value="<?= $this->Number->format($leaveSetting->allow_per_month) ?>" class="form-control rounded-0" width="100%" disabled/> 
-          </div>
-        </div>
-        <div class="col-sm-3 mb-2">
-          <div class="form-group addcustomcss">
-            <input id="" value="<?= $this->Number->format($leaveSetting->threshold) ?>" class="form-control rounded-0" width="100%" disabled/> 
+          <label class="labelform">Allowable leaves per month</label>
+            <input id="" value="<?= $this->Number->format($leaveSetting->allow_per_month) ?>" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="" value="<?= h($leaveSetting->approved_by) ?>" class="form-control rounded-0" width="100%" disabled /> 
+          <label class="labelform">Leave Threshold Limit</label>
+            <input id="" value="<?= $this->Number->format($leaveSetting->threshold) ?>" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
+          </div>
+        </div>
+        <div class="col-sm-4 mb-2">
+          <div class="form-group addcustomcss">
+          <label class="labelform">Leave Approved By</label>
+            <input id="" value="<?= h($leaveSetting->approved_by) ?>" class="form-control rounded-0" width="100%" style="background-color:white;" disabled /> 
           </div>
         </div>
       </div>

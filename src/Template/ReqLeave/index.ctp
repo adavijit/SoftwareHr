@@ -110,7 +110,7 @@ use Cake\Routing\Router;
             if(strtolower($reqLeave->approval_states)=="active")
             {
               $test=1;
-              echo Router::url( ['controller' => 'Pages','action' => 'index']);
+              echo Router::url( ['controller' => 'Pages','action' => 'index','id'=>$reqLeave->empId]);
             }
             ?>">
             <?php if($test!=0){

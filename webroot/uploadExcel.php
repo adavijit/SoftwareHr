@@ -13,6 +13,7 @@ $xlsx = new XLSXReader($tmp_name);
 //////////////////////////////////////////////////////Emp General Info1
 $data = $xlsx->getSheetData('empGen');
 $a=1;
+$count=0;
 foreach($data as $temp)
 {
 
@@ -41,6 +42,7 @@ foreach($data as $temp)
     if(mysqli_query($conn,"INSERT INTO emp_general_info(empName,dob,nationality,bloodGroup,emergencyContact,lastWorkingDate,dateOfJoining,probationCompletionDate,sex,emp_status,designation)
     VALUES('$empName','$dob','$nationality','$bloodGroup','$emergency','$lwd','$probation','$dateOfJoining','$sex','Active','$designation')")){
         echo "Success from empgen";
+        $count++;
     }
     else{
         echo "error from empgen";
@@ -56,6 +58,15 @@ foreach($qr as $temp)
 {
     $max=$temp['empId'];
 }
+echo "x =".$max;
+$max1=$max-$count+1;
+$max2=$max-$count+1;
+$max3=$max-$count+1;
+$max4=$max-$count+1;
+$max5=$max-$count+1;
+
+echo "y =".$max;
+
 ///////////////////////////////////////////
 
 
@@ -71,6 +82,7 @@ foreach($data as $temp)
             $a++;
             continue;
         }
+
 	foreach($temp as $test)
 	{
         
@@ -88,9 +100,11 @@ foreach($data as $temp)
     $uan=$arr[8];
     $aadhar=$arr[9];
     $location=$arr[10];
+    var_dump($max);
     if(mysqli_query($conn,"INSERT INTO employeecontact(empId,mobileId,officeEmail,personalEmail,presentAddress,permanentAddress,PFno,ESICno,UANno,aadharNo,PANno,location)
-    VALUES('$max','$contact','$officeEmail','$personalEmail','$presentAddress','$permanentAddress','$pfNo','$esicNo','$uan','$aadhar','$panNo','$location')")){
+    VALUES('$max1','$contact','$officeEmail','$personalEmail','$presentAddress','$permanentAddress','$pfNo','$esicNo','$uan','$aadhar','$panNo','$location')")){
         echo "Success from empcont";
+        $max1++;
     }
     else{
         echo "Error from empcont";
@@ -123,8 +137,8 @@ foreach($data as $temp)
     $institution=$arr[2];
     
     if(mysqli_query($conn,"INSERT INTO academicdetails(empId,highestQualification,yearOfPassing,institution)
-    VALUES('$max','$highestQualification','$yearOfPassing','$institution')")){
-        echo "Success from empAcademic";
+    VALUES('$max2','$highestQualification','$yearOfPassing','$institution')")){
+        echo "Success from empAcademic"; $max2++;
     }
     else{
         echo "Error from empAcademic";
@@ -156,8 +170,8 @@ foreach($data as $temp)
     $experience=$arr[1];
     
     if(mysqli_query($conn,"INSERT INTO professionalskill(empId,skillName,experience)
-    VALUES('$max','$skillName','$experience')")){
-        echo "Success from empSkill";
+    VALUES('$max3','$skillName','$experience')")){
+        echo "Success from empSkill"; $max3++;
     }
     else{
         echo "Error from empSkill";
@@ -190,8 +204,8 @@ foreach($data as $temp)
     $department=$arr[2];
     
     if(mysqli_query($conn,"INSERT INTO experiencedetails(empId,experience,designation,department)
-    VALUES('$max','$experience','$designation','$department')")){
-        echo "Success from empExp";
+    VALUES('$max4','$experience','$designation','$department')")){
+        echo "Success from empExp"; $max4++;
     }
     else{
         echo "Error from empExp";

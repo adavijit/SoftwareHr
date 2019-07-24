@@ -81,14 +81,27 @@
         </div>
       </div>
 
-
+  <?php $id=0; ?>
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
       <h3 class="mb-3">Requested Leave</h3>
       <div class="row">
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-             <input id="" type="text" name="emp_name" placeholder="Employee Name" class="form-control rounded-0" width="100%" /> 
+             <!-- <input id="" type="text" name="emp_name" placeholder="Employee Name" class="form-control rounded-0" width="100%" />  -->
+          <select class="form-control rounded-0" width="100%" name="empId" id="">
+          <option value="">Employee Name</option>
+          <?php
+                $conn = mysqli_connect("localhost","root","","hr_software");
+                $dd_res=mysqli_query($conn,"Select empName,empId from emp_general_info");
+                while($r=mysqli_fetch_row($dd_res))
+                { 
+                  echo "<option value='$r[1]'> $r[0] ($r[1]) </option>";
+
+                 // echo "<input type='hidden' value='$r[1]' name='empId'>";
+                }
+              ?>
+          </select>
           </div>
         </div>
         <div class="col-sm-4 mb-2">
