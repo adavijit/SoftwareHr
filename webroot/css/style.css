@@ -1,0 +1,209 @@
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~Genarel Part~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+html,body{background:#F5F5F5; font-family: 'Muli', sans-serif; font-size:1rem; padding:0px;}
+.maincontainer{height:auto;min-height:100%;width: auto; position: relative;z-index: 1;/*background: #fff;*/transition:all .5s; -webkit-transition:all .5s;box-sizing: border-box;}
+::before,::after{pointer-events: none;}
+/*.maincontainer:after{height:323px; content:'';display:block; margin-bottom:-323px;}*/
+a{text-decoration:none !important;outline:none}
+button{outline:none; font-family: 'Muli', sans-serif;}
+:focus,:hover{outline:none !important;}
+.btn:focus{ box-shadow: none!important;}
+a:hover, input:focus, select:focus {outline: none; box-shadow: 0 0 0 !important;}
+i{/*display:block;*/ }
+.clear { clear: both; overflow: hidden; font-size: 0; height: 0; }
+.clear10 { clear: both; overflow: hidden; font-size: 0; height: 10px; }
+.clear20 { clear: both; overflow: hidden; font-size: 0; height: 20px; }
+.clear30 { clear: both; overflow: hidden; font-size: 0; height: 30px; }
+.clear40 { clear: both; overflow: hidden; font-size: 0; height: 40px; }
+.fileElem{display:none !important;}
+section.full, section.full1{width:100%; height:100%; position:relative;}
+.no-gutter{padding-left:0; padding-right:0;}
+.margin-auto{margin:0 auto !important ; float:none}
+.margin-auto10{margin:10px auto ; float:none}
+.margin-auto20{margin:20px auto ; float:none}
+.marg-left{margin-left:15px;}
+.pad7{padding:70px 0;}
+.pad5{padding:50px 0;}
+.width10{ width: 100px}
+.listnone {list-style-type: none;}
+input[type=submit] {border:0px; cursor: pointer;}
+textarea:focus {box-shadow: 0 0 0;}
+
+.flex-row{display: flex;align-items: center;align-content: center; flex-wrap:wrap;}
+.flex-col{ display: flex;flex-direction: column;justify-content: center; align-items: center;}
+.gutter-0 > [class^="col-"], .gutter-0 > [class^=" col-"],.pad0{  padding-right: 0;  padding-left: 0;}
+.gutter-5 > [class^="col-"], .gutter-5 > [class^=" col-"]{ padding-right: 5px;  padding-left: 5px;}
+svg{ fill-rule: evenodd; display:block;}
+.user-pic{width:45px; height:45px;overflow: hidden; -webkit-border-radius:50%;border-radius:50%; background-position:center; background-repeat:no-repeat; background-size:cover; background-origin:border-box; background-image: url(../images/user-default.png);}
+.dot{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.heide-d{display:none !important;}
+.heide-t{display:block !important}
+.heide-dt{display:none !important;}
+.heide-m{display:block !important}
+.heide-dm{display:none !important;}
+.heide-tm{display:block !important}
+.size10{width: 10%;}.size20{width: 20%;}.size30{width: 30%;}.size40{width: 40%;}
+.gap{height: 30px; clear: both;}
+.heading{color: #205A8F; font-size: 21px;line-height: 24px; letter-spacing: 0.5px;padding-bottom: 15px; border-bottom: #e5e5e5 solid 1px;}
+.heading-white{color: #fff; font-size: 21px;letter-spacing: 0.5px;padding-bottom: 15px; border-bottom: #fff solid 1px;}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] { padding-right: 0;  padding-left: 0;}
+
+* {/*font-family: 'Roboto', sans-serif;*/ font-family: 'Muli', sans-serif;}
+
+a{/*color: #cc3333;*/}
+
+.bluebutton {background: #2476B2; border:1px solid #2476B2; font-size: 16px; line-height: 46px; color:#FFF; padding:0 25px; font-family: 'Muli', sans-serif; font-weight: 600; cursor: pointer; transition: 0.3s all; border: 3px solid transparent; box-shadow: 0 3px 6px rgba(65,136,236,0.38)}
+.bluebutton:hover {color:#fff; background: #195784;}
+.orangebutton {background: #ED383D; font-size: 16px; line-height: 46px; color:#fff; padding:0 0px; cursor: pointer; font-family: 'Muli', sans-serif; font-weight: 600; transition: 0.3s all; border-radius: 3px; box-shadow: 0 3px 6px rgba(242,178,155,0.38)}
+.orangebutton:hover {color:#FFF; background: #da242a;}
+.redbutton {background: #ED383D; font-size: 16px; line-height: 46px; color:#fff; padding:0 25px; cursor: pointer; font-family: 'Muli', sans-serif; font-weight: 600; transition: 0.3s all; border-radius: 3px; box-shadow: 0 3px 6px rgba(242,178,155,0.38)}
+.redbutton:hover {color:#FFF; background: #da242a;}
+.outlineblue {background: #FFF; border:1px solid #2476B2; font-size: 16px; line-height: 46px; color:#2476B2; padding:0 25px; cursor: pointer; font-family: 'Muli', sans-serif; font-weight: 600; transition: 0.3s all; border-radius: 3px; box-shadow: 0 3px 6px rgba(242,178,155,0.38)}
+.outlineblue:hover {color:#FFF; background: #2476B2;}
+
+html, body {min-height: 100%; height: 100%; width: 100%; background: #F5F5F5; font-family: 'Muli', sans-serif; font-size: 1rem;}
+.main-content {position: relative; min-height: 100%; transition: 0.3s all;}
+
+
+
+/* login body */
+.vh-height {min-height: 100vh;}
+.loginbody {/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ed383d+0,1e78b6+99 */
+background: #ed383d; /* Old browsers */ background: -moz-linear-gradient(left,  #ed383d 0%, #1e78b6 99%); /* FF3.6-15 */ background: -webkit-linear-gradient(left,  #ed383d 0%,#1e78b6 99%); /* Chrome10-25,Safari5.1-6 */ background: linear-gradient(to right,  #ed383d 0%,#1e78b6 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ed383d', endColorstr='#1e78b6',GradientType=1 ); /* IE6-9 */ }
+.logo {max-width: 74px;}
+.logintoplink {display: inline-block; width: 100%; text-align: right;}
+.logintoplink li {display: inline-block; padding-left: 25px}
+.logintoplink li a {color: #ffffff; font-size: 18px;  font-family: 'Muli', sans-serif; line-height: 40px; letter-spacing: 0.01em;}
+.loginbody footer {height: 54px; display: flex; align-items: center; justify-content: center; background: transparent;}
+.loginbody footer p {font-size: 14px; color: #ffffff; line-height: 20px; text-shadow: 1px 1px 1px #000; letter-spacing: 0.025em}
+.logincontainer {height: calc(100vh - 60px);}
+
+.loginbox {background: #FFF; max-width:370px; width:100%; border-radius: 6px; -webkit-box-shadow: 9px 6px 20px -10px rgba(0,0,0,0.21);
+-moz-box-shadow: 9px 6px 20px -10px rgba(0,0,0,0.21); box-shadow: 9px 6px 20px -10px rgba(0,0,0,0.21); padding: 20px; margin: 0 auto}
+.loginbox h2 i {font-size: 70px; color: #DDDDDD; display: block;}
+.loginbox h2 {font-family: 'Muli', sans-serif; font-size:20px; color:#000000; line-height:34px; font-weight:600;}
+.loginbody header {padding:20px 15px;}
+
+/* navbar */
+header {position: fixed; height: 5.625rem; background: #FFF; width: 100%; left: 0; transition: 0.3s all; z-index: 10; -webkit-box-shadow: 10px 32px 21px -26px rgba(0,0,0,0.19); -moz-box-shadow: 10px 32px 21px -26px rgba(0,0,0,0.19); box-shadow: 10px 32px 21px -26px rgba(0,0,0,0.19); padding: 16px;}
+.navbar-expand-lg .navbar-nav .nav-item {position: relative;}
+.navbar-expand-lg .navbar-nav .nav-link{color:#333333; font-size: 14px; line-height: 67px; border-bottom: 3px solid #fff; font-family: 'Hind', sans-serif; font-weight: 600; transition: 0.3s all; padding:0 20px; transition: 0.3s all;}
+.navbar-expand-lg .navbar-nav .nav-link:hover, .navbar-expand-lg .navbar-nav .nav-item.active .nav-link {/*background: #333;*/ border-bottom: 3px solid #da2429; color:#da2429; /*color:#FFF;*/}
+.navbar.navbar-expand-lg.bg-white {box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);}
+.usernameboxdiv {}
+.usernameboxdiv .userpicbox {width: 45px; height: 45px; border-radius: 50%;}
+.usernameboxdiv .usernamed {font-family: 'Muli', sans-serif; font-size: 16px; line-height:45px; color:#000000; font-weight: 600;}
+
+/* left menu */
+.leftmenu {position: fixed; width: 16.875rem; background: #2476B2; min-height: 100vh; display: flex; flex-wrap: wrap; flex-direction: column; align-items: flex-start; z-index: 11;}
+.leftmenu .leftpadd {height: 100%; padding: 10px 10px 10px 0; width: 100%; height: 100%;}
+.leftlogo {margin: 19px 0 29px; display: block; text-align: center; width: 100%;}
+.leftlogo img {max-width: 50px;}
+.leftmain-link {margin-top: 0;}
+.leftmain-link .listofnav {padding: 1.25rem 0 0; margin: 0px; list-style-type: none;}
+.leftmain-link .listofnav li a {display: block; border-radius: 0.5rem; text-decoration: none; line-height: 48px; color: #fff; padding:0 10px 0 20px;}
+.leftmain-link .listofnav li a i {font-size: 1.125rem; margin-right: 0.6875rem; display: inline-block; vertical-align: middle; color: #FFF;}
+.leftmain-link .listofnav li a span {font-weight:600; font-size:0.875rem;}
+.leftmain-link .listofnav .subchildlink {padding: 0 0 0 20px;}
+.leftmain-link .listofnav .subchildlink {display: block; text-decoration: none; font-size: 14px; line-height:38px; color: #fff; padding: 0 0 0 50px; list-style-type: none;}
+.leftmain-link .listofnav li a:hover, .leftmain-link .listofnav li a.activeclass {background: #1B679F; border-radius: 0 20px 20px 0}
+
+/* right part */
+.rightpart {/*background: #FFF;*/ width: 100%; min-height: 100vh;}
+.bodytransition {padding-left: 16.875rem; padding-top: 5.625rem;}
+.bodypart {padding: 25px;}
+
+/* dashboard css */
+.dashboardcont {/*height: calc(100vh - 90px);*/ margin-top:250px;}
+.dashboardwid300 {width: 650px; margin: 0 auto}
+.dashboardhead {font-family: 'Muli', sans-serif; font-size: 30px; line-height:45px; color:#000000; font-weight: 900; font-style: italic;}
+.faceregonwidhud {max-width: 300px; height: 150px; background: #FFF; border:1px solid #2476B2; padding: 10px; box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);}
+.faceregonwidhud i {font-size: 42px;}
+.faceregonwidhud h5 {font-family: 'Muli', sans-serif; font-size:20px; line-height:30px; color:#000000; font-weight: 700;}
+.faceregonwidhud.faceregonactive {background:#2476B2; border-radius: 3px;}
+.mobilemenu .navbar-nav .mobilelogo {display: none; border-bottom:1px solid #FFF; text-align: center;}
+
+.pageheadertop h2 {font-family: 'Muli', sans-serif; font-size: 24px; font-weight:700; color:#000000;}
+.pageheadertop .buttonwidth {width:160px; box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);}
+.pageheadertop .orangebutton {width: 50px;}
+.employtable th {background:#1E78B6; font-family: 'Muli', sans-serif; font-size:16px; line-height:20px; color:#FFFFFF; font-weight:600; padding: .5rem;}
+.employtable td {font-family: 'Muli', sans-serif; font-size:16px; line-height:20px; color:#212121; font-weight:400; padding: .5rem; vertical-align: middle;}
+.employtable td.action a {margin: 0 4px; font-size: 14px; color: #333;}
+.employtable tr:nth-child(odd) {background: #FFFFFF;}
+.employtable tr:nth-child(even) {background: #F2F2F2;}
+.pageloadleft label { display: inline-block; margin-right: 10px; font-family: 'Muli', sans-serif; font-weight: 400; font-size:15px; color: #637381; line-height: 35px;}
+.pageloadleft select {border:1px solid #707070; font-family: 'Muli', sans-serif; font-weight:400; font-size:15px; color:#637381; line-height: 35px; margin-right: 10px;}
+.paginationcss .page-link {background: transparent; border-color: transparent; color: #637381;  font-family: 'Muli', sans-serif; font-weight: 400; font-size:16px; padding: 0px; width: 30px; height: 30px; text-align: center; line-height:27px;}
+.paginationcss .page-link:hover {background:#1E78B6; color: #FFF; border-radius: 50%;}
+
+.modalheadercust {background: #1E78B6; padding: 0 16px;}
+.modalheadercust h3 {font-size: 20px; color: #FFF; font-weight:400; line-height: 45px;}
+.modalheadercust button.close {opacity: 1; line-height:39px; margin: 0px; padding: 0px;}
+.modalheadercust button i {font-size: 18px; color: #FFF;}
+.modalbodycustom {}
+.modalbodycustom h4 {font-size: 18px; color:#000000; line-height: 22px;}
+
+.formgroup {margin-bottom: 15px;}
+.formgroup input, .formgroup select {border-radius: 3px; border:1px solid #637381; padding: 10px; font-size: 16px; color: #424242;}
+.formgroup .browseinput {border-radius: 3px; border:1px solid #637381; padding:0px; font-size: 16px; color: #424242;}
+.formgroup .browseinput input {border:0px; width: 80%;}
+.formgroup .browseinput button {width: calc(100% - 80%); line-height: 38px;}
+
+/* face recognition css */
+.facerecogbox {max-width: 770px; width: 770px; box-shadow: 0 3px 5px rgba(0,0,0,0.16); border-radius: 5px; background: #FFF; padding: 20px;}
+.facerecogbox h3 {font-weight: 700; font-size: 20px; color: #000; font-style: normal;}
+.bottomsecshowhd {border-top:1px solid #D5D5D5; border-bottom:1px solid #D5D5D5; padding-top: 20px;}
+
+.messagestatuspop {}
+.messagestatuspop .iconstatus {font-size: 48px;}
+.messagestatuspop h4 {font-size: 24px; font-weight: 700; color:#454F5B;}
+.messagestatuspop p {font-size: 16px; font-weight: 400; color:#637381;}
+.messagestatuspop .iconstatus.redcolr {color:#ed383d}
+
+@media only screen and (max-width:767px) {
+.dashboardwid300 {width: 100%;}
+}
+
+footer {box-shadow: 0px -3px 6px rgba(0,0,0,0.16); background: #FFF; height: 50px; position: absolute; bottom: 0px; left:16.875rem; right:0px;}
+footer p {font-size: 14px; line-height: 50px; text-align: center; color:#424242; font-weight: 400;}
+
+/* tab section start hrer */
+.fade.in {opacity: 1;}
+.nav.nav-tabs {border-bottom: 0px;}
+.nav.nav-tabs li a {font-weight: 600; font-size: 16px; color: #848484; padding: 0 15px; line-height: 40px; display: block;}
+.nav.nav-tabs li.active a {color:#1B679F; border-bottom: 1px solid #1B679F}
+.tab-content {border-radius: 3px; box-shadow: 0 3px 6px rgba(0,0,0,0.11); border:1px solid rgba(0,0,0,0.10); background: #FFF; padding:20px;}
+.tab-content h3 {font-size: 20px; font-weight: 600; color: #000000;}
+.imageupload {border-radius: 50%; width:65px; height:65px; line-height:65px; background: #E2E2E2; border:1px solid #D3D3D3; display: block; text-align: center;}
+.imageupload i {color: #000;}
+
+.addcustomcss { position: relative;} 
+.addcustomcss .form-control {font-weight: 400; font-size: 16px; color: #6a6a6a; padding: 8px 18px; border-color: #637381; height: 45px;}
+.addcustomcss .gj-datepicker .input-group-append {position: absolute; right: 0px; height: 38px;}
+.addcustomcss .gj-datepicker .btn {border-color: #637381; border:0px;}
+.addcustomcss textarea.form-control {height:120px;}
+/*.addcustomcss .gj-datepicker .btn .gj-icon {font-family: 'navsoft-training2' !important;}
+.addcustomcss .gj-datepicker .btn .gj-icon:before {content: "\e910";}*/
+
+.imageuploadlist {display: inline-block; list-style-type: none;}
+.imageuploadlist li {margin-right: 20px; margin-left: -5px; display: inline-block; vertical-align: middle;}
+.imageuploadlist li:first-child {margin-left: 0px;}
+.imageuploadsect {border-radius: 3px; background:#EBEBEB; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;}
+.imageuploadsect p {font-size: 14px; color: #000000;}
+.imageuploadsect.imagoutlinebor {border:1px dashed #BABABA; background: transparent; color: #BABABA; overflow: hidden;}
+.imageuploadsect.imagoutlinebor a {color: #ddd; width: 100%; display: block; overflow: hidden; text-align: center; height: 100px; line-height: 100px;}
+.imageuploadsect.imagoutlinebor a input[type=file] {opacity: 0;}
+
+/* detail page html */
+.detailbox {border-radius: 3px; box-shadow: 0 3px 6px rgba(0,0,0,0.11); border:1px solid rgba(0,0,0,0.10); background: #FFF; padding:20px;}
+.detailbox h3 {font-size: 20px; font-weight: 600; color: #000000;} 
+.detailbox label.employlabel {font-size: 18px; display: block; color: #000;}
+.penciledit {position: absolute; right: 30px; top: 22px;}
+
+.imagesupload {position: relative;}
+.imagesupload input[type=file] {opacity: 0; width: 100%; height: 40px; position: absolute; top:0px; bottom: 0px; left: 0px; right: 0px;}
+.imagesupload button {cursor: pointer; background:#2476B2;}
+.labelform {position: absolute; left: 10px; top: -14px; background: #FFF; padding: 0 10px; color: #909090; z-index: 1;}
+
+.tablewhitespace th, .tablewhitespace td {white-space:nowrap;}
