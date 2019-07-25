@@ -78,21 +78,19 @@ class PagesController extends AppController
     {
         $to = '';
         $id=$_GET['id'];
-        $test1 = TableRegistry::get('req_leave');
         $test2 = TableRegistry::get('employeecontact');
-            $test3 = $test1->find('all');
             $test4 = $test2->find('all');
-            foreach($test3 as $temp1){
+
                 foreach($test4 as $temp2){
-                    if($temp2['empId']==$temp1['empId']){
+                    if($temp2['empId']==$id){
                         echo "xxxxxxxxxx";
                         $to = $temp2['officeEmail'];
+                        
                         //$request->data['password'] = $this->request->getData('password');
                     }
                 }
-            }
         $subject = 'Leave Approved';
-        $message = 'Your leave is approved.';
+        $message = 'Your leave is aproved.';
         
         try {
             $mail = $this->Email->send_mail($to, $subject, $message);
@@ -100,6 +98,9 @@ class PagesController extends AppController
         } catch (Exception $e) {
             echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }
+        // $conn=mysqli_connect('localhost','root','','hr_software');
+        // $sql="UPDATE req_leave SET approval_states='Done' WHERE empId='$id' ";
+        // mysqli_query($conn,$sql);
         return $this->redirect(['controller' => 'ReqLeave','action' => '/index']);
         exit;
     }
