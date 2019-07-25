@@ -104,12 +104,12 @@ use Cake\Routing\Router;
         <td><?= h($reqLeave->ending_date) ?></td>
         <td><?= h($reqLeave->approval_states) ?></td>
         <td class="actions">
-            <?php echo "<a href='$reqLeave->documentPath' download><i class='icon-download-1'></i></a>" ?>
+            <?php echo "<a href='$reqLeave->documentPath' download><i class='icon-download-1' style='color:#039E14'></i></a>" ?>
 
         <a href="<?php echo Router::url( ['action' => 'view', $reqLeave->req_id])?>" >&nbsp; <i class="icon-file" style="right-border:7px;">&nbsp;</i></a> 
 
-            <a href="<?php echo Router::url( ['action' => 'edit', $reqLeave->req_id])?>" ><i class="icon-pencil"></i>&nbsp;</a>
-            <a href="<?php echo Router::url( ['action' => 'delete', $reqLeave->req_id])?>" ><i onlick="myFunction3()" class="icon-trash-1"></i></a>        
+            <a href="<?php echo Router::url( ['action' => 'edit', $reqLeave->req_id])?>" ><i class="icon-pencil" style="color:black"></i>&nbsp;</a>
+            <a href="<?php echo Router::url( ['action' => 'delete', $reqLeave->req_id])?>" ><i onlick="myFunction3()" class="icon-trash-1" style="color:red"></i></a>        
         </td>
     </tr>
     <?php endforeach; ?>
