@@ -99,3 +99,6 @@ i {
 .icon-view:before {
   content: "\e918";
 }
+.icon-refresh-button:before {
+  content: "\e919";
+}
