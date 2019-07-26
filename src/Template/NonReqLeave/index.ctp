@@ -104,11 +104,11 @@ use Cake\Routing\Router;
         <td><?= h($nonReqLeave->ending_date) ?></td>
         <td><?= h($nonReqLeave->inform_status) ?></td>
         <td class="actions">
-        <?php echo "<a href='$nonReqLeave->documentPath' download><i class='icon-pencil'></i></a>" ?>
-        <a href="<?php echo Router::url( ['action' => 'view', $nonReqLeave->non_req_id])?>" ><i class="icon-file" style="right-border:7px;"></i></a> 
+        <?php echo "<a href='$nonReqLeave->documentPath' download><i class='icon-download-1' style='color:#039E14'></i></a>" ?>
+        <a href="<?php echo Router::url( ['action' => 'view', $nonReqLeave->non_req_id])?>" >&nbsp; <i class="icon-file" style="color:blue;">&nbsp;</i></a> 
 
-            <a href="<?php echo Router::url( ['action' => 'edit', $nonReqLeave->non_req_id])?>" ><i class="icon-pencil"></i></a>
-            <a href="<?php echo Router::url( ['action' => 'delete', $nonReqLeave->non_req_id])?>" ><i class="icon-trash-1"></i></a>        
+            <a href="<?php echo Router::url( ['action' => 'edit', $nonReqLeave->non_req_id])?>" ><i class="icon-pencil" style="color:black"></i>&nbsp;</a>
+            <a href="<?php echo Router::url( ['action' => 'delete', $nonReqLeave->non_req_id])?>" ><i onlick="myFunction3()" class="icon-trash-1" style="color:red"></i></a>        
         </td>
     </tr>
     <?php endforeach; ?>
