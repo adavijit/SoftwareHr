@@ -1,3 +1,4 @@
+CREATE DATABASE hr_software;
 CREATE TABLE users(
 id int(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 username varchar(200),
@@ -95,7 +96,7 @@ CREATE TABLE `leave_setting` (
   `financial_year` int(50) DEFAULT NULL,
   `starting_date` date DEFAULT NULL,
   `ending_date` date DEFAULT NULL,
-  `holiday_group` int(50) UNSIGNED,
+  `holiday_group` varchar(100) DEFAULT NULL,
   `no_of_hours` int(50) DEFAULT NULL,
   `shift` varchar(100) DEFAULT NULL,
   `week_start` varchar(50) DEFAULT NULL,
@@ -104,8 +105,7 @@ CREATE TABLE `leave_setting` (
   `no_of_holiday` int(50) DEFAULT NULL,
   `allow_per_month` int(50) DEFAULT NULL,
   `threshold` int(50) DEFAULT NULL,
-  `approved_by` varchar(100) DEFAULT NULL,
-   FOREIGN KEY (`holiday_group`) REFERENCES `set_holiday` (`holiday_id`) ON DELETE CASCADE
+  `approved_by` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -208,7 +208,5 @@ CREATE TABLE `emp_grp` (
   `id` int(50)  NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `grp_name` varchar(255) DEFAULT NULL,
   `empId` int(50) DEFAULT NULL,
-  `holiday_id` int(50) UNSIGNED,
-   FOREIGN KEY (`empId`) REFERENCES `emp_general_info` (`empId`) ON DELETE CASCADE,
-   FOREIGN KEY (`holiday_id`) REFERENCES `emp_general_info` (`holiday_id`) ON DELETE CASCADE
+   FOREIGN KEY (`empId`) REFERENCES `emp_general_info` (`empId`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

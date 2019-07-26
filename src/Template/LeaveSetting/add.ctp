@@ -126,10 +126,10 @@ var x;
               <option>Holiday Group</option>
               <?php
                 $conn = mysqli_connect("localhost","root","","hr_software");
-                $dd_res=mysqli_query($conn,"Select group_name,leave_year from set_holiday");
+                $dd_res=mysqli_query($conn,"Select group_name,holiday_id from set_holiday");
                 while($r=mysqli_fetch_row($dd_res))
                 { 
-                  echo "<option value='$r[0]'> $r[0] ($r[1]) </option>";
+                  echo "<option value='$r[1]'> $r[0] ($r[1]) </option>";
                 }
               ?>
             </select>
