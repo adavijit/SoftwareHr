@@ -70,7 +70,7 @@ class ReqLeaveController extends AppController
             $endDate = date("Y-m-d", strtotime($myDt2));
             $reqLeave->ending_date = $endDate;
             $empId = $this->request->getData('empId');
-            $name = $this->request->getData('emp_name');
+            // $name = $this->request->getData('emp_name');
             $test1 = TableRegistry::get('emp_general_info');
             $test = $test1->find('all');
             foreach($test as $temp){
@@ -129,7 +129,7 @@ class ReqLeaveController extends AppController
             $reqLeave->approval_states = $st;
             //var_dump($reqLeave);
             $empId = $this->request->getData('empId');
-            $name = $this->request->getData('emp_name');
+            // $name = $this->request->getData('emp_name');
             $test1 = TableRegistry::get('emp_general_info');
             $test = $test1->find('all');
             foreach($test as $temp){
