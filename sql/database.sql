@@ -1,4 +1,3 @@
-CREATE DATABASE hr_software;
 CREATE TABLE users(
 id int(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 username varchar(200),

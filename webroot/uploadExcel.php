@@ -29,18 +29,22 @@ foreach($data as $temp)
         array_push($arr,$test);
     }
     //print_r($arr);
+    
     $empName = $arr[0];
-    $dob=$arr[1];
+    $dob=date("Y-m-d",mktime(0,0,0,1,$arr[1]-1,1900));
     $nationality=$arr[2];
     $bloodGroup=$arr[3];
     $emergency=$arr[4];
-    $lwd =$arr[5];
-    $probation =$arr[6];
-    $dateOfJoining=$arr[7];
+    echo $arr[5];
+    $lwd =date("Y-m-d",mktime(0,0,0,1,$arr[5]-1,1900));
+   
+    $probation =date("Y-m-d",mktime(0,0,0,1,$arr[6]-1,1900));
+    echo $lwd;
+    $dateOfJoining=date("Y-m-d",mktime(0,0,0,1,$arr[7]-1,1900));
     $sex=$arr[8];
     $designation=$arr[9];
     if(mysqli_query($conn,"INSERT INTO emp_general_info(empName,dob,nationality,bloodGroup,emergencyContact,lastWorkingDate,dateOfJoining,probationCompletionDate,sex,emp_status,designation)
-    VALUES('$empName','$dob','$nationality','$bloodGroup','$emergency','$lwd','$probation','$dateOfJoining','$sex','Active','$designation')")){
+    VALUES('$empName','$dob','$nationality','$bloodGroup','$emergency','$lwd','$dateOfJoining','$probation','$sex','Active','$designation')")){
         echo "Success from empgen";
         $count++;
     }
