@@ -128,14 +128,24 @@ use Cake\Routing\Router;
           <label class="labelform">Holiday Group</label>
             <!-- <input id="" value="<?= h($leaveSetting->holiday_group) ?>" name="holiday_group" class="form-control rounded-0" width="100%"    />  -->
               <select name="holiday_group" class="form-control rounded-0">
-              <option value="<?php h($leaveSetting->holiday_group) ?>"><?php echo "$leaveSetting->holiday_group" ?></option>
+              <option value="<?php h($leaveSetting->holiday_group) ?>">
+              <?= 
+              $conn = mysqli_connect("localhost","root","","hr_software");
+              $dd_res=mysqli_query($conn,"Select group_name,holiday_id from set_holiday");
+              foreach($dd_res as $temp)
+              {
+                  if($temp['holiday_id']==$leaveSetting->holiday_group){
+                  echo "<td>$temp[group_name]</td>";
+                }
+              }
+              ?></option>
               <?php
                 $conn = mysqli_connect("localhost","root","","hr_software");
-                $dd_res=mysqli_query($conn,"Select group_name,leave_year from set_holiday");
+                $dd_res=mysqli_query($conn,"Select group_name,holiday_id from set_holiday");
                 while($r=mysqli_fetch_row($dd_res))
                 { 
-                  if(strtolower($r[0])!=strtolower($leaveSetting->holiday_group)){
-                    echo "<option value='$r[0]'> $r[0]</option>";
+                  if(strtolower($r[1])!=strtolower($leaveSetting->holiday_group)){
+                    echo "<option value='$r[1]'> $r[0] ($r[1])</option>";
                   }
                 }
               ?>
