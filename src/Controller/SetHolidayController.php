@@ -99,7 +99,7 @@ class SetHolidayController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        // $this->request->allowMethod(['post', 'delete']);
         $setHoliday = $this->SetHoliday->get($id);
         if ($this->SetHoliday->delete($setHoliday)) {
             $this->Flash->success(__('The set holiday has been deleted.'));

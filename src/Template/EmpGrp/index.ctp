@@ -1,9 +1,10 @@
 <?php
-use Cake\Routing\Router;
-use Cake\ORM\TableRegistry;
+        require 'dbconnect.php';
+        use Cake\Routing\Router;
+        use Cake\ORM\TableRegistry;
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\EmpGeneralInfo[]|\Cake\Collection\CollectionInterface $empGeneralInfo
+ * @var \App\Model\Entity\EmpGrp[]|\Cake\Collection\CollectionInterface $empGrp
  */
 ?>
 <!DOCTYPE html>
@@ -63,7 +64,7 @@ use Cake\ORM\TableRegistry;
             <a href="javascript:void(0);"><i class="icon-file"></i> <span>Settings</span></a>
             <ul class="subchildlink">
             <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'SetHoliday','action'=>'index']) ?>' "  style="cursor:pointer;">Holiday Setting</li>             
-              <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'EmpGrp','action'=>'index']) ?>' "  style="cursor:pointer;">Employee group setting </li>
+              <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'ReqLeave','action'=>'/index']) ?>' "  style="cursor:pointer;">Employee group setting </li>
             
             
             
@@ -92,97 +93,68 @@ use Cake\ORM\TableRegistry;
     <div class="bodytransition">
     <div class="bodypart">
         <div class="row pageheadertop mb-3">
-        <div class="col"><h2>View Employee Records</h2></div>
+        <div class="col"><h2>Employee Group Setting</h2></div>
 
        
         
         <input type="file" name="file" id="excelSheet" style="display:none;">
-        <div class="col-auto"><button  data-toggle="modal" data-target="#exampleModal2" type="button" class="btn orangebutton rounded-circle"><i   class="icon-add-plus-button"></i></button></div>
+        <div class="col-auto"><button  data-toggle="modal" data-target="#addGroup" type="button" class="btn orangebutton rounded-circle"><i   class="icon-add-plus-button"></i></button></div>
      
       </div>
       <div>
         <table class="table employtable" id="changeActiveStatus">
   <thead>
     <tr>
-      <th scope="col">Employee</th>
-      <th scope="col">name</th>
-      <th scope="col">Date of Joining</th>
-      <th scope="col">Sex</th>
-      <th scope="col">Mobile Number</th>
-      <th scope="col">Locations</th>
-      <th scope="col">Blood Group</th>
-      <th scope="col">Action</th>
-      <th scope="col">Status</th>
+      <th scope="col">Group name</th>
+      <th scope="col">Employee name</th>
+      <th scope="col">Holiday name</th>
+      
+      <th scope="col" >Action</th>
     </tr>
   </thead>
   <tbody>
-  <?php foreach ($empGeneralInfo as $empGeneralInfo): ?>
+  <?php foreach ($empGrp as $empGrp): ?>
             <tr>
-            <td>
-    <?php
-    if($empGeneralInfo->photoPath=='upload/' || $empGeneralInfo->photoPath=='')
-    echo "<img alt='photo' style='width:50px; height:50px; border-radius: 50%;' src='images/User.png'>";
-    else
-    echo "<img alt='photo' style='width:50px; height:50px; border-radius: 50%;' src='$empGeneralInfo->photoPath'>";
-    ?></td>
-                <td>
-                  
-                  <a href="<?php echo Router::url(['controller'=>'EmpGeneralInfo','action'=>'view',$empGeneralInfo->empId]) ?>" style='color:#007bff; cursor:pointer;'><?php echo $empGeneralInfo->empName ?></a>
+      
+                
             
-                <td><?php echo $empGeneralInfo->dateOfJoining ?></td>
-                <td><?php echo $empGeneralInfo->sex ?></td>
-                <td>
+                <td><?php echo $empGrp->grp_name ?></td>
                 <?php
-            //    echo $empGeneralInfo->empId;
-                $conts = TableRegistry::get('employeecontact');
-                $query = $conts->find('all');
-                //print_r($query);
-                foreach($query as $temp){
-                  
-                    if($empGeneralInfo->empId==$temp['empId'])
+                    $group = TableRegistry::get('emp_general_info');
+                    $query = $group->find('all');
+                    foreach($query as $temp)
                     {
-                        echo $temp['mobileId'];
-                        // echo "sad";
+                        if($temp['empId']== $empGrp->empId)
+                        echo "<td>$temp[empName]</td>";
                     }
-                }
-                
-               ?>
-                </td>
-                <td><?php foreach($query as $temp){
-                  
-                  if($empGeneralInfo->empId==$temp['empId'])
-                  {
-                      echo $temp['location'];
-                      // echo "sad";
-                  }
-              } ?></td>
-              <td><?php echo $empGeneralInfo->bloodGroup ?></td>
-                
-            
-                <td class="actions">
-                  
-                <a style='color:black;' href="<?php echo Router::url(['controller'=>'AllRecordsEdit','action'=>'index' ,'id'=>base64_encode($empGeneralInfo->empId),'div'=>'5' ]); ?>" ><i class='icon-pencil'></i>  </a>
-               <?php echo "&nbsp;";
 
-                ///////////////
-                if(strtolower($empGeneralInfo->emp_status) == "active"){
-                  echo " <a id='changeDiv1'  onClick='onclickFunction($empGeneralInfo->empId,1);' style='color:red;cursor:pointer;' ><i class='icon-cancel-1'></i>  </a>";
-                  echo "&nbsp;";
-                }
-                else{
-                  echo " <a id='changeDiv2' onClick='onclickFunction($empGeneralInfo->empId,2);' style='color:#00FF00;cursor:pointer;'><i class='icon-check-sign'></i>  </a>";
-                  echo "&nbsp;";
-
-                }
-               
-                echo " <a data-toggle='modal' data-target='#confirmModal'  onClick='deleteS($empGeneralInfo->empId);' href='javascript:void(0)'><i class='icon-trash-1'></i>  </a>";
-
-                
-                
                 ?>
                 
+                <?php
+                    $holiday = TableRegistry::get('set_holiday');
+                    $query = $holiday->find('all');
+                    foreach($query as $temp)
+                    {
+                        if($temp['holiday_id']== $empGrp->holiday_id)
+                        echo "<td>$temp[group_name]</td>";
+                    }
+
+                ?>
+                <td class="actions">
+                  
+                <a style='color:black;' href="<?php echo Router::url(['action'=>'edit',$empGrp->id ]); ?>" ><i class='icon-pencil'></i>  </a>
+          
+
+               
+             &nbsp;
+                
+               
+               <a href="<?php echo Router::url( ['action' => 'delete', $empGrp->id])?>"><i class='icon-trash-1'></i>  </a>
+
+                
+          
+                
                 </td>
-                <td><?php echo $empGeneralInfo->emp_status ?></td>
             </tr>
 
 
@@ -223,6 +195,69 @@ use Cake\ORM\TableRegistry;
       </div>
     </div>
 
+ <!--  modal box  -->
+
+ <div class="modal fade" id="addGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header modalheadercust">
+        <h3 class="modal-title"><i class="icon-file"></i>Set Employee Group</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="icon-cancel-1"></i>
+        </button>
+      </div>
+      <div class="modal-body modalbodycustom">
+        <h4 class="mb-2">Set Employee Group</h4>
+        <div class="row">
+                <div class="col-sm-12">
+                    <div class="formgroup">
+                    <!-- <input type="text" name="" placeholder="Set Leave Years" class="w-100"> -->
+                    <input type="text" id="group_name" placeholder="Group Name" class="w-100">
+
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="formgroup">
+                    <!-- <input type="email" name="" placeholder="Holiday Group Name" class="w-100"> -->
+                    <select  id="employee_id" class="w-100">
+                        <option>Employee name</option>
+                            <?php
+                                 $employee = TableRegistry::get('emp_general_info');
+                                 $query = $employee->find('all');
+                                 foreach($query as $temp){
+                                   echo "<option value=$temp[empId]>$temp[empName] (Id : $temp[empId])</option>";
+                                 }
+                            ?>
+                    </select>
+
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="formgroup">
+                    <!-- <input type="email" name="" placeholder="Holiday Group Name" class="w-100"> -->
+                    <select  id="holiday_id" class="w-100">
+                        <option>Holiday name</option>
+                            <?php
+                               $employee = TableRegistry::get('set_holiday');
+                               $query = $employee->find('all');
+                               foreach($query as $temp){
+                                 echo "<option value=$temp[holiday_id]>$temp[group_name] (Id : $temp[holiday_id])</option>";
+                               }
+                            ?>
+                      </select>
+                    </div>
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn redbutton" data-dismiss="modal">Cancel</button>
+        <button type="submit" onClick="saveEmpGroup();" class="btn bluebutton">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  modal box  -->
     <!-- SUCCSS-->
     <div class="modal fade" id="successmessage" tabindex="-1" role="dialog" aria-labelledby="successmessage" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -271,33 +306,7 @@ use Cake\ORM\TableRegistry;
 </div>
 
  <!--  modal box  -->
- <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header modalheadercust">
-        <h3 class="modal-title"><i class="icon-file"></i> Add excel file</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <i class="icon-cancel-1"></i>
-        </button>
-      </div>
-      <div class="modal-body modalbodycustom">
-        <h4 class="mb-3">Select file</h4>
-        <div class="row">
-        <ul class="imageuploadlist p-0 m-0">
-     &nbsp;
-     <li id="replaceFile"><div onclick="document.getElementById('excelSheet').click()" class="imageuploadsect imagoutlinebor"><i class="icon-add-plus-button"></i></a></div></li>
-     
-   </ul>
-         
-        </div>
-      </div>
-      <div class="modal-footer justify-content-between">
-        <button type="button" class="btn redbutton" data-dismiss="modal">Cancel</button>
-        <button onclick="uploadExcel();"  type="button" class="btn bluebutton">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
+ 
 
 <!-- Confirm -->
 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModal" aria-hidden="true">
@@ -359,7 +368,7 @@ use Cake\ORM\TableRegistry;
         <div class="iconstatus redcolr mb-3"><i class="icon-error"></i></div>
         <h4 class="mb-3">Success</h4>
         
-        <p class="mb-3">Successfully Updated</p>
+        <p class="mb-3">Successfully Inserted</p>
         
       </div>
      
@@ -398,87 +407,55 @@ use Cake\ORM\TableRegistry;
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
   </body>
-  <script>
-
-var IdDelete = '';
-function deleteS(id){
-  IdDelete = id;         
-}     
-
-
-  function uploadExcel(){
-    var form_data = new FormData(); 
-      console.log("asd");
-      form_data.append('excelSheet', $('#excelSheet').prop('files')[0]);
-      $.ajax({
-        type: "POST",
-        url: "uploadExcel.php",
-        data:form_data,
-        processData: false,
-        contentType: false,
-        success: function (data){
-          //alert(data);
-          
-          $('#exampleModal2').modal("hide");
-          $('#successmessage').modal("show");
-          $("#changeActiveStatus").load(" #changeActiveStatus");
-          
-        },
-        error: function(data){
-          $('#errormessage').modal("show");
-        }
-    });
-    
-    
-}
-
-  
-
-   function onclickFunction(aId,changeStatus){
-     console.log("asdasd");
-     if(changeStatus==3)
-     {
-       aId=IdDelete;
-     }
-    $.ajax({
-        type: "POST",
-        url: "changeStatus.php",
-        data: {
-            aId:aId,
-            changeId:changeStatus
-
-        },
-        success: function (data){
-          
-          $("#changeActiveStatus").load(" #changeActiveStatus");
-        }
-    });
-
-    
-    return false;
-}
-
-$('body').on('change', '#excelSheet', function() {
-  console.log("rrrr");
-  var fileExtension = ['xls', 'xlsx'];
-        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) 
-        {
-          
-       $('#exampleModal2').modal("hide");
-       $('#errormessage').modal("show");
-      
-        }
-        else{
-          var x = $(this).val().replace(/.*(\/|\\)/, '');
-         //console.log(x);
-  $( "#replaceFile" ).replaceWith("<li><div  class='imageuploadsect'><p style='text-align:center; overflow:hidden height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li>");
-  
-} 
-});
-     
-</script>
 </html>
+<script>
+ function saveEmpGroup()
+        {
+            
+          var group_name = document.getElementById('group_name').value;
+
+          var employee_id = document.getElementById('employee_id').value;
+
+          var holiday_id = document.getElementById('holiday_id').value;
+          console.log(holiday_id);
+
+
+          $.ajax({
+            type:"POST",
+            url: "addEmpGroup.php",
+            data:{
+              group_name: group_name,
+              employee_id : employee_id,
+              holiday_id : holiday_id
+            },
+            success : function(data)
+            {
+                
+                $('#addGroup').modal("hide");
+                $('#successmessage').modal("show");
+                $('#changeActiveStatus').load(" #changeActiveStatus");
+                
+            }
+
+
+          });
+        }
+
+</script>
 <script> 
+ $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+        $('#datepicker2').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+        $('#starting_date').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+        $('#ending_date').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+
 $(document).ready(function(){
  // $(".subchildlink").hide();
   $(".listofnav li a").click(function(){

@@ -18,6 +18,7 @@ use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
+use Cake\ORM\TableRegistry;
 
 /**
  * Static content controller
@@ -75,9 +76,21 @@ class PagesController extends AppController
     // }
     public function index()
     {
-        $to = 'ritwika.banerjee98@gmail.com';
-        $subject = 'Hi buddy, i got a message for you.';
-        $message = 'Nothing much. Just test out my Email Component using PHPMailer.';
+        $to = '';
+        $id=$_GET['id'];
+        $test2 = TableRegistry::get('employeecontact');
+            $test4 = $test2->find('all');
+
+                foreach($test4 as $temp2){
+                    if($temp2['empId']==$id){
+                        echo "xxxxxxxxxx";
+                        $to = $temp2['officeEmail'];
+                        
+                        //$request->data['password'] = $this->request->getData('password');
+                    }
+                }
+        $subject = 'Leave Approved';
+        $message = 'Your leave is aproved.';
         
         try {
             $mail = $this->Email->send_mail($to, $subject, $message);
@@ -85,6 +98,9 @@ class PagesController extends AppController
         } catch (Exception $e) {
             echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }
+        // $conn=mysqli_connect('localhost','root','','hr_software');
+        // $sql="UPDATE req_leave SET approval_states='Done' WHERE empId='$id' ";
+        // mysqli_query($conn,$sql);
         return $this->redirect(['controller' => 'ReqLeave','action' => '/index']);
         exit;
     }

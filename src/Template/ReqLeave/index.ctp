@@ -104,30 +104,12 @@ use Cake\Routing\Router;
         <td><?= h($reqLeave->ending_date) ?></td>
         <td><?= h($reqLeave->approval_states) ?></td>
         <td class="actions">
-            <?php echo "<a href='$reqLeave->documentPath' download><i class='icon-download-1'></i></a>" ?>
-            <a href="
-            <?php 
-            if(strtolower($reqLeave->approval_states)=="active")
-            {
-              $test=1;
-              echo Router::url( ['controller' => 'Pages','action' => 'index']);
-            }
-            ?>">
-            <?php if($test!=0){
-            echo "&nbsp; <i onclick='myFunction2()' class='icon-home'></i>";
-            
-            }
-            else{
-              // echo "<script></script>";
-              echo "&nbsp; <i onclick='myFunction()' class='icon-home' style='color:#bac4bd'></i>";
-            }
-            
-?>    
-</a>
-        <a href="<?php echo Router::url( ['action' => 'view', $reqLeave->req_id])?>" >&nbsp; <i class="icon-file" style="right-border:7px;">&nbsp;</i></a> 
+            <?php echo "<a href='$reqLeave->documentPath' download><i class='icon-download-1' style='color:#039E14'></i></a>" ?>
 
-            <a href="<?php echo Router::url( ['action' => 'edit', $reqLeave->req_id])?>" ><i class="icon-pencil"></i>&nbsp;</a>
-            <a href="<?php echo Router::url( ['action' => 'delete', $reqLeave->req_id])?>" ><i onlick="myFunction3()" class="icon-trash-1"></i></a>        
+        <a href="<?php echo Router::url( ['action' => 'view', $reqLeave->req_id])?>" >&nbsp; <i class="icon-file" style="color:blue;">&nbsp;</i></a> 
+
+            <a href="<?php echo Router::url( ['action' => 'edit', $reqLeave->req_id])?>" ><i class="icon-pencil" style="color:black"></i>&nbsp;</a>
+            <a href="<?php echo Router::url( ['action' => 'delete', $reqLeave->req_id])?>" ><i onlick="myFunction3()" class="icon-trash-1" style="color:red"></i></a>        
         </td>
     </tr>
     <?php endforeach; ?>
@@ -201,16 +183,6 @@ use Cake\Routing\Router;
   </body>
 </html>
 <script>
-function myFunction()
-{
-  console.log("click");
-  alert("Approval status is inactive - Can't send mail");
-}
-function myFunction2()
-{
-  console.log("click");
-  alert("Mail will be sent");
-}
 
 function myFunction3()
 {

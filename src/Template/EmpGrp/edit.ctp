@@ -1,13 +1,12 @@
 <?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\SetHoliday $setHoliday
- */
 
 use Cake\Routing\Router;
+use Cake\ORM\TableRegistry;
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\EmpGrp $empGrp
+ */
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -73,11 +72,11 @@ use Cake\Routing\Router;
       </div>
     </header>
 
-    <?= $this->Form->create($setHoliday) ?>
+    <?= $this->Form->create($empGrpSetting) ?>
     <div class="bodytransition">
       <div class="bodypart">
         <div class="row pageheadertop mb-3">
-        <div class="col"><h2>Edit Holiday Setting</h2></div>
+        <div class="col"><h2>Edit Employee Group Setting</h2></div>
         <div class="col-auto"><button type="button" class="btn outlineblue mr-2"><a href="<?php echo Router::url(['controller'=>'SetHoliday','action'=>'index']) ?>">Cancel</a></button> <button type="submit" name="submit" class="btn redbutton">submit</button></div>
       </div>
       <div class="tab-content">
@@ -88,44 +87,47 @@ use Cake\Routing\Router;
        
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-          <label class="labelform">Leave year</label>
-            <input id="" value="<?php echo $setHoliday->leave_year?>" name="leave_year" class="form-control rounded-0" width="100%"   /> 
+          <label class="labelform">Group Name</label>
+
+            <input id="" value="<?php echo $empGrp->grp_name?>" name="group_name" class="form-control rounded-0" width="100%"   /> 
+         
+        </div>
+        </div>
+
+        <div class="col-sm-4 mb-2">
+          <div class="form-group addcustomcss">
+          <label class="labelform">Employee Name</label>
+          <select  id="employee_id" name="group_name" class="form-control rounded-0" width="100%" >
+                            <?php
+                                 $employee = TableRegistry::get('emp_general_info');
+                                 $query = $employee->find('all');
+                                 foreach($query as $temp){
+                                   echo "<option value=$temp[empId]>$temp[empName] (Id : $temp[empId])</option>";
+                                 }
+                            ?>
+                    </select>
+            
           </div>
         </div>
 
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Holiday Name</label>
-            <input id=""  value="<?php echo $setHoliday->h_name?>"  name="h_name"  class="form-control rounded-0" width="100%"   /> 
+          <select  id="holiday_id"  class="form-control rounded-0" width="100%" >
+                        <option>Holiday name</option>
+                            <?php
+                               $employee = TableRegistry::get('set_holiday');
+                               $query = $employee->find('all');
+                               foreach($query as $temp){
+                                 echo "<option value=$temp[holiday_id]>$temp[group_name] (Id : $temp[holiday_id])</option>";
+                               }
+                            ?>
+                      </select>
             
           </div>
         </div>
 
-        <div class="col-sm-4 mb-2">
-          <div class="form-group addcustomcss">
-          <label class="labelform">Group Name</label>
-            <input id="" value="<?php echo $setHoliday->group_name?>" name="group_name"  class="form-control rounded-0" width="100%"   /> 
-            
-          </div>
-        </div>
 
-
-        <div class="col-sm-6 mb-2">
-          <div class="form-group addcustomcss">
-          <label class="labelform">Starting date</label>
-            <input id="datepicker"  value="<?php echo $setHoliday->starting_date?>" name="group_name"  class="form-control rounded-0" width="100%"   /> 
-            
-          </div>
-        </div>
-
-        <div class="col-sm-6 mb-2">
-          <div class="form-group addcustomcss">
-          <label class="labelform">Ending date</label>
-            <input id="datepicker2"  value="<?php echo $setHoliday->ending_date?>" name="group_name"   class="form-control rounded-0" width="100%"   /> 
-            
-          </div>
-        </div>
-      
        
       </div>
     </div>

@@ -94,7 +94,20 @@ use Cake\Routing\Router;
                 <div class="col-6"><label class="employlabel">Nationality</label></div>
                 <div class="col-6"><label class="employlabel">: <?php echo $empGeneralInfo->nationality ?></label></div>
                 <div class="col-6"><label class="employlabel">Location</label></div>
-                <div class="col-6"><label class="employlabel">: <?php echo $empGeneralInfo->location ?></label></div>
+                <?php
+                  $locs = TableRegistry::get('employeecontact');
+                  $queryS = $locs->find('all');
+                  $loc='';
+                  foreach($queryS as $temp)
+                  {
+                    if($empGeneralInfo->empId==$temp['empId'])
+                    {
+                      $loc=$temp['location'];
+                    }
+                  }
+
+                ?>
+                <div class="col-6"><label class="employlabel">: <?php echo $loc ?></label></div>
                 <div class="col-6"><label class="employlabel">Blood Group</label></div>
                 <div class="col-6"><label class="employlabel">: AB+</label></div>
                 <div class="col-6"><label class="employlabel">Emergency Contact</label></div>
@@ -104,9 +117,13 @@ use Cake\Routing\Router;
                  <div class="col-6"><label class="employlabel">Probation Completion Date</label></div>
                 <div class="col-6"><label class="employlabel">: <?php echo $empGeneralInfo->probationCompletionDate ?></label></div>
                  <div class="col-6"><label class="employlabel">Last Woking Date</label></div>
-                <div class="col-6"><label class="employlabel">: <?php echo $empGeneralInfo->lwd ?></label></div>
+                <div class="col-6"><label class="employlabel">: <?php echo $empGeneralInfo->lastWorkingDate ?></label></div>
                 <div class="col-6"><label class="employlabel">Documents</label></div>
-                <div class="col-6"><label class="employlabel">: <a download href="<?php echo "../../".$empGeneralInfo->documentPath ?>">Click Here</a></label></div>
+                <?php if($empGeneralInfo->documentPath=='' || $empGeneralInfo->documentPath=='upload/') 
+               echo  "<div class='col-6'><label class='employlabel'>: <a>No Documents</a></label></div>";
+               else 
+              echo "<div class='col-6'><label class='employlabel'>: < download href=''../../'.$empGeneralInfo->documentPath'>Click Here</a></label></div>";
+                ?>
               </div>
             </div>
           </div>

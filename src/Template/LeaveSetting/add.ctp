@@ -126,10 +126,10 @@ var x;
               <option>Holiday Group</option>
               <?php
                 $conn = mysqli_connect("localhost","root","","hr_software");
-                $dd_res=mysqli_query($conn,"Select group_name,leave_year from set_holiday");
+                $dd_res=mysqli_query($conn,"Select group_name,holiday_id from set_holiday");
                 while($r=mysqli_fetch_row($dd_res))
                 { 
-                  echo "<option value='$r[0]'> $r[0] ($r[1]) </option>";
+                  echo "<option value='$r[1]'> $r[0] ($r[1]) </option>";
                 }
               ?>
             </select>
@@ -167,16 +167,7 @@ var x;
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <select name="weekly_days_off" class="form-control rounded-0">
-              <option>Weekly Days Off</option>
-              <option>Sunday</option>
-              <option>Monday</option>              
-              <option>Tuesday</option>
-              <option>Wednesday</option>
-              <option>Thursday</option>
-              <option>Friday</option>
-              <option>Saturday</option>           
-            </select> 
+            <input type="text" id="" name="weekly_days_off" placeholder="Weekly Days Off" class="form-control rounded-0" width="100%" />
 
           </div>
         </div>

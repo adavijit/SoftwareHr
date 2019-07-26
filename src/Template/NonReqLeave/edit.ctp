@@ -89,26 +89,31 @@
       <div class="row">
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-             <input id="" value="<?= h($nonReqLeave->emp_name) ?>" type="text" nae="emp_name" placeholder="Employee Name" class="form-control rounded-0" width="100%"    /> 
+          <label class="labelform">Employee Name</label>
+             <input id="" value="<?= h($nonReqLeave->emp_name) ?>" type="text" nae="emp_name" placeholder="" class="form-control rounded-0" width="100%"    /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Designation</label>
             <input id="" value="<?= h($nonReqLeave->designationId) ?>" type="text" name="designationId" placeholder="Designation" class="form-control rounded-0" width="100%"    /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Department</label>
           <input id="" value="<?= h($nonReqLeave->department) ?>" type="text" name="department" placeholder="Department" class="form-control rounded-0" width="100%"    />  
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">No of Days Requested</label>
             <input id="" value="<?= h($nonReqLeave->no_of_day) ?>" type="text" name="no_of_day_requested" placeholder="No. of Days Requested" class="form-control rounded-0" width="100%"    /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
-          <div class="form-group addcustomcss">          
+          <div class="form-group addcustomcss">  
+          <label class="labelform">Day type</label>        
           <select name="fullday_half" class="form-control rounded-0">
               <option><?php echo $nonReqLeave->fullday_half ?></option>
               <?php
@@ -127,21 +132,25 @@
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Leave Type</label>
             <input id="" value="<?= h($nonReqLeave->leave_type) ?>" type="text" name="leave_type" placeholder="No. of Days Requested" class="form-control rounded-0" width="100%"    /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Balance Leave</label>
             <input id="" value="<?= h($nonReqLeave->balance_leave) ?>" type="text" name="balance_leave" placeholder="Current Leave Balance" class="form-control rounded-0" width="100%"    /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Starting Date</label>
             <input value="<?= h($nonReqLeave->starting_date) ?>" name="starting_date" placeholder="Leave Starting Date" class="form-control rounded-0" width="100%"    />
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Ending Date</label>
             <input value="<?= h($nonReqLeave->ending_date) ?>" name="ending_date" placeholder="Leave Ending Date" class="form-control rounded-0" width="100%"    /> 
           </div>
         </div>
@@ -152,27 +161,32 @@
         </div>-->
         <div class="col-sm-3 mb-2"> 
           <div class="form-group addcustomcss">
-          <input id="" type="text" value="<?= h($nonReqLeave->inform_status) ?>" name="approval_states" class="form-control rounded-0" width="100%"    /> 
+          <label class="labelform">Inform Status</label>
+          <input id="" type="text" value="<?= h($nonReqLeave->inform_status) ?>" name="inform_status" class="form-control rounded-0" width="100%"    /> 
           </div>
         </div>
         <div class="col-sm-3 mb-2"> 
           <div class="form-group addcustomcss">
-          <input id="" type="text" value="<?= h($nonReqLeave->inform_medium) ?>" name="approval_states" class="form-control rounded-0" width="100%"    /> 
+          <label class="labelform">Inform Medium</label>
+          <input id="" type="text" value="<?= h($nonReqLeave->inform_medium) ?>" name="inform_medium" class="form-control rounded-0" width="100%"    /> 
           </div>
         </div>
         
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Upload File</label>
             <?php echo $this->Form->file('file',['class'=>'form-control'],h($nonReqLeave->documentName)); ?>
           </div>
         </div>
         <div class="col-sm-3 mb-2">
-          <div class="form-group addcustomcss">          
+          <div class="form-group addcustomcss"> 
+          <label class="labelform">Document Name</label>         
             <input id="" type="text" value="<?= h($nonReqLeave->documentName) ?>" name="documentName" class="form-control rounded-0" width="100%" disabled/>                         
           </div>
         </div>
         <div class="col-sm-12 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Reason</label>
           <input id="" type="text" value="<?= h($nonReqLeave->reason) ?>" name="reason" class="form-control rounded-0" width="100%"    /> 
           </div>
         </div>

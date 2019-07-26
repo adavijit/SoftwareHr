@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
+// App::import('Controller', 'Pages');
 
 /**
  * ReqLeave Controller
@@ -67,7 +69,19 @@ class ReqLeaveController extends AppController
             $reqLeave->starting_date = $strtDate;
             $endDate = date("Y-m-d", strtotime($myDt2));
             $reqLeave->ending_date = $endDate;
-            // var_dump($reqLeave);
+            $empId = $this->request->getData('empId');
+            // $name = $this->request->getData('emp_name');
+            $test1 = TableRegistry::get('emp_general_info');
+            $test = $test1->find('all');
+            foreach($test as $temp){
+                if($empId==$temp['empId'] ){
+                    echo "xxxxxxxxxx";
+                    $reqLeave->empId = $temp['empId'];
+                    $reqLeave->emp_name=  $temp['empName'];
+                    //$request->data['password'] = $this->request->getData('password');
+                }
+            }
+            
             if ($this->ReqLeave->save($reqLeave)) {
                // $this->Flash->success(__('The req leave has been saved.'));
 
@@ -87,6 +101,7 @@ class ReqLeaveController extends AppController
      */
     public function edit($id = null)
     {
+        $Pages = new PagesController;
         $reqLeave = $this->ReqLeave->get($id, [
             'contain' => []
         ]);
@@ -113,11 +128,33 @@ class ReqLeaveController extends AppController
             $reqLeave->ending_date = $endDate;
             $reqLeave->approval_states = $st;
             //var_dump($reqLeave);
-            if ($this->ReqLeave->save($reqLeave)) {
-                $this->Flash->success(__('The req leave has been saved.'));
-
-                return $this->redirect(['action' => '/index']);
+            $empId = $this->request->getData('empId');
+            // $name = $this->request->getData('emp_name');
+            $test1 = TableRegistry::get('emp_general_info');
+            $test = $test1->find('all');
+            foreach($test as $temp){
+                if($empId==$temp['empId'] ){
+                    echo "xxxxxxxxxx";
+                    $reqLeave->empId = $temp['empId'];
+                    $reqLeave->emp_name=  $temp['empName'];
+                    //$request->data['password'] = $this->request->getData('password');
+                }
             }
+            if(strtolower($reqLeave->approval_states)=="active" ){
+                $reqLeave->approval_states = "Done";            
+                if ($this->ReqLeave->save($reqLeave)) {
+                    $this->Flash->success(__('The req leave has been saved.'));
+
+                    return $this->redirect( ['controller' => 'Pages','action' => 'index','id'=>$reqLeave->empId]);
+                }
+            }
+            else{
+                if ($this->ReqLeave->save($reqLeave)) {
+                    $this->Flash->success(__('The req leave has been saved.'));
+    
+                    return $this->redirect(['action' => '/index']);
+                }
+            }   
             $this->Flash->error(__('The req leave could not be saved. Please, try again.'));
         }
         $this->set(compact('reqLeave'));
