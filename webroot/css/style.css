@@ -96,7 +96,7 @@ header {position: fixed; height: 5.625rem; background: #FFF; width: 100%; left: 
 .usernameboxdiv .usernamed {font-family: 'Muli', sans-serif; font-size: 16px; line-height:45px; color:#000000; font-weight: 600;}
 
 /* left menu */
-.leftmenu {position: fixed; width: 16.875rem; background: #2476B2; min-height: 100vh; display: flex; flex-wrap: wrap; flex-direction: column; align-items: flex-start; z-index: 11;}
+.leftmenu {position: fixed; width: 16.875rem; background: #2476B2; min-height: 100vh; display: flex; flex-wrap: wrap; flex-direction: column; align-items: flex-start; z-index: 11; transition: 0.3s all;}
 .leftmenu .leftpadd {height: 100%; padding: 10px 10px 10px 0; width: 100%; height: 100%;}
 .leftlogo {margin: 19px 0 29px; display: block; text-align: center; width: 100%;}
 .leftlogo img {max-width: 50px;}
@@ -111,7 +111,7 @@ header {position: fixed; height: 5.625rem; background: #FFF; width: 100%; left: 
 
 /* right part */
 .rightpart {/*background: #FFF;*/ width: 100%; min-height: 100vh;}
-.bodytransition {padding-left: 16.875rem; padding-top: 5.625rem;}
+.bodytransition {padding-left: 16.875rem; padding-top: 5.625rem;  transition: 0.3s all;}
 .bodypart {padding: 25px;}
 
 /* dashboard css */
@@ -126,7 +126,7 @@ header {position: fixed; height: 5.625rem; background: #FFF; width: 100%; left: 
 
 .pageheadertop h2 {font-family: 'Muli', sans-serif; font-size: 24px; font-weight:700; color:#000000;}
 .pageheadertop .buttonwidth {width:160px; box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);}
-.pageheadertop .orangebutton {width: 50px;}
+.pageheadertop .orangebutton, .pageheadertop .outlineblue {width: 50px;}
 .employtable th {background:#1E78B6; font-family: 'Muli', sans-serif; font-size:16px; line-height:20px; color:#FFFFFF; font-weight:600; padding: .5rem;}
 .employtable td {font-family: 'Muli', sans-serif; font-size:16px; line-height:20px; color:#212121; font-weight:400; padding: .5rem; vertical-align: middle;}
 .employtable td.action a {margin: 0 4px; font-size: 14px; color: #333;}
@@ -207,3 +207,37 @@ footer p {font-size: 14px; line-height: 50px; text-align: center; color:#424242;
 .labelform {position: absolute; left: 10px; top: -14px; background: #FFF; padding: 0 10px; color: #909090; z-index: 1;}
 
 .tablewhitespace th, .tablewhitespace td {white-space:nowrap;}
+
+/* dashboard  */
+.cardashtop {}
+.cardashtop h3 {font-size: 16px; color: #000000; margin-bottom:1rem}
+.cardashtop .numbering {font-size: 25px; font-weight: bold; color: #4D4F5C;}
+.cardashtop i {font-size: 18px; display: block; line-height: 35px;}
+
+.dashboardgraph h4 {font-size: 18px; color: #000000; font-weight: 600;}
+.dashboardgraph img {width: 100%;}
+.leftmenu .menuhomem {width:30px; height:30px; background:#1B679F; border-radius: 50%; position:absolute; top:20%; right: -15px; text-align: center; line-height: 30px;}
+.leftmenu .menuhomem i {color: #FFF;}
+
+/* layout changes */
+.minleftmenu .leftmenu {width: 2rem;}
+.minleftmenu .leftmenu .leftpadd {display: none;}
+.minleftmenu .bodytransition {padding-left: 2rem;}
+.minleftmenu footer {left: 2rem;}
+
+#drop { display:none; /* Hide it first of all */ background:#fff; /*border:1px solid #CCC;*/ box-shadow:0 1px 3px rgba(0,0,0,0.15); position:absolute; top:46px; left:-30px; width:230px; border-radius:4px;}
+#drop .logouuserdiv {padding: 10px;}
+#drop .logouuserdiv .imagepic {width:40px; border-radius: 50%; overflow: hidden; display: inline-block;}
+#drop .logouuserdiv .imagepic img {width: 100%;}
+#drop .logouuserdiv .spantext {width: calc(100% - 50px);  display: inline-block;}
+#drop .logouuserdiv .spantext h5 {font-size: 15px; color:#212121; font-weight: 700;}
+#drop .logouuserdiv .spantext a {font-size: 12px; color:#424242; font-weight: 400; padding: 0 0 0 0;}
+#drop .logouuserdiv .spantext a:hover {background: transparent;zx}
+#drop a { color:#333; display:block; padding:5px 10px; font-family:Helvetica, Arial, sans-serif; font-size:12px; text-decoration:none;}
+#drop a:hover {background:#333; color:#FFF;}
+#drop .footerbottom {background:#2476B2}
+#drop .footerbottom a {color: #FFF; font-size: 14px; line-height: 26px; font-weight: 400;}
+#drop .footerbottom a i {padding:0 10px;}
+
+.pageheadertop .labelform {background: #F5F5F5}
+.pageheadertop input, .pageheadertop select {background: #F5F5F5}

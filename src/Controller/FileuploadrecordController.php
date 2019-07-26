@@ -90,7 +90,8 @@ class FileuploadrecordController extends AppController
     public function add()
     {
         //adasd
-        require('XLSXReader.php');
+        require_once(ROOT . DS . 'vendor' . DS . 'XLSXReader.php');
+        //require('XLSXReader.php');
         $fileuploadrecord = $this->Fileuploadrecord->newEntity();
         if ($this->request->is('post')) {
 
@@ -146,15 +147,25 @@ class FileuploadrecordController extends AppController
                                                                     $empName=$arr[1];
                                                                     $Att_Date=date("Y-m-d",mktime(0,0,0,1,$arr[2]-1,1900));    
                                                                     $InTime=$this->time_format($arr[3]);
+                                                                    // $InTime=$arr[3];
                                                                     $OutTime=$this->time_format($arr[4]);
+                                                                    // $OutTime=$arr[4];
                                                                     $Shift=$arr[5];
                                                                     $S_InTime=$this->time_format($arr[6]);
+                                                                    // $S_InTime=$arr[6];
                                                                     $S_OutTime = $this->time_format($arr[7]); 
-                                                                    $WorkDurr=$this->time_format($arr[8]);
+                                                                    // $S_OutTime=$arr[7];
                                                                     $OT=$this->time_format($arr[9]);
+                                                                    // $WorkDurr=$this->time_format($arr[4]-$arr[3]-$arr[9]);
+                                                                    // $WorkDurr=$arr[8];
+                                                                    $WorkDurr=$this->time_format($arr[8]);
+                                                                    // $OT=$arr[9];
                                                                     $TotDurr=$this->time_format($arr[10]);
+                                                                    // $TotDurr=$arr[10];
                                                                     $LateBy=$this->time_format($arr[11]);
+                                                                    // $LateBy=$arr[11];
                                                                     $EarlyGoingBy=$this->time_format($arr[12]);
+                                                                    // $EarlyGoingBy=$arr[12];
                                                                     $Att_Status=$arr[13];
                                                                     $Punch_Records=$arr[14];
                                                                     //echo $max;

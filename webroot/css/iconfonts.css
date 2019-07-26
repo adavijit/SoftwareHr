@@ -90,3 +90,15 @@ i {
 .icon-user:before {
   content: "\e912";
 }
+.icon-search:before {
+  content: "\e916";
+}
+.icon-envelope:before {
+  content: "\e917";
+}
+.icon-view:before {
+  content: "\e918";
+}
+.icon-refresh-button:before {
+  content: "\e919";
+}
