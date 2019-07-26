@@ -48,7 +48,6 @@
       </div>
       </div>
     </section>
-    <!-- left menu section end here -->
 
     <!-- right part section start here -->
     <section class="rightpart">
@@ -81,21 +80,10 @@ while($row3 = $result1->fetch_assoc()){
       <div class="bodypart">
         <div class="row pageheadertop mb-3">
         <div class="col"><h2>View Attendance List: <?= $month?>-<?= $year?></h2></div>
-        
-        <div class="col-auto">
-          <div class="form-group addcustomcss">
-             <select class="form-control rounded-0" id="WorkDurr" name="WorkDurr" value="">
-                <option>Work duration</option>
-                    <?php
-                    for($i=1;$i<=12;$i++)
-                    echo "<option>$i</option>";
-                    ?>
-
-              
-            </select> 
-          </div>
-        </div>
-        <div class="col-auto">
+      
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-auto">
           <div class="form-group addcustomcss">
              <select class="form-control rounded-0" id="empName" name="empName" value="">
               <option>Employee Name</option>
@@ -111,7 +99,79 @@ while($row3 = $result1->fetch_assoc()){
             </select> 
           </div>
         </div>
+
         <div class="col-auto">
+          <div class="form-group addcustomcss">
+             <select class="form-control rounded-0" id="status" name="status" >
+             <option>All</option>
+             <option>Present</option>
+             <option>Absent</option>
+              
+            </select> 
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="form-group addcustomcss">
+             <select class="form-control rounded-0" id="WorkDurr" name="WorkDurr">
+                <option>Work duration</option>
+                    <?php
+                    for($i=1;$i<=12;$i++)
+                    echo "<option>$i</option>";
+                    ?>              
+            </select> 
+          </div>
+        </div>
+        
+        <div class="col-auto pt-2">
+          <input type="checkbox" class="" id="LateBy" id="LateBy" >
+                <label for="LateBy">LateBy</label>
+        </div>
+
+        <div class="col-auto"><button type="button" class="btn orangebutton rounded-circle" id="download"><i class="icon-download-1" ></i></button></div>
+        <div class="col-auto"><input type="button" name="reset" value="refresh" class="btn outlineblue rounded-circle px-0" onclick="return RefreshWindow();"><i class="icon-refresh-button"></i></button></div>
+      </div>
+    </div>
+    
+        
+        <!-- <div class="col-auto">
+          <div class="form-group addcustomcss">
+             <select class="form-control rounded-0" id="WorkDurr" name="WorkDurr">
+                <option>Work duration</option>
+                    <?php
+                    for($i=1;$i<=12;$i++)
+                    echo "<option>$i</option>";
+                    ?>
+
+              
+            </select> 
+          </div>
+        </div> -->
+        <!-- <div class="col-auto"> -->
+          <!-- <div class="form-group addcustomcss">
+             <select class="form-control rounded-0" id="empName" name="empName" value="">
+              <option>Employee Name</option>
+              <?php 
+               $result_gen = mysqli_query($conn,"SELECT * FROM emp_general_info");
+               $row_gen = mysqli_num_rows($result_gen);
+              if($row_gen > 0){
+                while($result_data_gen=$result_gen->fetch_assoc()){?>
+                  <option><?=$result_data_gen['empName']?></option>
+                  <?php
+                }
+              }?>
+            </select> 
+          </div> -->
+          <!-- <div class="col-auto">
+          <div class="form-group addcustomcss">
+             <select class="form-control rounded-0" id="status" name="status" >
+             <option>All</option>
+             <option>Present</option>
+             <option>Absent</option>
+              
+            </select> 
+          </div>
+        </div> -->
+       <!--  <div class="col-auto">
           <div class="form-group addcustomcss">
           
               <div class="w-50 d-inline-block">
@@ -124,24 +184,13 @@ while($row3 = $result1->fetch_assoc()){
             
           </div>
         </div>
-        <div class="col-auto">
-        <div class="form-group addcustomcss">
-              <div class="w-50 d-inline-block">
-              
-              <div class="form-check">
-                <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1"> -->
-                <h2>Attendance Status</h2>
-                <input type="radio" name="all" value="all">All</br>
-                <input type="radio" name="absent" value="absent">Absent</br>
-                <input type="radio" name="present" value="present">Present
-
-              </div>
-            </div>
-      </div>
-      <div><input type="button" name="reset" value="reset"></div>
-      <div><input type="button" name="filter" value="filter"></div>
-</div>
-        <div class="col-auto"><button type="button" class="btn orangebutton rounded-circle" data-toggle="modal" data-target="#errormessage"><i class="icon-download-1"></i></button></div>
+       
+        
+      <div><input type="button" name="reset" value="refresh" onclick="return RefreshWindow();"></div> -->
+      
+<!-- </div> -->
+        <!-- <div class="col-auto"><button type="button" class="btn orangebutton rounded-circle" data-toggle="modal" data-target="#errormessage"><i class="icon-download-1"></i></button></div> -->
+        <!-- <div class="col-auto"><button type="button" class="btn orangebutton rounded-circle" id="download"><i class="icon-download-1" ></i></button></div> -->
       </div>
       <div>
 
@@ -154,7 +203,7 @@ while($row3 = $result1->fetch_assoc()){
 
 
 
-      <div>
+      <div  id="table_content">
         <table  class="table employtable tablewhitespace">
         <thead>
         <tr>
@@ -281,7 +330,131 @@ while($row3 = $result1->fetch_assoc()){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://rawgit.com/unconditional/jquery-table2excel/master/src/jquery.table2excel.js"></script>
+    <script src="bower_components\jquery\dist\jquery.min.js"></script>
+<script src="bower_components\jquery-table2excel\dist\jquery.table2excel.min.js"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
     <script> 
+   
+$("#download").click(function(){
+  console.log("sdasd");
+  $("#table_content").table2excel({
+                        // CSS class classes that are not imported into the rows of the exported table
+                        exclude: ".noExl",
+                        // Name of the exported Excel document
+                        name: "Excel Document Name",
+                        // Name of Excel file
+                        filename: "test",
+                        //File suffix name
+                        fileext: ".xlsx",
+                        //Exclude Exporting Pictures
+                        exclude_img: false,
+                        //Exclude export hyperlinks
+                        exclude_links: false,
+                        //Whether to exclude the contents in the export input box
+                        exclude_inputs: false
+                    });
+});
+ 
+
+$(document).ready(function(){
+  $(".subchildlink").hide();
+  $(".listofnav li a").click(function(){
+     //$(this).toggleClass('activeclass').siblings().removeClass('activeclass');
+      $(".listofnav li a").removeClass('activeclass');
+      $(this).toggleClass('activeclass');
+      $('.listofnav li .subchildlink').animate({
+      height: 'toggle'
+    });
+  });
+});
+</script>
+
+<script type="text/javascript">
+function RefreshWindow()
+{
+         window.location.reload(true);
+}
+      $('.uploadclss').on('shown.bs.modal', function () {
+      $('#errormessage').trigger('focus')
+      });
+      $('.successm').on('shown.bs.modal', function () {
+      $('#successmessage').trigger('focus')
+      });
+    </script>
+
+  </body>
+</html>
+<script>
+var WorkDurr = 'Work duration';
+var empName = '';
+var check= '';
+var status = '';
+var id= <?php echo $_GET['id']?>;
+// var id = $_GET['id'];
+
+$("#WorkDurr,#empName,#LateBy,#status").change(function(){
+ // console.log(document.getElementById('WorkDurr').value);
+  WorkDurr = document.getElementById('WorkDurr').value;
+  empName = document.getElementById('empName').value;
+  if(document.getElementById('LateBy').checked==true){
+  check =1;
+}
+if(document.getElementById('LateBy').checked==false){
+  check =0;
+}
+status = document.getElementById('status').value;
+// id = $_GET['id'];
+//console.log(status);
+  filter_data();
+});
+
+
+$(document).ready(function(){
+  //console.log(status);
+
+filter_all("All");
+
+
+
+});
+function filter_data()
+{
+  console.log(check);
+
+    $.ajax({
+        url:"fetch_data.php",
+        method:"POST",
+        data:{
+        WorkDurr:WorkDurr,
+        empName:empName,
+        check:check,
+        status:status,
+        id:id
+        },
+        success:function(data){
+            $('#ttt').html(data);
+        }
+    });
+}
+function filter_all()
+{
+
+
+    $.ajax({
+        url:"fetch_data.php",
+        method:"POST",
+        data:{
+        id:id,
+        test:1
+        },
+        success:function(data){
+            $('#ttt').html(data);
+        }
+    });
+}
 $(document).ready(function(){
   $(".subchildlink").hide();
   $(".listofnav li a").click(function(){
@@ -302,46 +475,4 @@ $(document).ready(function(){
       $('.successm').on('shown.bs.modal', function () {
       $('#successmessage').trigger('focus')
       });
-    </script>
-
-  </body>
-</html>
-<script>
-var WorkDurr = '';
-var empName = '';
-var check= false;
-
-$("#WorkDurr,#empName,#LateBy").change(function(){
- // console.log(document.getElementById('WorkDurr').value);
-  WorkDurr = document.getElementById('WorkDurr').value;
-  empName = document.getElementById('empName').value;
-  if(document.getElementById('LateBy').checked==true){
-  check =1;
-}
-if(document.getElementById('LateBy').checked==false){
-  check =0;
-}
-
-  filter_data();
-});
-
-
-$(document).ready(function(){
-
-filter_data();
-
-
-});
-function filter_data()
-{
-   $('.filter_data').html('<div id="loading" style="" ></div>');
-    $.ajax({
-        url:"fetch_data.php",
-        method:"POST",
-        data:{WorkDurr:WorkDurr,empName:empName,check:check},
-        success:function(data){
-            $('#ttt').html(data);
-        }
-    });
-}
 </script>
