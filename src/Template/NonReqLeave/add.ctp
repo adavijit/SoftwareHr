@@ -84,32 +84,65 @@
 
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
-      <h3 class="mb-3">Requested Leave</h3>
+      <h3 class="mb-3">Non Requested Leave</h3>
       <div class="row">
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-             <input id="" name="emp_name" placeholder="Employee Name" class="form-control rounded-0" width="100%" /> 
+          <label class="labelform">Employee Name</label>
+
+             <!-- <input id="" name="emp_name" class="form-control rounded-0" width="100%" />  -->
+             <select name="empId" class="form-control rounded-0">
+              <option></option>
+              <?php
+                $conn = mysqli_connect("localhost","root","","hr_software");
+                $dd_res=mysqli_query($conn,"Select empName,empId from emp_general_info");
+                while($r=mysqli_fetch_row($dd_res))
+                { 
+                  // if(strtolower($r[1])=="active")
+                    echo "<option value='$r[1]'> $r[0] (Id: $r[1]) </option>";
+                }
+              ?>
+            </select>
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="" name="designationId" placeholder="Designation" class="form-control rounded-0" width="100%" /> 
+          <label class="labelform">Designation</label>
+            <!-- <input id="" name="designationId"  class="form-control rounded-0" width="100%" />  -->
+            <select class="form-control rounded-0" width="100%" name="designationId" id="">
+                <option value=""> </option>
+                <option value="1">Designation 1</option>
+                <option value="2">Designation 2</option>
+                <option value="3">Designation 3</option>
+                <option value="4">Designation 4</option>
+              </select>
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-          <input id="" name="department" placeholder="Department" class="form-control rounded-0" width="100%" /> 
+          <label class="labelform">Department</label>
+          <!-- <input id="" name="department"  class="form-control rounded-0" width="100%" />  -->
+          <select class="form-control rounded-0" width="100%" name="department" id="">
+                <option value=""> </option>
+                <option>department 1</option>
+                <option>department 2</option>
+                <option>department 3</option>
+                <option>department 4</option>
+              </select>
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="" name="no_of_day" placeholder="No. of Days Requested" class="form-control rounded-0" width="100%" /> 
+          <label class="labelform">No of Days Requested</label>
+
+            <input id="" name="no_of_day" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Day type</label>        
           <select name="fullday_half" class="form-control rounded-0">
-              <option>Fullday or Halfday</option>
+              <option></option>
               <option>Full</option>
               <option>Half</option>
             </select> 
@@ -118,49 +151,66 @@
 
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <select name="leave_type" class="form-control rounded-0">
-              <option>Leave Type 1</option>
-              <option>Leave Type 2</option>
-              <option>Leave Type 3</option>
-              <option>Leave Type 4</option>
-              <option>Leave Type 5</option>              
-            </select> 
+          <label class="labelform">Leave type</label>        
+
+          <select name="leave_type" class="form-control rounded-0">
+              <option></option>
+              <?php
+                $conn = mysqli_connect("localhost","root","","hr_software");
+                $dd_res=mysqli_query($conn,"Select leave_type,status from new_leave");
+                while($r=mysqli_fetch_row($dd_res))
+                { 
+                  if(strtolower($r[1])=="active")
+                    echo "<option value='$r[0]'> $r[0] </option>";
+                }
+              ?>
+            </select>
           </div>
         </div>
         
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="datepicker3" name="starting_date" placeholder="Leave Starting Date" class="form-control rounded-0" width="100%" />
+          <label class="labelform">Starting Date</label>
+
+            <input id="datepicker3" name="starting_date" class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="datepicker4" name="ending_date" placeholder="Leave Ending Date" class="form-control rounded-0" width="100%" /> 
+          <label class="labelform">Ending Date</label>
+            <input id="datepicker4" name="ending_date"  class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="" name="balance_leave" placeholder="Current Leave Balance" class="form-control rounded-0" width="100%" /> 
+          <label class="labelform">Balance Leave</label>
+            <input id="" name="balance_leave" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="" name="inform_status" placeholder="Inform Status" class="form-control rounded-0" width="100%" /> 
+          <label class="labelform">Inform Status</label>
+
+            <input id="" name="inform_status" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="" name="inform_medium" placeholder="Inform Medium" class="form-control rounded-0" width="100%" />
+          <label class="labelform">Inform Medium</label>
+            <input id="" name="inform_medium" class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Upload Document</label>
             <?php echo $this->Form->file('file',['class'=>'form-control']); ?>
           </div>
         </div>
         <div class="col-sm-12 mb-2">
+        <label class="labelform">Reason</label>
+
           <div class="form-group addcustomcss">
-            <textarea name="reason" class="form-control">Reason for absent</textarea>
+            <textarea name="reason" class="form-control"></textarea>
           </div>
         </div>
 

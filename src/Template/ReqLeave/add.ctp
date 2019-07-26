@@ -141,12 +141,16 @@
           <div class="form-group addcustomcss">
             <label class="labelform">Leave Type</label>
             <select name="leave_type" class="form-control rounded-0">
-              <option></option>
-              <option>Leave Type 1</option>
-              <option>Leave Type 2</option>
-              <option>Leave Type 3</option>
-              <option>Leave Type 4</option>
-              <option>Leave Type 5</option>              
+              <option>Leave Type</option>
+              <?php
+                $conn = mysqli_connect("localhost","root","","hr_software");
+                $dd_res=mysqli_query($conn,"Select leave_type,status from new_leave");
+                while($r=mysqli_fetch_row($dd_res))
+                { 
+                  if(strtolower($r[1])=="active")
+                    echo "<option value='$r[0]'> $r[0] </option>";
+                }
+              ?>
             </select> 
           </div>
         </div>
