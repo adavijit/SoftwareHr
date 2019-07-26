@@ -171,7 +171,9 @@ CREATE TABLE `set_holiday` (
   `group_name` varchar(100) DEFAULT NULL,
   `h_name` varchar(100) DEFAULT NULL,
   `starting_date` date DEFAULT NULL,
-  `ending_date` date DEFAULT NULL
+  `ending_date` date DEFAULT NULL,
+  `emp_grp` int(50) DEFAULT NULL,
+   FOREIGN KEY (`emp_grp`) REFERENCES `emp_grp` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `fileuploadrecord` (
@@ -202,4 +204,11 @@ CREATE TABLE `attendancerecord` (
   `Punch_Records` varchar(50) DEFAULT NULL,
   `id_fileuploadrecord` int(11) NOT NULL,
  FOREIGN KEY (`id_fileuploadrecord`) REFERENCES `fileuploadrecord` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `emp_grp` (
+  `id` int(50)  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `grp_name` varchar(255) DEFAULT NULL,
+  `empId` int(50) DEFAULT NULL,
+   FOREIGN KEY (`empId`) REFERENCES `emp_general_info` (`empId`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

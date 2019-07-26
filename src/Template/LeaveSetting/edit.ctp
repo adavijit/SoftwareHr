@@ -46,6 +46,12 @@ use Cake\Routing\Router;
           </li>
           <li>
             <a href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Leave Request</span></a>
+            <ul class="subchildlink">
+              <li  onClick="javascipt:window.location.href='<?php echo Router::url(['action'=>'/index']) ?>' "  style="cursor:pointer;">View Leave Setting</li>             
+              <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'ReqLeave','action'=>'/index']) ?>' "  style="cursor:pointer;">Add Requested Leave </li>
+              <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'NonReqLeave','action'=>'/index']) ?>' "  style="cursor:pointer;">Add Non Requested Leave </li>
+            
+            </ul>
           </li>
           <li>
             <a href="javascript:void(0);"><i class="icon-department"></i> <span>Employee Designation</span></a>

@@ -94,7 +94,7 @@ use Cake\Routing\Router;
   <thead>
     <tr>
       
-      <th scope="col">Finalcial year</th>
+      <th scope="col">Financial year</th>
       <!-- <th scope="col">Season Tenure Start Date</th> -->
       <!-- <th scope="col">Season Tenure End Date</th> -->
       <th scope="col">Holiday Group</th>
@@ -124,8 +124,8 @@ use Cake\Routing\Router;
       <td class="actions">
       
         <a href="<?php echo Router::url( ['action' => 'view', $leaveSetting->id])?>" ><i class="icon-file" style="right-border:7px;"></i></a> &nbsp;
-        <a href="<?php echo Router::url( ['action' => 'edit', $leaveSetting->id])?>" ><i class="icon-pencil"></i></a> &nbsp;
-        <a href="<?php echo Router::url( ['action' => 'delete', $leaveSetting->id])?>" ><i class="icon-trash-1"></i></a>
+        <a href="<?php echo Router::url( ['action' => 'edit', $leaveSetting->id])?>" ><i class="icon-pencil" style="color:black"></i></a> &nbsp;
+        <a href="<?php echo Router::url( ['action' => 'delete', $leaveSetting->id])?>" ><i class="icon-trash-1" style="color:red"></i></a>
         
       </td>
     </tr>

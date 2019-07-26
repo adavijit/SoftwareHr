@@ -152,12 +152,12 @@
         </div>-->
         <div class="col-sm-3 mb-2"> 
           <div class="form-group addcustomcss">
-          <input id="" type="text" value="<?= h($nonReqLeave->inform_status) ?>" name="approval_states" class="form-control rounded-0" width="100%"    /> 
+          <input id="" type="text" value="<?= h($nonReqLeave->inform_status) ?>" name="inform_status" class="form-control rounded-0" width="100%"    /> 
           </div>
         </div>
         <div class="col-sm-3 mb-2"> 
           <div class="form-group addcustomcss">
-          <input id="" type="text" value="<?= h($nonReqLeave->inform_medium) ?>" name="approval_states" class="form-control rounded-0" width="100%"    /> 
+          <input id="" type="text" value="<?= h($nonReqLeave->inform_medium) ?>" name="inform_medium" class="form-control rounded-0" width="100%"    /> 
           </div>
         </div>
         
