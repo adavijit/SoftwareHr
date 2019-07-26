@@ -210,5 +210,5 @@ CREATE TABLE `emp_grp` (
   `empId` int(50) DEFAULT NULL,
   `holiday_id` int(50) UNSIGNED,
    FOREIGN KEY (`empId`) REFERENCES `emp_general_info` (`empId`) ON DELETE CASCADE,
-   FOREIGN KEY (`holiday_id`) REFERENCES `emp_general_info` (`holiday_id`) ON DELETE CASCADE
+   FOREIGN KEY (`holiday_id`) REFERENCES `set_holiday` (`holiday_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

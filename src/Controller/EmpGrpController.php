@@ -98,7 +98,7 @@ class EmpGrpController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+      //  $this->request->allowMethod(['post', 'delete']);
         $empGrp = $this->EmpGrp->get($id);
         if ($this->EmpGrp->delete($empGrp)) {
             $this->Flash->success(__('The emp grp has been deleted.'));
