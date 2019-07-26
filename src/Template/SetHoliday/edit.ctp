@@ -73,7 +73,7 @@ use Cake\Routing\Router;
       </div>
     </header>
 
-    <?= $this->Form->create($leaveSetting) ?>
+    <?= $this->Form->create($setHoliday) ?>
     <div class="bodytransition">
       <div class="bodypart">
         <div class="row pageheadertop mb-3">

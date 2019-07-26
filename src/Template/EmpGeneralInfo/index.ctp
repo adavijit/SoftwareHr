@@ -63,7 +63,7 @@ use Cake\ORM\TableRegistry;
             <a href="javascript:void(0);"><i class="icon-file"></i> <span>Settings</span></a>
             <ul class="subchildlink">
             <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'SetHoliday','action'=>'index']) ?>' "  style="cursor:pointer;">Holiday Setting</li>             
-              <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'ReqLeave','action'=>'/index']) ?>' "  style="cursor:pointer;">Employee group setting </li>
+              <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'EmpGrp','action'=>'index']) ?>' "  style="cursor:pointer;">Employee group setting </li>
             
             
             
