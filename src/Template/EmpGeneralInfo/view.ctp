@@ -119,7 +119,7 @@ use Cake\Routing\Router;
                  <div class="col-6"><label class="employlabel">Last Woking Date</label></div>
                 <div class="col-6"><label class="employlabel">: <?php echo $empGeneralInfo->lastWorkingDate ?></label></div>
                 <div class="col-6"><label class="employlabel">Documents</label></div>
-                <?php if($empGeneralInfo->documentPath=='' || $empGeneralInfo->documentPath=='\uploads') 
+                <?php if($empGeneralInfo->documentPath=='' || $empGeneralInfo->documentPath=='upload/') 
                echo  "<div class='col-6'><label class='employlabel'>: <a>No Documents</a></label></div>";
                else 
               echo "<div class='col-6'><label class='employlabel'>: < download href=''../../'.$empGeneralInfo->documentPath'>Click Here</a></label></div>";

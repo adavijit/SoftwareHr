@@ -142,7 +142,7 @@ public function setpassword(){
                                
 
 
-                return $this->redirect(['controller'=>'Dashboard','action'=>'index/']);
+                return $this->redirect(['controller'=>'Dashboard','action'=>'index']);
             }
             $this->Flash->error(_('incorrect'));
             // var_dump($user);

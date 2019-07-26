@@ -469,9 +469,6 @@ function theFunction()
 }
 function onclickFunction(){
    
-
-var form = $(this);
-var url = "../webroot/addAllRecords.php";
 var empName = document.getElementById('employeeName').value;
 
 console.log(empName);
@@ -486,6 +483,7 @@ console.log(empName);
     form_data.append('sex', $('#sex').val());
     form_data.append('nationality', $('#nationality').val());
     form_data.append('location', $('#location').val());
+    console.log($('#location').val());
     form_data.append('lwd', $('#lwd').val());
     form_data.append('dateOfJoining', $('#dateOfJoining').val());
     form_data.append('probationDate', $('#probationDate').val());
