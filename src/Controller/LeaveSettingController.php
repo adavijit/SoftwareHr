@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
-
+// require 'dbconnect.php';
 /**
  * LeaveSetting Controller
  *
@@ -127,7 +127,7 @@ class LeaveSettingController extends AppController
     {
         // $this-> autoRender=false;
         echo "abs";
-        $con = mysqli_connect("localhost","root","","hr_software");
+        // $con = mysqli_connect("localhost","root","","hr_software");
         if (!$con){
         die('Could not connect: ' . mysql_error());
         }

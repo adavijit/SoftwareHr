@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\NonReqLeave $nonReqLeave
  */
+require '../webroot/dbconnect.php'
 ?>
 
 <!DOCTYPE html>
@@ -94,11 +95,10 @@
              <select name="empId" class="form-control rounded-0">
               <option></option>
               <?php
-                $conn = mysqli_connect("localhost","root","","hr_software");
+                // $conn = mysqli_connect("localhost","root","","hr_software");
                 $dd_res=mysqli_query($conn,"Select empName,empId from emp_general_info");
                 while($r=mysqli_fetch_row($dd_res))
                 { 
-                  // if(strtolower($r[1])=="active")
                     echo "<option value='$r[1]'> $r[0] (Id: $r[1]) </option>";
                 }
               ?>
@@ -156,7 +156,7 @@
           <select name="leave_type" class="form-control rounded-0">
               <option></option>
               <?php
-                $conn = mysqli_connect("localhost","root","","hr_software");
+                // $conn = mysqli_connect("localhost","root","","hr_software");
                 $dd_res=mysqli_query($conn,"Select leave_type,status from new_leave");
                 while($r=mysqli_fetch_row($dd_res))
                 { 
