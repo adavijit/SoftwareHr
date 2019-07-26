@@ -31,7 +31,7 @@ use Cake\ORM\TableRegistry;
         <div class="leftmain-link">
         <ul class="listofnav">
           <li>
-            <a href="javascript:void(0);"><i class="icon-home"></i> <span>Dashboard</span></a>
+            <a href="<?php echo Router::url(['controller'=>'Dashboard','action'=>'index']) ?>"><i class="icon-home"></i> <span>Dashboard</span></a>
           </li>
           <li>
             <a href="javascript:void(0);" class="activeclass"><i class="icon-list-of-works"></i> <span>Employee Record</span></a>
