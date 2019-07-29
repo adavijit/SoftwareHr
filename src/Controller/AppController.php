@@ -37,6 +37,9 @@ class AppController extends Controller
     public function beforeFilter(Event $event){
         parent:: beforeFilter($event);
        $this->Auth->allow(['controller'=>'User','action'=>'add','forget','setpassword']);
+       $user = $this->request->session()->read('Auth.User');
+       $this->set('email', $user['email']);
+       $this->set('username', $user['username']);
     //    $this->Auth->allow();
     }
     public function initialize()

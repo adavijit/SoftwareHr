@@ -91,12 +91,12 @@ use Cake\ORM\TableRegistry;
         <div class="col-auto ml-auto align-middle">
          <a href="javascript:void(0)" class="usernameboxdiv ml-auto d-block">
           <span class="userpicbox mr-2"><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
-          <span class="usernamed">Welcome Harry</span>
+          <span class="usernamed">Welcome <?php echo $username ?></span>
         </a>
          <div id="drop">
         <div class="logouuserdiv">
           <div class="imagepic"><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></div>
-          <div class="spantext"><h5 class="mb-0">Will Cunningham</h5><a href="javascript:void(0)">marilyn.adams@mail.com</a></div>
+          <div class="spantext"><h5 class="mb-0"> <?php echo $username ?></h5><a href="javascript:void(0)"> <?php echo $email ?></a></div>
         </div>
         <div class="footerbottom">
           <a href="javascript:void" onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Users','action'=>'logout']) ?>' "><i class="icon-turn-off-1"></i> Logout</a>
@@ -179,31 +179,7 @@ use Cake\ORM\TableRegistry;
       <div>
 
       </div>
-      <div class="row mb-5">
-        <div class="col-auto">
-          <div class="pageloadleft"><label>Show</label><select><option>Page 1</option></select><label>Entries</label></div>
-        </div>
-        <div class="col-auto ml-auto">
-          <nav aria-label="Page navigation example">
-  <ul class="pagination paginationcss">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        >
-      </a>
-    </li>
-  </ul>
-</nav>
-        </div>
-      </div>
-
+     
       </div>
     </div>
     <!-- body container end here -->
