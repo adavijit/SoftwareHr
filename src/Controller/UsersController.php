@@ -1,5 +1,6 @@
 <?php
 namespace App\Controller;
+use Cake\Routing\Router;
 use App\Controller\AppController;
 use Cake\Console\ShellDispatcher;
 use Cake\ORM\TableRegistry;
@@ -46,9 +47,10 @@ public function setpassword(){
                         $users = $users_table->get($id);
                         //$users->email = $email;
                         $users->password = $password;
-                            if($users_table->save($users)){
+                        if($users_table->save($users)){
                             $this->Flash->success(__('The user has been saved.'));
-                            $this->setAction('login');
+                            return $this->redirect(['action' => 'login']);
+
                         } 
                         else {
                             $users_table = TableRegistry::get('users')->find();
@@ -71,37 +73,47 @@ public function setpassword(){
     public $components = array("Email");
     public function forget()
     {   
-        if($this->request->is('post')){
-            
-            $email= $this->request->getData('email');
+        $checkIfValid=0;
+        if($this->request->is('post'))
+        {
+           
+            $email= $this->request->getData('email');       
             $encodedEmail=base64_encode($email);
-            //$encrypted_string=openssl_encrypt($email,"AES-128-ECB","pass");
-            //$encrypted_text = mcrypt_ecb(MCRYPT_DES, "key_value", $email, MCRYPT_ENCRYPT); 
             $test=$this->Users->find('all');
             foreach($test as $temp){
          if($temp['email']==$email)
          {
-            $subject = 'Hi buddy, i got a message for you.';
-            //$message = 'hafhakf';
+
+            
+            $subject = 'Navsoft-HR';
+           
             require 'dbconnect.php';
-                $message = 'http://'.$server_name.'/SoftwareHr/users/setpassword';
-                $message= $message.'?email='.$encodedEmail;
-                echo $message;
-                // $mail = $this->Email->send_mail($email, $subject, $message);
-                // print_r($mail);
+                $message =$server_name;
+               $message = $type.$message.Router::url(['controller'=>'Users','action'=>'setpassword','email'=>$encodedEmail]);
                 try {
                     $mail = $this->Email->send_mail($email, $subject, $message);
-                    print_r($mail);
+                    $this->Flash->success(_('Check your mail and reset password'));
+                   return $this->redirect(['controller'=>'Users','action'=>'login']);
+                    $checkIfValid=1;
+                    
                 
                 } catch (Exception $e) {
-                    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+                    $this->Flash->error(_('Something went wrong!!!'));
+                   // echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
                 }
-                exit;
+              
              //echo $_SESSION['email'];
 
          }
+        
 
      }
+     if($checkIfValid==0)
+     {
+        $this->Flash->error(_('Your email doesn\'t exist'));
+        return $this->redirect(['controller'=>'Users','action'=>'forget']);
+     }
+     exit;
    
            
         }
@@ -120,11 +132,10 @@ public function setpassword(){
        
         if($this->request->is('post'))
         {
-            
-           
             $user= $this->Auth->identify();
-            var_dump($user);
+           
             if($user){
+                echo "asd";
                 $this->Auth->setUser($user);
                 
                                 if ($this->request->data['remember_me'] == 1 ) {
@@ -144,7 +155,11 @@ public function setpassword(){
 
                 return $this->redirect(['controller'=>'Dashboard','action'=>'index']);
             }
-            $this->Flash->error(_('incorrect'));
+            else{
+                $this->Flash->error(_('Incorrect username or password'));
+                
+            }
+            
             // var_dump($user);
             //exit();
         }
@@ -187,11 +202,11 @@ public function setpassword(){
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                //$this->Flash->success(__('The user has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'login']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            //$this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         $this->set(compact('user'));
     }

@@ -11,15 +11,16 @@ class EmailComponent extends Component {
     public function send_mail($to, $subject, $message)
     {
         // date_default_timezone_set('Asia/Calcutta');
-        $sender = "ritwika.navsoft@gmail.com"; // this will be overwritten by GMail
+        require 'dbconnect.php';
+        $sender = $sender_mail; // this will be overwritten by GMail
         $header = "X-Mailer: PHP/".phpversion() . "Return-Path: $sender";
         $mail = new PHPMailer();
         $mail->SMTPDebug  = 2; // turn it off in production
         $mail->IsSMTP();
         $mail->Host = "smtp.gmail.com"; 
         $mail->SMTPAuth = true;
-        $mail->Username   = "ritwika.navsoft@gmail.com";  
-        $mail->Password   = "ritwika123";
+        $mail->Username   = $sender_mail;  
+        $mail->Password   = $sender_password;
         $mail->SMTPSecure = "tls"; // ssl and tls
         $mail->Port = 587; // 465 and 587
         $mail->SMTPOptions = array (
