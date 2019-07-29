@@ -94,14 +94,10 @@ class PagesController extends AppController
         
         try {
             $mail = $this->Email->send_mail($to, $subject, $message);
-<<<<<<< HEAD
             print_r($mail);
             $this->Flash->success;
         return $this->redirect(['controller' => 'ReqLeave','action' => '/index']);
 
-=======
-           // print_r($mail);
->>>>>>> a01a76d262cd358f46a9ca30932e58ab10ef7804
         } catch (Exception $e) {
             echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }
