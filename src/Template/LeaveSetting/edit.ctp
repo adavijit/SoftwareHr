@@ -5,6 +5,7 @@
  */
 
 use Cake\Routing\Router;
+require '../webroot/dbconnect.php';
 ?>
 
 <!DOCTYPE html>
@@ -130,7 +131,7 @@ use Cake\Routing\Router;
               <select name="holiday_group" class="form-control rounded-0">
               <option value="<?php h($leaveSetting->holiday_group) ?>">
               <?= 
-              $conn = mysqli_connect("localhost","root","","hr_software");
+              // $conn = mysqli_connect("localhost","root","","hr_software");
               $dd_res=mysqli_query($conn,"Select group_name,holiday_id from set_holiday");
               foreach($dd_res as $temp)
               {
@@ -140,7 +141,7 @@ use Cake\Routing\Router;
               }
               ?></option>
               <?php
-                $conn = mysqli_connect("localhost","root","","hr_software");
+                // $conn = mysqli_connect("localhost","root","","hr_software");
                 $dd_res=mysqli_query($conn,"Select group_name,holiday_id from set_holiday");
                 while($r=mysqli_fetch_row($dd_res))
                 { 
@@ -197,7 +198,7 @@ use Cake\Routing\Router;
             <select name="leave_type" class="form-control rounded-0">
               <option value="<?= h($leaveSetting->leave_type) ?>"><?php echo "$leaveSetting->leave_type" ?></option>
               <?php
-                $conn = mysqli_connect("localhost","root","","hr_software");
+                // $conn = mysqli_connect("localhost","root","","hr_software");
                 $dd_res=mysqli_query($conn,"Select leave_type,status from new_leave");
                 while($r=mysqli_fetch_row($dd_res))
                 { 

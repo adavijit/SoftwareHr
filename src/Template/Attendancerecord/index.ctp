@@ -1,3 +1,7 @@
+<?php 
+require 'dbconnect.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -63,7 +67,7 @@
     </header>
     <?php $id=$_GET['id'];
 //echo $id;
-$conn=mysqli_connect('localhost','root','','hr_software'); 
+// $conn=mysqli_connect('localhost','root','','hr_software'); 
 $result1 = mysqli_query($conn,"SELECT * FROM fileuploadrecord WHERE id='$id';");
 $row2 = mysqli_num_rows($result1);
 if($row2){

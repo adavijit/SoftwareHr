@@ -119,12 +119,16 @@ require 'dbconnect.php'
       <?= 
       // $conn = mysqli_connect("localhost","root","","hr_software");
        $dd_res=mysqli_query($conn,"Select group_name,holiday_id from set_holiday");
+       $h_name='';
       foreach($dd_res as $temp)
       {
-          if($temp['holiday_id']==$leaveSetting->holiday_group){
-          echo "<td>$temp[group_name]</td>";
+          if($temp['holiday_id']==$leaveSetting->holiday_group)
+          $h_name=$temp['group_name'];
+          // echo "<td>$temp[group_name]</td>";
+          else
+          $h_name='';
       }
-    }
+      echo "<td>$h_name</td>";
       ?>
 
       

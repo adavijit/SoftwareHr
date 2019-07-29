@@ -1,5 +1,7 @@
 <?php
 use Cake\Routing\Router;
+require 'dbconnect.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -343,7 +345,7 @@ foreach($result as $temp)
             <select  id="designation" class="form-control rounded-0">
             <option>Designation</option>
             <?php
-              $conn = mysqli_connect("localhost","root","","hr_software");
+              // $conn = mysqli_connect("localhost","root","","hr_software");
               $sql="SELECT * FROM designation";
               $res=mysqli_query($conn,$sql);
               foreach($res as $row)
@@ -361,7 +363,7 @@ foreach($result as $temp)
             <select id="department" class="form-control rounded-0">
                   <option>Department</option>
                   <?php
-                  $conn = mysqli_connect("localhost","root","","hr_software");
+                  // $conn = mysqli_connect("localhost","root","","hr_software");
                   $sql1="SELECT * FROM departmenttable";
                     $res1=mysqli_query($conn,$sql1);
                     foreach($res1 as $row1)

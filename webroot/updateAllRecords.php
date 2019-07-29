@@ -1,7 +1,8 @@
 <?php
 // print_r($_FILES);print_r($_POST);
 $id=$_POST['id'];
-$conn = mysqli_connect("localhost","root","","hr_software");
+require 'dbconnect.php';
+// $conn = mysqli_connect("localhost","root","","hr_software");
 $employeeName=$_POST['employeeName'];
 $dob=date("Y-m-d",strtotime($_POST['dob']));
 $sex=$_POST['sex'];

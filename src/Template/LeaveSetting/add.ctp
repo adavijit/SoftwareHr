@@ -5,7 +5,7 @@
  * @var \App\Model\Entity\LeaveSetting $leaveSetting
  */
 use Cake\Routing\Router;
-
+require '../webroot/dbconnect.php';
 
 ?>
 
@@ -125,7 +125,7 @@ var x;
             <select name="holiday_group" class="form-control rounded-0">
               <option>Holiday Group</option>
               <?php
-                $conn = mysqli_connect("localhost","root","","hr_software");
+                //$conn = mysqli_connect("localhost","root","","hr_software");
                 $dd_res=mysqli_query($conn,"Select group_name,holiday_id from set_holiday");
                 while($r=mysqli_fetch_row($dd_res))
                 { 
@@ -177,7 +177,7 @@ var x;
             <select name="leave_type" class="form-control rounded-0">
               <option>Leave Type</option>
               <?php
-                $conn = mysqli_connect("localhost","root","","hr_software");
+                // $conn = mysqli_connect("localhost","root","","hr_software");
                 $dd_res=mysqli_query($conn,"Select leave_type,status from new_leave");
                 while($r=mysqli_fetch_row($dd_res))
                 { 
@@ -414,13 +414,3 @@ var x;
 
   </body>
 </html>
-<!-- <script>
-$(document).ready(function(){
-  $("#financialYear").change(function(){
-    console.log("sad");
-    var x= document.getElementById('financialYear').value;
-console.log(x);
-   window.location.href='http://localhost/HrSoft/LeaveSetting/add?selectId='+x;
-  });
-});
-</script> -->
