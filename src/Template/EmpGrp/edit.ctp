@@ -77,7 +77,7 @@ use Cake\ORM\TableRegistry;
       <div class="bodypart">
         <div class="row pageheadertop mb-3">
         <div class="col"><h2>Edit Employee Group Setting</h2></div>
-        <div class="col-auto"><button type="button" class="btn outlineblue mr-2"><a href="<?php echo Router::url(['controller'=>'SetHoliday','action'=>'index']) ?>">Cancel</a></button> <button type="submit" name="submit" class="btn redbutton">submit</button></div>
+        <div class="col-auto"><button type="button" class="btn outlineblue mr-2"><a href="<?php echo Router::url(['controller'=>'EmpGrp','action'=>'index']) ?>">Cancel</a></button> <button type="submit" name="submit" class="btn redbutton">submit</button></div>
       </div>
       <div class="tab-content">
       <div id="home" class="tab-pane fade in active">
@@ -89,7 +89,7 @@ use Cake\ORM\TableRegistry;
           <div class="form-group addcustomcss">
           <label class="labelform">Group Name</label>
 
-            <input id="" value="<?php echo $empGrp->grp_name?>" name="group_name" class="form-control rounded-0" width="100%"   /> 
+            <input id="" value="<?php echo $empGrp->grp_name?>" name="grp_name" class="form-control rounded-0" width="100%"   /> 
          
         </div>
         </div>
@@ -97,7 +97,9 @@ use Cake\ORM\TableRegistry;
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Employee Name</label>
-          <select  id="employee_id" name="group_name" class="form-control rounded-0" width="100%" >
+          <select  id="employee_id" name="empId" class="form-control rounded-0" width="100%" >
+          <option value="<?php echo $empGrp->empId?>"><?php echo "$empGrp->empId" ?></option>
+
                             <?php
                                  $employee = TableRegistry::get('emp_general_info');
                                  $query = $employee->find('all');
@@ -113,8 +115,8 @@ use Cake\ORM\TableRegistry;
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Holiday Name</label>
-          <select  id="holiday_id"  class="form-control rounded-0" width="100%" >
-                        <option>Holiday name</option>
+          <select name="holiday_id"  id="holiday_id"  class="form-control rounded-0" width="100%" >
+                        <option value="<?php echo $empGrp->holiday_id?>"><?php echo "$empGrp->holiday_id" ?></option>
                             <?php
                                $employee = TableRegistry::get('set_holiday');
                                $query = $employee->find('all');
