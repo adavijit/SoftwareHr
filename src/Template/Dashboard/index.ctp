@@ -179,31 +179,7 @@ use Cake\ORM\TableRegistry;
       <div>
 
       </div>
-      <div class="row mb-5">
-        <div class="col-auto">
-          <div class="pageloadleft"><label>Show</label><select><option>Page 1</option></select><label>Entries</label></div>
-        </div>
-        <div class="col-auto ml-auto">
-          <nav aria-label="Page navigation example">
-  <ul class="pagination paginationcss">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        >
-      </a>
-    </li>
-  </ul>
-</nav>
-        </div>
-      </div>
-
+     
       </div>
     </div>
     <!-- body container end here -->
