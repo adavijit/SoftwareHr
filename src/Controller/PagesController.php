@@ -95,13 +95,15 @@ class PagesController extends AppController
         try {
             $mail = $this->Email->send_mail($to, $subject, $message);
             print_r($mail);
+            $this->Flash->success;
+        return $this->redirect(['controller' => 'ReqLeave','action' => '/index']);
+
         } catch (Exception $e) {
             echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }
         // $conn=mysqli_connect('localhost','root','','hr_software');
         // $sql="UPDATE req_leave SET approval_states='Done' WHERE empId='$id' ";
         // mysqli_query($conn,$sql);
-        return $this->redirect(['controller' => 'ReqLeave','action' => '/index']);
         exit;
     }
     /**

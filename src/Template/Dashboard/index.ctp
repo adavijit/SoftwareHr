@@ -1,3 +1,8 @@
+<?php
+use Cake\Routing\Router;
+use Cake\ORM\TableRegistry;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,39 +16,67 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+// $(document).ready(function(){
+//   $("li").click(function(){
+//     $("a").toggle();
+//   });
+// });
+</script>
     <title>Welcome to Navsoft Training</title>
   </head>
   <body>
     <section class="main-content">
     <!-- left menu section start here -->
     <section class="leftmenu">
-      <a href="javascript:void(0)" class="menuhomem"><i class="icon-add-plus-button"></i></a>
+    <a href="javascript:void(0)" class="menuhomem"><i class="icon-add-plus-button"></i></a>
       <div class="leftpadd">
         <a href="javascript:void(0);" class="leftlogo"><img src="images/logo.png" alt=""></a>
         <div class="leftmain-link">
         <ul class="listofnav">
           <li>
-            <a href="javascript:void(0);"><i class="icon-home"></i> <span>Dashboard</span></a>
+            <a id="parent1" onclick="changeActive('parent1')" class="activeclass parent" href="<?php echo Router::url(['controller'=>'Dashboard','action'=>'index']) ?>"><i class="icon-home"></i> <span>Dashboard</span></a>
           </li>
           <li>
-            <a href="javascript:void(0);"><i class="icon-list-of-works"></i> <span>Employee Record</span></a>
+            <a href="javascript:void(0);" id="parent2" class="parent" onclick="changeActive('parent2')"><i class="icon-list-of-works"></i> <span>Employee Record</span></a>
             <ul class="subchildlink">
-              <li>View Records</li>
-              <li>Add/New Records</li>
+              <a  style="cursor:pointer;">
+              <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'EmpGeneralInfo','action'=>'index']) ?>' "  style="cursor:pointer;">
+              View Records</li></a>
+              <a>
+                <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'AllRecordsSave','action'=>'index']) ?>' "  style="cursor:pointer;">Add new Records</li>
+              </a>
             </ul>
           </li>
           <li>
-            <a href="javascript:void(0);"><i class="icon-long-checklist"></i> <span>Employee Attendance</span></a>
+            <a  id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-long-checklist"></i> <span>Employee Attendance</span></a>
           </li>
           <li>
-            <a href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Leave Request</span></a>
+            <a id="parent4" class="parent" onclick="changeActive('parent4');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Leave Request</span></a>
+            <ul class="subchildlink">
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'LeaveSetting','action'=>'/index']) ?>' "  style="cursor:pointer;">View Leave Setting</li></a>             
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'ReqLeave','action'=>'/index']) ?>' "  style="cursor:pointer;">Add Requested Leave </li></a>
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'NonReqLeave','action'=>'/index']) ?>' "  style="cursor:pointer;">Add Non Requested Leave </li></a>
+            
+            
+            </ul>
           </li>
           <li>
-            <a href="javascript:void(0);"><i class="icon-department"></i> <span>Employee Designation</span></a>
+            <a id="parent5" class="parent" onclick="changeActive('parent5');" href="javascript:void(0);"><i class="icon-department"></i> <span>Employee Designation</span></a>
           </li>
           <li>
-            <a href="javascript:void(0);"><i class="icon-briefcase"></i> <span>Employee Department</span></a>
+            <a id="parent6" class="parent" onclick="changeActive('parent6');" href="javascript:void(0);"><i class="icon-briefcase"></i> <span>Employee Department</span></a>
+          </li>
+          <li>
+            <a id="parent7" class="parent" onclick="changeActive('parent7');" href="javascript:void(0);"><i class="icon-file"></i> <span>Settings</span></a>
+            <ul class="subchildlink">
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'SetHoliday','action'=>'index']) ?>' "  style="cursor:pointer;">Holiday Setting</li></a>             
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'EmpGrp','action'=>'index']) ?>' "  style="cursor:pointer;">Employee group setting </li></a>
+            
+            
+            
+            </ul>
           </li>
         </ul>
       </div>
@@ -66,7 +99,7 @@
           <div class="spantext"><h5 class="mb-0">Will Cunningham</h5><a href="javascript:void(0)">marilyn.adams@mail.com</a></div>
         </div>
         <div class="footerbottom">
-          <a href="javascript:void"><i class="icon-turn-off-1"></i> Logout</a>
+          <a href="javascript:void" onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Users','action'=>'logout']) ?>' "><i class="icon-turn-off-1"></i> Logout</a>
         </div>
         </div>
         </div>
@@ -144,89 +177,6 @@
           </div>
       </div>
       <div>
-        <table class="table employtable">
-  <thead>
-    <tr>
-      <th scope="col">Employee</th>
-      <th scope="col">Name</th>
-      <th scope="col">Date of Joining</th>
-      <th scope="col">Sex</th>
-      <th scope="col">Mobile Number</th>
-      <th scope="col">Locations</th>
-      <th scope="col">Blood Group</th>
-      <th scope="col">Action</th>
-      <th scope="col">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></td>
-      <td><a href="javascript:void(0)">Janet Hudson</a></td>
-      <td>16/01/2006</td>
-      <td>Male</td>
-      <td>(791)718-6670</td>
-      <td>Kolkata</td>
-      <td>O+</td>
-      <td class="action"><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal"><i class="icon-pencil"></i></a> <a href="javascript:void(0)"><i class="icon-cancel-1"></i></a> <a href="javascript:void(0)"><i class="icon-trash-1"></i></a></td>
-      <td>Active</td>
-    </tr>
-    <tr>
-      <td><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></td>
-      <td><a href="javascript:void(0)">Janet Hudson</a></td>
-      <td>16/01/2006</td>
-      <td>Male</td>
-      <td>(791)718-6670</td>
-      <td>Kolkata</td>
-      <td>O+</td>
-      <td class="action"><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal"><i class="icon-pencil"></i></a> <a href="javascript:void(0)"><i class="icon-cancel-1"></i></a> <a href="javascript:void(0)"><i class="icon-trash-1"></i></a></td>
-      <td>Active</td>
-    </tr>
-    <tr>
-      <td><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></td>
-      <td><a href="javascript:void(0)">Janet Hudson</a></td>
-      <td>16/01/2006</td>
-      <td>Male</td>
-      <td>(791)718-6670</td>
-      <td>Kolkata</td>
-      <td>O+</td>
-      <td class="action"><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal"><i class="icon-pencil"></i></a> <a href="javascript:void(0)"><i class="icon-cancel-1"></i></a> <a href="javascript:void(0)"><i class="icon-trash-1"></i></a></td>
-      <td>Active</td>
-    </tr>
-    <tr>
-      <td><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></td>
-      <td><a href="javascript:void(0)">Janet Hudson</a></td>
-      <td>16/01/2006</td>
-      <td>Male</td>
-      <td>(791)718-6670</td>
-      <td>Kolkata</td>
-      <td>O+</td>
-      <td class="action"><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal"><i class="icon-pencil"></i></a> <a href="javascript:void(0)"><i class="icon-cancel-1"></i></a> <a href="javascript:void(0)"><i class="icon-trash-1"></i></a></td>
-      <td>Active</td>
-    </tr>
-    <tr>
-      <td><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></td>
-      <td><a href="javascript:void(0)">Janet Hudson</a></td>
-      <td>16/01/2006</td>
-      <td>Male</td>
-      <td>(791)718-6670</td>
-      <td>Kolkata</td>
-      <td>O+</td>
-      <td class="action"><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal"><i class="icon-pencil"></i></a> <a href="javascript:void(0)"><i class="icon-cancel-1"></i></a> <a href="javascript:void(0)"><i class="icon-trash-1"></i></a></td>
-      <td>Active</td>
-    </tr>
-    <tr>
-      <td><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></td>
-      <td><a href="javascript:void(0)">Janet Hudson</a></td>
-      <td>16/01/2006</td>
-      <td>Male</td>
-      <td>(791)718-6670</td>
-      <td>Kolkata</td>
-      <td>O+</td>
-      <td class="action"><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal"><i class="icon-pencil"></i></a> <a href="javascript:void(0)"><i class="icon-cancel-1"></i></a> <a href="javascript:void(0)"><i class="icon-trash-1"></i></a></td>
-      <td>Active</td>
-    </tr>
-  </tbody>
-</table>
 
       </div>
       <div class="row mb-5">
@@ -305,6 +255,7 @@
     });
 
     $(document).ready( function(){
+      $('.parent').siblings().toggle();
 
     $('.usernameboxdiv').click( function(event){
         
@@ -321,6 +272,20 @@
     });
 
 });
+/////////////////////////////////////////////
+
+    function changeActive(id){
+      
+      let x= document.getElementById(id).id;
+      // console.log(x);
+      let idName = '#'+x;
+      // console.log(idName);
+     $('.activeclass').siblings().hide();
+      $(idName).siblings().toggle();
+      $('.parent').removeClass('activeclass');
+      $(idName).addClass('activeclass');
+    //  $('.dashboard').removeClass('activeclass');
+    }
     </script>
 
   </body>

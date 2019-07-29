@@ -126,23 +126,23 @@ class LeaveSettingController extends AppController
     public function holiday()
     {
         // $this-> autoRender=false;
-        echo "abs";
-        // $con = mysqli_connect("localhost","root","","hr_software");
-        if (!$con){
-        die('Could not connect: ' . mysql_error());
-        }
+        // echo "abs";
+        // // $con = mysqli_connect("localhost","root","","hr_software");
+        // if (!$con){
+        // die('Could not connect: ' . mysql_error());
+        // }
 
-        if ($this->request->is('post')) {
-            $l_year=$this->request->getData('leave_year');
+        // if ($this->request->is('post')) {
+        //     $l_year=$this->request->getData('leave_year');
             
-            // $g_name=mysqli_real_escape_string($con,$_POST['group_name']);
-            // $holiday_name=mysqli_real_escape_string($con,$_POST['h_name']);
-            // $s_date=mysqli_real_escape_string($con,$_POST['starting_date']);
-            // $e_date=mysqli_real_escape_string($con,$_POST['ending_date']);
+        //     // $g_name=mysqli_real_escape_string($con,$_POST['group_name']);
+        //     // $holiday_name=mysqli_real_escape_string($con,$_POST['h_name']);
+        //     // $s_date=mysqli_real_escape_string($con,$_POST['starting_date']);
+        //     // $e_date=mysqli_real_escape_string($con,$_POST['ending_date']);
         
-            echo $l_year;
-            echo "sad";
-        }
+        //     echo $l_year;
+        //     echo "sad";
+        // }
 
     //     $sql="INSERT INTO set_holiday (leave_year, group_name, h_name,starting_date,ending_date)
     //     VALUES ('$l_year','$g_name','$holiday_name','$s_date','$e_date')";
@@ -157,9 +157,5 @@ class LeaveSettingController extends AppController
 
 
     }
-    public function add1()
-        {
-    
-        }
 }
 
