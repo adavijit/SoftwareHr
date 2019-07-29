@@ -122,8 +122,10 @@ require 'dbconnect.php'
        $h_name='';
       foreach($dd_res as $temp)
       {
-          if($temp['holiday_id']==$leaveSetting->holiday_group)
+          if($temp['holiday_id']==$leaveSetting->holiday_group){
           $h_name=$temp['group_name'];
+          break;
+        }
           // echo "<td>$temp[group_name]</td>";
           else
           $h_name='';

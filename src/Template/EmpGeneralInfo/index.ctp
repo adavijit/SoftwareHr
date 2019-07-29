@@ -86,9 +86,18 @@ use Cake\ORM\TableRegistry;
       <header class="header-resize">
       <div class="row">
         <div class="col-auto ml-auto align-middle">
-         <div class="usernameboxdiv ml-auto">
+         <a href="javascript:void(0)" class="usernameboxdiv ml-auto d-block">
           <span class="userpicbox mr-2"><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
           <span class="usernamed">Welcome Harry</span>
+        </a>
+         <div id="drop">
+        <div class="logouuserdiv">
+          <div class="imagepic"><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></div>
+          <div class="spantext"><h5 class="mb-0">Will Cunningham</h5><a href="javascript:void(0)">marilyn.adams@mail.com</a></div>
+        </div>
+        <div class="footerbottom">
+          <a href="javascript:void" onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Users','action'=>'logout']) ?>' "><i class="icon-turn-off-1"></i> Logout</a>
+        </div>
         </div>
         </div>
       </div>
@@ -486,6 +495,22 @@ $(document).ready(function(){
     $(".menuhomem").click(function(){
     $(".main-content").toggleClass("minleftmenu");
     });
+    });
+
+
+
+    $('.usernameboxdiv').click( function(event){
+        
+        event.stopPropagation();
+        
+        $('#drop').toggle();
+        
+    });
+    
+    $(document).click( function(){
+
+        $('#drop').hide();
+
     });
 
 </script>
