@@ -45,7 +45,7 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler', [
             'enableBeforeRedirect' => false,
         ]);
-        $this->loadComponent('Flash');
+     $this->loadComponent('Flash');
      $this->loadComponent('Auth',[
          'userModel' => 'Users',
          'loginAction' => [

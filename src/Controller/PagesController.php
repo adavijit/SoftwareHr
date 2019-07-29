@@ -94,7 +94,7 @@ class PagesController extends AppController
         
         try {
             $mail = $this->Email->send_mail($to, $subject, $message);
-            print_r($mail);
+           // print_r($mail);
         } catch (Exception $e) {
             echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }

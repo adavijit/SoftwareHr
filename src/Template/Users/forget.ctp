@@ -33,7 +33,7 @@ use Cake\Routing\Router;
                 <!-- <div class="form-group addcustomcss mb-sm-4"><input class="form-control rounded-0" type="text" placeholder="Nith Nadarajah" name="username"></div>
                 <div class="form-group addcustomcss mb-sm-4"><input class="form-control rounded-0" type="password" placeholder="password" name="password"></div> -->
                 <?php
-                echo $this->Form->input('Mail Id',array(
+                echo $this->Form->input('email',array(
                   'class' => 'form-control rounded-0'
               ));
               
