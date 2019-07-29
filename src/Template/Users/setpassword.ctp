@@ -33,11 +33,13 @@ use Cake\Routing\Router;
                 <!-- <div class="form-group addcustomcss mb-sm-4"><input class="form-control rounded-0" type="text" placeholder="Nith Nadarajah" name="username"></div>
                 <div class="form-group addcustomcss mb-sm-4"><input class="form-control rounded-0" type="password" placeholder="password" name="password"></div> -->
                 <?php
-                echo $this->Form->input('New Password',array(
-                  'class' => 'form-control rounded-0'
+                echo $this->Form->input('password',array(
+                  'class' => 'form-control rounded-0',
+                  'required' => true, 'autofocus' => true
               ));
-              echo $this->Form->input('Confirm New Password',array(
-                'class' => 'form-control rounded-0'
+              echo $this->Form->input('confirm_password',array(
+                'class' => 'form-control rounded-0',
+                'type' => 'password', 'required' => true
             ));
               
 

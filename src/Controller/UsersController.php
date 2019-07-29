@@ -52,13 +52,7 @@ public function setpassword(){
                             return $this->redirect(['action' => 'login']);
 
                         } 
-                        else {
-                            $users_table = TableRegistry::get('users')->find();
-                            $users = $users_table->where(['id'=>$id])->first();
-                            $this->set('username',$users->username);
-                            $this->set('password',$users->password);
-                            $this->set('id',$id);
-                        }
+                       
         
           }
 
@@ -88,9 +82,10 @@ public function setpassword(){
             $subject = 'Navsoft-HR';
            
             require 'dbconnect.php';
-                $message =$server_name;
-               $message = $type.$message.Router::url(['controller'=>'Users','action'=>'setpassword','email'=>$encodedEmail]);
-                try {
+                $link =$server_name;
+               $link = $type.$link.Router::url(['controller'=>'Users','action'=>'setpassword','email'=>$encodedEmail]);
+               $message= "<h1>Change password</h1><a href='$link'>Click here</a> to set a new password"."<br>";
+               try {
                     $mail = $this->Email->send_mail($email, $subject, $message);
                     $this->Flash->success(_('Check your mail and reset password'));
                    return $this->redirect(['controller'=>'Users','action'=>'login']);

@@ -15,7 +15,7 @@ class EmailComponent extends Component {
         $sender = $sender_mail; // this will be overwritten by GMail
         $header = "X-Mailer: PHP/".phpversion() . "Return-Path: $sender";
         $mail = new PHPMailer();
-        $mail->SMTPDebug  = 2; // turn it off in production
+        //$mail->SMTPDebug  = 2; // turn it off in production
         $mail->IsSMTP();
         $mail->Host = "smtp.gmail.com"; 
         $mail->SMTPAuth = true;
