@@ -26,44 +26,50 @@ use Cake\ORM\TableRegistry;
     <section class="main-content">
     <!-- left menu section start here -->
     <section class="leftmenu">
+    <a href="javascript:void(0)" class="menuhomem"><i class="icon-add-plus-button"></i></a>
       <div class="leftpadd">
         <a href="javascript:void(0);" class="leftlogo"><img src="images/logo.png" alt=""></a>
         <div class="leftmain-link">
         <ul class="listofnav">
           <li>
-            <a href="<?php echo Router::url(['controller'=>'Dashboard','action'=>'index']) ?>"><i class="icon-home"></i> <span>Dashboard</span></a>
+            <a id="parent1" onclick="changeActive('parent1')" class="parent" href="<?php echo Router::url(['controller'=>'Dashboard','action'=>'index']) ?>"><i class="icon-home"></i> <span>Dashboard</span></a>
           </li>
           <li>
-            <a href="javascript:void(0);" class="activeclass"><i class="icon-list-of-works"></i> <span>Employee Record</span></a>
+            <a href="javascript:void(0);" id="parent2" class="parent" onclick="changeActive('parent2')"><i class="icon-list-of-works"></i> <span>Employee Record</span></a>
             <ul class="subchildlink">
-              <a  style="cursor:pointer;">View Records</a>
-              <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'AllRecordsSave','action'=>'index']) ?>' "  style="cursor:pointer;">Add new Records</li>
+              <a class="activeclass" style="cursor:pointer;">
+              <li onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'EmpGeneralInfo','action'=>'index']) ?>' "  style="cursor:pointer;background-colour:#1B679F;">
+              View Records</li>
+            </a>
+              <a>
+                <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'AllRecordsSave','action'=>'index']) ?>' "  style="cursor:pointer;">Add new Records</li>
+              </a>
             </ul>
           </li>
           <li>
-            <a href="javascript:void(0);"><i class="icon-long-checklist"></i> <span>Employee Attendance</span></a>
+            <a  id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-long-checklist"></i> <span>Employee Attendance</span></a>
           </li>
           <li>
-            <a href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Leave Request</span></a>
+            <a id="parent4" class="parent" onclick="changeActive('parent4');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Leave Request</span></a>
             <ul class="subchildlink">
-            <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'LeaveSetting','action'=>'/index']) ?>' "  style="cursor:pointer;">View Leave Setting</li>             
-              <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'ReqLeave','action'=>'/index']) ?>' "  style="cursor:pointer;">Add Requested Leave </li>
-              <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'NonReqLeave','action'=>'/index']) ?>' "  style="cursor:pointer;">Add Non Requested Leave </li>
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'LeaveSetting','action'=>'/index']) ?>' "  style="cursor:pointer;">View Leave Setting</li></a>             
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'ReqLeave','action'=>'/index']) ?>' "  style="cursor:pointer;">Add Requested Leave </li></a>
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'NonReqLeave','action'=>'/index']) ?>' "  style="cursor:pointer;">Add Non Requested Leave </li></a>
             
             
             </ul>
           </li>
           <li>
-            <a href="javascript:void(0);"><i class="icon-department"></i> <span>Employee Designation</span></a>
+            <a id="parent5" class="parent" onclick="changeActive('parent5');" href="javascript:void(0);"><i class="icon-department"></i> <span>Employee Designation</span></a>
           </li>
           <li>
-            <a href="javascript:void(0);"><i class="icon-briefcase"></i> <span>Employee Department</span></a>
+            <a id="parent6" class="parent" onclick="changeActive('parent6');" href="javascript:void(0);"><i class="icon-briefcase"></i> <span>Employee Department</span></a>
           </li>
           <li>
-            <a href="javascript:void(0);"><i class="icon-file"></i> <span>Settings</span></a>
+            <a id="parent7" class="parent" onclick="changeActive('parent7');" href="javascript:void(0);"><i class="icon-file"></i> <span>Settings</span></a>
             <ul class="subchildlink">
-            <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'SetHoliday','action'=>'index']) ?>' "  style="cursor:pointer;">Holiday Setting</li>             
-              <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'EmpGrp','action'=>'index']) ?>' "  style="cursor:pointer;">Employee group setting </li>
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'SetHoliday','action'=>'index']) ?>' "  style="cursor:pointer;">Holiday Setting</li></a>             
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'EmpGrp','action'=>'index']) ?>' "  style="cursor:pointer;">Employee group setting </li></a>
             
             
             
@@ -475,20 +481,20 @@ $('body').on('change', '#excelSheet', function() {
   
 } 
 });
-     
+
+$(document).ready(function(){
+    $(".menuhomem").click(function(){
+    $(".main-content").toggleClass("minleftmenu");
+    });
+    });
+
 </script>
 </html>
 <script> 
 $(document).ready(function(){
  // $(".subchildlink").hide();
-  $(".listofnav li a").click(function(){
-     //$(this).toggleClass('activeclass').siblings().removeClass('activeclass');
-      $(".listofnav li a").removeClass('activeclass');
-      $(this).toggleClass('activeclass');
-      $('.listofnav li .subchildlink').animate({
-      height: 'toggle'
-    });
-  });
+ $('.parent').siblings().toggle();
+ $('#parent2').siblings().show();
 });
 </script>
 
@@ -499,4 +505,19 @@ $(document).ready(function(){
       $('.successm').on('shown.bs.modal', function () {
       $('#successmessage').trigger('focus')
       });
+
+    </script>
+    <script>
+      function changeActive(id){
+      
+      let x= document.getElementById(id).id;
+      // console.log(x);
+      let idName = '#'+x;
+      // console.log(idName);
+     $('.parent').siblings().hide();
+      $(idName).siblings().toggle();
+      $('.parent').removeClass('activeclass');
+      $(idName).addClass('activeclass');
+    //  $('.dashboard').removeClass('activeclass');
+    }
     </script>
