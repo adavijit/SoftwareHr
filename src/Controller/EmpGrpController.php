@@ -85,8 +85,8 @@ class EmpGrpController extends AppController
             }
             $this->Flash->error(__('The emp grp could not be saved. Please, try again.'));
         }
-        $setHoliday = $this->EmpGrp->SetHoliday->find('list', ['limit' => 200]);
-        $this->set(compact('empGrp', 'setHoliday'));
+        // $setHoliday = $this->EmpGrp->SetHoliday->find('list', ['limit' => 200]);
+        $this->set(compact('empGrp'));
     }
 
     /**
