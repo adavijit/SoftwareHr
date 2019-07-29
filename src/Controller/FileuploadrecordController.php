@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
-
+require 'dbconnect.php';
+$conn=$conn;
 use App\Controller\AppController;
 use XLSXReader;
 /*use PhpExcel\Classes\PhpExcel;
@@ -106,8 +107,9 @@ class FileuploadrecordController extends AppController
                                             $fileuploadrecord->att_sheetName = $mySheet;
 
                                         }
+                                        require 'dbconnect.php';
+                                        // $conn=mysqli_connect('localhost','root','','hr_software');
 
-                                        $conn=mysqli_connect('localhost','root','','hr_software');           
                                     //data saved in fileuploadrecord table
                                         $newDate = date("Y-m-d", strtotime($mydt));
                                         $fileuploadrecord->dtOfUpload = $newDate;
@@ -119,8 +121,8 @@ class FileuploadrecordController extends AppController
                                             //return $this->redirect(['controller'=>'Fileuploadrecord','action' => '/index']);
                                         }
                                         $this->Flash->error(__('The fileuploadrecord could not be saved. Please, try again.'));
-                                    
-                                    $conn=mysqli_connect('localhost','root','','hr_software');                                   
+                                        require 'dbconnect.php';
+                                    // $conn=mysqli_connect('localhost','root','','hr_software');                                   
                                     $sql=mysqli_query($conn,"SELECT id FROM fileuploadrecord ORDER BY id DESC LIMIT 1");
                                     $max=0;
                                     foreach($sql as $test)

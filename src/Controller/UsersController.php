@@ -83,8 +83,8 @@ public function setpassword(){
          {
             $subject = 'Hi buddy, i got a message for you.';
             //$message = 'hafhakf';
-
-                $message = 'http://localhost/HrSoft/users/setpassword';
+            require 'dbconnect.php';
+                $message = 'http://'.$server_name.'/SoftwareHr/users/setpassword';
                 $message= $message.'?email='.$encodedEmail;
                 echo $message;
                 // $mail = $this->Email->send_mail($email, $subject, $message);

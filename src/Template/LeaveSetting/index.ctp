@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\LeaveSetting[]|\Cake\Collection\CollectionInterface $leaveSetting
  */
 use Cake\Routing\Router;
-
+require 'dbconnect.php'
 ?>
 
 
@@ -117,14 +117,18 @@ use Cake\Routing\Router;
       <!-- <td><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></td> -->
       <td><?= $this->Number->format($leaveSetting->financial_year) ?></td>
       <?= 
-      $conn = mysqli_connect("localhost","root","","hr_software");
+      // $conn = mysqli_connect("localhost","root","","hr_software");
        $dd_res=mysqli_query($conn,"Select group_name,holiday_id from set_holiday");
+       $h_name='';
       foreach($dd_res as $temp)
       {
-          if($temp['holiday_id']==$leaveSetting->holiday_group){
-          echo "<td>$temp[group_name]</td>";
+          if($temp['holiday_id']==$leaveSetting->holiday_group)
+          $h_name=$temp['group_name'];
+          // echo "<td>$temp[group_name]</td>";
+          else
+          $h_name='';
       }
-    }
+      echo "<td>$h_name</td>";
       ?>
 
       

@@ -131,7 +131,9 @@ use Cake\Routing\Router;
                 <td><?= h($fileuploadrecord->dtOfUpload) ?></td>
                 <td><?= h($fileuploadrecord->att_sheetName) ?></td>
                 <td><?= h($fileuploadrecord->att_sheetPath) ?></td>
-               <?php $path= "http://localhost/HrSoft/webroot/".$fileuploadrecord->att_sheetPath ?>
+               <?php 
+               require 'dbconnect.php';
+               $path= "http://".$server_name."/SoftwareHr/webroot/".$fileuploadrecord->att_sheetPath ?>
                 <td class="actions"><a href="<?php echo Router::url(['controller'=> 'attendancerecord','action' => 'index', 'id'=>$fileuploadrecord->id])?>" > <i class="icon-file" style="right-padding:7px;"></i></a>&nbsp;
                 <a download href="<?php echo $path;?>"><span class="glyphicon glyphicon-download-alt" style="right-padding:7px;"></span></a><?php $id = $fileuploadrecord->id ?>&nbsp;&nbsp;<a id="delete" onclick="deleteAjax(<?php echo $id ?>)"><i class="icon-trash-1" style="right-padding:7px;"></i></a> 
                 </td> 
@@ -202,7 +204,7 @@ use Cake\Routing\Router;
       if(confirm('Are you sure?')){
         $.ajax({
           type:"post",
-          url:"http://localhost/HrSoft/webroot/delete.php",
+          url:"delete.php",
           data:{
             id:id
             },

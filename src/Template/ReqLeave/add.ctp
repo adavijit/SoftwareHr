@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\ReqLeave $reqLeave
  */
+require '../webroot/dbconnect.php';
 ?>
 
 <!DOCTYPE html>
@@ -93,7 +94,7 @@
           <select class="form-control rounded-0" width="100%" name="empId" id="">
           <option value=""> </option>
           <?php
-                $conn = mysqli_connect("localhost","root","","hr_software");
+                // $conn = mysqli_connect("localhost","root","","hr_software");
                 $dd_res=mysqli_query($conn,"Select empName,empId from emp_general_info");
                 while($r=mysqli_fetch_row($dd_res))
                 { 
@@ -143,7 +144,7 @@
             <select name="leave_type" class="form-control rounded-0">
               <option>Leave Type</option>
               <?php
-                $conn = mysqli_connect("localhost","root","","hr_software");
+                // $conn = mysqli_connect("localhost","root","","hr_software");
                 $dd_res=mysqli_query($conn,"Select leave_type,status from new_leave");
                 while($r=mysqli_fetch_row($dd_res))
                 { 

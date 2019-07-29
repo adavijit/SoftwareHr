@@ -1,6 +1,5 @@
 <?php
-
-$conn = mysqli_connect("localhost","root","","hr_software");
+require 'dbconnect.php';
 $hi=0;
     // $status = $_POST['status'];
     // $id= $_POST['id'];
