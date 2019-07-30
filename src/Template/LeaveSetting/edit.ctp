@@ -52,15 +52,15 @@ require '../webroot/dbconnect.php';
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
             <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>             
-              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'/index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
           <li>
             <a id="parent4" class="parent activeclass" onclick="changeActive('parent4');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Leave Request</span></a>
             <ul class="subchildlink">
-            <a class=""><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'LeaveSetting','action'=>'/index']) ?>' "  style="cursor:pointer;">View Leave Setting</li></a>             
-              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'ReqLeave','action'=>'/index']) ?>' "  style="cursor:pointer;">Add Requested Leave </li></a>
-              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'NonReqLeave','action'=>'/index']) ?>' "  style="cursor:pointer;">Add Non Requested Leave </li></a>
+            <a class=""><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'LeaveSetting','action'=>'index']) ?>' "  style="cursor:pointer;">View Leave Setting</li></a>             
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'ReqLeave','action'=>'index']) ?>' "  style="cursor:pointer;">Add Requested Leave </li></a>
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'NonReqLeave','action'=>'index']) ?>' "  style="cursor:pointer;">Add Non Requested Leave </li></a>
             
             
             </ul>
@@ -112,7 +112,7 @@ require '../webroot/dbconnect.php';
       <div class="bodypart">
         <div class="row pageheadertop mb-3">
         <div class="col"><h2>Edit Leave Setting</h2></div>
-        <div class="col-auto"><button type="button" class="btn outlineblue mr-2"><a href="../index">Cancel</a></button> <button type="submit" name="submit" class="btn redbutton">submit</button></div>
+        <div class="col-auto"><button type="button" class="btn outlineblue mr-2"><a href="<?php echo Router::url(['controller'=>'LeaveSetting','action'=>'index']) ?>">Cancel</a></button> <button type="submit" name="submit" class="btn redbutton">submit</button></div>
       </div>
       <div class="tab-content">
       <div id="home" class="tab-pane fade in active">
@@ -157,17 +157,22 @@ require '../webroot/dbconnect.php';
           <label class="labelform">Holiday Group</label>
             <!-- <input id="" value="<?= h($leaveSetting->holiday_group) ?>" name="holiday_group" class="form-control rounded-0" width="100%"    />  -->
               <select name="holiday_group" class="form-control rounded-0">
-              <option value="<?php h($leaveSetting->holiday_group) ?>">
-              <?= 
-              // $conn = mysqli_connect("localhost","root","","hr_software");
-              $dd_res=mysqli_query($conn,"Select group_name,holiday_id from set_holiday");
-              foreach($dd_res as $temp)
-              {
-                  if($temp['holiday_id']==$leaveSetting->holiday_group){
-                  echo "<td>$temp[group_name]</td>";
-                }
-              }
-              ?></option>
+              <?php
+                 $dd_res=mysqli_query($conn,"Select group_name,holiday_id from set_holiday");
+                 foreach($dd_res as $temp)
+                 {
+   
+                     if($temp['holiday_id']==$leaveSetting->holiday_group){
+   
+                     echo "<option value='$temp[holiday_id]'> $temp[group_name] ($temp[holiday_id])";
+                     echo "</option>";
+                   }
+                 }
+
+
+                ?>
+              
+              </option>
               <?php
                 // $conn = mysqli_connect("localhost","root","","hr_software");
                 $dd_res=mysqli_query($conn,"Select group_name,holiday_id from set_holiday");

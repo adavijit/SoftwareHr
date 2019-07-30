@@ -175,7 +175,7 @@ class FileuploadrecordController extends AppController
                                                                     mysqli_query($conn,$query);
                                                              
                                     }
-                                    return $this->redirect(['controller'=>'Fileuploadrecord','action' => '/index']);
+                                    return $this->redirect(['controller'=>'Fileuploadrecord','action' => 'index']);
                                                                  
                                     $this->set(compact('fileuploadrecord'));
 

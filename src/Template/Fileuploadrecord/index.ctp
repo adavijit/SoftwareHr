@@ -16,12 +16,12 @@ use Cake\Routing\Router;
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../webroot/css/iconfonts.css">
+    <link rel="stylesheet" type="text/css" href="css/iconfonts.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../webroot/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../webroot/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../webroot/css/responsive.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
   
     <title>Welcome to Navsoft Training</title>
   </head>
@@ -30,7 +30,7 @@ use Cake\Routing\Router;
     <!-- left menu section start here -->
     <section class="leftmenu">
       <div class="leftpadd">
-        <a href="javascript:void(0);" class="leftlogo"><img src="../images/logo.png" alt=""></a>
+        <a href="javascript:void(0);" class="leftlogo"><img src="images/logo.png" alt=""></a>
         <div class="leftmain-link">
         <ul class="listofnav">
           <li>
@@ -67,7 +67,7 @@ use Cake\Routing\Router;
       <div class="row">
         <div class="col-auto ml-auto align-middle">
          <div class="usernameboxdiv ml-auto">
-          <span class="userpicbox mr-2"><img src="../images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
+          <span class="userpicbox mr-2"><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
           <span class="usernamed">Welcome Harry</span>
         </div>
         </div>
@@ -191,7 +191,7 @@ use Cake\Routing\Router;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="../webroot/js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 

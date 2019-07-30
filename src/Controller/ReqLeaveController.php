@@ -85,7 +85,7 @@ class ReqLeaveController extends AppController
             if ($this->ReqLeave->save($reqLeave)) {
                // $this->Flash->success(__('The req leave has been saved.'));
 
-                return $this->redirect(['action' => '/index']);
+                return $this->redirect(['action' => 'index']);
             }
           //  $this->Flash->error(__('The req leave could not be saved. Please, try again.'));
         }
@@ -152,7 +152,7 @@ class ReqLeaveController extends AppController
                 if ($this->ReqLeave->save($reqLeave)) {
                     $this->Flash->success(__('The req leave has been saved.'));
     
-                    return $this->redirect(['action' => '/index']);
+                    return $this->redirect(['action' => 'index']);
                 }
             }   
             $this->Flash->error(__('The req leave could not be saved. Please, try again.'));
@@ -177,6 +177,6 @@ class ReqLeaveController extends AppController
             $this->Flash->error(__('The req leave could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => '/index']);
+        return $this->redirect(['action' => 'index']);
     }
 }

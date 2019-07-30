@@ -81,7 +81,7 @@ class NonReqLeaveController extends AppController
             if ($this->NonReqLeave->save($nonReqLeave)) {
                 $this->Flash->success(__('The non req leave has been saved.'));
 
-                return $this->redirect(['action' => '/index']);
+                return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The non req leave could not be saved. Please, try again.'));
         }
@@ -135,7 +135,7 @@ class NonReqLeaveController extends AppController
             if ($this->NonReqLeave->save($nonReqLeave)) {
                 $this->Flash->success(__('The non req leave has been saved.'));
 
-                return $this->redirect(['action' => '/index']);
+                return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The non req leave could not be saved. Please, try again.'));
         }

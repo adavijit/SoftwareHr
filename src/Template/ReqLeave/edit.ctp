@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\ReqLeave $reqLeave
  */
+use Cake\Routing\Router;
+require 'dbconnect.php';
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +29,7 @@
     <section class="leftmenu">
     <a href="javascript:void(0)" class="menuhomem"><i class="icon-add-plus-button"></i></a>
       <div class="leftpadd">
-        <a href="javascript:void(0);" class="leftlogo"><img src="images/logo.png" alt=""></a>
+        <a href="javascript:void(0);" class="leftlogo"><img src="../../webroot/images/logo.png" alt=""></a>
         <div class="leftmain-link">
         <ul class="listofnav">
           <li>
@@ -49,15 +51,15 @@
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
             <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>             
-              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'/index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
           <li>
             <a id="parent4" class="parent" onclick="changeActive('parent4');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Leave Request</span></a>
             <ul class="subchildlink">
-            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'LeaveSetting','action'=>'/index']) ?>' "  style="cursor:pointer;">View Leave Setting</li></a>             
-              <a class="activeclass"><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'ReqLeave','action'=>'/index']) ?>' "  style="cursor:pointer;">Add Requested Leave </li></a>
-              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'NonReqLeave','action'=>'/index']) ?>' "  style="cursor:pointer;">Add Non Requested Leave </li></a>
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'LeaveSetting','action'=>'index']) ?>' "  style="cursor:pointer;">View Leave Setting</li></a>             
+              <a class="activeclass"><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'ReqLeave','action'=>'index']) ?>' "  style="cursor:pointer;">Add Requested Leave </li></a>
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'NonReqLeave','action'=>'index']) ?>' "  style="cursor:pointer;">Add Non Requested Leave </li></a>
             
             
             </ul>
@@ -90,12 +92,12 @@
       <div class="row">
         <div class="col-auto ml-auto align-middle">
          <a href="javascript:void(0)" class="usernameboxdiv ml-auto d-block">
-          <span class="userpicbox mr-2"><img src="../images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
-          <span class="usernamed"><?php echo $username?></span>
+          <span class="userpicbox mr-2"><img src="../../webroot/images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
+          <span class="usernamed">Welcome <?php echo $username?></span>
         </a>
          <div id="drop">
         <div class="logouuserdiv">
-          <div class="imagepic"><img src="../images/User.png" alt="Navsoft Training" title="Navsoft Training"></div>
+          <div class="imagepic"><img src="../../webroot/images/User.png" alt="Navsoft Training" title="Navsoft Training"></div>
           <div class="spantext"><h5 class="mb-0"><?php echo $username?></h5><a href="javascript:void(0)"><?php echo $email?></a></div>
         </div>
         <div class="footerbottom">
@@ -112,7 +114,7 @@
         <div class="row pageheadertop mb-3">
         <div class="col"><h2>Edit Leave  Request</h2></div>
         <div class="col-auto">
-        <button type="button" class="btn outlineblue mr-2"><a href="../index">Cancel</a></button>
+        <button type="button" class="btn outlineblue mr-2"><a href="<?php echo Router::url(['controller'=>'ReqLeave','action'=>'index']) ?>">Cancel</a></button>
           <!-- <button type="button" class="btn outlineblue mr-2">Cancel</button>  -->
          <button type="submit" name="submit" value="submit" class="btn redbutton">Save</button>
         </div>
@@ -126,7 +128,22 @@
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Employee Name</label>
-             <input id="" value="<?= h($reqLeave->emp_name) ?>" type="text" nae="emp_name" placeholder="Employee Name" class="form-control rounded-0" width="100%"    /> 
+             <!-- <input id="" value="<?= h($reqLeave->emp_name) ?>" type="text" nae="emp_name" placeholder="Employee Name" class="form-control rounded-0" width="100%"    />  -->
+             <select class="form-control rounded-0" width="100%" name="empId" id="">
+          <option value="<?= h($reqLeave->empId) ?>" ><?php echo "$reqLeave->emp_name ($reqLeave->empId)" ?> </option>
+          <?php
+                // $conn = mysqli_connect("localhost","root","","hr_software");
+                $dd_res=mysqli_query($conn,"Select empName,empId from emp_general_info");
+                while($r=mysqli_fetch_row($dd_res))
+                { 
+                  if($reqLeave->empId != $r[1])
+                  echo "<option value='$r[1]'> $r[0] ($r[1]) </option>";
+
+                 // echo "<input type='hidden' value='$r[1]' name='empId'>";
+                }
+              ?>
+          </select>
+         
           </div>
         </div>
         <div class="col-sm-4 mb-2">
@@ -150,7 +167,21 @@
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Leave Type</label>
-            <input id="" value="<?= h($reqLeave->leave_type) ?>" type="text" name="leave_type" placeholder="No. of Days Requested" class="form-control rounded-0" width="100%"    /> 
+            <!-- <input id="" value="<?= h($reqLeave->leave_type) ?>" type="text" name="leave_type" placeholder="No. of Days Requested" class="form-control rounded-0" width="100%"    />  -->
+            <select name="leave_type" class="form-control rounded-0">
+              <option value="<?= h($reqLeave->leave_type) ?>"><?php echo "$reqLeave->leave_type" ?></option>
+              <?php
+                // $conn = mysqli_connect("localhost","root","","hr_software");
+                $dd_res=mysqli_query($conn,"Select leave_type,status from new_leave");
+                while($r=mysqli_fetch_row($dd_res))
+                { 
+                  if(strtolower($r[0])!=strtolower($reqLeave->leave_type) && strtolower($r[1])=="active"){
+                    echo "<option value='$r[0]'> $r[0]</option>";
+                  }
+                }
+              ?>
+            </select>
+         
           </div>
         </div>
         <div class="col-sm-4 mb-2">
@@ -162,13 +193,13 @@
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Leave Starting Date</label>
-            <input value="<?= h($reqLeave->starting_date) ?>" name="starting_date" placeholder="Leave Starting Date" class="form-control rounded-0" width="100%"    />
+            <input id="datepicker" value="<?= h($reqLeave->starting_date) ?>" name="starting_date" placeholder="Leave Starting Date" class="form-control rounded-0" width="100%"    />
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Leave Ending Date</label>
-            <input value="<?= h($reqLeave->ending_date) ?>" name="ending_date" placeholder="Leave Ending Date" class="form-control rounded-0" width="100%"    /> 
+            <input id="datepicker2" value="<?= h($reqLeave->ending_date) ?>" name="ending_date" placeholder="Leave Ending Date" class="form-control rounded-0" width="100%"    /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
