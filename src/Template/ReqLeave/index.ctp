@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\ReqLeave[]|\Cake\Collection\CollectionInterface $reqLeave
  */
 use Cake\Routing\Router;
-
+require 'dbconnect.php'
 ?>
 
 <!DOCTYPE html>
@@ -135,7 +135,42 @@ use Cake\Routing\Router;
     <?php  $test=0?>
         <td><?= h($reqLeave->emp_name) ?></td>
         <td><?= $this->Number->format($reqLeave->no_of_day_requested) ?></td>
-        <td><?= $this->Number->format($reqLeave->balance_leave) ?></td>
+        <!-- <td><?= $this->Number->format($reqLeave->leave_year) ?></td> -->
+        <td><?php $dd_res=mysqli_query($conn,"Select * from leave_setting");
+        $x=0;
+        $y=0;
+                while($r=mysqli_fetch_assoc($dd_res))
+                { 
+                    if($r['financial_year']==$reqLeave->leave_year){
+                      $x=$r['no_of_holiday'];
+                    }
+                }
+                $emp=mysqli_query($conn,"Select * from req_leave");
+                {
+                  while($r1=mysqli_fetch_assoc($emp)){
+                    if(($r1['empId']==$reqLeave->empId)
+                    &&($reqLeave->leave_year==$r1['leave_year'])
+                    && ($reqLeave->approval_states=="Done")
+                    &&($reqLeave->req_id>=$r1['req_id'])){
+                      $y=$y+$r1['no_of_day_requested'];
+                      // echo $y;
+                      // echo $x-$y;
+                    }
+                    elseif(( $r1['empId']==$reqLeave->empId)
+                    &&($reqLeave->leave_year==$r1['leave_year'])&& 
+                    ($reqLeave->approval_states=="Inactive")
+                    &&($reqLeave->req_id>$r1['req_id'])){
+                        $y=$y+$r1['no_of_day_requested'];
+                      // echo $y;
+                      // echo $x-$y;
+                    }
+                    else{
+                      // echo "abc".$r1['req_id'];
+                    }
+                  }
+                }
+                echo $x-$y;
+                ?></td>
         <td><?= h($reqLeave->starting_date) ?></td>
         <td><?= h($reqLeave->ending_date) ?></td>
         <td><?= h($reqLeave->approval_states) ?></td>
