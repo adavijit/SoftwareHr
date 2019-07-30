@@ -179,7 +179,7 @@ require '../webroot/dbconnect.php';
           <div class="form-group addcustomcss">
             <label class="labelform">Leave Type</label>
             <select name="leave_type" class="form-control rounded-0">
-              <option>Leave Type</option>
+              <option></option>
               <?php
                 // $conn = mysqli_connect("localhost","root","","hr_software");
                 $dd_res=mysqli_query($conn,"Select leave_type,status from new_leave");
@@ -194,8 +194,18 @@ require '../webroot/dbconnect.php';
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <label class="labelform">Current Balance Leave</label>
-            <input id="" type="text" name="balance_leave" class="form-control rounded-0" width="100%" /> 
+            <label class="labelform">Leave Setting Year</label>
+            <!-- <input id="" type="text" name="balance_leave" class="form-control rounded-0" width="100%" />  -->
+            <select name="leave_year" class="form-control rounded-0">
+              <option></option>
+              <?php
+                $dd_res=mysqli_query($conn,"Select * from leave_setting");
+                while($r=mysqli_fetch_assoc($dd_res))
+                { 
+                    echo "<option value='$r[financial_year]'> $r[financial_year] </option>";
+                }
+              ?>
+            </select> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">

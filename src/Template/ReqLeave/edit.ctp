@@ -184,10 +184,22 @@ require 'dbconnect.php';
          
           </div>
         </div>
+        <!-- <?php echo "$reqLeave->leave_year" ?> -->
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Current Leave Balance</label>
-            <input id="" value="<?= h($reqLeave->balance_leave) ?>" type="text" name="balance_leave" placeholder="Current Leave Balance" class="form-control rounded-0" width="100%"    /> 
+            <!-- <input id="" value="<?= h($reqLeave->balance_leave) ?>" type="text" name="balance_leave" placeholder="Current Leave Balance" class="form-control rounded-0" width="100%"    />  -->
+            <select name="leave_year" class="form-control rounded-0">
+              <option value="<?= h($reqLeave->leave_year) ?>"><?php echo "$reqLeave->leave_year" ?></option>
+              <?php
+                // $conn = mysqli_connect("localhost","root","","hr_software");
+                $dd_res=mysqli_query($conn,"Select financial_year from leave_setting");
+                while($r=mysqli_fetch_row($dd_res))
+                { 
+                    echo "<option value='$r[0]'> $r[0] </option>";
+                }
+              ?>
+            </select> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
