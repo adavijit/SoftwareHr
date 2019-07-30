@@ -63,10 +63,10 @@ class LeaveSettingController extends AppController
             $endDate = date("Y-m-d", strtotime($myDt2));
             $leaveSetting->ending_date = $endDate;
             if ($this->LeaveSetting->save($leaveSetting)) {
-                echo "test";
+              
                 $this->Flash->success(__('The leave setting has been saved.'));
 
-                return $this->redirect(['action' => '/index']);
+                return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The leave setting could not be saved. Please, try again.'));
         }
@@ -96,7 +96,7 @@ class LeaveSettingController extends AppController
             if ($this->LeaveSetting->save($leaveSetting)) {
                 $this->Flash->success(__('The leave setting has been saved.'));
 
-                return $this->redirect(['action' => '/index']);
+                return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The leave setting could not be saved. Please, try again.'));
         }
@@ -120,7 +120,7 @@ class LeaveSettingController extends AppController
             $this->Flash->error(__('The leave setting could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => '/index']);
+        return $this->redirect(['action' => 'index']);
     }
 
     public function holiday()
