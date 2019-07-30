@@ -226,7 +226,21 @@ require 'dbconnect.php';
         <div class="col-sm-3 mb-2"> 
           <div class="form-group addcustomcss">
           <label class="labelform">Inform Status</label>
-          <input id="" type="text" value="<?= h($nonReqLeave->inform_status) ?>" name="inform_status" class="form-control rounded-0" width="100%"    /> 
+          <!-- <input id="" type="text" value="<?= h($nonReqLeave->inform_status) ?>" name="inform_status" class="form-control rounded-0" width="100%"    />  -->
+          <select name="inform_status" class="form-control rounded-0">
+            <?php 
+              if(strtolower($nonReqLeave->inform_status)=="active"){
+                echo "<option>$nonReqLeave->inform_status</option>";
+                echo "<option>Inactive</option>";
+              }
+              else{
+                if(strtolower($nonReqLeave->inform_status)=="inactive"){
+                  echo "<option>$nonReqLeave->inform_status</option>";
+                  echo "<option>active</option>";
+                }
+              }
+            ?>
+            </select>
           </div>
         </div>
         <div class="col-sm-3 mb-2"> 

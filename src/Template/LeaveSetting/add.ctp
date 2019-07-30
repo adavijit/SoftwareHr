@@ -131,8 +131,10 @@ var x;
       <div class="row">
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-             <select id="financialYear"  name="financial_year" placeholder="Financial Year" class="form-control rounded-0">
-             <option>Financial Year</option>
+          <label class="labelform">Financial Year</label>
+
+             <select id="financialYear"  name="financial_year" class="form-control rounded-0">
+             <option></option>
              <?php 
               $date = date("Y");
               for($i=1998; $i<=$date;$i++)
@@ -145,21 +147,25 @@ var x;
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="datepicker" name="starting_date" placeholder="Season Tenure Start Date" class="form-control rounded-0" width="100%" />
+          <label class="labelform">Season Tenure Start Date</label>
+
+            <input id="datepicker" name="starting_date" class="form-control rounded-0" width="100%" />
             
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="datepicker2" name="ending_date" placeholder="Season Tenure End Date" class="form-control rounded-0" width="100%" />
+          <label class="labelform">Season Tenure End Date</label>
+            <input id="datepicker2" name="ending_date" class="form-control rounded-0" width="100%" />
             
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Holiday Group</label>
             <!-- <input type="text" id="" name="holiday_group" placeholder="Holiday Group" class="form-control rounded-0" width="100%" />  -->
             <select name="holiday_group" class="form-control rounded-0">
-              <option>Holiday Group</option>
+              <option></option>
               <?php
                 //$conn = mysqli_connect("localhost","root","","hr_software");
                 $dd_res=mysqli_query($conn,"Select group_name,holiday_id from set_holiday");
@@ -177,20 +183,26 @@ var x;
         
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input type="text" id="" name="no_of_hours" placeholder="No. of hours in full day" class="form-control rounded-0" width="100%" />
+          <label class="labelform">No. of hours in full day</label>
+
+            <input type="text" id="" name="no_of_hours" class="form-control rounded-0" width="100%" />
 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input type="text" id="" name="shift" placeholder="Default Shift" class="form-control rounded-0" width="100%" /> 
+          <label class="labelform">Default Shift</label>
+
+            <input type="text" id="" name="shift"  class="form-control rounded-0" width="100%" /> 
 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Week Starts on</label>
+
             <select name="week_start" class="form-control rounded-0">
-              <option>Weak Starts on</option>
+              <option></option>
               <option>Sunday</option>
               <option>Monday</option>              
               <option>Tuesday</option>
@@ -203,15 +215,19 @@ var x;
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input type="text" id="" name="weekly_days_off" placeholder="Weekly Days Off" class="form-control rounded-0" width="100%" />
+          <label class="labelform">Week Days Off</label>
+            <input type="text" id="" name="weekly_days_off" class="form-control rounded-0" width="100%" />
 
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+
             <!-- <input type="text" name="leave_type" id="" placeholder="Leave Type" class="form-control rounded-0" width="100%" />  -->
+          <label class="labelform">Leave Type</label>
+           
             <select name="leave_type" class="form-control rounded-0">
-              <option>Leave Type</option>
+              <option></option>
               <?php
                 // $conn = mysqli_connect("localhost","root","","hr_software");
                 $dd_res=mysqli_query($conn,"Select leave_type,status from new_leave");
@@ -228,22 +244,30 @@ var x;
 
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
-            <input type="text" name="no_of_holiday" id="" placeholder="No. of Holidays" class="form-control rounded-0" width="100%" /> 
+          <label class="labelform">No. of Holidays</label>
+
+            <input type="text" name="no_of_holiday" id="" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
-            <input type="text" name="allow_per_month" id="" placeholder="Allowable leaves per month" class="form-control rounded-0" width="100%" /> 
+          <label class="labelform">Allowable leaves per month</label>
+
+            <input type="text" name="allow_per_month" id="" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
-            <input type="text" name="threshold" id="" placeholder="Leave Threshold Limit" class="form-control rounded-0" width="100%" /> 
+          <label class="labelform">Leave Threshold Limit</label>
+
+            <input type="text" name="threshold" id="" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
-            <input type="text" name="approved_by" id="" placeholder="Leave Approved By" class="form-control rounded-0" width="100%" /> 
+          <label class="labelform">Leave Approved By</label>
+
+            <input type="text" name="approved_by" id="" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
       </div>
