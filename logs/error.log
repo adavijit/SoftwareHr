@@ -3403,3 +3403,282 @@ Referer URL: http://localhost/Project/SoftwareHR/non-req-leave/index
 
 =======
 >>>>>>> 1ac050fd744188b6f3c2049e78e0028ecd34b03d
+2019-07-30 05:35:42 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Attendencerecord could not be found.
+Exception Attributes: array (
+  'class' => 'Attendencerecord',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+#0 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ControllerFactory.php(39): Cake\Http\ControllerFactory->missingController(Object(Cake\Http\ServerRequest))
+#1 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(91): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#2 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\BaseApplication.php(235): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#3 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#4 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#5 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php(123): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Middleware\CsrfProtectionMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#7 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php(168): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php(96): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(53): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 D:\xampp\htdocs\Project\SoftwareHR\webroot\index.php(40): Cake\Http\Server->run()
+#19 {main}
+Request URL: /attendencerecord
+Referer URL: http://localhost/Project/SoftwareHR/dashboard
+
+
+2019-07-30 05:37:36 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Attendencerecord could not be found.
+Exception Attributes: array (
+  'class' => 'Attendencerecord',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+#0 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ControllerFactory.php(39): Cake\Http\ControllerFactory->missingController(Object(Cake\Http\ServerRequest))
+#1 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(91): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#2 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\BaseApplication.php(235): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#3 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#4 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#5 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php(123): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Middleware\CsrfProtectionMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#7 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php(168): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php(96): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(53): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 D:\xampp\htdocs\Project\SoftwareHR\webroot\index.php(40): Cake\Http\Server->run()
+#19 {main}
+Request URL: /attendencerecord
+Referer URL: http://localhost/Project/SoftwareHR/dashboard
+
+
+2019-07-30 05:41:17 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Attendencerecord could not be found.
+Exception Attributes: array (
+  'class' => 'Attendencerecord',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+#0 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ControllerFactory.php(39): Cake\Http\ControllerFactory->missingController(Object(Cake\Http\ServerRequest))
+#1 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(91): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#2 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\BaseApplication.php(235): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#3 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#4 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#5 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php(123): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Middleware\CsrfProtectionMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#7 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php(168): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php(96): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(53): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 D:\xampp\htdocs\Project\SoftwareHR\webroot\index.php(40): Cake\Http\Server->run()
+#19 {main}
+Request URL: /attendencerecord
+Referer URL: http://localhost/Project/SoftwareHR/dashboard
+
+
+2019-07-30 05:41:45 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Bower_components could not be found.
+Exception Attributes: array (
+  'class' => 'Bower_components',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+#0 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ControllerFactory.php(39): Cake\Http\ControllerFactory->missingController(Object(Cake\Http\ServerRequest))
+#1 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(91): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#2 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\BaseApplication.php(235): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#3 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#4 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#5 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php(123): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Middleware\CsrfProtectionMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#7 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php(168): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php(97): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php(96): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(53): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 D:\xampp\htdocs\Project\SoftwareHR\webroot\index.php(40): Cake\Http\Server->run()
+#19 {main}
+Request URL: /bower_components/jquery/dist/jquery.min.js
+Referer URL: http://localhost/Project/SoftwareHR/attendancerecord
+
+
+2019-07-30 05:41:45 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Bower_components could not be found.
+Exception Attributes: array (
+  'class' => 'Bower_components',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+#0 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ControllerFactory.php(39): Cake\Http\ControllerFactory->missingController(Object(Cake\Http\ServerRequest))
+#1 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(91): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#2 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\BaseApplication.php(235): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#3 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#4 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#5 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php(123): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Middleware\CsrfProtectionMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#7 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php(168): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php(97): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php(96): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(53): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 D:\xampp\htdocs\Project\SoftwareHR\webroot\index.php(40): Cake\Http\Server->run()
+#19 {main}
+Request URL: /bower_components/jquery-table2excel/dist/jquery.table2excel.min.js
+Referer URL: http://localhost/Project/SoftwareHR/attendancerecord
+
+
+2019-07-30 05:41:46 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Bower_components could not be found.
+Exception Attributes: array (
+  'class' => 'Bower_components',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+#0 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ControllerFactory.php(39): Cake\Http\ControllerFactory->missingController(Object(Cake\Http\ServerRequest))
+#1 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(91): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#2 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\BaseApplication.php(235): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#3 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#4 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#5 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php(123): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Middleware\CsrfProtectionMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#7 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php(168): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php(97): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php(96): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(53): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 D:\xampp\htdocs\Project\SoftwareHR\webroot\index.php(40): Cake\Http\Server->run()
+#19 {main}
+Request URL: /bower_components/jquery/dist/jquery.min.js
+Referer URL: http://localhost/Project/SoftwareHR/attendancerecord
+
+
+2019-07-30 05:41:46 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Bower_components could not be found.
+Exception Attributes: array (
+  'class' => 'Bower_components',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+#0 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ControllerFactory.php(39): Cake\Http\ControllerFactory->missingController(Object(Cake\Http\ServerRequest))
+#1 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(91): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#2 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\BaseApplication.php(235): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#3 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#4 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#5 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php(123): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Middleware\CsrfProtectionMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#7 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php(168): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php(97): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php(96): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(53): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 D:\xampp\htdocs\Project\SoftwareHR\webroot\index.php(40): Cake\Http\Server->run()
+#19 {main}
+Request URL: /bower_components/jquery-table2excel/dist/jquery.table2excel.min.js
+Referer URL: http://localhost/Project/SoftwareHR/attendancerecord
+
+
+2019-07-30 05:43:10 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Bower_components could not be found.
+Exception Attributes: array (
+  'class' => 'Bower_components',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+#0 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ControllerFactory.php(39): Cake\Http\ControllerFactory->missingController(Object(Cake\Http\ServerRequest))
+#1 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(91): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#2 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\BaseApplication.php(235): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#3 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#4 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#5 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php(123): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Middleware\CsrfProtectionMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#7 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php(168): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php(97): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php(96): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(53): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 D:\xampp\htdocs\Project\SoftwareHR\webroot\index.php(40): Cake\Http\Server->run()
+#19 {main}
+Request URL: /bower_components/jquery/dist/jquery.min.js
+Referer URL: http://localhost/Project/SoftwareHR/attendancerecord
+
+
+2019-07-30 05:43:10 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Bower_components could not be found.
+Exception Attributes: array (
+  'class' => 'Bower_components',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+#0 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ControllerFactory.php(39): Cake\Http\ControllerFactory->missingController(Object(Cake\Http\ServerRequest))
+#1 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(91): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#2 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\BaseApplication.php(235): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#3 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#4 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#5 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php(123): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\Middleware\CsrfProtectionMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#7 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php(168): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php(97): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php(96): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(53): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Http\Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 D:\xampp\htdocs\Project\SoftwareHR\webroot\index.php(40): Cake\Http\Server->run()
+#19 {main}
+Request URL: /bower_components/jquery-table2excel/dist/jquery.table2excel.min.js
+Referer URL: http://localhost/Project/SoftwareHR/attendancerecord
+
+

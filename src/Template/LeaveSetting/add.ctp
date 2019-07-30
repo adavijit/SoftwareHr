@@ -53,7 +53,11 @@ var x;
             </ul>
           </li>
           <li>
-            <a  id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-long-checklist"></i> <span>Employee Attendance</span></a>
+            <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
+            <ul class="subchildlink">
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>             
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'/index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
+            </ul>
           </li>
           <li>
             <a id="parent4" class="parent" onclick="changeActive('parent4');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Leave Request</span></a>
