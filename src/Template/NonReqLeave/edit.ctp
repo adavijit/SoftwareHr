@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\NonReqLeave $nonReqLeave
  */
 use Cake\Routing\Router;
+require 'dbconnect.php';
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +29,7 @@ use Cake\Routing\Router;
     <section class="leftmenu">
     <a href="javascript:void(0)" class="menuhomem"><i class="icon-add-plus-button"></i></a>
       <div class="leftpadd">
-        <a href="javascript:void(0);" class="leftlogo"><img src="images/logo.png" alt=""></a>
+        <a href="javascript:void(0);" class="leftlogo"><img src="../../webroot/images/logo.png" alt=""></a>
         <div class="leftmain-link">
         <ul class="listofnav">
           <li>
@@ -88,12 +89,12 @@ use Cake\Routing\Router;
       <div class="row">
         <div class="col-auto ml-auto align-middle">
          <a href="javascript:void(0)" class="usernameboxdiv ml-auto d-block">
-          <span class="userpicbox mr-2"><img src="../images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
+          <span class="userpicbox mr-2"><img src="../../webroot/images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
           <span class="usernamed">Welcome <?php echo $username?></span>
         </a>
          <div id="drop">
         <div class="logouuserdiv">
-          <div class="imagepic"><img src="../images/User.png" alt="Navsoft Training" title="Navsoft Training"></div>
+          <div class="imagepic"><img src="../../webroot/images/User.png" alt="Navsoft Training" title="Navsoft Training"></div>
           <div class="spantext"><h5 class="mb-0"><?php echo $username?></h5><a href="javascript:void(0)"><?php echo $email?></a></div>
         </div>
         <div class="footerbottom">
@@ -124,7 +125,21 @@ use Cake\Routing\Router;
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Employee Name</label>
-             <input id="" value="<?= h($nonReqLeave->emp_name) ?>" type="text" nae="emp_name" placeholder="" class="form-control rounded-0" width="100%"    /> 
+             <!-- <input id="" value="<?= h($nonReqLeave->emp_name) ?>" type="text" nae="emp_name" placeholder="" class="form-control rounded-0" width="100%"    />  -->
+             <select class="form-control rounded-0" width="100%" name="empId" id="">
+          <option value="<?= h($nonReqLeave->empId) ?>" ><?php echo "$nonReqLeave->emp_name ($nonReqLeave->empId)" ?> </option>
+          <?php
+                // $conn = mysqli_connect("localhost","root","","hr_software");
+                $dd_res=mysqli_query($conn,"Select empName,empId from emp_general_info");
+                while($r=mysqli_fetch_row($dd_res))
+                { 
+                  if($nonReqLeave->empId != $r[1])
+                  echo "<option value='$r[1]'> $r[0] ($r[1]) </option>";
+
+                 // echo "<input type='hidden' value='$r[1]' name='empId'>";
+                }
+              ?>
+          </select>
           </div>
         </div>
         <div class="col-sm-4 mb-2">
@@ -167,7 +182,22 @@ use Cake\Routing\Router;
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Leave Type</label>
-            <input id="" value="<?= h($nonReqLeave->leave_type) ?>" type="text" name="leave_type" placeholder="No. of Days Requested" class="form-control rounded-0" width="100%"    /> 
+            <!-- <input id="" value="<?= h($nonReqLeave->leave_type) ?>" type="text" name="leave_type" placeholder="No. of Days Requested" class="form-control rounded-0" width="100%"    />  -->
+            <select name="leave_type" class="form-control rounded-0">
+              <option value="<?= h($nonReqLeave->leave_type) ?>"><?php echo "$nonReqLeave->leave_type" ?></option>
+              <?php
+                // $conn = mysqli_connect("localhost","root","","hr_software");
+                $dd_res=mysqli_query($conn,"Select leave_type,status from new_leave");
+                while($r=mysqli_fetch_row($dd_res))
+                { 
+                  if(strtolower($r[0])!=strtolower($nonReqLeave->leave_type) && strtolower($r[1])=="active"){
+                    echo "<option value='$r[0]'> $r[0]</option>";
+                  }
+                }
+              ?>
+            </select>
+         
+         
           </div>
         </div>
         <div class="col-sm-4 mb-2">
@@ -179,13 +209,13 @@ use Cake\Routing\Router;
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Starting Date</label>
-            <input value="<?= h($nonReqLeave->starting_date) ?>" name="starting_date" placeholder="Leave Starting Date" class="form-control rounded-0" width="100%"    />
+            <input id="datepicker" value="<?= h($nonReqLeave->starting_date) ?>" name="starting_date" placeholder="Leave Starting Date" class="form-control rounded-0" width="100%"    />
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Ending Date</label>
-            <input value="<?= h($nonReqLeave->ending_date) ?>" name="ending_date" placeholder="Leave Ending Date" class="form-control rounded-0" width="100%"    /> 
+            <input id="datepicker2" value="<?= h($nonReqLeave->ending_date) ?>" name="ending_date" placeholder="Leave Ending Date" class="form-control rounded-0" width="100%"    /> 
           </div>
         </div>
         <!-- <div class="col-sm-4 mb-2">

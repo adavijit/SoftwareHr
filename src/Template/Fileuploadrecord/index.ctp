@@ -30,7 +30,7 @@ use Cake\Routing\Router;
     <!-- left menu section start here -->
     <section class="leftmenu">
       <div class="leftpadd">
-        <a href="javascript:void(0);" class="leftlogo"><img src="../images/logo.png" alt=""></a>
+        <a href="javascript:void(0);" class="leftlogo"><img src="images/logo.png" alt=""></a>
         <div class="leftmain-link">
         <ul class="listofnav">
           <li>
@@ -67,7 +67,7 @@ use Cake\Routing\Router;
       <div class="row">
         <div class="col-auto ml-auto align-middle">
          <div class="usernameboxdiv ml-auto">
-          <span class="userpicbox mr-2"><img src="../images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
+          <span class="userpicbox mr-2"><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
           <span class="usernamed">Welcome Harry</span>
         </div>
         </div>

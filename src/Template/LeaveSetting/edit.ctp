@@ -157,17 +157,22 @@ require '../webroot/dbconnect.php';
           <label class="labelform">Holiday Group</label>
             <!-- <input id="" value="<?= h($leaveSetting->holiday_group) ?>" name="holiday_group" class="form-control rounded-0" width="100%"    />  -->
               <select name="holiday_group" class="form-control rounded-0">
-              <option value="<?php h($leaveSetting->holiday_group) ?>">
-              <?= 
-              // $conn = mysqli_connect("localhost","root","","hr_software");
-              $dd_res=mysqli_query($conn,"Select group_name,holiday_id from set_holiday");
-              foreach($dd_res as $temp)
-              {
-                  if($temp['holiday_id']==$leaveSetting->holiday_group){
-                  echo "<td>$temp[group_name]</td>";
-                }
-              }
-              ?></option>
+              <?php
+                 $dd_res=mysqli_query($conn,"Select group_name,holiday_id from set_holiday");
+                 foreach($dd_res as $temp)
+                 {
+   
+                     if($temp['holiday_id']==$leaveSetting->holiday_group){
+   
+                     echo "<option value='$temp[holiday_id]'> $temp[group_name] ($temp[holiday_id])";
+                     echo "</option>";
+                   }
+                 }
+
+
+                ?>
+              
+              </option>
               <?php
                 // $conn = mysqli_connect("localhost","root","","hr_software");
                 $dd_res=mysqli_query($conn,"Select group_name,holiday_id from set_holiday");

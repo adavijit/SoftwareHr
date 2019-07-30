@@ -27,7 +27,7 @@
     <section class="leftmenu">
     <a href="javascript:void(0)" class="menuhomem"><i class="icon-add-plus-button"></i></a>
       <div class="leftpadd">
-        <a href="javascript:void(0);" class="leftlogo"><img src="images/logo.png" alt=""></a>
+        <a href="javascript:void(0);" class="leftlogo"><img src="../../webroot/images/logo.png" alt=""></a>
         <div class="leftmain-link">
         <ul class="listofnav">
           <li>
