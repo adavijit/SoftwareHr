@@ -2314,6 +2314,7 @@ Request URL: /req-leave/images/logo.png
 Referer URL: http://localhost/SoftwareHr/req-leave/add
 
 
+<<<<<<< HEAD
 2019-07-30 05:03:24 Error: [InvalidArgumentException] Cannot convert value of type `string` to integer
 #0 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Database\Type\IntegerType.php(84): Cake\Database\Type\IntegerType->checkNumeric('images')
 #1 D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Database\TypeConverterTrait.php(37): Cake\Database\Type\IntegerType->toDatabase('images', Object(Cake\Database\Driver\Mysql))
@@ -3400,3 +3401,5 @@ Request URL: /non-req-leave/images/logo.png
 Referer URL: http://localhost/Project/SoftwareHR/non-req-leave/index
 
 
+=======
+>>>>>>> 1ac050fd744188b6f3c2049e78e0028ecd34b03d
