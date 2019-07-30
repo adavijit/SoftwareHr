@@ -151,7 +151,7 @@ class NonReqLeaveController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        // $this->request->allowMethod(['post', 'delete']);
         $nonReqLeave = $this->NonReqLeave->get($id);
         if ($this->NonReqLeave->delete($nonReqLeave)) {
             $this->Flash->success(__('The non req leave has been deleted.'));

@@ -224,8 +224,12 @@ use Cake\Routing\Router;
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Inform Status</label>
-
-            <input id="" name="inform_status" class="form-control rounded-0" width="100%" /> 
+          <select name="inform_status" class="form-control rounded-0">
+              <option></option>
+              <option>Active</option>
+              <option>Inactive</option>
+            </select> 
+            <!-- <input id="" name="inform_status" class="form-control rounded-0" width="100%" />  -->
           </div>
         </div>
         <div class="col-sm-4 mb-2">
