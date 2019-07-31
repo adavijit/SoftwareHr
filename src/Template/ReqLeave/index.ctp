@@ -113,7 +113,7 @@ require 'dbconnect.php'
       <div class="bodypart">
         <div class="row pageheadertop mb-3">
         <div class="col"><h2>View Requested Leave</h2></div>
-        <div class="col-auto"><button type="button" class="btn orangebutton rounded-circle"><a href="<?php echo Router::url( ['action' => 'add'])?>" ><i class="icon-add-plus-button" style="color:white"></i></a> </button></div>
+        <div onClick="javascipt:window.location.href='<?php echo Router::url(['action'=>'add']) ?>' " class="col-auto"><button type="button" class="btn orangebutton rounded-circle"><a><i class="icon-add-plus-button" style="color:white"></i></a> </button></div>
       </div>
       <div>
         <table class="table employtable">
