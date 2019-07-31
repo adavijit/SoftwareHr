@@ -328,7 +328,42 @@ foreach($result as $temp)
       <h3 class="my-3">KYC Informations</h3>
       <ul class="imageuploadlist p-0 m-0">
         <!-- <li><div class="imageuploadsect"><p class="m-0">Upload 1</p></div></li> -->
-        <li id='empFileOpen'><div  onclick="document.getElementById('empGenFile').click()"  class="imageuploadsect imagoutlinebor"><p><?php echo $doc ?></p></a></div></li>
+     
+        <?php 
+        if($doc!='' || $doc!='upload/') {
+                $mystring = $doc;
+                $x='';
+                $arr=array();
+                $n = strlen($mystring);
+                for($i=0;$i<strlen($mystring);$i++)
+                {
+                    if($mystring[$i]!=';')
+                    {
+                        $x.=$mystring[$i];
+                        
+                        
+                        $n--;
+                    }
+                    elseif($n!=0 || $mystring[$i]!=';'){
+                        array_push($arr,$x);
+                        $x='';
+                     
+                        $n--;
+                    }
+                    
+                }
+                array_push($arr,$x);
+                $cnt=0;
+                foreach($arr as $temp)
+                {
+                  // echo "<input value='$cnt' type='hidden' id='delGenFile$cnt'>";
+                  $cnt++;
+               echo "<li  id='thumb'><a onclick='deleteDoc($cnt-1)' id='close'></a><div  class='imageuploadsect imagoutlinebor'><a download href='$temp'><p>Document $cnt</p></a></div></li>";
+                }
+               }
+            
+                ?>
+        <li id='empFileOpen'><div  onclick="document.getElementById('empGenFile').click()"  class="imageuploadsect"><i class="icon-add-plus-button"></i></div></li>
         <input type="file" id="empGenFile" style='visibility: hidden;'>
       </ul>
     </div>
@@ -526,7 +561,7 @@ foreach($result as $temp)
           </div>
         </div>
       </div>
-      <h3 class="my-3">Academic Informations</h3>
+      <h3 class="my-3">Skill Informations</h3>
       <ul class="imageuploadlist p-0 m-0">
         <li id="empSkillOpen"><div  onclick="document.getElementById('empSkillFile').click()" class="imageuploadsect imagoutlinebor"><a class="m-0"><p><?php echo $doc; ?></p></a></div></li>
         <input type="file"  style='visibility: hidden;' id="empSkillFile" name="">
@@ -576,7 +611,6 @@ foreach($result as $temp)
             <select  id="designation" class="form-control rounded-0">
             <option><?php echo $designationE?></option>
             <?php
-              //$conn = mysqli_connect("localhost","root","","hr_software");
               $sql="SELECT * FROM designation";
               $res=mysqli_query($conn,$sql);
               foreach($res as $row)
@@ -609,7 +643,7 @@ foreach($result as $temp)
           </div>
         </div>
       </div>
-      <h3 class="my-3">Skill Informations</h3>
+      <h3 class="my-3">Experience Informations</h3>
       <ul class="imageuploadlist p-0 m-0">
      
         <li id="empExpOpen"><div onclick="document.getElementById('empExpFile').click()" class="imageuploadsect imagoutlinebor"><p><?php echo $doc?></p></a></div></li>
@@ -701,9 +735,32 @@ foreach($result as $temp)
  
 </html>
 <script>
+///////////////////////////////
+deleteEmpGenDocId = '';
+function deleteDoc(docId){
+  console.log(docId);
+  deleteEmpGenDocId =docId;
+  $.ajax({
+        type: "POST",
+        url: "updateAllRecords.php",
+        data:form_data,
+        processData: false,
+        contentType: false,
+        success: function (data){
+         jQuery("#successmessage").modal('show');
+        },
+        
+    error: function(XMLHttpRequest, textStatus, errorThrown) { 
+      jQuery("#errormessage").modal('show');
+    }  
+    });
+}
 
+
+
+
+///////////////////////////////
 function onclickFunction(){
-
 var temp1=0;
 var temp2=0;
 var temp3=0;
@@ -712,28 +769,8 @@ var temp4=0;
 var temp5=0;
 var temp6=0;
 
-// if(document.getElementById('getPhoto').value=='')
-// {
-//    temp1=1;
-// }
-// else
-// {
-//   form_data.append('profilePhoto', $('#getPhoto').prop('files')[0]));
-// }
-
-// if(document.getElementById('empGenFile').value=='')
-// {
-//    temp2=1;
-// }
-// else
-// {
-//   form_data.append('empGenFile', $('#empGenFile').prop('files')[0]);
-// }
-
-
-  
-    var id = <?php echo base64_decode($_GET['id']); ?>;
-    var form_data = new FormData(); 
+var id = <?php echo base64_decode($_GET['id']); ?>;
+var form_data = new FormData(); 
 if(document.getElementById('getPhoto').value=='')
 {
 temp1=1;
@@ -1073,3 +1110,19 @@ function changeActive(id){
     //  $('.dashboard').removeClass('activeclass');
     }
 </script>
+<style>
+dv
+#thumb{
+  position : relative;
+}
+#close{
+    display:block;
+    float:right;
+    width:30px;
+    height:29px;
+    background:url(https://web.archive.org/web/20110126035650/http://digitalsbykobke.com/images/close.png) no-repeat center center;
+}
+#close:hover{
+  cursor:pointer;
+}
+</style>

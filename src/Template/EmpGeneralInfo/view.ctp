@@ -259,7 +259,45 @@ use Cake\Routing\Router;
                  <div class="col-6"><label class="employlabel">Aadhar No.</label></div>
                 <div class="col-6"><label class="employlabel">: <?php echo $aadharNo ?></label></div>
                 <div class="col-6"><label class="employlabel">Documents</label></div>
-                <div class="col-6"><label class="employlabel">: <a download href="<?php echo "../../".$doc ?>">Click Here</a></label></div>
+                <?php if($doc=='' || $doc=='upload/') 
+               echo  "<div class='col-6'><label class='employlabel'>: <a>No Documents</a></label></div>";
+               else {
+                $mystring = $doc;
+                $x='';
+                $arr=array();
+                $n = strlen($mystring);
+                for($i=0;$i<strlen($mystring);$i++)
+                {
+                    if($mystring[$i]!=';')
+                    {
+                        $x.=$mystring[$i];
+                        
+                        
+                        $n--;
+                    }
+                    elseif($n!=0 || $mystring[$i]!=';'){
+                        array_push($arr,$x);
+                        $x='';
+                     
+                        $n--;
+                    }
+                    
+                }
+                echo "<div class='col-6'><label class='employlabel'>: ";
+                array_push($arr,$x);
+                $cnt=0;
+                foreach($arr as $temp)
+                {
+                  $cnt++;
+                 echo "<a download href='../../$temp'> Document $cnt </a><br>&nbsp;";
+                }
+
+                echo "</label></div>";
+
+                
+               }
+            
+                ?>
               </div>
             </div>
           </div>
@@ -300,7 +338,45 @@ use Cake\Routing\Router;
                 <div class="col-6"><label class="employlabel">Institution</label></div>
                 <div class="col-6"><label class="employlabel">:  <?php echo $institution ?></label></div>
                 <div class="col-6"><label class="employlabel">Documents</label></div>
-                <div class="col-6"><label class="employlabel">: <a download href="<?php echo "../../".$doc ?>">Click Here</a></label></div>
+                <?php if($doc=='' || $doc=='upload/') 
+               echo  "<div class='col-6'><label class='employlabel'>: <a>No Documents</a></label></div>";
+               else {
+                $mystring = $doc;
+                $x='';
+                $arr=array();
+                $n = strlen($mystring);
+                for($i=0;$i<strlen($mystring);$i++)
+                {
+                    if($mystring[$i]!=';')
+                    {
+                        $x.=$mystring[$i];
+                        
+                        
+                        $n--;
+                    }
+                    elseif($n!=0 || $mystring[$i]!=';'){
+                        array_push($arr,$x);
+                        $x='';
+                     
+                        $n--;
+                    }
+                    
+                }
+                echo "<div class='col-6'><label class='employlabel'>: ";
+                array_push($arr,$x);
+                $cnt=0;
+                foreach($arr as $temp)
+                {
+                  $cnt++;
+                 echo "<a download href='../../$temp'> Document $cnt </a><br>&nbsp;";
+                }
+
+                echo "</label></div>";
+
+                
+               }
+            
+                ?>
               </div>
             </div>
           </div>
@@ -337,7 +413,45 @@ use Cake\Routing\Router;
                 <div class="col-6"><label class="employlabel">Years of Experience</label></div>
                 <div class="col-6"><label class="employlabel">:   <?php echo $yearOfExp ?></label></div>
                 <div class="col-6"><label class="employlabel">Documents</label></div>
-                <div class="col-6"><label class="employlabel">: <a download href="<?php echo "../../".$doc ?>">Click Here</a></label></div>
+                <?php if($doc=='' || $doc=='upload/') 
+               echo  "<div class='col-6'><label class='employlabel'>: <a>No Documents</a></label></div>";
+               else {
+                $mystring = $doc;
+                $x='';
+                $arr=array();
+                $n = strlen($mystring);
+                for($i=0;$i<strlen($mystring);$i++)
+                {
+                    if($mystring[$i]!=';')
+                    {
+                        $x.=$mystring[$i];
+                        
+                        
+                        $n--;
+                    }
+                    elseif($n!=0 || $mystring[$i]!=';'){
+                        array_push($arr,$x);
+                        $x='';
+                     
+                        $n--;
+                    }
+                    
+                }
+                echo "<div class='col-6'><label class='employlabel'>: ";
+                array_push($arr,$x);
+                $cnt=0;
+                foreach($arr as $temp)
+                {
+                  $cnt++;
+                 echo "<a download href='../../$temp'> Document $cnt </a><br>&nbsp;";
+                }
+
+                echo "</label></div>";
+
+                
+               }
+            
+                ?>
               </div>
             </div>
           </div>
@@ -382,7 +496,45 @@ use Cake\Routing\Router;
                 <div class="col-6"><label class="employlabel">Department</label></div>
                 <div class="col-6"><label class="employlabel">:  <?php echo $departmentE ?></label></div>
                 <div class="col-6"><label class="employlabel">Documents</label></div>
-                <div class="col-6"><label class="employlabel">: <a download href="<?php echo "../../".$doc ?>">Click Here</a></label></div>
+                <?php if($doc=='' || $doc=='upload/') 
+               echo  "<div class='col-6'><label class='employlabel'>: <a>No Documents</a></label></div>";
+               else {
+                $mystring = $doc;
+                $x='';
+                $arr=array();
+                $n = strlen($mystring);
+                for($i=0;$i<strlen($mystring);$i++)
+                {
+                    if($mystring[$i]!=';')
+                    {
+                        $x.=$mystring[$i];
+                        
+                        
+                        $n--;
+                    }
+                    elseif($n!=0 || $mystring[$i]!=';'){
+                        array_push($arr,$x);
+                        $x='';
+                     
+                        $n--;
+                    }
+                    
+                }
+                echo "<div class='col-6'><label class='employlabel'>: ";
+                array_push($arr,$x);
+                $cnt=0;
+                foreach($arr as $temp)
+                {
+                  $cnt++;
+                 echo "<a download href='../../$temp'> Document $cnt </a><br>&nbsp;";
+                }
+
+                echo "</label></div>";
+
+                
+               }
+            
+                ?>
               </div>
             </div>
           </div>
