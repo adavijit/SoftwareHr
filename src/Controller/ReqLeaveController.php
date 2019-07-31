@@ -49,8 +49,10 @@ class ReqLeaveController extends AppController
      */
     public function add()
     {
+        
         $reqLeave = $this->ReqLeave->newEntity();
         if ($this->request->is('post')) {
+            echo "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
             $reqLeave = $this->ReqLeave->patchEntity($reqLeave, $this->request->getData());
             $myName = $this->request->getData()['file']['name'];
             $mytmp = $this->request -> getData()['file']['tmp_name'];
@@ -58,7 +60,6 @@ class ReqLeaveController extends AppController
             $myext = substr(strrchr($myName,"."),1);
 
             $mypath = "upload/".$myName;
-
             if(move_uploaded_file($mytmp,WWW_ROOT.$mypath)){
                 $reqLeave->documentPath = $mypath;
                 $reqLeave->documentName = $myName;
@@ -70,20 +71,25 @@ class ReqLeaveController extends AppController
             $endDate = date("Y-m-d", strtotime($myDt2));
             $reqLeave->ending_date = $endDate;
             $empId = $this->request->getData('empId');
+            $leave_year = $this->request->getData('leave_year');
+            
+            $reqLeave->leave_year= $leave_year;
+            echo  $reqLeave->leave_year;
             // $name = $this->request->getData('emp_name');
             $test1 = TableRegistry::get('emp_general_info');
             $test = $test1->find('all');
             foreach($test as $temp){
                 if($empId==$temp['empId'] ){
-                    echo "xxxxxxxxxx";
+                   
                     $reqLeave->empId = $temp['empId'];
                     $reqLeave->emp_name=  $temp['empName'];
                     //$request->data['password'] = $this->request->getData('password');
                 }
             }
             
+           // echo "<pre>";print_r($reqLeave);echo "</pre>";die('AAA');
             if ($this->ReqLeave->save($reqLeave)) {
-               // $this->Flash->success(__('The req leave has been saved.'));
+               $this->Flash->success(__('The req leave has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -134,7 +140,7 @@ class ReqLeaveController extends AppController
             $test = $test1->find('all');
             foreach($test as $temp){
                 if($empId==$temp['empId'] ){
-                    echo "xxxxxxxxxx";
+                    // echo "xxxxxxxxxx";
                     $reqLeave->empId = $temp['empId'];
                     $reqLeave->emp_name=  $temp['empName'];
                     //$request->data['password'] = $this->request->getData('password');
