@@ -15,11 +15,14 @@ namespace App\Controller;
  */
 class EmpGeneralInfoController extends AppController
 {
+    public $paginate = [        
+        'limit' => 10
+    ];
     
     public function initialize()
     {
         parent:: initialize();
-        //$this->Auth->allow('index','add');
+        $this->loadComponent('Paginator');
     }
     /**
      * Index method

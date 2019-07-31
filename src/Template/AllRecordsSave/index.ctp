@@ -129,7 +129,7 @@ require 'dbconnect.php';
       <h3 class="mb-3">Employee General Information</h3>
       <div class="row">
         <div class="col-sm-1 mb-2"><a id='replaceImg'  onclick="document.getElementById('getPhoto').click()" class="imageupload"><i class="icon-camera"></i></a></div>
-        <input type='file' id="getPhoto"  style="display:none">
+        <input type='file' id="getPhoto"   style="display:none">
         <div class="col-sm-11  mb-2">
         <div class="row">
             <div class="col-sm-4">
@@ -239,7 +239,8 @@ foreach($result as $temp)
       <ul class="imageuploadlist p-0 m-0">
         <!-- <li><div class="imageuploadsect"><p class="m-0">Upload 1</p></div></li> -->
         <li id='empFileOpen'><div  onclick="document.getElementById('empGenFile').click()"  class="imageuploadsect imagoutlinebor"><a class="m-0"><i class="icon-add-plus-button"></i></a></div></li>
-        <input type="file" id="empGenFile" style='visibility: hidden;'>
+        <input type="file"  multiple="multiple" id="empGenFile" name="empGenFile[]" type="file" style='visibility: hidden;'>
+      
       </ul>
     </div>
 
@@ -303,7 +304,7 @@ foreach($result as $temp)
       <ul class="imageuploadlist p-0 m-0">
         
         <li id='empContOpen'><div  onclick="document.getElementById('empContFile').click()" class="imageuploadsect imagoutlinebor"><a  class="m-0"><i class="icon-add-plus-button"></i></a></div></li>
-        <input type="file" style='visibility: hidden;' id="empContFile" name="">
+        <input type="file"  multiple="multiple" style='visibility: hidden;' id="empContFile" name="empContFile[]">
       </ul>
     </div>
     
@@ -331,7 +332,7 @@ foreach($result as $temp)
       <h3 class="my-3">Academic Informations</h3>
       <ul class="imageuploadlist p-0 m-0">
         <li id='empAcademicOpen'><div  onclick="document.getElementById('empAcademicFile').click()"  class="imageuploadsect imagoutlinebor"><a  class="m-0"><i class="icon-add-plus-button"></i></a></div></li>
-        <input type="file" style='visibility: hidden;' id="empAcademicFile" name="" >
+        <input type="file" style='visibility: hidden;' multiple="multiple" id="empAcademicFile" name="empAcademicFile[]" >
       </ul>
     </div>
     <!-- ______________________________________________SKILLS STARTS HERE___________________________________________-->
@@ -358,7 +359,7 @@ foreach($result as $temp)
       <h3 class="my-3">Academic Informations</h3>
       <ul class="imageuploadlist p-0 m-0">
         <li id="empSkillOpen"><div  onclick="document.getElementById('empSkillFile').click()" class="imageuploadsect imagoutlinebor"><a class="m-0"><i class="icon-add-plus-button"></i> </a></div></li>
-        <input type="file"  style='visibility: hidden;' id="empSkillFile" name="">
+        <input type="file"   multiple="multiple"  style='visibility: hidden;' id="empSkillFile" name="empSkillFile[]">
       </ul>
     </div>
     <!-- ______________________________________________Employee Experience STARTS HERE___________________________________________-->
@@ -381,7 +382,6 @@ foreach($result as $temp)
             <select  id="designation" class="form-control rounded-0">
             <option>Designation</option>
             <?php
-              // $conn = mysqli_connect("localhost","root","","hr_software");
               $sql="SELECT * FROM designation";
               $res=mysqli_query($conn,$sql);
               foreach($res as $row)
@@ -399,7 +399,6 @@ foreach($result as $temp)
             <select id="department" class="form-control rounded-0">
                   <option>Department</option>
                   <?php
-                  // $conn = mysqli_connect("localhost","root","","hr_software");
                   $sql1="SELECT * FROM departmenttable";
                     $res1=mysqli_query($conn,$sql1);
                     foreach($res1 as $row1)
@@ -416,7 +415,7 @@ foreach($result as $temp)
       <ul class="imageuploadlist p-0 m-0">
      
         <li id="empExpOpen"><div onclick="document.getElementById('empExpFile').click()" class="imageuploadsect imagoutlinebor"><i class="icon-add-plus-button"></i></a></div></li>
-        <input type="file"  style='visibility: hidden;' id="empExpFile" name="">
+        <input type="file" multiple="multiple"  style='visibility: hidden;' id="empExpFile" name="empExpFile">
       </ul>
     </div>
   </div>
@@ -501,6 +500,12 @@ foreach($result as $temp)
   </body>
 </html>
 <script>
+$(document).ready(function(){
+    $('.add_more').click(function(e){
+        e.preventDefault();
+        $(this).before("<input name='file[]' type='file'/>");
+    });
+});
 function theFunction()
 {
     document.getElementById('getPhoto').click();
@@ -509,7 +514,6 @@ function onclickFunction(){
    
 var empName = document.getElementById('employeeName').value;
 
-console.log(empName);
 
   
     var form_data = new FormData();        
@@ -527,7 +531,14 @@ console.log(empName);
     form_data.append('probationDate', $('#probationDate').val());
     form_data.append('bloodGroup', $('#bloodGroup').val());
     form_data.append('emergencyContact', $('#emergencyContact').val());
-    form_data.append('empGenFile', $('#empGenFile').prop('files')[0]);
+    var ins = document.getElementById('empGenFile').files.length;
+for (var x = 0; x < ins; x++) {
+   // fd.append("fileToUpload[]", document.getElementById('fileToUpload').files[x]);
+    form_data.append('empGenFile[]', $('#empGenFile').prop('files')[x]);
+    console.log("popo");
+
+}
+    //form_data.append('empGenFile', $('#empGenFile').prop('files')[0]);
 
     //Contact Details insertion
     form_data.append('phoneNumber', $('#phoneNumber').val());
@@ -540,27 +551,49 @@ console.log(empName);
     form_data.append('esicNO', $('#esicNO').val());
     form_data.append('uanNO', $('#uanNO').val());
     form_data.append('aadharNO', $('#aadharNO').val());
-    form_data.append('empContFile', $('#empContFile').prop('files')[0]);
+    var ins2 = document.getElementById('empContFile').files.length;
+for (var x = 0; x < ins2; x++) {
+   // fd.append("fileToUpload[]", document.getElementById('fileToUpload').files[x]);
+    form_data.append('empContFile[]', $('#empContFile').prop('files')[x]);
+    console.log("popo");
+
+}
 
 
     //Academic Details insertion
     form_data.append('degreeName', $('#degreeName').val());
     form_data.append('yearOfPassing', $('#yearOfPassing').val());
     form_data.append('institution', $('#institution').val());
-    form_data.append('empAcademicFile', $('#empAcademicFile').prop('files')[0]);
+  
+    var ins3 = document.getElementById('empContFile').files.length;
+for (var x = 0; x < ins3; x++) {
+   // fd.append("fileToUpload[]", document.getElementById('fileToUpload').files[x]);
+    form_data.append('empAcademicFile[]', $('#empAcademicFile').prop('files')[x]);
+}
+
 
     //Skill Details insertion
     form_data.append('skillName', $('#skillName').val());
     form_data.append('yearsOfExp', $('#yearsOfExp').val());
     form_data.append('expInstitution', $('#expInstitution').val()); 
-    form_data.append('empSkillFile', $('#empSkillFile').prop('files')[0]);  
+    var ins4 = document.getElementById('empSkillFile').files.length;
+for (var x = 0; x < ins4; x++) {
+   // fd.append("fileToUpload[]", document.getElementById('fileToUpload').files[x]);
+    form_data.append('empSkillFile[]', $('#empSkillFile').prop('files')[x]);
+
+}
 
     //Employee Experience insertion
     form_data.append('companyName', $('#companyName').val());
     form_data.append('expYears', $('#expYears').val());
     form_data.append('designation', $('#designation').val());  
     form_data.append('department', $('#department').val());   
-    form_data.append('empExpFile', $('#empExpFile').prop('files')[0]); 
+    var ins5 = document.getElementById('empExpFile').files.length;
+for (var x = 0; x < ins5; x++) {
+   // fd.append("fileToUpload[]", document.getElementById('fileToUpload').files[x]);
+    form_data.append('empExpFile[]', $('#empExpFile').prop('files')[x]);
+
+}
 
 
 
@@ -574,7 +607,6 @@ console.log(empName);
         contentType: false,
         success: function (data){
           $('#successmessage').modal("show");
-
         },
         error: function(data)
         {
@@ -582,12 +614,7 @@ console.log(empName);
         }
     });
 }
-/*function saveAll(){
-     //document.getElementById('employeeName').val();
-     var empName=document.getElementById('employeeName').value;
-    console.log(empName);
-}
-*/
+
 $('body').on('change', '#getPhoto', function() {
   $( "#replaceImg" ).replaceWith( "<img class='imageupload' id='profilePhoto' style='overflow:hidden height:inherit; width:inherit;'>" );
   var reader = new FileReader();
@@ -595,8 +622,11 @@ reader.onload = imageIsLoaded;
 reader.readAsDataURL(this.files[0]);
 $(this).hide();
 });
+
+
+
+
 $('body').on('change', '#empGenFile', function() {
-  console.log("xxx");
   var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
         if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) 
         {
@@ -616,8 +646,11 @@ $(this).hide();
 }
 } 
 });
+
+
+
 $('body').on('change', '#empContFile', function() {
-  console.log("xxzzzx");
+
   var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
         if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) 
         {

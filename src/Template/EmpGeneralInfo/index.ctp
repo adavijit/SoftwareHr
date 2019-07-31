@@ -221,7 +221,7 @@ use Cake\ORM\TableRegistry;
         <div class="col-auto ml-auto">
           <nav aria-label="Page navigation example">
   <ul class="pagination paginationcss">
-    <li class="page-item">
+    <!-- <li class="page-item">
       <a class="page-link" href="#" aria-label="Previous">
         <
       </a>
@@ -233,7 +233,13 @@ use Cake\ORM\TableRegistry;
       <a class="page-link" href="#" aria-label="Next">
         >
       </a>
-    </li>
+    </li> -->
+    <?php   echo $this->Paginator->prev('< ' . __('Prev'), array('tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item'), null, array('class' => 'page-item'));
+    echo "&nbsp;";echo "&nbsp;";echo "&nbsp;";
+    echo $this->Paginator->numbers(array('separator' => '','tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item')); echo "&nbsp;"; echo "&nbsp;";echo "&nbsp;";
+    echo $this->Paginator->next(__('Next').' >', array('tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item'), null, array('class' => 'page-item'));
+    
+    ?>
   </ul>
 </nav>
         </div>
