@@ -2,7 +2,49 @@
 // print_r($_FILES);print_r($_POST);
 $id=$_POST['id'];
 require 'dbconnect.php';
-// $conn = mysqli_connect("localhost","root","","hr_software");
+/////////////////
+if(isset($_POST['deleteId'])){
+ 
+     $mystring = $_POST['docName'];
+     $x='';
+     $arr=array();
+     $n = strlen($mystring);
+     for($i=0;$i<strlen($mystring);$i++)
+     {
+         if($mystring[$i]!=';')
+         {
+             $x.=$mystring[$i];
+             
+             
+             $n--;
+         }
+         elseif($n!=0 || $mystring[$i]!=';'){
+             array_push($arr,$x);
+             $x='';
+          
+             $n--;
+         }
+         
+     }
+     array_push($arr,$x);
+     $delId1= $_POST['deleteId'];
+     unset($arr[$delId1]);
+     $x='';
+     for($i=0;$i<count($arr);$i++)
+     {
+        $x.= $arr[$i];
+        $x.=';';
+     }
+     $x =substr($x, 0, -1);
+   $sql1="UPDATE emp_general_info SET documentPath='$x' WHERE empId='$id' ";
+   mysqli_query($conn,$sql1);
+ 
+}
+else{
+print_r($_FILES);
+
+
+/////////////////
 $employeeName=$_POST['employeeName'];
 $dob=date("Y-m-d",strtotime($_POST['dob']));
 $sex=$_POST['sex'];
@@ -26,10 +68,61 @@ if($_POST['temp1']==0 && $_POST['temp2']==0)
     $empGenFileTemp = $_FILES['empGenFile']['tmp_name'];
     $empGenFilePath ="upload/".$empGenFile;
     
-    $sql1="UPDATE emp_general_info SET empName='$employeeName',dob='$dob',nationality='$nationality',photoPath='$photoPath',bloodGroup='$bloodGroup',emergencyContact='$emergencyContact',lastWorkingDate='$lwd',probationCompletionDate='$probationDate',documentPath='$empGenFilePath',sex='$sex',dateOfJoining='$dateOfJoining',designation='$designation' WHERE empId = '$id' ";
+    $sql1="UPDATE emp_general_info SET empName='$employeeName',dob='$dob',nationality='$nationality',photoPath='$photoPath',bloodGroup='$bloodGroup',emergencyContact='$emergencyContact',lastWorkingDate='$lwd',probationCompletionDate='$probationDate',
+    documentPath='$empGenFilePath',sex='$sex',dateOfJoining='$dateOfJoining',designation='$designation' WHERE empId = '$id' ";
 if(mysqli_query($conn,$sql1))
 {
-    if(move_uploaded_file($myPhotoTemp,$photoPath) && move_uploaded_file($empGenFileTemp,$empGenFilePath) )
+    if(move_uploaded_file($myPhotoTemp,$photoPath) || move_uploaded_file($empGenFileTemp,$empGenFilePath) )
+    {
+            echo "UPDATEs SUCCESS";
+    }
+    else{
+        echo "Image and File upload Failed";
+    }
+    
+
+}
+else{
+    echo "Error occured";
+}
+}
+if($_POST['temp1']==1 && $_POST['temp2']==0)
+{
+    
+    $empGenFile= $_FILES['empGenFile']['name'];
+    $empGenFileTemp = $_FILES['empGenFile']['tmp_name'];
+    $empGenFilePath ="upload/".$empGenFile;
+    
+    $sql1="UPDATE emp_general_info SET empName='$employeeName',dob='$dob',nationality='$nationality',bloodGroup='$bloodGroup',emergencyContact='$emergencyContact',lastWorkingDate='$lwd',probationCompletionDate='$probationDate',
+    documentPath='$empGenFilePath',sex='$sex',dateOfJoining='$dateOfJoining',designation='$designation' WHERE empId = '$id' ";
+if(mysqli_query($conn,$sql1))
+{
+    if(move_uploaded_file($empGenFileTemp,$empGenFilePath) )
+    {
+            echo "UPDATEs SUCCESS";
+    }
+    else{
+        echo "Image and File upload Failed";
+    }
+    
+
+}
+else{
+    echo "Error occured";
+}
+}
+if($_POST['temp1']==0 && $_POST['temp2']==1)
+{
+    $myPhoto= $_FILES['profilePhoto']['name'];
+    $myPhotoTemp= $_FILES['profilePhoto']['tmp_name'];
+    $photoPath= "upload/".$myPhoto;
+   
+    
+    $sql1="UPDATE emp_general_info SET empName='$employeeName',dob='$dob',nationality='$nationality',photoPath='$photoPath',bloodGroup='$bloodGroup',emergencyContact='$emergencyContact',lastWorkingDate='$lwd',probationCompletionDate='$probationDate',
+    sex='$sex',dateOfJoining='$dateOfJoining',designation='$designation' WHERE empId = '$id' ";
+if(mysqli_query($conn,$sql1))
+{
+    if(move_uploaded_file($myPhotoTemp,$photoPath) || move_uploaded_file($empGenFileTemp,$empGenFilePath) )
     {
             echo "UPDATEs SUCCESS";
     }
@@ -218,3 +311,8 @@ else{
     
     }
 }
+}
+
+
+
+

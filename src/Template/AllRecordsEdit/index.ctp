@@ -326,11 +326,13 @@ foreach($result as $temp)
         </div>
       </div>
       <h3 class="my-3">KYC Informations</h3>
-      <ul class="imageuploadlist p-0 m-0">
+      <ul id='refresh1' class="imageuploadlist p-0 m-0">
         <!-- <li><div class="imageuploadsect"><p class="m-0">Upload 1</p></div></li> -->
      
         <?php 
-        if($doc!='' || $doc!='upload/') {
+     
+        if($doc!=null) {
+               
                 $mystring = $doc;
                 $x='';
                 $arr=array();
@@ -358,6 +360,8 @@ foreach($result as $temp)
                 {
                   // echo "<input value='$cnt' type='hidden' id='delGenFile$cnt'>";
                   $cnt++;
+                  $ind= $cnt-1;
+                  echo "<input type='hidden' value='$doc' id='d$ind'>";
                echo "<li  id='thumb'><a onclick='deleteDoc($cnt-1)' id='close'></a><div  class='imageuploadsect imagoutlinebor'><a download href='$temp'><p>Document $cnt</p></a></div></li>";
                 }
                }
@@ -735,24 +739,28 @@ foreach($result as $temp)
  
 </html>
 <script>
+var id = <?php echo base64_decode($_GET['id']); ?>;
 ///////////////////////////////
-deleteEmpGenDocId = '';
+var deleteEmpGenDocId = '';
+var name ='';
 function deleteDoc(docId){
   console.log(docId);
+  var z = 'd'+docId;
+  name=document.getElementById(z).value;
+  console.log(name);
   deleteEmpGenDocId =docId;
   $.ajax({
         type: "POST",
         url: "updateAllRecords.php",
-        data:form_data,
-        processData: false,
-        contentType: false,
-        success: function (data){
-         jQuery("#successmessage").modal('show');
+        data:{
+          id : id,
+          deleteId : deleteEmpGenDocId,
+          docName: name
         },
-        
-    error: function(XMLHttpRequest, textStatus, errorThrown) { 
-      jQuery("#errormessage").modal('show');
-    }  
+        success: function (data){
+         console.log(data);
+         $("#refresh1").load(" #refresh1");
+        } 
     });
 }
 
@@ -769,7 +777,7 @@ var temp4=0;
 var temp5=0;
 var temp6=0;
 
-var id = <?php echo base64_decode($_GET['id']); ?>;
+
 var form_data = new FormData(); 
 if(document.getElementById('getPhoto').value=='')
 {
@@ -884,7 +892,8 @@ else{
         processData: false,
         contentType: false,
         success: function (data){
-         jQuery("#successmessage").modal('show');
+          console.log(data);
+        // jQuery("#successmessage").modal('show');
         },
         
     error: function(XMLHttpRequest, textStatus, errorThrown) { 
