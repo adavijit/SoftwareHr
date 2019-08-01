@@ -1120,7 +1120,6 @@ function changeActive(id){
     }
 </script>
 <style>
-dv
 #thumb{
   position : relative;
 }
