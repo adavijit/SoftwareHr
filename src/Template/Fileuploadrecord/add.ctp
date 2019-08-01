@@ -114,6 +114,7 @@
             <option>December</option>
      
             </select> 
+            <label for="form1" class="labelform">Select Month</label>
           </div>
         </div>
         
@@ -128,6 +129,7 @@
               ?>
               
             </select> 
+            <label for="form1" class="labelform">Select Year</label>
           </div>
         </div>
         <!-- <div class="col-sm-3 mb-2">
