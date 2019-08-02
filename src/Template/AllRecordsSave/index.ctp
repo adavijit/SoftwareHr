@@ -1,7 +1,6 @@
 <?php
 use Cake\Routing\Router;
 require 'dbconnect.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -238,9 +237,11 @@ foreach($result as $temp)
       <h3 class="my-3">KYC Informations</h3>
       <ul id="ref1" class="imageuploadlist p-0 m-0">
         <!-- <li><div class="imageuploadsect"><p class="m-0">Upload 1</p></div></li> -->
-        <li id='empFileOpen'><div  onclick="document.getElementById('empGenFile').click()"  class="imageuploadsect imagoutlinebor"><a class="m-0"><i class="icon-add-plus-button"></i></a></div></li>
-        <input type="file"  multiple="multiple" id="empGenFile" name="empGenFile[]" style='visibility: hidden;'>
-      
+        <!-- <li id='empFileOpen'><div  onclick="document.getElementById('empGenFile').click()"  class="imageuploadsect imagoutlinebor"><a class="m-0"><i class="icon-add-plus-button"></i></a></div></li>
+        <input type="file"  multiple="multiple" id="empGenFile" name="empGenFile[]" style='visibility: hidden;'> -->
+        <div id="filediv">  <input name="empGenFile[]" type="file" id="empGenFile"/></div>
+<input type="button" id="add_more" class="upload" value="Add More Files"/>
+
       </ul>
     </div>
 
@@ -501,6 +502,7 @@ foreach($result as $temp)
 </html>
 <script>
 var genDel=0;
+var tempData = new Array();
 $(document).ready(function(){
     $('.add_more').click(function(e){
         e.preventDefault();
@@ -512,15 +514,23 @@ function theFunction()
     document.getElementById('getPhoto').click();
 }
 var form_data = new FormData()
+
+
+
 function onclickFunction(){
    
 var empName = document.getElementById('employeeName').value;
+    // for(var p=0;p<abc;p++)
+    // {
+    //   console.log(obj[p]);
+    // }
+      //console.log( tempData );
+      for(var p = 0; p < tempData.length ; p++)
+      {
+        form_data.append('empGenFile[]', tempData[p][0]);
+      }
 
-
-  
-    ;        
-
-    //General Info insertion          
+    //General Info insertion
     form_data.append('profilePhoto', $('#getPhoto').prop('files')[0]);
     form_data.append('employeeName', $('#employeeName').val());
     form_data.append('dob', $('#dob').val());
@@ -591,7 +601,12 @@ for (var x = 0; x < ins5; x++) {
 
 }
 
+// var ins = document.getElementById('empGenFile').files.length;
+// for (var x = 0; x < ins; x++) {
 
+//   form_data.append('empGenFile[]', $('#empGenFile').prop('files')[x]);   
+ 
+//  }
 
 
 
@@ -602,10 +617,7 @@ for (var x = 0; x < ins5; x++) {
         processData: false,
         contentType: false,
         success: function (data){
-          for (var value of form_data.values()) {
-   console.log(value.name); 
-}
-          //console.log(form_data);
+        console.log(data);
         //  $('#successmessage').modal("show");
         },
         error: function(data)
@@ -627,44 +639,44 @@ $(this).hide();
 
 /////////////////////////////////////////////////////////////////////////
 var obj={};
-$('body').on('change', '#empGenFile', function() {
+// $('body').on('change', '#empGenFile', function() {
   
-var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
-if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) 
-{
-        var x = $(this).val().replace(/.*(\/|\\)/, '');
-         //console.log(x);
-        $( "#empFileOpen" ).before("<li class='thumb' id='thumb1'><a onClick='deleteDoc(genDel)' class='close' id='close'></a><input class='knowDiv'  type='hidden' id='knowDiv' ><div class='imageuploadsect'><p style='text-align:center; overflow:hidden height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li> ");
-       //$('#empFileOpen').after("<input type='file'  multiple='multiple' id='empGenFile' name='empGenFile[]' style='visibility: hidden;'>")
-        var w = 'knowDiv'+genDel;
-      //document.getElementsByClassName('knowDiv').setAttribute("id", w);
-      document.getElementById("knowDiv").setAttribute("id", w);
+// var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
+// if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) 
+// {
+//         var x = $(this).val().replace(/.*(\/|\\)/, '');
+//          //console.log(x);
+//         $( "#empFileOpen" ).before("<li class='thumb' id='thumb1'><a onClick='deleteDoc(genDel)' class='close' id='close'></a><input class='knowDiv'  type='hidden' id='knowDiv' ><div class='imageuploadsect'><p style='text-align:center; overflow:hidden height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li> ");
+//        //$('#empFileOpen').after("<input type='file'  multiple='multiple' id='empGenFile' name='empGenFile[]' style='visibility: hidden;'>")
+//         var w = 'knowDiv'+genDel;
+//       //document.getElementsByClassName('knowDiv').setAttribute("id", w);
+//       document.getElementById("knowDiv").setAttribute("id", w);
       
-      document.getElementById(w).value= w;
-}
-else
-{
-          if (this.files && this.files[0]) {
-          $( "#empFileOpen" ).before("<li class='thumb' id='thumb'><a onclick='deleteDoc()' id='close'></a><div  class='imageuploadsect'><img id='empGenDoc' style=' width:inherit;height:100%;'/></div></li>");
-          var reader = new FileReader();
-          reader.onload = empGenDocIsLoaded;
-          reader.readAsDataURL(this.files[0]);
-          $(this).hide();
-          }
-}
-var ins = document.getElementById('empGenFile').files.length;
-for (var x = 0; x < ins; x++) {
- obj[x]={'fileDet' :  $('#empGenFile').prop('files')[x]}
-   // fd.append("fileToUpload[]", document.getElementById('fileToUpload').files[x]);
-    // form_data.append('empGenFile[]', $('#empGenFile').prop('files')[x]);
-    // var p=$('#empGenFile').prop('files')[x];
-    // console.log(p);
-}
-console.log(obj);
+//       document.getElementById(w).value= w;
+// }
+// else
+// {
+//           if (this.files && this.files[0]) {
+//           $( "#empFileOpen" ).before("<li class='thumb' id='thumb'><a onclick='deleteDoc()' id='close'></a><div  class='imageuploadsect'><img id='empGenDoc' style=' width:inherit;height:100%;'/></div></li>");
+//           var reader = new FileReader();
+//           reader.onload = empGenDocIsLoaded;
+//           reader.readAsDataURL(this.files[0]);
+//           $(this).hide();
+//           }
+// }
+// var ins = document.getElementById('empGenFile').files.length;
+// for (var x = 0; x < ins; x++) {
+//  obj[x]={'fileDet' :  $('#empGenFile').prop('files')[x]}
+//    // fd.append("fileToUpload[]", document.getElementById('fileToUpload').files[x]);
+//     // form_data.append('empGenFile[]', $('#empGenFile').prop('files')[x]);
+//     // var p=$('#empGenFile').prop('files')[x];
+//     // console.log(p);
+// }
+// console.log(obj);
 
-genDel++;
+// genDel++;
 
-});
+// });
 
 function deleteDoc(tt){
   console.log(tt);
@@ -868,3 +880,48 @@ function changeActive(id){
   cursor:pointer;
 }
 </style>
+<script>
+var abc =0;
+
+    // Declaring and defining global increment variable.
+$(document).ready(function() {
+  var newId='';
+//  To add new input file field dynamically, on click of "Add More Files" button below function will be executed.
+$('#add_more').click(function() {
+
+$(this).before($("<div/>", {
+id: 'filediv'
+}).fadeIn('slow').append($("<input/>", {
+name: 'empGenFile[]',
+type: 'file',
+id: 'empGenFile'+abc
+}), $("<br/><br/>")));
+newId='#empGenFile'+abc;
+abc++;
+});
+
+
+// Following function will executes on change event of file input to select different file.
+$('body').on('change', newId, function() {
+
+ // obj[abc] = $('#empGenFile').prop('files');
+if($(newId).prop('files'))
+tempData.push($(newId).prop('files'))
+console.log("from def");
+
+
+});
+$('body').on('change', '#empGenFile', function() {
+
+// obj[abc] = $('#empGenFile').prop('files');
+console.log("from chan");
+tempData.push($('#empGenFile').prop('files'))
+
+
+});
+
+
+
+});
+
+</script>
