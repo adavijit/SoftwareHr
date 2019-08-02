@@ -863,6 +863,7 @@ var abc =0;
 $(document).ready(function() {
   var newId='';
   var tmp='';
+  var tot=0;
 $('#add_more').click(function() {
 
 
@@ -888,36 +889,43 @@ $('body').on('click', newClick, function() {
 
 
 
-abc++;
+
 });
+
 
 $('body').on('change', newId, function() {
 
 var x = $(newId).val().replace(/^.*\\/, "");
        
-$( '#empFileOpen'+tmp ).replaceWith("<li class='thumb'><a onClick='deleteDoc(genDel)' class='close' id='close'>&#10062;</a><div  class='imageuploadsect'><p style=' word-wrap: break-word;text-align:center;overflow:hidden; height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li>");
-       
+$( '#empFileOpen'+tmp ).replaceWith("<li class='thumb'><a class='close' onClick='closeDel();'>&#10062;</a><input type='hidden' value='"+tot+"' id='knowId'><div  class='imageuploadsect'><p style=' word-wrap: break-word;text-align:center;overflow:hidden; height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li>");
+       tot++;
 if($(newId).prop('files'))
 tempData.push($(newId).prop('files'))
-console.log("from def");
-
+console.log(tot);
+abc++;
 
 });
 $('body').on('change', '#empGenFile', function() {
   var x = $('#empGenFile').val().replace(/^.*\\/, "");
        
-  $( "#empFileOpen" ).replaceWith("<li><a onClick='deleteDoc(genDel)' class='close' id='close'>&#10062;</a><div  class='imageuploadsect'><p style=' word-wrap: break-word; text-align:center;overflow:hidden; height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li>");
+  $( "#empFileOpen" ).replaceWith("<li><a class='close' onClick='closeDel();'>&#10062;</a><input type='hidden' value='"+tot+"' id='knowId'><div  class='imageuploadsect'><p style=' word-wrap: break-word; text-align:center;overflow:hidden; height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li>");
   
 // obj[abc] = $('#empGenFile').prop('files');
 console.log("from chan");
 tempData.push($('#empGenFile').prop('files'))
+tot++;
+
+});
+
 
 
 });
+function closeDel()
+{
+  var knowId= document.getElementById('knowId').value;
+  console.log(knowId);
 
-
-
-});
+}
 
 </script>
 <style>
