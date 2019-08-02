@@ -237,11 +237,10 @@ foreach($result as $temp)
       <h3 class="my-3">KYC Informations</h3>
       <ul id="ref1" class="imageuploadlist p-0 m-0">
         <!-- <li><div class="imageuploadsect"><p class="m-0">Upload 1</p></div></li> -->
-        <!-- <li id='empFileOpen'><div  onclick="document.getElementById('empGenFile').click()"  class="imageuploadsect imagoutlinebor"><a class="m-0"><i class="icon-add-plus-button"></i></a></div></li>
-        <input type="file"  multiple="multiple" id="empGenFile" name="empGenFile[]" style='visibility: hidden;'> -->
-        <div id="filediv">  <input name="empGenFile[]" type="file" id="empGenFile"/></div>
-<input type="button" id="add_more" class="upload" value="Add More Files"/>
-
+        <li id='empFileOpen'><div  onclick="document.getElementById('empGenFile').click()"  class="imageuploadsect imagoutlinebor"><a class="m-0"><i class="icon-add-plus-button"></i></a></div></li>
+        <input type="file"  multiple="multiple" id="empGenFile" name="empGenFile[]" style='visibility: hidden;height:0px;width:0px;'> 
+     <!-- <input name="empGenFile[]" type="file" id="empGenFile"/> -->
+<li id="add_more"><div   class="imageuploadsect"><a class="m-0"><i class="icon-add-plus-button"></i></a></div></li>
       </ul>
     </div>
 
@@ -601,14 +600,6 @@ for (var x = 0; x < ins5; x++) {
 
 }
 
-// var ins = document.getElementById('empGenFile').files.length;
-// for (var x = 0; x < ins; x++) {
-
-//   form_data.append('empGenFile[]', $('#empGenFile').prop('files')[x]);   
- 
-//  }
-
-
 
     $.ajax({
         type: "POST",
@@ -865,46 +856,47 @@ function changeActive(id){
     }
 
 </script>
-<style>
-.thumb{
-  position : relative;
-}
-.close{
-    display:block;
-    float:right;
-    width:30px;
-    height:29px;
-    background:url(https://web.archive.org/web/20110126035650/http://digitalsbykobke.com/images/close.png) no-repeat center center;
-}
-#close:hover{
-  cursor:pointer;
-}
-</style>
+
 <script>
 var abc =0;
 
-    // Declaring and defining global increment variable.
 $(document).ready(function() {
   var newId='';
-//  To add new input file field dynamically, on click of "Add More Files" button below function will be executed.
+  var tmp='';
 $('#add_more').click(function() {
 
-$(this).before($("<div/>", {
-id: 'filediv'
-}).fadeIn('slow').append($("<input/>", {
+
+$('#ref1').append($("<input/>", {
 name: 'empGenFile[]',
 type: 'file',
-id: 'empGenFile'+abc
-}), $("<br/><br/>")));
+id: 'empGenFile'+abc,
+style:'visibility: hidden;height:0px;width:0px;'
+}));
+//$(this).before("<div id='abcd" + abc + "' class='abcd'><img id='previewimg" + abc + "' src=''/></div>");
+$('#add_more').before("<li class='thumb' id='empFileOpen"+abc+"'><div class='imageuploadsect imagoutlinebor'><a class='m-0'><i class='icon-add-plus-button'></i></a></div></li>");
 newId='#empGenFile'+abc;
-abc++;
+
+newClick= '#empFileOpen'+abc;
+ tmp = abc;
+
+$('body').on('click', newClick, function() {
+ 
+  var ttt = 'empGenFile'+tmp;
+  console.log(ttt);
+  document.getElementById(ttt).click();
 });
 
 
-// Following function will executes on change event of file input to select different file.
+
+abc++;
+});
+
 $('body').on('change', newId, function() {
 
- // obj[abc] = $('#empGenFile').prop('files');
+var x = $(newId).val().replace(/^.*\\/, "");
+       
+$( '#empFileOpen'+tmp ).replaceWith("<li class='thumb'><a onClick='deleteDoc(genDel)' class='close' id='close'>&#10062;</a><div  class='imageuploadsect'><p style=' word-wrap: break-word;text-align:center;overflow:hidden; height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li>");
+       
 if($(newId).prop('files'))
 tempData.push($(newId).prop('files'))
 console.log("from def");
@@ -912,7 +904,10 @@ console.log("from def");
 
 });
 $('body').on('change', '#empGenFile', function() {
-
+  var x = $('#empGenFile').val().replace(/^.*\\/, "");
+       
+  $( "#empFileOpen" ).replaceWith("<li><a onClick='deleteDoc(genDel)' class='close' id='close'>&#10062;</a><div  class='imageuploadsect'><p style=' word-wrap: break-word; text-align:center;overflow:hidden; height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li>");
+  
 // obj[abc] = $('#empGenFile').prop('files');
 console.log("from chan");
 tempData.push($('#empGenFile').prop('files'))
@@ -925,3 +920,18 @@ tempData.push($('#empGenFile').prop('files'))
 });
 
 </script>
+<style>
+.thumb{
+  position : relative;
+}
+.close{
+    display:block;
+    float:right;
+    width:30px;
+    height:29px;
+   
+}
+#close:hover{
+  cursor:pointer;
+}
+</style>
