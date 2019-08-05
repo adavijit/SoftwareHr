@@ -189,6 +189,9 @@ use Cake\Routing\Router;
   </section>
 </section>
 
+<?php $path=  Router::url(['controller'=>'Attendancerecord','action'=>'index']);
+
+?>
 
     
 
@@ -245,7 +248,8 @@ function filter_all(){
     url:"files_list.php",
     method:"POST",
     data:{
-      test:1
+      test:1,
+      path : "<?php echo $path ?>"
     
     },
     success:function(data){
@@ -262,7 +266,8 @@ function filter_data(){
     data:{
       month:month,
       dt:dt,
-      record_Year:record_Year
+      record_Year:record_Year,
+      path : "<?php echo $path ?>"
     },
     success:function(data){
     $('#table_list').html(data);
