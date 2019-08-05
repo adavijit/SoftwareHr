@@ -1,7 +1,11 @@
 <?php
 use Cake\Routing\Router;
         require 'dbconnect.php';
+<<<<<<< HEAD
         $pa=$_POST['path'];
+=======
+        
+>>>>>>> 83387ac96be5e4307db7f1c8e15f19965071458f
         $sql="SELECT * FROM fileuploadrecord WHERE id!=-1";
         if(isset($_POST['test'])){
             if($_POST['test']==1){
@@ -18,10 +22,16 @@ use Cake\Routing\Router;
                                     echo "<td>$row[record_Year]</td>";
                                     echo "<td>$row[att_sheetName]</td>";
                                     echo "<td>$row[att_sheetPath]</td>";
+<<<<<<< HEAD
                                     $pa= $pa."?id=$row[id]";
                                     $path= $row['att_sheetPath'];
                         
                                     echo "<td class='actions'><a href='$pa'> <i class='icon-file' style='right-padding:7px;'></i></a>
+=======
+                                    $path= "http://localhost/SoftwareHr/webroot/".$row['att_sheetPath'];
+                        
+                                    echo "<td class='actions'><a href='../SoftwareHr/attendancerecord?id=$row[id]'> <i class='icon-file' style='right-padding:7px;'></i></a>
+>>>>>>> 83387ac96be5e4307db7f1c8e15f19965071458f
                                     &nbsp;<a download href=$path><span class='glyphicon glyphicon-download-alt' style='right-padding:7px;'></span></a>
                                     &nbsp;&nbsp;<a id='delete' onclick='deleteAjax($row[id])'><i class='icon-trash-1' style='right-padding:7px;'></i></a></td> ";
             

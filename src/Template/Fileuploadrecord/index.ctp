@@ -248,8 +248,12 @@ function filter_all(){
     url:"files_list.php",
     method:"POST",
     data:{
+<<<<<<< HEAD
       test:1,
       path : "<?php echo $path ?>"
+=======
+      test:1
+>>>>>>> 83387ac96be5e4307db7f1c8e15f19965071458f
     
     },
     success:function(data){
@@ -266,8 +270,12 @@ function filter_data(){
     data:{
       month:month,
       dt:dt,
+<<<<<<< HEAD
       record_Year:record_Year,
       path : "<?php echo $path ?>"
+=======
+      record_Year:record_Year
+>>>>>>> 83387ac96be5e4307db7f1c8e15f19965071458f
     },
     success:function(data){
     $('#table_list').html(data);
