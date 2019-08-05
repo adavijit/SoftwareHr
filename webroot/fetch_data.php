@@ -30,6 +30,7 @@ if(!isset($_POST['test'])&&($_POST['WorkDurr']=="Work duration" && $_POST['empNa
                                          echo "<td>$row1[Punch_Records]</td>";
                                          //echo "<td>$row1[id_fileuploadrecord]</td>";
         }
+        
 }
 else if(isset($_POST['test']))
 {
@@ -167,5 +168,6 @@ if($_POST['check']==1)
                                     }
                                     }
         
-
+                                  
+                             
             

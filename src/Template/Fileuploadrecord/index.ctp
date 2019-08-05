@@ -29,31 +29,57 @@ use Cake\Routing\Router;
   <section class="main-content">
     <!-- left menu section start here -->
     <section class="leftmenu">
+    <a href="javascript:void(0)" class="menuhomem"><i class="icon-add-plus-button"></i></a>
       <div class="leftpadd">
         <a href="javascript:void(0);" class="leftlogo"><img src="images/logo.png" alt=""></a>
         <div class="leftmain-link">
         <ul class="listofnav">
           <li>
-            <a href="javascript:void(0);"><i class="icon-home"></i> <span>Dashboard</span></a>
+            <a id="parent1" onclick="changeActive('parent1')" class="parent" href="<?php echo Router::url(['controller'=>'Dashboard','action'=>'index']) ?>"><i class="icon-home"></i> <span>Dashboard</span></a>
           </li>
           <li>
-            <a href="javascript:void(0);"><i class="icon-list-of-works"></i> <span>Employee Record</span></a>
+            <a href="javascript:void(0);" id="parent2" class="parent" onclick="changeActive('parent2')"><i class="icon-list-of-works"></i> <span>Employee Record</span></a>
             <ul class="subchildlink">
-              <li>View Records</li>
-              <li>Add/New Records</li>
+              <a  style="cursor:pointer;">
+              <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'EmpGeneralInfo','action'=>'index']) ?>' "  style="cursor:pointer;">
+              View Records</li></a>
+              <a>
+                <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'AllRecordsSave','action'=>'index']) ?>' "  style="cursor:pointer;">Add new Records</li>
+              </a>
             </ul>
           </li>
           <li>
-            <a href="javascript:void(0);"><i class="icon-long-checklist"></i> <span>Employee Attendance</span></a>
+            <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
+            <ul class="subchildlink">
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>             
+              <a class="activeclass"><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
+            </ul>
           </li>
           <li>
-            <a href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Leave Request</span></a>
+            <a id="parent4" class="parent" onclick="changeActive('parent4');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Leave Request</span></a>
+            <ul class="subchildlink">
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'LeaveSetting','action'=>'index']) ?>' "  style="cursor:pointer;">View Leave Setting</li></a>             
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'ReqLeave','action'=>'index']) ?>' "  style="cursor:pointer;">Add Requested Leave </li></a>
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'NonReqLeave','action'=>'index']) ?>' "  style="cursor:pointer;">Add Non Requested Leave </li></a>
+            
+            
+            </ul>
           </li>
           <li>
-            <a href="javascript:void(0);"><i class="icon-department"></i> <span>Employee Designation</span></a>
+            <a id="parent5" class="parent" onclick="changeActive('parent5');" href="javascript:void(0);"><i class="icon-department"></i> <span>Employee Designation</span></a>
           </li>
           <li>
-            <a href="javascript:void(0);"><i class="icon-briefcase"></i> <span>Employee Department</span></a>
+            <a id="parent6" class="parent" onclick="changeActive('parent6');" href="javascript:void(0);"><i class="icon-briefcase"></i> <span>Employee Department</span></a>
+          </li>
+          <li>
+            <a id="parent7" class="parent" onclick="changeActive('parent7');" href="javascript:void(0);"><i class="icon-file"></i> <span>Settings</span></a>
+            <ul class="subchildlink">
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'SetHoliday','action'=>'index']) ?>' "  style="cursor:pointer;">Holiday Setting</li></a>             
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'EmpGrp','action'=>'index']) ?>' "  style="cursor:pointer;">Employee group setting </li></a>
+            
+            
+            
+            </ul>
           </li>
         </ul>
       </div>
@@ -77,8 +103,9 @@ use Cake\Routing\Router;
     <div class="bodytransition">
       <div class="bodypart">
         <div class="row pageheadertop mb-3">
-        <div class="col"><h2>View Employee Records</h2></div>
-        <div class="col-auto"><button type="button" class="btn orangebutton rounded-circle"><i class="icon-add-plus-button"></i></button></div>
+        <div class="col"><h2>View Employee Records</h2></div> 
+        
+        <div class="col-auto"><a href='fileuploadrecord/add'><button type="button" class="btn orangebutton rounded-circle"><i class="icon-add-plus-button"></i></button></a></div>
         <div class="col-auto">
              <div class="form-group addcustomcss">
                       <input  placeholder="select Date" class="form-control" id="dt" value='' width="100%" />
@@ -123,15 +150,16 @@ use Cake\Routing\Router;
             <!-- <label for="form1" class="labelform">Year</label> -->
           </div>
         </div>
+        <div class="col-auto"><button type="button" class="btn outlineblue rounded-circle px-0" onclick="return RefreshWindow();"><i class="icon-refresh-button"></i></button></div>
       </div>
       <div>
-        <table class="table employtable">
+        <table class="table employtable " id="dtBasicExample">
   <thead>
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Month</th>
-      <th scope="col">Year</th>
       <th scope="col">Date of upload</th>
+      <th scope="col">Year</th>
       <th scope="col">Attendance Sheet Name</th>
       <th scope="col">Attendance Sheet Path</th>
 
@@ -163,10 +191,10 @@ use Cake\Routing\Router;
         </div>
         <div class="col-auto ml-auto">
           <nav aria-label="Page navigation example">
-  <ul class="pagination paginationcss">
-    <li class="page-item">
+   <ul class="pagination paginationcss">
+    <!--<li class="page-item">
       <a class="page-link" href="#" aria-label="Previous">
-        <
+        
       </a>
     </li>
     <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -176,8 +204,15 @@ use Cake\Routing\Router;
       <a class="page-link" href="#" aria-label="Next">
         >
       </a>
-    </li>
+    </li>-->
+    <?php   echo $this->Paginator->prev('< ' . __('Prev'), array('tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item'), null, array('class' => 'page-item'));
+    echo "&nbsp;";echo "&nbsp;";echo "&nbsp;";
+    echo $this->Paginator->numbers(array('separator' => '','tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item')); echo "&nbsp;"; echo "&nbsp;";echo "&nbsp;";
+    echo $this->Paginator->next(__('Next').' >', array('tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item'), null, array('class' => 'page-item'));
+    
+    ?>
   </ul>
+
 </nav>
         </div>
       </div>
@@ -205,29 +240,19 @@ use Cake\Routing\Router;
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" type="text/css" />
    
 </body>
 </html>
 <script type="text/javascript">
-
-    // function deleteAjax(id){
-    //   console.log(id);
-    //   if(confirm('Are you sure?')){
-    //     $.ajax({
-    //       type:"post",
-    //       url:"delete.php",
-    //       data:{
-    //         id:id
-    //         },
-    //       success:function(data){
-    //           location.reload();
-    //       }
-    //     });
-    //   }
-    // }  
+ 
  var month='';
  var dt = '';
  var record_Year='';
+ function RefreshWindow()
+{
+         window.location.reload(true);
+}
  $("#month,#dt,#record_Year").change(function(){
   month=document.getElementById('month').value;
   dt=document.getElementById('dt').value;
@@ -254,9 +279,11 @@ function filter_all(){
     },
     success:function(data){
            $('#table_list').html(data);
+           
         }
   });
 }
+
 function filter_data(){
   // console.log(month);
   
@@ -275,10 +302,52 @@ function filter_data(){
   });
 }
 
-    //datepicker
-     $('#dt').datepicker({
+$('#dt').datepicker({
             uiLibrary: 'bootstrap4'
         });
+
+    $(document).ready(function(){
+    $(".menuhomem").click(function(){
+    $(".main-content").toggleClass("minleftmenu");
+    });
+    });
+
+    $(document).ready( function(){
+      
+    $('.usernameboxdiv').click( function(event){
+        
+        event.stopPropagation();
+        
+        $('#drop').toggle();
+        
+    });
+    
+    $(document).click( function(){
+
+        $('#drop').hide();
+
+    });
+
+});
+/////////////////////////////////////////////
+$(document).ready(function(){
+ // $(".subchildlink").hide();
+ $('.parent').siblings().toggle();
+ $('#parent3').siblings().show();
+});
+
+    function changeActive(id){
+      
+      let x= document.getElementById(id).id;
+      // console.log(x);
+      let idName = '#'+x;
+      // console.log(idName);
+     $('.activeclass').siblings().hide();
+      $(idName).siblings().toggle();
+      $('.parent').removeClass('activeclass');
+      $(idName).addClass('activeclass');
+    //  $('.dashboard').removeClass('activeclass');
+    }
 
 </script>
 
