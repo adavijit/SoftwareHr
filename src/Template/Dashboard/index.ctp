@@ -17,6 +17,7 @@ use Cake\ORM\TableRegistry;
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src = "https://code.highcharts.com/highcharts.js"></script> 
 <script>
 // $(document).ready(function(){
 //   $("li").click(function(){
@@ -173,9 +174,8 @@ use Cake\ORM\TableRegistry;
                     </div>
                   </div>
                 </div>
-                <div>
-                  <img src="images/graphimage.jpg" alt="Graph" title="Graph">
-                </div>
+                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
               </div>
             </div>
           </div>
@@ -271,4 +271,7 @@ use Cake\ORM\TableRegistry;
   </body>
 </html>
 
+<script>  
 
+
+</script>

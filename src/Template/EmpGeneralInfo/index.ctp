@@ -221,19 +221,7 @@ use Cake\ORM\TableRegistry;
         <div class="col-auto ml-auto">
           <nav aria-label="Page navigation example">
   <ul class="pagination paginationcss">
-    <!-- <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        >
-      </a>
-    </li> -->
+   
     <?php   echo $this->Paginator->prev('< ' . __('Prev'), array('tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item'), null, array('class' => 'page-item'));
     echo "&nbsp;";echo "&nbsp;";echo "&nbsp;";
     echo $this->Paginator->numbers(array('separator' => '','tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item')); echo "&nbsp;"; echo "&nbsp;";echo "&nbsp;";
@@ -460,7 +448,6 @@ function deleteS(id){
   
 
    function onclickFunction(aId,changeStatus){
-     console.log("asdasd");
      if(changeStatus==3)
      {
        aId=IdDelete;
@@ -484,7 +471,6 @@ function deleteS(id){
 }
 
 $('body').on('change', '#excelSheet', function() {
-  console.log("rrrr");
   var fileExtension = ['xls', 'xlsx'];
         if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) 
         {
@@ -495,7 +481,6 @@ $('body').on('change', '#excelSheet', function() {
         }
         else{
           var x = $(this).val().replace(/.*(\/|\\)/, '');
-         //console.log(x);
   $( "#replaceFile" ).replaceWith("<li><div  class='imageuploadsect'><p style='text-align:center; overflow:hidden height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li>");
   
 } 
@@ -544,15 +529,11 @@ $(document).ready(function(){
     </script>
     <script>
       function changeActive(id){
-      
       let x= document.getElementById(id).id;
-      // console.log(x);
       let idName = '#'+x;
-      // console.log(idName);
-     $('.parent').siblings().hide();
+      $('.parent').siblings().hide();
       $(idName).siblings().toggle();
       $('.parent').removeClass('activeclass');
       $(idName).addClass('activeclass');
-    //  $('.dashboard').removeClass('activeclass');
     }
     </script>

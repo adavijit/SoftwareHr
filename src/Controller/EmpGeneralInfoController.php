@@ -16,7 +16,8 @@ namespace App\Controller;
 class EmpGeneralInfoController extends AppController
 {
     public $paginate = [        
-        'limit' => 10
+        'limit' => 10,
+        'order' => array('empId' => 'desc')
     ];
     
     public function initialize()
