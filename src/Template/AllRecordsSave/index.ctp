@@ -1,7 +1,6 @@
 <?php
 use Cake\Routing\Router;
 require 'dbconnect.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -239,8 +238,9 @@ foreach($result as $temp)
       <ul id="ref1" class="imageuploadlist p-0 m-0">
         <!-- <li><div class="imageuploadsect"><p class="m-0">Upload 1</p></div></li> -->
         <li id='empFileOpen'><div  onclick="document.getElementById('empGenFile').click()"  class="imageuploadsect imagoutlinebor"><a class="m-0"><i class="icon-add-plus-button"></i></a></div></li>
-        <input type="file"  multiple="multiple" id="empGenFile" name="empGenFile[]" style='visibility: hidden;'>
-      
+        <input type="file"  multiple="multiple" id="empGenFile" name="empGenFile[]" style='visibility: hidden;height:0px;width:0px;'> 
+     <!-- <input name="empGenFile[]" type="file" id="empGenFile"/> -->
+<li id="add_more"><div   class="imageuploadsect"><a class="m-0"><i class="icon-add-plus-button"></i></a></div></li>
       </ul>
     </div>
 
@@ -501,6 +501,7 @@ foreach($result as $temp)
 </html>
 <script>
 var genDel=0;
+var tempData = new Array();
 $(document).ready(function(){
     $('.add_more').click(function(e){
         e.preventDefault();
@@ -512,15 +513,23 @@ function theFunction()
     document.getElementById('getPhoto').click();
 }
 var form_data = new FormData()
+
+
+
 function onclickFunction(){
    
 var empName = document.getElementById('employeeName').value;
+    // for(var p=0;p<abc;p++)
+    // {
+    //   console.log(obj[p]);
+    // }
+      //console.log( tempData );
+      for(var p = 0; p < tempData.length ; p++)
+      {
+        form_data.append('empGenFile[]', tempData[p][0]);
+      }
 
-
-  
-    ;        
-
-    //General Info insertion          
+    //General Info insertion
     form_data.append('profilePhoto', $('#getPhoto').prop('files')[0]);
     form_data.append('employeeName', $('#employeeName').val());
     form_data.append('dob', $('#dob').val());
@@ -592,9 +601,6 @@ for (var x = 0; x < ins5; x++) {
 }
 
 
-
-
-
     $.ajax({
         type: "POST",
         url: "addAllRecords.php",
@@ -602,10 +608,7 @@ for (var x = 0; x < ins5; x++) {
         processData: false,
         contentType: false,
         success: function (data){
-          for (var value of form_data.values()) {
-   console.log(value.name); 
-}
-          //console.log(form_data);
+        console.log(data);
         //  $('#successmessage').modal("show");
         },
         error: function(data)
@@ -627,44 +630,44 @@ $(this).hide();
 
 /////////////////////////////////////////////////////////////////////////
 var obj={};
-$('body').on('change', '#empGenFile', function() {
+// $('body').on('change', '#empGenFile', function() {
   
-var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
-if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) 
-{
-        var x = $(this).val().replace(/.*(\/|\\)/, '');
-         //console.log(x);
-        $( "#empFileOpen" ).before("<li class='thumb' id='thumb1'><a onClick='deleteDoc(genDel)' class='close' id='close'></a><input class='knowDiv'  type='hidden' id='knowDiv' ><div class='imageuploadsect'><p style='text-align:center; overflow:hidden height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li> ");
-       //$('#empFileOpen').after("<input type='file'  multiple='multiple' id='empGenFile' name='empGenFile[]' style='visibility: hidden;'>")
-        var w = 'knowDiv'+genDel;
-      //document.getElementsByClassName('knowDiv').setAttribute("id", w);
-      document.getElementById("knowDiv").setAttribute("id", w);
+// var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
+// if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) 
+// {
+//         var x = $(this).val().replace(/.*(\/|\\)/, '');
+//          //console.log(x);
+//         $( "#empFileOpen" ).before("<li class='thumb' id='thumb1'><a onClick='deleteDoc(genDel)' class='close' id='close'></a><input class='knowDiv'  type='hidden' id='knowDiv' ><div class='imageuploadsect'><p style='text-align:center; overflow:hidden height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li> ");
+//        //$('#empFileOpen').after("<input type='file'  multiple='multiple' id='empGenFile' name='empGenFile[]' style='visibility: hidden;'>")
+//         var w = 'knowDiv'+genDel;
+//       //document.getElementsByClassName('knowDiv').setAttribute("id", w);
+//       document.getElementById("knowDiv").setAttribute("id", w);
       
-      document.getElementById(w).value= w;
-}
-else
-{
-          if (this.files && this.files[0]) {
-          $( "#empFileOpen" ).before("<li class='thumb' id='thumb'><a onclick='deleteDoc()' id='close'></a><div  class='imageuploadsect'><img id='empGenDoc' style=' width:inherit;height:100%;'/></div></li>");
-          var reader = new FileReader();
-          reader.onload = empGenDocIsLoaded;
-          reader.readAsDataURL(this.files[0]);
-          $(this).hide();
-          }
-}
-var ins = document.getElementById('empGenFile').files.length;
-for (var x = 0; x < ins; x++) {
- obj[x]={'fileDet' :  $('#empGenFile').prop('files')[x]}
-   // fd.append("fileToUpload[]", document.getElementById('fileToUpload').files[x]);
-    // form_data.append('empGenFile[]', $('#empGenFile').prop('files')[x]);
-    // var p=$('#empGenFile').prop('files')[x];
-    // console.log(p);
-}
-console.log(obj);
+//       document.getElementById(w).value= w;
+// }
+// else
+// {
+//           if (this.files && this.files[0]) {
+//           $( "#empFileOpen" ).before("<li class='thumb' id='thumb'><a onclick='deleteDoc()' id='close'></a><div  class='imageuploadsect'><img id='empGenDoc' style=' width:inherit;height:100%;'/></div></li>");
+//           var reader = new FileReader();
+//           reader.onload = empGenDocIsLoaded;
+//           reader.readAsDataURL(this.files[0]);
+//           $(this).hide();
+//           }
+// }
+// var ins = document.getElementById('empGenFile').files.length;
+// for (var x = 0; x < ins; x++) {
+//  obj[x]={'fileDet' :  $('#empGenFile').prop('files')[x]}
+//    // fd.append("fileToUpload[]", document.getElementById('fileToUpload').files[x]);
+//     // form_data.append('empGenFile[]', $('#empGenFile').prop('files')[x]);
+//     // var p=$('#empGenFile').prop('files')[x];
+//     // console.log(p);
+// }
+// console.log(obj);
 
-genDel++;
+// genDel++;
 
-});
+// });
 
 function deleteDoc(tt){
   console.log(tt);
@@ -853,6 +856,78 @@ function changeActive(id){
     }
 
 </script>
+
+<script>
+var abc =0;
+
+$(document).ready(function() {
+  var newId='';
+  var tmp='';
+  var tot=0;
+$('#add_more').click(function() {
+
+
+$('#ref1').append($("<input/>", {
+name: 'empGenFile[]',
+type: 'file',
+id: 'empGenFile'+abc,
+style:'visibility: hidden;height:0px;width:0px;'
+}));
+//$(this).before("<div id='abcd" + abc + "' class='abcd'><img id='previewimg" + abc + "' src=''/></div>");
+$('#add_more').before("<li class='thumb' id='empFileOpen"+abc+"'><div class='imageuploadsect imagoutlinebor'><a class='m-0'><i class='icon-add-plus-button'></i></a></div></li>");
+newId='#empGenFile'+abc;
+
+newClick= '#empFileOpen'+abc;
+ tmp = abc;
+
+$('body').on('click', newClick, function() {
+ 
+  var ttt = 'empGenFile'+tmp;
+  console.log(ttt);
+  document.getElementById(ttt).click();
+});
+
+
+
+
+});
+
+
+$('body').on('change', newId, function() {
+
+var x = $(newId).val().replace(/^.*\\/, "");
+       
+$( '#empFileOpen'+tmp ).replaceWith("<li class='thumb'><a class='close' onClick='closeDel();'>&#10062;</a><input type='hidden' value='"+tot+"' id='knowId'><div  class='imageuploadsect'><p style=' word-wrap: break-word;text-align:center;overflow:hidden; height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li>");
+       tot++;
+if($(newId).prop('files'))
+tempData.push($(newId).prop('files'))
+console.log(tot);
+abc++;
+
+});
+$('body').on('change', '#empGenFile', function() {
+  var x = $('#empGenFile').val().replace(/^.*\\/, "");
+       
+  $( "#empFileOpen" ).replaceWith("<li><a class='close' onClick='closeDel();'>&#10062;</a><input type='hidden' value='"+tot+"' id='knowId'><div  class='imageuploadsect'><p style=' word-wrap: break-word; text-align:center;overflow:hidden; height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li>");
+  
+// obj[abc] = $('#empGenFile').prop('files');
+console.log("from chan");
+tempData.push($('#empGenFile').prop('files'))
+tot++;
+
+});
+
+
+
+});
+function closeDel()
+{
+  var knowId= document.getElementById('knowId').value;
+  console.log(knowId);
+
+}
+
+</script>
 <style>
 .thumb{
   position : relative;
@@ -862,7 +937,7 @@ function changeActive(id){
     float:right;
     width:30px;
     height:29px;
-    background:url(https://web.archive.org/web/20110126035650/http://digitalsbykobke.com/images/close.png) no-repeat center center;
+   
 }
 #close:hover{
   cursor:pointer;

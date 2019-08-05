@@ -80,19 +80,47 @@ use Cake\Routing\Router;
         <div class="col"><h2>View Employee Records</h2></div>
         <div class="col-auto"><button type="button" class="btn orangebutton rounded-circle"><i class="icon-add-plus-button"></i></button></div>
         <div class="col-auto">
+             <div class="form-group addcustomcss">
+                      <input  placeholder="select Date" class="form-control" id="dt" value='' width="100%" />
+                      <!-- <input type="text" id="form1" class="form-control"> -->
+                      <!-- <label for="form1" class="labelform">Select Date</label> -->
+                    </div>
+        </div>
+        <div class="col-auto">
           <div class="form-group addcustomcss">
-             <select class="form-control rounded-0">
-              <option>Month</option>
+          
+             <select class="form-control rounded-0" value="month" name="month" id="month">
+             <option>Month</option>
+             <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>April</option>
+            <option>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
+            <option>September</option>
+            <option>October</option>
+            <option>November</option>
+            <option>December</option>
              
             </select> 
+            <!-- <label for="form1" class="labelform">Select Month</label> -->
           </div>
         </div>
         <div class="col-auto">
           <div class="form-group addcustomcss">
-             <select class="form-control rounded-0">
-              <option>Year</option>
+             <select class="form-control rounded-0" name="record_Year" id="record_Year">
+             <option>Year</option>
+               <?php
+               $year=date("Y");
+               for($i=1990;$i<=$year;$i++)
+               echo "<option>$i</option>";
+                ?>
+              
              
             </select> 
+            <!-- <label for="form1" class="labelform">Year</label> -->
           </div>
         </div>
       </div>
@@ -121,30 +149,8 @@ use Cake\Routing\Router;
       <td class="action"><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal"><i class="icon-pencil"></i></a> <a href="javascript:void(0)"><i class="icon-cancel-1"></i></a> <a href="javascript:void(0)"><i class="icon-trash-1"></i></a></td>
       
     </tr> -->
-    <tbody>
-            <?php foreach ($fileuploadrecord as $fileuploadrecord): ?>
-            <tr>
-                <td><?= $this->Number->format($fileuploadrecord->id) ?></td>
-                <td><?= h($fileuploadrecord->month) ?></td>
-                <td><?= $this->Number->format($fileuploadrecord->record_Year) ?></td>
-                
-                <td><?= h($fileuploadrecord->dtOfUpload) ?></td>
-                <td><?= h($fileuploadrecord->att_sheetName) ?></td>
-                <td><?= h($fileuploadrecord->att_sheetPath) ?></td>
-               <?php 
-               require 'dbconnect.php';
-               $path= "http://".$server_name."/SoftwareHr/webroot/".$fileuploadrecord->att_sheetPath ?>
-                <td class="actions"><a href="<?php echo Router::url(['controller'=> 'attendancerecord','action' => 'index', 'id'=>$fileuploadrecord->id])?>" > <i class="icon-file" style="right-padding:7px;"></i></a>&nbsp;
-                <a download href="<?php echo $path;?>"><span class="glyphicon glyphicon-download-alt" style="right-padding:7px;"></span></a><?php $id = $fileuploadrecord->id ?>&nbsp;&nbsp;<a id="delete" onclick="deleteAjax(<?php echo $id ?>)"><i class="icon-trash-1" style="right-padding:7px;"></i></a> 
-                </td> 
-                <!-- <td class="action"><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal"><i class="icon-pencil"></i></a> <a href="javascript:void(0)"><i class="icon-cancel-1"></i></a> <a href="javascript:void(0)"><i class="icon-trash-1"></i></a></td> -->
-                <!-- <td class="actions">
-                     $this->Html->link(__('View'), ['action' => 'view', $fileuploadrecord->id])
-                    $this->Html->link(__('Edit'), ['action' => 'edit', $fileuploadrecord->id])
-                     $this->Form->postLink(__('Delete'), ['action' => 'delete', $fileuploadrecord->id], ['confirm' => __('Are you sure you want to delete # {0}?', $fileuploadrecord->id)]) ?>
-                </td> -->
-            </tr>
-            <?php endforeach; ?>
+    <tbody id="table_list">
+            
         </tbody>
     
 
@@ -183,6 +189,9 @@ use Cake\Routing\Router;
   </section>
 </section>
 
+<?php $path=  Router::url(['controller'=>'Attendancerecord','action'=>'index']);
+
+?>
 
     
 
@@ -193,27 +202,83 @@ use Cake\Routing\Router;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+   
 </body>
 </html>
 <script type="text/javascript">
 
-    function deleteAjax(id){
-      console.log(id);
-      if(confirm('Are you sure?')){
-        $.ajax({
-          type:"post",
-          url:"delete.php",
-          data:{
-            id:id
-            },
-          success:function(data){
-              location.reload();
-          }
+    // function deleteAjax(id){
+    //   console.log(id);
+    //   if(confirm('Are you sure?')){
+    //     $.ajax({
+    //       type:"post",
+    //       url:"delete.php",
+    //       data:{
+    //         id:id
+    //         },
+    //       success:function(data){
+    //           location.reload();
+    //       }
+    //     });
+    //   }
+    // }  
+ var month='';
+ var dt = '';
+ var record_Year='';
+ $("#month,#dt,#record_Year").change(function(){
+  month=document.getElementById('month').value;
+  dt=document.getElementById('dt').value;
+  record_Year=document.getElementById('record_Year').value;
+  // console.log(month+dt+record_Year);
+ filter_data();
+ });
+
+ 
+
+$(document).ready(function(){
+  // console.log(month);
+  filter_all();
+}
+);
+function filter_all(){
+  $.ajax({
+    url:"files_list.php",
+    method:"POST",
+    data:{
+      test:1,
+      path : "<?php echo $path ?>"
+    
+    },
+    success:function(data){
+           $('#table_list').html(data);
+        }
+  });
+}
+function filter_data(){
+  // console.log(month);
+  
+  $.ajax({
+    url:"files_list.php",
+    method:"POST",
+    data:{
+      month:month,
+      dt:dt,
+      record_Year:record_Year,
+      path : "<?php echo $path ?>"
+    },
+    success:function(data){
+    $('#table_list').html(data);
+        }
+  });
+}
+
+    //datepicker
+     $('#dt').datepicker({
+            uiLibrary: 'bootstrap4'
         });
-      }
-    }
 
 </script>
 
