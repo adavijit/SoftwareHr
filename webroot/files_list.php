@@ -70,12 +70,13 @@ use Cake\Routing\Router;
                         echo "<td>$row[record_Year]</td>";
                         echo "<td>$row[att_sheetName]</td>";
                         echo "<td>$row[att_sheetPath]</td>";
-                        $path= "http://localhost/SoftwareHr/webroot/".$row['att_sheetPath'];
+                        $pa= $pa."?id=$row[id]";
+                                    $path= $row['att_sheetPath'];
                         
-                    echo "<td class='actions'><a href='../SoftwareHr/attendancerecord?id=$row[id]'> <i class='icon-file' style='right-padding:7px;'></i></a>
-                    &nbsp;<a download href=$path><span class='glyphicon glyphicon-download-alt' style='right-padding:7px;'></span></a>
-                    &nbsp;&nbsp;<a id='delete' onclick='deleteAjax($row[id])'><i class='icon-trash-1' style='right-padding:7px;'></i></a></td> ";
-                    
+                                    echo "<td class='actions'><a href='$pa'> <i class='icon-file' style='right-padding:7px;'></i></a>
+                                    &nbsp;<a download href=$path><span class='glyphicon glyphicon-download-alt' style='right-padding:7px;'></span></a>
+                                    &nbsp;&nbsp;<a id='delete' onclick='deleteAjax($row[id])'><i class='icon-trash-1' style='right-padding:7px;'></i></a></td> ";
+            
                     
                         // $path= "http://localhost/SoftwareHr/webroot/".$fileuploadrecord->att_sheetPath;
                         ?>
