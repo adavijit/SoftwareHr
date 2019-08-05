@@ -20,7 +20,7 @@ require 'dbconnect.php';
     <title>Welcome to Navsoft Training</title>
   </head>
   <body>
-    <section class="main-content">
+  <section class="main-content">
     <!-- left menu section start here -->
     <section class="leftmenu">
     <a href="javascript:void(0)" class="menuhomem"><i class="icon-add-plus-button"></i></a>
@@ -34,11 +34,10 @@ require 'dbconnect.php';
           <li>
             <a href="javascript:void(0);" id="parent2" class="parent" onclick="changeActive('parent2')"><i class="icon-list-of-works"></i> <span>Employee Record</span></a>
             <ul class="subchildlink">
-              <a class="" style="cursor:pointer;">
-              <li onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'EmpGeneralInfo','action'=>'index']) ?>' "  style="cursor:pointer;background-colour:#1B679F;">
-              View Records</li>
-            </a>
-              <a >
+              <a  style="cursor:pointer;">
+              <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'EmpGeneralInfo','action'=>'index']) ?>' "  style="cursor:pointer;">
+              View Records</li></a>
+              <a>
                 <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'AllRecordsSave','action'=>'index']) ?>' "  style="cursor:pointer;">Add new Records</li>
               </a>
             </ul>
@@ -46,7 +45,7 @@ require 'dbconnect.php';
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
-            <a class="activeclass"><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>             
+            <a class = "activeclass"><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>             
               <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
@@ -244,7 +243,7 @@ while($row3 = $result1->fetch_assoc()){
 
 
       <div  id="table_content">
-        <table  class="table employtable tablewhitespace">
+        <table id="example" class="table employtable tablewhitespace">
         <thead>
         <tr>
       <th>Emp ID</th>
@@ -290,8 +289,9 @@ while($row3 = $result1->fetch_assoc()){
         </div>
         <div class="col-auto ml-auto">
           <nav aria-label="Page navigation example">
-  <ul class="pagination paginationcss">
-    <li class="page-item">
+
+ 
+    <!-- <li class="page-item">
       <a class="page-link" href="#" aria-label="Previous">
         
       </a>
@@ -303,8 +303,8 @@ while($row3 = $result1->fetch_assoc()){
       <a class="page-link" href="#" aria-label="Next">
         >
       </a>
-    </li>
-  </ul>
+    </li> -->
+
 </nav>
         </div>
       </div>
@@ -402,20 +402,18 @@ $("#download").click(function(){
 });
  
 
-$(document).ready(function(){
-  $(".subchildlink").hide();
-  $(".listofnav li a").click(function(){
-     //$(this).toggleClass('activeclass').siblings().removeClass('activeclass');
-      $(".listofnav li a").removeClass('activeclass');
-      $(this).toggleClass('activeclass');
-      $('.listofnav li .subchildlink').animate({
-      height: 'toggle'
-    });
-  });
-});
+
 </script>
 
 <script type="text/javascript">
+
+    $(document).ready(function(){
+        $(".paginator a").click(function(){
+            $("#updated_div_id").load(this.href);
+            return false;
+        })
+    });
+
 function RefreshWindow()
 {
          window.location.reload(true);
@@ -498,34 +496,20 @@ function filter_all()
         }
     });
 }
-$(document).ready(function(){
-  $(".subchildlink").hide();
-  $(".listofnav li a").click(function(){
-     //$(this).toggleClass('activeclass').siblings().removeClass('activeclass');
-      $(".listofnav li a").removeClass('activeclass');
-      $(this).toggleClass('activeclass');
-      $('.listofnav li .subchildlink').animate({
-      height: 'toggle'
-    });
-  });
-});
-</script>
+////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-<script type="text/javascript">
-      $('.uploadclss').on('shown.bs.modal', function () {
-      $('#errormessage').trigger('focus')
-      });
-      $('.successm').on('shown.bs.modal', function () {
-      $('#successmessage').trigger('focus')
-      });
-      
-$(document).ready(function(){
+$('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+
+    $(document).ready(function(){
     $(".menuhomem").click(function(){
     $(".main-content").toggleClass("minleftmenu");
     });
     });
 
-
+    $(document).ready( function(){
+      
     $('.usernameboxdiv').click( function(event){
         
         event.stopPropagation();
@@ -540,25 +524,32 @@ $(document).ready(function(){
 
     });
 
-
-    $(document).ready(function(){
+});
+/////////////////////////////////////////////
+$(document).ready(function(){
  // $(".subchildlink").hide();
  $('.parent').siblings().toggle();
  $('#parent3').siblings().show();
 });
 
-function changeActive(id){
+    function changeActive(id){
       
       let x= document.getElementById(id).id;
       // console.log(x);
       let idName = '#'+x;
       // console.log(idName);
-     $('.parent').siblings().hide();
+     $('.activeclass').siblings().hide();
       $(idName).siblings().toggle();
       $('.parent').removeClass('activeclass');
       $(idName).addClass('activeclass');
     //  $('.dashboard').removeClass('activeclass');
     }
-
-
 </script>
+
+ <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/tabletools/2.2.4/css/dataTables.tableTools.css">
+    <link rel="stylesheet" type="text/css" href="css/dataTables.editor.css">
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/tabletools/2.2.4/js/dataTables.tableTools.js"></script>

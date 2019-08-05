@@ -19,6 +19,7 @@ class AttendancerecordController extends AppController
      */
     public function index()
     {
+       
         $attendancerecord = $this->paginate($this->Attendancerecord);
 
         $this->set(compact('attendancerecord'));

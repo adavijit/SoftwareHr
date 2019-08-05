@@ -18,10 +18,10 @@ use Cake\Routing\Router;
                                     echo "<td>$row[record_Year]</td>";
                                     echo "<td>$row[att_sheetName]</td>";
                                     echo "<td>$row[att_sheetPath]</td>";
-                                    $pa= $pa."?id=$row[id]";
+                                    $p= $pa."?id=$row[id]";
                                     $path= $row['att_sheetPath'];
                         
-                                    echo "<td class='actions'><a href='$pa'> <i class='icon-file' style='right-padding:7px;'></i></a>
+                                    echo "<td class='actions'><a href='$p'> <i class='icon-file' style='right-padding:7px;'></i></a>
                                     &nbsp;<a download href=$path><span class='glyphicon glyphicon-download-alt' style='right-padding:7px;'></span></a>
                                     &nbsp;&nbsp;<a id='delete' onclick='deleteAjax($row[id])'><i class='icon-trash-1' style='right-padding:7px;'></i></a></td> ";
             
@@ -70,10 +70,10 @@ use Cake\Routing\Router;
                         echo "<td>$row[record_Year]</td>";
                         echo "<td>$row[att_sheetName]</td>";
                         echo "<td>$row[att_sheetPath]</td>";
-                        $pa= $pa."?id=$row[id]";
+                        $p= $pa."?id=$row[id]";
                                     $path= $row['att_sheetPath'];
                         
-                                    echo "<td class='actions'><a href='$pa'> <i class='icon-file' style='right-padding:7px;'></i></a>
+                                    echo "<td class='actions'><a href='$p'> <i class='icon-file' style='right-padding:7px;'></i></a>
                                     &nbsp;<a download href=$path><span class='glyphicon glyphicon-download-alt' style='right-padding:7px;'></span></a>
                                     &nbsp;&nbsp;<a id='delete' onclick='deleteAjax($row[id])'><i class='icon-trash-1' style='right-padding:7px;'></i></a></td> ";
             
@@ -85,7 +85,7 @@ use Cake\Routing\Router;
     }
 
 
-   //reset button and retrivin of all data incase of previous condition left    
+   // retrivin of all data incase of previous condition left    
     ?>  
     
     <script>
@@ -99,9 +99,11 @@ use Cake\Routing\Router;
             id:id
             },
           success:function(data){
+           
               location.reload();
           }
         });
       }
+      
     } 
     </script>

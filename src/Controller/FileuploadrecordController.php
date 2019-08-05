@@ -46,6 +46,15 @@ class FileuploadrecordController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
+    public $paginate = [        
+        'limit' => 1
+    ];
+    
+    public function initialize()
+    {
+        parent:: initialize();
+        $this->loadComponent('Paginator');
+    }
     public function index($id = null)
     {
         $fileuploadrecord = $this->paginate($this->Fileuploadrecord);
@@ -120,6 +129,7 @@ class FileuploadrecordController extends AppController
                                             $this->Flash->success(__('data saved in attendance'));
                                             //return $this->redirect(['controller'=>'Fileuploadrecord','action' => '/index']);
                                         }
+                                        else
                                         $this->Flash->error(__('The fileuploadrecord could not be saved. Please, try again.'));
                                         require 'dbconnect.php';
                                     // $conn=mysqli_connect('localhost','root','','hr_software');                                   
