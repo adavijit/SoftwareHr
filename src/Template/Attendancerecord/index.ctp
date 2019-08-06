@@ -16,6 +16,9 @@ require 'dbconnect.php';
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 
     <title>Welcome to Navsoft Training</title>
   </head>
@@ -242,33 +245,9 @@ while($row3 = $result1->fetch_assoc()){
 
 
 
-      <div  id="table_content">
-        <table id="example" class="table employtable tablewhitespace">
-        <thead>
-        <tr>
-      <th>Emp ID</th>
-      <th>Employee Name</th>
-      <th>Attendance Date</th>
-      <th>In Time</th>
-      <th>Out Time</th>
-      <th>Shift</th>
-      <th>Shift In Time</th>
-      <th>Shift Out Time</th>
-      <th>WorkDurr.</th>
-      <th>OT</th>
-      <th>Total Duration</th>
-      <th>Late By</th>
-      <th>Early Going By</th>
-      <th>Attendance Status</th>
-      <th>Punch Card Records</th>
-              </tr>
-  </thead>
-  <tbody id="ttt">
-    
-   
-    
-  </tbody>
-</table>
+      <div  id="ttt">
+      
+        
 
       </div>
       
@@ -283,33 +262,7 @@ while($row3 = $result1->fetch_assoc()){
 
 
 
-      <div class="row mb-5">
-        <div class="col-auto">
-          <div class="pageloadleft"><label>Show</label><select><option>Page 1</option></select><label>Entries</label></div>
-        </div>
-        <div class="col-auto ml-auto">
-          <nav aria-label="Page navigation example">
-
- 
-    <!-- <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        >
-      </a>
-    </li> -->
-
-</nav>
-        </div>
-      </div>
-
-      </div>
+      
     </div>
     <!-- body container end here -->
     <footer><p>© 2019 All Right Reserved</p></footer>
@@ -365,17 +318,14 @@ while($row3 = $result1->fetch_assoc()){
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://rawgit.com/unconditional/jquery-table2excel/master/src/jquery.table2excel.js"></script>
-    <script src="bower_components\jquery\dist\jquery.min.js"></script>
-<script src="bower_components\jquery-table2excel\dist\jquery.table2excel.min.js"></script>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
@@ -383,7 +333,7 @@ while($row3 = $result1->fetch_assoc()){
    
 $("#download").click(function(){
   console.log("sdasd");
-  $("#table_content").table2excel({
+  $("table").table2excel({
                         // CSS class classes that are not imported into the rows of the exported table
                         exclude: ".noExl",
                         // Name of the exported Excel document
@@ -450,52 +400,65 @@ status = document.getElementById('status').value;
 // id = $_GET['id'];
 //console.log(status);
   filter_data();
+
+        function filter_data(page)
+      {
+        // console.log(check);
+
+          $.ajax({
+              url:"fetch_data.php",
+              method:"POST",
+              data:{
+              page:page,
+              WorkDurr:WorkDurr,
+              empName:empName,
+              check:check,
+              status:status,
+              id:id
+              },
+              success:function(data){
+                  $('#ttt').html(data);
+              }
+          });
+      }
+      $(document).on('click', '.pagination_link1', function()
+          {  
+                    var page = $(this).attr("id");  
+                    filter_data(page);  
+          });
 });
 
 
 $(document).ready(function(){
   //console.log(status);
 
-filter_all("All");
+filter_all();
+      function filter_all(page)
+      {
 
 
-
+          $.ajax({
+              url:"fetch_data.php",
+              method:"POST",
+              data:{
+                page:page,
+                id:id,
+                test:1
+              },
+              success:function(data){
+                  $('#ttt').html(data);
+              }
+          });
+      }
+      $(document).on('click', '.pagination_link', function()
+  {  
+           var page = $(this).attr("id");  
+           filter_all(page);  
+  });
+     
 });
-function filter_data()
-{
-  console.log(check);
-
-    $.ajax({
-        url:"fetch_data.php",
-        method:"POST",
-        data:{
-        WorkDurr:WorkDurr,
-        empName:empName,
-        check:check,
-        status:status,
-        id:id
-        },
-        success:function(data){
-            $('#ttt').html(data);
-        }
-    });
-}
-function filter_all()
-{
 
 
-    $.ajax({
-        url:"fetch_data.php",
-        method:"POST",
-        data:{
-        id:id,
-        test:1
-        },
-        success:function(data){
-            $('#ttt').html(data);
-        }
-    });
-}
 ////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 $('#datepicker').datepicker({
@@ -545,11 +508,3 @@ $(document).ready(function(){
     //  $('.dashboard').removeClass('activeclass');
     }
 </script>
-
- <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css">
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/tabletools/2.2.4/css/dataTables.tableTools.css">
-    <link rel="stylesheet" type="text/css" href="css/dataTables.editor.css">
-
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="//cdn.datatables.net/tabletools/2.2.4/js/dataTables.tableTools.js"></script>

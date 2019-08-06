@@ -46,15 +46,15 @@ class FileuploadrecordController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public $paginate = [        
-        'limit' => 1
-    ];
+    // public $paginate = [        
+    //     'limit' => 1
+    // ];
     
-    public function initialize()
-    {
-        parent:: initialize();
-        $this->loadComponent('Paginator');
-    }
+    // public function initialize()
+    // {
+    //     parent:: initialize();
+    //     $this->loadComponent('Paginator');
+    // }
     public function index($id = null)
     {
         $fileuploadrecord = $this->paginate($this->Fileuploadrecord);

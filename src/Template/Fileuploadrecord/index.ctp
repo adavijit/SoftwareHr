@@ -22,6 +22,9 @@ use Cake\Routing\Router;
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>   -->
   
     <title>Welcome to Navsoft Training</title>
   </head>
@@ -152,71 +155,10 @@ use Cake\Routing\Router;
         </div>
         <div class="col-auto"><button type="button" class="btn outlineblue rounded-circle px-0" onclick="return RefreshWindow();"><i class="icon-refresh-button"></i></button></div>
       </div>
-      <div>
-        <table class="table employtable " id="dtBasicExample">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Month</th>
-      <th scope="col">Date of upload</th>
-      <th scope="col">Year</th>
-      <th scope="col">Attendance Sheet Name</th>
-      <th scope="col">Attendance Sheet Path</th>
-
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  
-  
-    <!-- <tr>
-      <td><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></td>
-      <td><a href="javascript:void(0)">Janet Hudson</a></td>
-      <td>16/01/2006</td>
-      <td>Male</td>
-      <td>(791)718-6670</td>
-      <td class="action"><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal"><i class="icon-pencil"></i></a> <a href="javascript:void(0)"><i class="icon-cancel-1"></i></a> <a href="javascript:void(0)"><i class="icon-trash-1"></i></a></td>
-      
-    </tr> -->
-    <tbody id="table_list">
-            
-        </tbody>
-    
-
-
-</table>
-</div>
-<div class="row mb-5">
-        <div class="col-auto">
-          <div class="pageloadleft"><label>Show</label><select><option>Page 1</option></select><label>Entries</label></div>
-        </div>
-        <div class="col-auto ml-auto">
-          <nav aria-label="Page navigation example">
-   <ul class="pagination paginationcss">
-    <!--<li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
+      <div id="table_list">
         
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        >
-      </a>
-    </li>-->
-    <?php   echo $this->Paginator->prev('< ' . __('Prev'), array('tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item'), null, array('class' => 'page-item'));
-    echo "&nbsp;";echo "&nbsp;";echo "&nbsp;";
-    echo $this->Paginator->numbers(array('separator' => '','tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item')); echo "&nbsp;"; echo "&nbsp;";echo "&nbsp;";
-    echo $this->Paginator->next(__('Next').' >', array('tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item'), null, array('class' => 'page-item'));
-    
-    ?>
-  </ul>
+</div>
 
-</nav>
-        </div>
-      </div>
-      </div>
     </div>
     <!-- body container end here -->
     <footer><p>© 2019 All Right Reserved</p></footer>
@@ -241,6 +183,8 @@ use Cake\Routing\Router;
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" type="text/css" />
+
+  
    
 </body>
 </html>
@@ -254,62 +198,76 @@ use Cake\Routing\Router;
          window.location.reload(true);
 }
  $("#month,#dt,#record_Year").change(function(){
-  month=document.getElementById('month').value;
-  dt=document.getElementById('dt').value;
-  record_Year=document.getElementById('record_Year').value;
-  // console.log(month+dt+record_Year);
- filter_data();
+            month=document.getElementById('month').value;
+            dt=document.getElementById('dt').value;
+            record_Year=document.getElementById('record_Year').value;
+            // console.log(month+dt+record_Year);
+          filter_data();
+          function filter_data(page)
+          {
+                // console.log(month);
+                
+                  $.ajax({
+                  url:"files_list.php",
+                  method:"POST",
+                  data:{
+                    month:month,
+                    page:page,
+                    dt:dt,
+                    record_Year:record_Year,
+                    path : "<?php echo $path ?>"
+                  },
+                  success:function(data){
+                  $('#table_list').html(data);
+                      }
+
+                      
+                });
+          }
+          $(document).on('click', '.pagination_link', function()
+          {  
+                    var page = $(this).attr("id");  
+                    filter_data(page);  
+          });
+
  });
 
  
 
 $(document).ready(function(){
-  // console.log(month);
-  filter_all();
-}
-);
-function filter_all(){
-  $.ajax({
-    url:"files_list.php",
-    method:"POST",
-    data:{
-      test:1,
-      path : "<?php echo $path ?>"
-    
-    },
-    success:function(data){
-           $('#table_list').html(data);
-           
-        }
-  });
-}
+        // console.log(month);
+        filter_all();
 
-function filter_data(){
-  // console.log(month);
-  
-  $.ajax({
-    url:"files_list.php",
-    method:"POST",
-    data:{
-      month:month,
-      dt:dt,
-      record_Year:record_Year,
-      path : "<?php echo $path ?>"
-    },
-    success:function(data){
-    $('#table_list').html(data);
+        function filter_all(page){
+            $.ajax({
+            url:"files_list.php",
+            method:"POST",
+            data:{
+              page:page,
+              test:1,
+              path : "<?php echo $path ?>"
+            
+            },
+            success:function(data){
+                  $('#table_list').html(data);
+                  
+                }
+            });
         }
-  });
-}
-
+  $(document).on('click', '.pagination_link', function()
+  {  
+           var page = $(this).attr("id");  
+           filter_all(page);  
+  }); 
+});
 $('#dt').datepicker({
             uiLibrary: 'bootstrap4'
         });
 
     $(document).ready(function(){
-    $(".menuhomem").click(function(){
-    $(".main-content").toggleClass("minleftmenu");
-    });
+        $(".menuhomem").click(function(){
+        $(".main-content").toggleClass("minleftmenu");
+        });
     });
 
     $(document).ready( function(){
