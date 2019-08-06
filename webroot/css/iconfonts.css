@@ -102,3 +102,6 @@ i {
 .icon-refresh-button:before {
   content: "\e919";
 }
+.icon-settings:before {
+  content: "\e91a";
+}

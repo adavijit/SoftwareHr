@@ -126,7 +126,7 @@ header {position: fixed; height: 5.625rem; background: #FFF; width: 100%; left: 
 
 .pageheadertop h2 {font-family: 'Muli', sans-serif; font-size: 24px; font-weight:700; color:#000000;}
 .pageheadertop .buttonwidth {width:160px; box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);}
-.pageheadertop .orangebutton, .pageheadertop .outlineblue {width: 50px;}
+.pageheadertop .orangebutton.rounded-circle, .pageheadertop .outlineblue.rounded-circle {width: 50px;}
 .employtable th {background:#1E78B6; font-family: 'Muli', sans-serif; font-size:16px; line-height:20px; color:#FFFFFF; font-weight:600; padding: .5rem;}
 .employtable td {font-family: 'Muli', sans-serif; font-size:16px; line-height:20px; color:#212121; font-weight:400; padding: .5rem; vertical-align: middle;}
 .employtable td.action a {margin: 0 4px; font-size: 14px; color: #333;}
