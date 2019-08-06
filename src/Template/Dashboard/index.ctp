@@ -1,8 +1,9 @@
 <?php
 use Cake\Routing\Router;
 use Cake\ORM\TableRegistry;
+require 'dbconnect.php';
+$data1='';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,6 +19,8 @@ use Cake\ORM\TableRegistry;
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src = "https://code.highcharts.com/highcharts.js"></script> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+
 <script>
 // $(document).ready(function(){
 //   $("li").click(function(){
@@ -118,9 +121,20 @@ use Cake\ORM\TableRegistry;
           <div class="col-sm-3">
             <div class="card border-0">
               <div class="card-body cardashtop">
-                <h3>No. of new employee joining</h3>
+                <h3>New employee joining this month</h3>
                 <div class="row">
-                  <div class="col"><span class="numbering">950</span></div>
+                  <div class="col"><span class="numbering"><?php
+                  
+                  $now = new \DateTime('now');
+                  $month = $now->format('m');
+                  $year = $now->format('Y');
+                  $res= mysqli_query($conn,"SELECT * FROM dashboard_graph WHERE month_s=$month AND year_s=$year ");
+                  foreach($res as $temp){
+                    $val = $temp['emp_count'];
+                  }
+                  echo $val;
+                 
+                  ?></span></div>
                   <div class="col-auto"><i class="icon-group-1-1"></i></div>
                 </div>
               </div>
@@ -129,10 +143,15 @@ use Cake\ORM\TableRegistry;
           <div class="col-sm-3">
             <div class="card border-0">
               <div class="card-body cardashtop">
-                <h3>No. of new employee joining</h3>
+                <h3>No. of total active employee</h3>
                 <div class="row">
-                  <div class="col"><span class="numbering">350</span></div>
-                  <div class="col-auto"><i class="icon-logout"></i></div>
+                  <div class="col"><span class="numbering"><?php
+                  $qr= mysqli_query($conn,"SELECT * FROM emp_general_info WHERE emp_status='Active' ");
+                  $res= mysqli_num_rows($qr);
+                  
+                  echo $res;
+                  ?></span></div>
+                  <div onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'EmpGeneralInfo','action'=>'index']) ?>' "  style="cursor:pointer;" class="col-auto"><i class="icon-logout"></i></div>
                 </div>
               </div>
             </div>
@@ -167,15 +186,28 @@ use Cake\ORM\TableRegistry;
                 <div class="row">
                   <div class="col"><h4>Statistics</h4></div>
                   <div class="col-auto">
-                    <div class="form-group addcustomcss">
-                      <input id="datepicker" placeholder="select Date" class="form-control" width="100%" />
-                      <!-- <input type="text" id="form1" class="form-control"> -->
-                      <label for="form1" class="labelform">select Date</label>
-                    </div>
-                  </div>
-                </div>
-                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+          <div class="form-group addcustomcss">
+          
+             <select class="form-control rounded-0" name="year" id="year">
+             <option>Year</option>
+              <?php
+                for($i=2014;$i<=date("Y");$i++)
+                {
+                    echo "<option>$i</option>";
+                }
+
+              ?>
+             
+            </select> 
+            <!-- <label for="form1" class="labelform">Select Month</label> -->
+          </div>
+        </div>
+                <div class="container">	
+	   
+			<canvas id="chart" style="width: 100%; height: 50vh; background: white; "></canvas>
+
+	    </div>
+
               </div>
             </div>
           </div>
@@ -189,27 +221,7 @@ use Cake\ORM\TableRegistry;
     <!-- body container end here -->
     <footer><p>© 2019 All Right Reserved</p></footer>
     </section>
-    <!-- right part section end here -->
-
-    <!-- header start here -->
-    <!-- <nav class="navbar navbar-expand-lg bg-white py-2">
-    <div class="container">
-    <a class="navbar-brand mr-auto mr-sm-0" href="index.html"><img src="images/logo-inside.png" alt="Navsoft Training" title="Navsoft Training"></a>
-    <button class="navbar-toggler p-0 border-0 navbutton" type="button" data-toggle="offcanvas">
-    <i class="icon-menu"></i>
-    </button>
-
-    <div class="navbar-collapse offcanvas-collapse mobilemenu align-items-end">
-        <div class="usernameboxdiv ml-auto">
-          <span class="userpicbox mr-2"><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
-          <span class="usernamed">Welcome Harry</span>
-        </div>
-    </div>
-    </div>
-    </nav> -->
-
-    <!-- header ends here -->
-
+   
     
     </section>
 
@@ -257,21 +269,129 @@ use Cake\ORM\TableRegistry;
     function changeActive(id){
       
       let x= document.getElementById(id).id;
-      // console.log(x);
       let idName = '#'+x;
-      // console.log(idName);
      $('.activeclass').siblings().hide();
       $(idName).siblings().toggle();
       $('.parent').removeClass('activeclass');
       $(idName).addClass('activeclass');
-    //  $('.dashboard').removeClass('activeclass');
     }
     </script>
 
   </body>
 </html>
+<style type="text/css">			
+		
+			.container {
+				color: #E8E9EB;
+        height: 50vh;
+			}
+</style>
 
 <script>  
+$(document).ready(function(){
+  var d = new Date();
+  var n = d.getFullYear();
+
+  $.ajax({
+    type: "POST",
+    data:{
+      year_s: n,
+    },
+    url: "dashboardDatasets.php",
+    success : function(data){
+      if(data!='')
+      {
+     var pattern = /"[ ]*(\d)*[ ]*"/g;
+     event = data
+    .match(pattern)
+    .map(s => parseInt(s.split(`"`).filter(i => !!i.trim())));
+    console.log(event);
+    plot(event,n);
+      }
+     
+    }
+  })
 
 
-</script>
+
+
+});
+
+
+
+$("#year").change(function(){
+var event = [];
+  var year= document.getElementById('year').value;
+  if(year=='Year')
+  {
+    var d = new Date();
+  year = d.getFullYear();
+  }
+  $.ajax({
+    type: "POST",
+    data:{
+      year_s: year
+    },
+    url: "dashboardDatasets.php",
+    success : function(data){
+      if(data!='')
+      {
+     var pattern = /"[ ]*(\d)*[ ]*"/g;
+     event = data
+    .match(pattern)
+    .map(s => parseInt(s.split(`"`).filter(i => !!i.trim())));
+    console.log(event);
+    plot(event,year);
+      }
+      else{
+        event = [];
+        plot(event,year);
+      }
+     
+    }
+  })
+
+
+
+  
+ });
+
+///////////////////////////
+function plot(event,year){
+  
+  var ctx = document.getElementById("chart").getContext('2d');
+    			var myChart = new Chart(ctx, {
+        		type: 'line',
+		        data: {
+		            labels: ['Jan','Feb','Mar','April','May','June','July','Aug','Sept','Oct','Nov','Dec'],
+		            datasets: 
+		            [
+						{
+		                label: 'Data for '+year,
+                    data: event,
+		                backgroundColor: 'transparent',
+		                borderColor:'#2476B2',
+		                borderWidth: 3
+ 
+		            }
+					]
+		        },
+		     
+		        options: {
+		            
+                  scales:{
+                    yAxes: [{beginAtZero: false, stepValue: 1 ,ticks: {
+                      min :0,
+                stepSize: 1
+            }} ],
+                    xAxes: [{autoskip: true, maxTicketsLimit: 20}]
+                    },
+		            tooltips:{mode: 'index'},
+		            legend:{display: true, position: 'top', labels: {fontColor: 'black', fontSize: 16}}
+		        }
+		    });
+   
+     
+console.log(event);
+}
+			</script>

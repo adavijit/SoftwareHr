@@ -133,7 +133,7 @@ require 'dbconnect.php';
         <div class="row">
             <div class="col-sm-4">
               <div class="form-group addcustomcss">
-                <input id="employeeName" name='employeeName' placeholder="Employee Name" class="form-control rounded-0" width="100%" />
+                <input id="employeeName" name='employeeName' placeholder="Employee Name" class="form-control rounded-0" width="100%" required />
               </div>
     
             </div>
@@ -256,12 +256,12 @@ foreach($result as $temp)
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="officeEmail" placeholder="Office Email Address" class="form-control rounded-0" width="100%" /> 
+            <input type="text" id="officeEmail" placeholder="Office Email Address" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="personalEmail" placeholder="Personal Email Address" class="form-control rounded-0" width="100%" /> 
+            <input type="text" id="personalEmail"  placeholder="Personal Email Address" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
@@ -466,7 +466,7 @@ foreach($result as $temp)
         <p class="mb-3">Something went wrong!</p>
       </div>
       <div class="modal-footer border-top-0 justify-content-center mb-3">
-        <button type="button" class="btn bluebutton">Continue</button>
+        <button  data-dismiss="modal" type="button" class="btn bluebutton">Continue</button>
       </div>
     </div>
   </div>
@@ -512,11 +512,28 @@ function theFunction()
 //Form data initialization
 var form_data = new FormData();
 
+
+//Function to check email validation
+function validateEmail(sEmail) {
+  var reEmail = /^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/;
+
+  if(!sEmail.match(reEmail)) {
+    return false;
+  }
+
+  return true;
+
+}
 //Function to save all information to form data and saving finally to database
 function onclickFunction(){
     var empName = document.getElementById('employeeName').value;
-
-    for(var p = 0; p < tempData.length ; p++)
+    var officeEmail = document.getElementById('officeEmail').value;
+    var phoneNumber =  document.getElementById('phoneNumber').value;
+    var dateOfJoining= document.getElementById('dateOfJoining').value;
+    //validation check
+    if(empName!='' && validateEmail(officeEmail) && phoneNumber!='' && dateOfJoining!='')
+    {
+      for(var p = 0; p < tempData.length ; p++)
     {
      form_data.append('empGenFile[]', tempData[p][0]);
     }
@@ -529,7 +546,9 @@ function onclickFunction(){
     form_data.append('location', $('#location').val());
     form_data.append('lwd', $('#lwd').val());
     form_data.append('dateOfJoining', $('#dateOfJoining').val());
+    if(document.getElementById('probationDate').value !='')
     form_data.append('probationDate', $('#probationDate').val());
+
     form_data.append('bloodGroup', $('#bloodGroup').val());
     form_data.append('emergencyContact', $('#emergencyContact').val());
 
@@ -595,6 +614,11 @@ function onclickFunction(){
           $('#errormessage').modal("show");
         }
     });
+    }
+    else{
+      $('#errormessage').modal("show");
+    }
+    
 }
 //End of inserting data into from data and ajax call
 
