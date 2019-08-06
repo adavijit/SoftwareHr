@@ -159,7 +159,7 @@ $data1='';
           <div class="col-sm-3">
             <div class="card border-0">
               <div class="card-body cardashtop">
-                <h3>No. of new employee joining</h3>
+                <h3>Unapproved Leave request</h3>
                 <div class="row">
                   <div class="col"><span class="numbering">125</span></div>
                   <div class="col-auto"><i class="icon-bar-chart-1"></i></div>
@@ -170,7 +170,9 @@ $data1='';
           <div class="col-sm-3">
             <div class="card border-0">
               <div class="card-body cardashtop">
-                <h3>No. of new employee joining</h3>
+                <h3>No. of employees left in this month</h3>?>
+                <?php
+                ?>
                 <div class="row">
                   <div class="col"><span class="numbering">50</span></div>
                   <div class="col-auto"><i class="icon-user"></i></div>
