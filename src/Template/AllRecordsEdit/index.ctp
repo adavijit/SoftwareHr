@@ -121,7 +121,7 @@ $id=base64_decode($_GET['id']);
     <!-- left menu section end here -->
 
     <!-- right part section start here -->
-    <section class="rightpart">
+    <section  class="rightpart">
     <header class="header-resize">
       <div class="row">
         <div class="col-auto ml-auto align-middle">
@@ -171,7 +171,7 @@ $id=base64_decode($_GET['id']);
              $emergncy='';
              $dateOfJoining='';
              $probation='';
-             $lwd='';  
+        
              $doc=''; 
              $photoPath='';
              $doc='';
@@ -196,7 +196,7 @@ $id=base64_decode($_GET['id']);
                         $doc = $temp['documentPath'];
                         $photoPath=$temp['photoPath'];
                         $emergncy=$temp['emergencyContact'];
-                        $lwd=$temp['lastWorkingDate'];
+                       
                         
 
                     }
@@ -221,13 +221,15 @@ $id=base64_decode($_GET['id']);
         <div class="row">
             <div class="col-sm-4">
               <div class="form-group addcustomcss">
+              <label class="labelform">Employee Name</label>
                 <input id="employeeName"  value="<?php echo $empName ?>" name='employeeName' placeholder="Employee Name" class="form-control rounded-0" width="100%" />
               </div>
     
             </div>
             <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
-            <input id="dob" value="<?php echo $dob ?>" placeholder="Date of Birth" class="form-control rounded-0" width="100%" />
+          <label class="labelform">Date of birth</label>
+            <input id="dob" value="<?php echo $dob->i18nFormat('M/dd/Y'); ?>" placeholder="Date of Birth" class="form-control rounded-0" width="100%" />
           </div>
         </div>
             <div class="col-sm-4">
@@ -245,6 +247,7 @@ $id=base64_decode($_GET['id']);
         
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Nationality</label>
             <select name='nationality' id='nationality' class="form-control rounded-0">
               <option><?php  echo $nationality ?></option>
               <?php
@@ -266,6 +269,7 @@ foreach($result as $temp)
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Location</label>
           <select name='location' id='location' class="form-control rounded-0">
           
               <option><?php echo $location ?></option>
@@ -290,6 +294,7 @@ foreach($result as $temp)
 
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Blood Group</label>
             <select id="bloodGroup" class="form-control rounded-0">
               <option><?php echo $bloodGroup ?></option>
               <option>A+</option>
@@ -306,24 +311,23 @@ foreach($result as $temp)
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Emergency Contact</label>
             <input id="emergencyContact" value="<?php echo $emergncy ?>" placeholder="Emergency Contact" class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
-            <input id="dateOfJoining"  value="<?php echo $dateOfJoining ?>" placeholder="Date of Joining" class="form-control rounded-0" width="100%" />
+          <label class="labelform">Date of joining</label>
+            <input id="dateOfJoining"  value="<?php echo $dateOfJoining->i18nFormat('M/dd/Y'); ?>" placeholder="Date of Joining" class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
-            <input id="probationDate"  value="<?php echo $probation ?>" placeholder="Probation Completion Date" class="form-control rounded-0" width="100%" /> 
+          <label class="labelform">Probation Completion Date</label>
+            <input id="probationDate"  value="<?php echo $probation->i18nFormat('M/dd/Y'); ?>" placeholder="Probation Completion Date" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
-        <div class="col-sm-3 mb-2">
-          <div class="form-group addcustomcss">
-            <input id="lwd" placeholder="Last Working Date"  value="<?php echo $lwd ?>" class="form-control rounded-0" width="100%" />
-          </div>
-        </div>
+        
       </div>
       <h3 class="my-3">KYC Informations</h3>
       <ul id='refresh1' class="imageuploadlist p-0 m-0">
@@ -414,51 +418,61 @@ foreach($result as $temp)
 
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Phone Number</label>
              <input id="phoneNumber" value="<?php echo $mobile ?>" placeholder="Employee Phone Number" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Official Email</label>
             <input id="officeEmail" value="<?php echo $officeEmail ?>" placeholder="Office Email Address" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Personal Email</label>
             <input id="personalEmail" value="<?php echo $personalEmail ?>" placeholder="Personal Email Address" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-            <input id="presentAddress" value="<?php echo $personalEmail ?>" placeholder="Present Address" class="form-control rounded-0" width="100%" />
+          <label class="labelform">Present Address</label>
+            <input id="presentAddress" value="<?php echo $presentAddress ?>" placeholder="Present Address" class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Permanent Address</label>
             <input id="permanentAddress" value="<?php echo $permanentAddress ?>" placeholder="Permanent Address" class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Pan Number</label>
             <input id="panNO" value="<?php echo $PANno ?>" placeholder="Pan Number" class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
-            <input id="pfNO" value="<?php echo $PANno ?>" placeholder="PF No." class="form-control rounded-0" width="100%" />
+          <label class="labelform">PF No.</label>
+            <input id="pfNO" value="<?php echo $PFno ?>" placeholder="PF No." class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">ESIC No.</label>
             <input id="esicNO" value="<?php echo $ESICno ?>" placeholder="ESIC No." class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">UAN No.</label>
             <input id="uanNO" value="<?php echo $UANno ?>" placeholder="UAN No." class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Aadhar Number</label>
             <input id="aadharNO" value="<?php echo $aadharNo ?>" placeholder="Aadhar No." class="form-control rounded-0" width="100%" />
           </div>
         </div>
@@ -500,16 +514,19 @@ foreach($result as $temp)
 
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Degree Name</label>
              <input id="degreeName" value="<?php echo $degreeName ?>" placeholder="Degree Name" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Year of passing</label>
             <input id="yearOfPassing" value="<?php echo $yearOfPassing ?>" placeholder="Year of Passing" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Institution</label>
             <input id="institution" value="<?php echo $institution ?>" placeholder="Institution" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
@@ -551,16 +568,19 @@ foreach($result as $temp)
 
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Skill Name</label>
              <input value="<?php echo $skillName ?>" id="skillName" placeholder="Skill Name" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Years of Experience</label>
             <input id="yearsOfExp" value="<?php echo $yearOfExp ?>" placeholder="Years of Experience" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Institution</label>
             <input id="expInstitution" value="<?php echo $institution?>" placeholder="Institution" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
@@ -602,16 +622,20 @@ foreach($result as $temp)
 
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Company Name</label>
              <input id="companyName" value="<?php echo $companyName?>" placeholder="Company Name" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+            
+          <label class="labelform">Years of Experience</label>
             <input id="expYears" value="<?php echo $yearOfExp?>" placeholder="Years of Experience" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Designation</label>
             <select  id="designation" class="form-control rounded-0">
             <option><?php echo $designationE?></option>
             <?php
@@ -630,6 +654,7 @@ foreach($result as $temp)
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Department</label>
             <select id="department" class="form-control rounded-0">
                   <option><?php echo $departmentE?></option>
                   <?php
@@ -727,9 +752,7 @@ foreach($result as $temp)
         $('#probationDate').datepicker({
             uiLibrary: 'bootstrap4'
         });
-        $('#lwd').datepicker({
-            uiLibrary: 'bootstrap4'
-        });
+        
         $('#dob').datepicker({
             uiLibrary: 'bootstrap4'
         });
@@ -837,7 +860,7 @@ else{
     form_data.append('sex', $('#sex').val());
     form_data.append('nationality', $('#nationality').val());
     form_data.append('location', $('#location').val());
-    form_data.append('lwd', $('#lwd').val());
+  
     form_data.append('dateOfJoining', $('#dateOfJoining').val());
     form_data.append('probationDate', $('#probationDate').val());
     form_data.append('bloodGroup', $('#bloodGroup').val());
@@ -892,8 +915,10 @@ else{
         processData: false,
         contentType: false,
         success: function (data){
-          console.log(data);
-        // jQuery("#successmessage").modal('show');
+          // console.log(data);
+          
+        jQuery("#successmessage").modal('show');
+     
         },
         
     error: function(XMLHttpRequest, textStatus, errorThrown) { 

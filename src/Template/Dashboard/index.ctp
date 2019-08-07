@@ -124,15 +124,19 @@ $data1='';
                 <h3>New employee joining this month</h3>
                 <div class="row">
                   <div class="col"><span class="numbering"><?php
-                  
+                  $test1=0;
                   $now = new \DateTime('now');
                   $month = $now->format('m');
                   $year = $now->format('Y');
                   $res= mysqli_query($conn,"SELECT * FROM dashboard_graph WHERE month_s=$month AND year_s=$year ");
                   foreach($res as $temp){
                     $val = $temp['emp_count'];
+                  $test1=1;
                   }
+                  if($test1!=0)
                   echo $val;
+                  else
+                  echo 0;;
                  
                   ?></span></div>
                   <div class="col-auto"><i class="icon-group-1-1"></i></div>
@@ -145,10 +149,10 @@ $data1='';
               <div class="card-body cardashtop">
                 <h3>No. of total active employee</h3>
                 <div class="row">
-                  <div class="col"><span class="numbering"><?php
+                  <div class="col"><span class="numbering">
+                  <?php
                   $qr= mysqli_query($conn,"SELECT * FROM emp_general_info WHERE emp_status='Active' ");
                   $res= mysqli_num_rows($qr);
-                  
                   echo $res;
                   ?></span></div>
                   <div onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'EmpGeneralInfo','action'=>'index']) ?>' "  style="cursor:pointer;" class="col-auto"><i class="icon-logout"></i></div>
@@ -161,7 +165,13 @@ $data1='';
               <div class="card-body cardashtop">
                 <h3>Unapproved Leave request</h3>
                 <div class="row">
-                  <div class="col"><span class="numbering">125</span></div>
+                  <div class="col"><span class="numbering">
+                  <?php
+                  $qr= mysqli_query($conn,"SELECT * FROM new_leave WHERE status='inactive' ");
+                  $res= mysqli_num_rows($qr);
+                  echo $res;
+                  ?>
+                  </span></div>
                   <div class="col-auto"><i class="icon-bar-chart-1"></i></div>
                 </div>
               </div>
@@ -170,11 +180,26 @@ $data1='';
           <div class="col-sm-3">
             <div class="card border-0">
               <div class="card-body cardashtop">
-                <h3>No. of employees left in this month</h3>?>
-                <?php
-                ?>
+                <h3>No. of employees left last month</h3>
+                
                 <div class="row">
-                  <div class="col"><span class="numbering">50</span></div>
+                  <div class="col"><span class="numbering">
+                  
+                  <?php
+                $now = new \DateTime('now');
+                $month = $now->format('m')-1;
+                $year = $now->format('Y');
+                $date= date("Y-m-d");
+                $first= date("Y-n-j", strtotime("first day of previous month"));
+                $last= date("Y-n-j", strtotime("last day of previous month"));
+                 $tempQuery = mysqli_query($conn,"SELECT * FROM emp_general_info WHERE lastWorkingDate BETWEEN '$first' AND '$last' AND emp_status= 'Inactive' ");
+                 
+                $res= mysqli_num_rows($tempQuery);
+
+                
+                echo $res;
+                ?>
+                  </span></div>
                   <div class="col-auto"><i class="icon-user"></i></div>
                 </div>
               </div>
@@ -204,11 +229,10 @@ $data1='';
             <!-- <label for="form1" class="labelform">Select Month</label> -->
           </div>
         </div>
-                <div class="container">	
+              
 	   
 			<canvas id="chart" style="width: 100%; height: 50vh; background: white; "></canvas>
 
-	    </div>
 
               </div>
             </div>
@@ -293,22 +317,30 @@ $data1='';
 $(document).ready(function(){
   var d = new Date();
   var n = d.getFullYear();
-
+  var event = [];
+var monthEvent=[];
   $.ajax({
     type: "POST",
     data:{
-      year_s: n,
+      year_s: n
     },
     url: "dashboardDatasets.php",
     success : function(data){
-      if(data!='')
+      var obj = JSON.parse(data);
+       
+      if(obj[0]!='' && obj[1]!='')
       {
+        
      var pattern = /"[ ]*(\d)*[ ]*"/g;
-     event = data
+     event = obj[0]
     .match(pattern)
     .map(s => parseInt(s.split(`"`).filter(i => !!i.trim())));
-    console.log(event);
-    plot(event,n);
+
+    monthEvent = obj[1]
+    .match(pattern)
+    .map(s => parseInt(s.split(`"`).filter(i => !!i.trim())));
+
+    plot(event,n,monthEvent);
       }
      
     }
@@ -323,10 +355,11 @@ $(document).ready(function(){
 
 $("#year").change(function(){
 var event = [];
+var monthEvent=[];
   var year= document.getElementById('year').value;
   if(year=='Year')
   {
-    var d = new Date();
+  var d = new Date();
   year = d.getFullYear();
   }
   $.ajax({
@@ -336,18 +369,25 @@ var event = [];
     },
     url: "dashboardDatasets.php",
     success : function(data){
-      if(data!='')
+      var obj = JSON.parse(data);
+      
+      if(obj[0]!='' && obj[1]!='')
       {
-     var pattern = /"[ ]*(\d)*[ ]*"/g;
-     event = data
+        var pattern = /"[ ]*(\d)*[ ]*"/g;
+     event = obj[0]
     .match(pattern)
     .map(s => parseInt(s.split(`"`).filter(i => !!i.trim())));
-    console.log(event);
-    plot(event,year);
+
+    monthEvent = obj[1]
+    .match(pattern)
+    .map(s => parseInt(s.split(`"`).filter(i => !!i.trim())));
+
+    plot(event,year,monthEvent);
       }
       else{
         event = [];
-        plot(event,year);
+        monthEvent=[];
+        plot(event,year,monthEvent);
       }
      
     }
@@ -359,13 +399,55 @@ var event = [];
  });
 
 ///////////////////////////
-function plot(event,year){
-  
+function plot(event,year,month){
+  monthObj=[];
+  month.forEach(function(item){
+  switch(item) {
+    case 1:
+    monthObj.push("Jan");
+    break;
+    case 2:
+    monthObj.push("Feb");
+    break;
+    case 3:
+    monthObj.push("Mar");
+    break;
+    case 4:
+    monthObj.push("Apr");
+    break;
+    case 5:
+    monthObj.push("May");
+    break;
+    case 6:
+    monthObj.push("Jun");
+    break;
+    case 7:
+    monthObj.push("Jul");
+    break;
+    case 8:
+    monthObj.push("Aug");
+    break;
+    case 9:
+    monthObj.push("Sep");
+    break;
+    case 10:
+    monthObj.push("Oct");
+    break;
+    case 11:
+    monthObj.push("Nov");
+    break;
+    case 12:
+    monthObj.push("Dec");
+    break;
+  default:
+    break;
+}
+});
   var ctx = document.getElementById("chart").getContext('2d');
     			var myChart = new Chart(ctx, {
         		type: 'line',
 		        data: {
-		            labels: ['Jan','Feb','Mar','April','May','June','July','Aug','Sept','Oct','Nov','Dec'],
+		            labels: monthObj,
 		            datasets: 
 		            [
 						{
@@ -393,7 +475,6 @@ function plot(event,year){
 		        }
 		    });
    
-     
-console.log(event);
+    
 }
 			</script>

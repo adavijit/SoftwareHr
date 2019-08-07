@@ -317,7 +317,6 @@ $(document).ready(function(){
       $(idName).siblings().toggle();
       $('.parent').removeClass('activeclass');
       $(idName).addClass('activeclass');
-    //  $('.dashboard').removeClass('activeclass');
     }
 
 </script>
