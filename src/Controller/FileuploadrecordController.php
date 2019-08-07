@@ -46,15 +46,15 @@ class FileuploadrecordController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public $paginate = [        
-        'limit' => 1
-    ];
+    // public $paginate = [        
+    //     'limit' => 1
+    // ];
     
-    public function initialize()
-    {
-        parent:: initialize();
-        $this->loadComponent('Paginator');
-    }
+    // public function initialize()
+    // {
+    //     parent:: initialize();
+    //     $this->loadComponent('Paginator');
+    // }
     public function index($id = null)
     {
         $fileuploadrecord = $this->paginate($this->Fileuploadrecord);
@@ -111,7 +111,7 @@ class FileuploadrecordController extends AppController
                                         $mydt= $this->request->getData('dtOfUpload');
                                         $myExt = substr(strrchr($mySheet,"."),1);
                                         $myPath = "upload/".$mySheet;
-                                        if(move_uploaded_file($myTmp,WWW_ROOT.$myPath)){
+                                        if(move_uploaded_file($myTmp,$myPath)){
                                             $fileuploadrecord->att_sheetPath = $myPath;
                                             $fileuploadrecord->att_sheetName = $mySheet;
 

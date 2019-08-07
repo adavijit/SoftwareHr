@@ -1,0 +1,177 @@
+@charset "utf-8";
+/* CSS Document */
+
+@media (min-width:1700px) and (max-width:2100px) {
+
+}
+
+@media (min-width:1401px) and (max-width:1699px) {
+	.golfimgdiv > div {padding-bottom: 20px;}
+}
+
+@media (min-width:1400px) and (max-width:1500px) {
+	.golfimgdiv {height: 520px;}
+	.cardfitting .card-body h3 {font-size: 22px;}
+}
+
+@media (min-width:1280px) and (max-width:1399px) {
+	.jumbotron {height: 579px;}
+	.golfimgdiv {height: 409px}
+	.golfimgdiv .subtitlehead {letter-spacing: 0.1em;}
+	.golfimgdiv .outlinewhitebutton {font-size: 14px; line-height: 36px;}
+	.cardfitting .card-body h3 {font-size: 22px;}
+}
+
+
+@media (min-width:1025px) and (max-width:1279px) {
+
+}
+
+
+@media (min-width:992px) and (max-width:1024px) {
+	.navbar-nav.pr-5 {padding: 0px !important}
+	.navbar-expand-lg .navbar-nav .nav-link {padding: 0 12px}
+	.jumbotron {height: 468px;}
+	.golfimgdiv {height: 329px; position: relative; overflow: hidden;}
+	.golfimgdiv .subtitlehead {font-size: 0.875rem; letter-spacing: 0em;}
+	.golfimgdiv h4 {font-size: 20px;}
+	.golfimgdiv p + p {}
+	.imgbg-col1, .imgbg-col2, .imgbg-col3 {position: relative;}
+	.imgbg-col1:before, .imgbg-col2:before, .imgbg-col3:before {content: ""; position: absolute; top:0px; left:0px; right:0px; bottom:0; background: rgba(0,0,0,0.4);}
+	.golfimgdiv .outlinewhitebutton {font-size: 14px; line-height: 36px;}
+
+}
+
+
+
+
+@media only screen and (max-width:1024px) {
+	.imgbg-col1:before, .imgbg-col2:before, .imgbg-col3:before {content: ""; position: absolute; top:0px; left:0px; right:0px; bottom:0; background: rgba(0,0,0,0.4);}
+	.golfimgdiv .outlinewhitebutton {font-size: 14px; line-height: 36px;}
+	.golfimgdiv {position: relative;}
+	.cardfitting .card-body h3 {font-size: 20px;}
+	.cardfitting .card-body {padding: 15px 21px;}
+	/* schedule fitting */
+	.tablelisting tbody tr td {padding: 10px 10px;}
+	.tablelisting tbody tr td:first-child, .tablelisting thead th:first-child {padding-left: 10px;}
+	.tablelisting tbody tr td:last-child, .tablelisting thead th:last-child {padding-right: 10px;}
+	.tablelisting tbody tr td .calendardate .datespan {height: 40px; width: 40px; font-size: 26px; line-height: 40px;}
+	.tablelisting tbody tr td .calendardate .arroright {width: calc(100% - 80%);}
+}	.tablelisting tbody tr td:first-child {font-size: 18px;}
+
+
+
+@media (min-width:768px) and (max-width: 991px) {
+	.navbar-collapse {display: none;}
+	.jumbotron {height: 351px;}
+	.jumbotron h1 {font-size:62px; line-height:66px;}
+	.jumbotron .subtitle {font-size: 26px; line-height: 26px;}
+	.jumbotron .lead {font-size:18px; line-height: 20px; margin-bottom:1rem !important;}
+	.jumbotron .iconbulb {padding:2px 0 12px;}
+	.sect-homebanner {background-size: 100%;}
+	.golfimgdiv {height: 243px;}
+	.golfimgdiv .subtitlehead {font-size: 0.75rem; line-height: 16px; letter-spacing: 0;}
+	.golfimgdiv h4 {font-size: 14px; line-height: 20px;}
+	.container.pt-5.pb-5 {padding:20px 15px !important;}
+	.border-right-only {border-right: 1px solid #d9d9d9;}
+	.golfimgdiv p {font-size: 14px; line-height: 18px; padding-bottom: 0px !important; margin-bottom: 0.5rem}
+	.golfimgdiv .outlinewhitebutton {font-size: 14px; line-height: 30px; margin-bottom: .5rem !important;}
+	 #calendar .weekdays, #calendar .other-month {display: none;}
+    #calendar li {height: auto !important; border: 1px solid #ededed; width: 100%; padding: 10px; margin-bottom: -1px;}  
+	#calendar, #calendar tr, #calendar tbody {grid-template-columns: 1fr;}  
+	#calendar  tr {grid-column: 1 / 2;}
+	#calendar .date {align-self: flex-start;}
+
+	table.table.tablelisting, table.table.tablelisting tbody, table.table.tablelisting th, table.table.tablelisting td, table.table.tablelisting tr {
+    display: block;}
+    table.table.tablelisting thead {display: none !important;}
+    table.table.tablelisting tr {margin-bottom:10px;}
+    table.table.tablelisting .content.noshadowtrow {padding: 0px;}
+    table.table.tablelisting tr.content {display: none;}
+    table.table.tablelisting .content.noshadowtrow .tablecalendar td {display:block; width:100%; padding: 10px;}
+    table.table.tablelisting .content.noshadowtrow .tablecalendar .blankclass {display: none;}
+    table.table.tablelisting tr td .tablecalendar tr {margin-bottom: 0px}
+}
+
+
+@media only screen and (max-width:767px) {
+	.sect-homebanner {background: transparent; height: auto;}
+	.sect-homebanner .hometopcontent, .sect-homebanner .hometopcontent > div {width: 100%; height: auto;}
+	.topformsearch {width: 90%; margin: 0 auto; display: none;}
+	.topformsearch button i, .topformsearch input[type=text] {color: #FFF;}
+	.breadcrumb {margin: 0px; padding: 0 0 10px;}
+	.breadcrumb li.breadcrumb-item {font-size: 14px; line-height: 28px;}
+
+	/* menu  */
+	.mobilemenu {position: fixed; top:0px; bottom:0px; left:-100%; z-index: 3; width:85%; /*background:#001d0f;*/ background: rgba(255,255,255,0.95); transition: 0.3s all}
+	.mobilemenu .navbar-nav {padding: 0px !important; margin: 0px !important}
+	.mobilemenu .navbar-nav .mobilelogo {display: block; padding:15px 0;}
+	.mobilemenu .navbar-nav li {font-size: 18px; /*border-bottom:1px solid #FFF;*/ color:#000; text-transform: uppercase;}
+	.mobilemenu .navbar-nav li a.nav-link {color: #FFF; font-size: 18px; line-height: 46px; color: #000}
+	.mobilemenu .navbar-nav li.nav-item.active a {border-bottom: 3px solid #DA2429; display: inline;}
+	.mobilemenu.menuleftpos {left:0px;}
+	.jumbotron {height: 270px;}
+	.jumbotron h1 {font-size:33px; line-height:36px;}
+	.jumbotron .subtitle {font-size:18px; line-height: 22px}
+	.jumbotron .lead {font-size: 16px; line-height: 18px;}
+	.sect-homebanner .hometopcontent {padding:15px;}
+	.golfimgdiv {height: 268px;}
+	.golfimgdiv .subtitlehead {font-size: 12px;  letter-spacing: 0.1em; line-height: 18px;}
+	.golfimgdiv h4 {font-size: 16px; line-height: 20px;}
+	.golfimgdiv p {margin-bottom: 0rem; }
+	h2 {font-size: 32px; line-height: 40px;}
+	.letsgreybg {padding-top:20px;}
+	.bottom-getstart h4 {font-size: 39px; line-height: 43px;}
+	.bottom-getstart p {font-size: 16px; line-height: 22px;}
+	.letsgreybg br, .nav-scroller.tophead, .jumbotron .iconbulb {display: none}
+	.nav-item.d-none {display: block !important;}
+
+	.d-flex.justify-content-between.align-items-center.mt-sm-4 {margin-top:20px;}
+	.btn.redbutton.mb-sm-4.mt-sm-4.text-uppercase {margin: 20px 0}
+	.loginbox h2 {font-size: 22px; line-height: 28px; padding-top: 0px;}
+	.jumbotron button {width: 170px;}
+	.navbar-expand-lg .navbar-nav .nav-link:hover, .navbar-expand-lg .navbar-nav .nav-item.active .nav-link, .navbar-expand-lg .navbar-nav .nav-item .nav-link {border-bottom-width:0px;}
+	.mobilemenu .navbar-nav li:first-child {border-bottom-width:0px;}
+	.cardfitting .row.footer .footerpanel {height: 44px;}
+	.cardfitting .row.footer .footerpanel ul .list-inline-item:first-child {font-size: 30px; padding-right: 0.5rem;}
+	.cardfitting .row.footer .footerpanel ul .list-inline-item {vertical-align: top;}
+	.listgroupitem li.list-group-item {padding: 0px; margin-bottom: 2px; font-size: 14px; line-height: 20px; min-width: unset; width: 48%; display: inline-block !important;}
+	.listgroupitem li span i {font-size: 14px; margin-left: 10px}
+	.listgroupitem {width: 92%; margin: 0 auto; display: block;}
+	.listgroupitem li.list-group-item:last-child {text-align: right;}
+	.custom-card {padding: 15px}
+	.check-box-list li {padding: 10px 0px 10px 38px;}
+	.main-box-faq .panel-default>.panel-heading a {padding: 10px 15px;}
+	.interview_wrap {padding: 1.5rem;}
+	.interview_wrap h3 {font-size: 18px; padding-bottom: .25rem; margin-top: 0; padding-top: .5rem;}
+	.interview_wrap p {padding-left: 16px; font-size: 16px; padding-bottom: .5rem;}
+	.fittings-intro h2, .fittings-subintro h2 {font-size: 20px; line-height: 38px;}
+	.fittings-intro p, .fittings-subintro p {font-size: 16px;}
+
+	#calendar .weekdays, #calendar .other-month {display: none;}
+    #calendar li {height: auto !important; border: 1px solid #ededed; width: 100%; padding: 10px; margin-bottom: -1px;}  
+	#calendar, #calendar tr, #calendar tbody {grid-template-columns: 1fr;}  
+	#calendar  tr {grid-column: 1 / 2;}
+	#calendar .date {align-self: flex-start;}
+
+	table.table.tablelisting, table.table.tablelisting tbody, table.table.tablelisting th, table.table.tablelisting td, table.table.tablelisting tr {
+    display: block;}
+    table.table.tablelisting thead {display: none !important;}
+    table.table.tablelisting tr {margin-bottom:10px;}
+    table.table.tablelisting .content.noshadowtrow {padding: 0px;}
+    table.table.tablelisting tr.content {display: none;}
+    table.table.tablelisting .content.noshadowtrow .tablecalendar td {display:block; width:100%; padding: 10px;}
+    table.table.tablelisting .content.noshadowtrow .tablecalendar .blankclass {display: none;}
+    .tablelisting tbody tr td:nth-child(2) i {color: #FFF;}
+    .schedulefitting label {font-size: 22px;}
+    .profileformtxt .userfieldtext input {width: 100%}
+    .profileformtxt {padding: 12px 0 12px;}
+    .profileformtxt label {font-size: 15px; margin-bottom:0.25rem;}
+
+	}
+
+@media only screen and (max-width:320px) {
+	.jumbotron button {width: 130px; padding:0px 5px;}
+	.listgroupitem li.list-group-item {font-size: 12px;}
+	.breadcrumb {margin-bottom: 0px; padding:0px;}
+}
