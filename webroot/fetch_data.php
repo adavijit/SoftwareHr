@@ -1,7 +1,11 @@
 <?php
 require 'dbconnect.php';
-  
-            $record_per_page = 10;  
+
+            if($_POST['show']=='')
+            $record_per_page = 10;
+            else
+            $record_per_page = $_POST['show']; 
+            // echo $_POST['show']; 
             $page = '';  
             $output = ''; 
             
@@ -49,6 +53,7 @@ require 'dbconnect.php';
                 $hi=1;
                     $result = mysqli_query($conn,"SELECT * FROM attendancerecord WHERE  id_fileuploadrecord='$_POST[id]' LIMIT $start_from, $record_per_page");
                     $row = mysqli_num_rows($result);
+
                     foreach($result as $row1)
                     {
                         ?>

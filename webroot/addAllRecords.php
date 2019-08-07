@@ -14,6 +14,78 @@ $sex=$_POST['sex'];
 $nationality=$_POST['nationality'];
 $location=$_POST['location'];
 $dateOfJoining=date("Y-m-d",strtotime($_POST['dateOfJoining']));
+/////////////
+$time=strtotime($_POST['dateOfJoining']);
+$month=date("F",$time);
+switch($month){
+    case 'January':
+    $month=01;
+    break;
+    case 'February':
+    $month=02;
+    break;
+    case 'March':
+    $month=03;
+    break;
+    case 'April':
+    $month=04;
+    break;
+    case 'May':
+    $month=05;
+    break;
+    case 'June':
+    $month=06;
+    break;
+    case 'July':
+    $month=07;
+    break;
+    case 'August':
+    $month=(int)'08';
+    break;
+    case 'September':
+    $month=(int)'09';
+    break;
+    case 'October':
+    $month=10;
+    break;
+    case 'November':
+    $month=11;
+    break;
+    case 'December':
+    $month=12;
+    break;
+    default:
+    break;
+
+}
+$year=date("Y",$time);
+$chck=0;
+$chckMonth=0;
+$checkYear = mysqli_query($conn,"SELECT * FROM dashboard_graph WHERE year_s='$year' ");
+foreach($checkYear as $checkTemp){
+    if($checkTemp['year_s']==$year)
+    {
+        $chck=1;
+    }
+    if($checkTemp['month_s']==$month)
+    {
+        $chckMonth=1;
+    }
+}
+if($chck==0)
+{
+    mysqli_query($conn,"INSERT INTO dashboard_graph (year_s,month_s,emp_count) VALUES ('$year','$month',1)");
+}
+elseif($chckMonth==0){
+    mysqli_query($conn,"INSERT INTO dashboard_graph (year_s,month_s,emp_count) VALUES ('$year','$month',1)");
+}
+else{
+    mysqli_query($conn,"UPDATE dashboard_graph SET emp_count=emp_count+1 WHERE month_s='$month' AND year_s='$year' ");
+}
+
+
+
+/////////////
 $probationDate=date("Y-m-d",strtotime($_POST['probationDate']));
 $bloodGroup=$_POST['bloodGroup'];
 $lwd=date("Y-m-d",strtotime($_POST['lwd']));

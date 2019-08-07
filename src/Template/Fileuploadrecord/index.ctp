@@ -158,7 +158,16 @@ use Cake\Routing\Router;
       <div id="table_list">
         
 </div>
+<div class="row mb-5">
 
+          <div class="pageloadleft"><label>Show</label><select id="show"><option>10</option>
+          <option>20</option>
+          <option>30</option>
+          <option>40</option>
+          <option>50</option></select><label>Entries</label></div>
+        
+
+</div>
     </div>
     <!-- body container end here -->
     <footer><p>© 2019 All Right Reserved</p></footer>
@@ -193,14 +202,16 @@ use Cake\Routing\Router;
  var month='';
  var dt = '';
  var record_Year='';
+ var show = '';
  function RefreshWindow()
 {
          window.location.reload(true);
 }
- $("#month,#dt,#record_Year").change(function(){
+ $("#month,#dt,#record_Year,#show").change(function(){
             month=document.getElementById('month').value;
             dt=document.getElementById('dt').value;
             record_Year=document.getElementById('record_Year').value;
+            show=document.getElementById('show').value;
             // console.log(month+dt+record_Year);
           filter_data();
           function filter_data(page)
@@ -214,6 +225,7 @@ use Cake\Routing\Router;
                     month:month,
                     page:page,
                     dt:dt,
+                    show:show,
                     record_Year:record_Year,
                     path : "<?php echo $path ?>"
                   },
@@ -245,6 +257,7 @@ $(document).ready(function(){
             data:{
               page:page,
               test:1,
+              show:show,
               path : "<?php echo $path ?>"
             
             },

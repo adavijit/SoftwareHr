@@ -18,7 +18,10 @@ use Cake\Routing\Router;
   
                     
                     <?php
-                        $record_per_page = 10;  
+                         if($_POST['show']=='')
+                         $record_per_page = 10;
+                         else
+                         $record_per_page = $_POST['show']; 
                         $page = '';  
                         $output = '';  
                         if(isset($_POST["page"]))  

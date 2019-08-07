@@ -121,7 +121,7 @@ while($row3 = $result1->fetch_assoc()){
     <div class="bodytransition">
       <div class="bodypart">
         <div class="row pageheadertop mb-3">
-        <div class="col"><h2>View Attendance List: <?= $month?>-<?= $year?></h2></div>
+        <div class="col"><h2>Attendance List For: <?= $month?>-<?= $year?></h2></div>
       
         <div class="col-md-6">
           <div class="row">
@@ -258,10 +258,16 @@ while($row3 = $result1->fetch_assoc()){
     </div>           -->
 
 <!-- </div> -->
+<div class="row mb-5">
 
+          <div class="pageloadleft"><label>Show</label><select id="show"><option>10</option>
+          <option>20</option>
+          <option>30</option>
+          <option>40</option>
+          <option>50</option></select><label>Entries</label></div>
+        
 
-
-
+</div>
       
     </div>
     <!-- body container end here -->
@@ -333,7 +339,7 @@ while($row3 = $result1->fetch_assoc()){
    
 $("#download").click(function(){
   console.log("sdasd");
-  $("table").table2excel({
+  $("#ttt").table2excel({
                         // CSS class classes that are not imported into the rows of the exported table
                         exclude: ".noExl",
                         // Name of the exported Excel document
@@ -383,13 +389,15 @@ var WorkDurr = 'Work duration';
 var empName = '';
 var check= '';
 var status = '';
+var show = '';
 var id= <?php echo $_GET['id']?>;
 // var id = $_GET['id'];
 
-$("#WorkDurr,#empName,#LateBy,#status").change(function(){
- // console.log(document.getElementById('WorkDurr').value);
+$("#WorkDurr,#empName,#LateBy,#status,#show").change(function(){
+ console.log(document.getElementById('show').value);
   WorkDurr = document.getElementById('WorkDurr').value;
   empName = document.getElementById('empName').value;
+  show = document.getElementById('show').value;
   if(document.getElementById('LateBy').checked==true){
   check =1;
 }
@@ -414,6 +422,7 @@ status = document.getElementById('status').value;
               empName:empName,
               check:check,
               status:status,
+              show:show,
               id:id
               },
               success:function(data){
@@ -443,6 +452,7 @@ filter_all();
               data:{
                 page:page,
                 id:id,
+                show:show,
                 test:1
               },
               success:function(data){

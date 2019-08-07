@@ -214,3 +214,10 @@ CREATE TABLE `emp_grp` (
    FOREIGN KEY (`empId`) REFERENCES `emp_general_info` (`empId`) ON DELETE CASCADE,
    FOREIGN KEY (`holiday_id`) REFERENCES `set_holiday` (`holiday_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `dashboard_graph` (
+  `id` int(50)  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `month_s` varchar(255) DEFAULT NULL,
+  `year_s` int(50) DEFAULT NULL,
+  `emp_count` int(100)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

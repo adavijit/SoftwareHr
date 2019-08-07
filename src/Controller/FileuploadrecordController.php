@@ -111,7 +111,7 @@ class FileuploadrecordController extends AppController
                                         $mydt= $this->request->getData('dtOfUpload');
                                         $myExt = substr(strrchr($mySheet,"."),1);
                                         $myPath = "upload/".$mySheet;
-                                        if(move_uploaded_file($myTmp,WWW_ROOT.$myPath)){
+                                        if(move_uploaded_file($myTmp,$myPath)){
                                             $fileuploadrecord->att_sheetPath = $myPath;
                                             $fileuploadrecord->att_sheetName = $mySheet;
 
