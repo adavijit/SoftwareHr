@@ -568,20 +568,49 @@ use Cake\Routing\Router;
 </html>
 
 <script> 
+
 $(document).ready(function(){
- // $(".subchildlink").hide();
-  $(".listofnav li a").click(function(){
-     //$(this).toggleClass('activeclass').siblings().removeClass('activeclass');
-      $(".listofnav li a").removeClass('activeclass');
-      $(this).toggleClass('activeclass');
-      $('.listofnav li .subchildlink').animate({
-      height: 'toggle'
+        $(".menuhomem").click(function(){
+        $(".main-content").toggleClass("minleftmenu");
+        });
     });
+    
+    $(document).ready( function(){
+      
+      $('.usernameboxdiv').click( function(event){
+          
+          event.stopPropagation();
+          
+          $('#drop').toggle();
+          
+      });
+      
+      $(document).click( function(){
+  
+          $('#drop').hide();
+  
+      });
+  
   });
+  $(document).ready(function(){
+ // $(".subchildlink").hide();
+ $('.parent').siblings().toggle();
+ $('#parent2').siblings().show();
 });
+// $(document).ready(function(){
+//  // $(".subchildlink").hide();
+//   $(".listofnav li a").click(function(){
+//      //$(this).toggleClass('activeclass').siblings().removeClass('activeclass');
+//       $(".listofnav li a").removeClass('activeclass');
+//       $(this).toggleClass('activeclass');
+//       $('.listofnav li .subchildlink').animate({
+//       height: 'toggle'
+//     });
+//   });
+// });
 </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
       $('.uploadclss').on('shown.bs.modal', function () {
       $('#errormessage').trigger('focus')
       });
@@ -605,7 +634,7 @@ $(document).ready(function(){
       $('#successmessage').trigger('focus')
       });
 
-    </script>
+    </script> -->
     <script>
       function changeActive(id){
       
