@@ -133,17 +133,20 @@ require 'dbconnect.php';
         <div class="row">
             <div class="col-sm-4">
               <div class="form-group addcustomcss">
+              <label class="labelform">Employee Name</label>
                 <input id="employeeName" name='employeeName' placeholder="Employee Name" class="form-control rounded-0" width="100%" required />
               </div>
     
             </div>
             <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Date of Birth</label>
             <input id="dob" placeholder="Date of Birth" class="form-control rounded-0" width="100%" />
           </div>
         </div>
             <div class="col-sm-4">
               <div class="form-group addcustomcss">
+              <label class="labelform">Sex</label>
                 <select id='sex' class="form-control rounded-0">
                   <option>Sex</option>
                   <option>Male</option>
@@ -157,6 +160,7 @@ require 'dbconnect.php';
         
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Nationality</label>
             <select name='nationality' id='nationality' class="form-control rounded-0">
               <option>Nationality</option>
               <?php
@@ -177,6 +181,7 @@ foreach($result as $temp)
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Location</label>
           <select name='location' id='location' class="form-control rounded-0">
               <option>Location</option>
               <?php
@@ -199,6 +204,7 @@ foreach($result as $temp)
 
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Blood Group</label>
             <select id="bloodGroup" class="form-control rounded-0">
               <option>Blood Group</option>
               <option>A+</option>
@@ -215,16 +221,19 @@ foreach($result as $temp)
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Emergency Contact</label>
             <input id="emergencyContact" placeholder="Emergency Contact" class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Date of joining</label>
             <input id="dateOfJoining" placeholder="Date of Joining" class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Probation Completion Date</label>
             <input id="probationDate" placeholder="Probation Completion Date" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
@@ -247,51 +256,61 @@ foreach($result as $temp)
 
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Phone Number</label>
              <input id="phoneNumber" placeholder="Employee Phone Number" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Office Email</label>
             <input type="text" id="officeEmail" placeholder="Office Email Address" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Personal Email</label>
             <input type="text" id="personalEmail"  placeholder="Personal Email Address" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Present Address</label>
             <input id="presentAddress" placeholder="Present Address" class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Permanent Address</label>
             <input id="permanentAddress" placeholder="Permanent Address" class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">PAN NO.</label>
             <input id="panNO" placeholder="Pan Number" class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">PF NO.</label>
             <input id="pfNO" placeholder="PF No." class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">ESIC NO.</label>
             <input id="esicNO" placeholder="ESIC No." class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">UAN NO.</label>
             <input id="uanNO" placeholder="UAN No." class="form-control rounded-0" width="100%" />
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Aadhar NO.</label>
             <input id="aadharNO" placeholder="Aadhar No." class="form-control rounded-0" width="100%" />
           </div>
         </div>
@@ -311,16 +330,19 @@ foreach($result as $temp)
 
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Degree Name</label>
              <input id="degreeName" placeholder="Degree Name" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Year of Passing</label>
             <input id="yearOfPassing" placeholder="Year of Passing" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Institution</label>
             <input id="institution" placeholder="Institution" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
@@ -338,16 +360,19 @@ foreach($result as $temp)
 
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Skill Name</label>
              <input id="skillName" placeholder="Skill Name" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Years of Experience</label>
             <input id="yearsOfExp" placeholder="Years of Experience" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Institution</label>
             <input id="expInstitution" placeholder="Institution" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
@@ -365,16 +390,19 @@ foreach($result as $temp)
 
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Company Name</label>
              <input id="companyName" placeholder="Company Name" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Years of Experience</label>
             <input id="expYears" placeholder="Years of Experience" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Designation</label>
             <select  id="designation" class="form-control rounded-0">
             <option>Designation</option>
             <?php
@@ -392,6 +420,7 @@ foreach($result as $temp)
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
+          <label class="labelform">Department</label>
             <select id="department" class="form-control rounded-0">
                   <option>Department</option>
                   <?php
