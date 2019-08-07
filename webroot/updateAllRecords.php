@@ -52,7 +52,7 @@ $location=$_POST['location'];
 $dateOfJoining=date("Y-m-d",strtotime($_POST['dateOfJoining']));
 $probationDate=date("Y-m-d",strtotime($_POST['probationDate']));
 $bloodGroup=$_POST['bloodGroup'];
-$lwd=date("Y-m-d",strtotime($_POST['lwd']));
+
 $emergencyContact=$_POST['emergencyContact'];
 
 $activeStat='Active';
@@ -67,7 +67,7 @@ if($_POST['temp1']==0 && $_POST['temp2']==0)
     $empGenFileTemp = $_FILES['empGenFile']['tmp_name'];
     $empGenFilePath ="upload/".$empGenFile;
     
-    $sql1="UPDATE emp_general_info SET empName='$employeeName',dob='$dob',nationality='$nationality',photoPath='$photoPath',bloodGroup='$bloodGroup',emergencyContact='$emergencyContact',lastWorkingDate='$lwd',probationCompletionDate='$probationDate',
+    $sql1="UPDATE emp_general_info SET empName='$employeeName',dob='$dob',nationality='$nationality',photoPath='$photoPath',bloodGroup='$bloodGroup',emergencyContact='$emergencyContact',probationCompletionDate='$probationDate',
     documentPath='$empGenFilePath',sex='$sex',dateOfJoining='$dateOfJoining',designation='$designation' WHERE empId = '$id' ";
 if(mysqli_query($conn,$sql1))
 {
@@ -92,7 +92,7 @@ if($_POST['temp1']==1 && $_POST['temp2']==0)
     $empGenFileTemp = $_FILES['empGenFile']['tmp_name'];
     $empGenFilePath ="upload/".$empGenFile;
     
-    $sql1="UPDATE emp_general_info SET empName='$employeeName',dob='$dob',nationality='$nationality',bloodGroup='$bloodGroup',emergencyContact='$emergencyContact',lastWorkingDate='$lwd',probationCompletionDate='$probationDate',
+    $sql1="UPDATE emp_general_info SET empName='$employeeName',dob='$dob',nationality='$nationality',bloodGroup='$bloodGroup',emergencyContact='$emergencyContact',probationCompletionDate='$probationDate',
     documentPath='$empGenFilePath',sex='$sex',dateOfJoining='$dateOfJoining',designation='$designation' WHERE empId = '$id' ";
 if(mysqli_query($conn,$sql1))
 {
@@ -117,7 +117,7 @@ if($_POST['temp1']==0 && $_POST['temp2']==1)
     $photoPath= "upload/".$myPhoto;
    
     
-    $sql1="UPDATE emp_general_info SET empName='$employeeName',dob='$dob',nationality='$nationality',photoPath='$photoPath',bloodGroup='$bloodGroup',emergencyContact='$emergencyContact',lastWorkingDate='$lwd',probationCompletionDate='$probationDate',
+    $sql1="UPDATE emp_general_info SET empName='$employeeName',dob='$dob',nationality='$nationality',photoPath='$photoPath',bloodGroup='$bloodGroup',emergencyContact='$emergencyContact',probationCompletionDate='$probationDate',
     sex='$sex',dateOfJoining='$dateOfJoining',designation='$designation' WHERE empId = '$id' ";
 if(mysqli_query($conn,$sql1))
 {
@@ -139,7 +139,7 @@ if($_POST['temp1']==1 && $_POST['temp2']==1)
 {
    
     
-    $sql1="UPDATE emp_general_info SET empName='$employeeName',dob='$dob',nationality='$nationality',bloodGroup='$bloodGroup',emergencyContact='$emergencyContact',lastWorkingDate='$lwd',probationCompletionDate='$probationDate',sex='$sex',dateOfJoining='$dateOfJoining',designation='$designation' WHERE empId = '$id' ";
+    $sql1="UPDATE emp_general_info SET empName='$employeeName',dob='$dob',nationality='$nationality',bloodGroup='$bloodGroup',emergencyContact='$emergencyContact',probationCompletionDate='$probationDate',sex='$sex',dateOfJoining='$dateOfJoining',designation='$designation' WHERE empId = '$id' ";
 if(mysqli_query($conn,$sql1))
 {
         echo "Success";

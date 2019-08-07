@@ -88,7 +88,7 @@ else{
 /////////////
 $probationDate=date("Y-m-d",strtotime($_POST['probationDate']));
 $bloodGroup=$_POST['bloodGroup'];
-$lwd=date("Y-m-d",strtotime($_POST['lwd']));
+
 $emergencyContact=$_POST['emergencyContact'];
 $empGenFilePath='';
 for($i=0; $i<count($_FILES['empGenFile']['name']); $i++){
@@ -105,8 +105,8 @@ $empGenFilePath =substr($empGenFilePath, 0, -1);
 $activeStat='Active';
 $designation=$_POST['designation'];
 $x=4;
-$sql1="INSERT INTO emp_general_info(empName,dob,nationality,photoPath,bloodGroup,emergencyContact,lastWorkingDate,probationCompletionDate,documentPath,sex,emp_status,dateOfJoining,designation)
-VALUES('$employeeName','$dob','$nationality','$photoPath','$bloodGroup','$emergencyContact','$lwd','$probationDate','$empGenFilePath','$sex','$activeStat','$dateOfJoining','$designation')";
+$sql1="INSERT INTO emp_general_info(empName,dob,nationality,photoPath,bloodGroup,emergencyContact,probationCompletionDate,documentPath,sex,emp_status,dateOfJoining,designation)
+VALUES('$employeeName','$dob','$nationality','$photoPath','$bloodGroup','$emergencyContact','$probationDate','$empGenFilePath','$sex','$activeStat','$dateOfJoining','$designation')";
 
 if(mysqli_query($conn,$sql1))
 {

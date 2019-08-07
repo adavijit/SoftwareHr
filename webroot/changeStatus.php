@@ -8,13 +8,14 @@ require 'dbconnect.php';
 
 $id=$_POST['aId'];
 $changeId=$_POST['changeId'];
+$date= date("Y-m-d");
 if($changeId==1)
 {
-    $sql="UPDATE emp_general_info SET emp_status='Inactive' WHERE empId='$id' ";
+    $sql="UPDATE emp_general_info SET emp_status='Inactive', lastWorkingDate='$date' WHERE empId='$id' ";
 }
 if($changeId==2)
 {
-    $sql="UPDATE emp_general_info SET emp_status='Active' WHERE empId='$id' ";
+    $sql="UPDATE emp_general_info SET emp_status='Active', lastWorkingDate='' WHERE empId='$id' ";
 }
 if($changeId==3)
 {

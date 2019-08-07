@@ -228,11 +228,7 @@ foreach($result as $temp)
             <input id="probationDate" placeholder="Probation Completion Date" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
-        <div class="col-sm-3 mb-2">
-          <div class="form-group addcustomcss">
-            <input id="lwd" placeholder="Last Working Date" class="form-control rounded-0" width="100%" />
-          </div>
-        </div>
+       
       </div>
       <h3 class="my-3">KYC Informations</h3>
       <ul id="ref1" class="imageuploadlist p-0 m-0">
@@ -489,9 +485,7 @@ foreach($result as $temp)
         $('#probationDate').datepicker({
             uiLibrary: 'bootstrap4'
         });
-        $('#lwd').datepicker({
-            uiLibrary: 'bootstrap4'
-        });
+       
         $('#dob').datepicker({
             uiLibrary: 'bootstrap4'
         });
@@ -544,7 +538,7 @@ function onclickFunction(){
     form_data.append('sex', $('#sex').val());
     form_data.append('nationality', $('#nationality').val());
     form_data.append('location', $('#location').val());
-    form_data.append('lwd', $('#lwd').val());
+  
     form_data.append('dateOfJoining', $('#dateOfJoining').val());
     if(document.getElementById('probationDate').value !='')
     form_data.append('probationDate', $('#probationDate').val());
