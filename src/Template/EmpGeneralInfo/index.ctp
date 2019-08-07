@@ -431,10 +431,11 @@ function deleteS(id){
         contentType: false,
         success: function (data){
           //alert(data);
-          
-          $('#exampleModal2').modal("hide");
+          location.reload();
+        
           $('#successmessage').modal("show");
-          $("#changeActiveStatus").load(" #changeActiveStatus");
+
+         
           
         },
         error: function(data){
