@@ -36970,10 +36970,17 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
 
 
 
+<<<<<<< HEAD
 2019-08-08 06:38:50 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\SoftwareHr\src\Controller\AppController.php, line: 40
  You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\SoftwareHr\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
 Request URL: /fileuploadrecord/images/logo.png
 Referer URL: http://localhost/SoftwareHr/fileuploadrecord/add
+=======
+2019-08-08 06:16:31 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /dashboard
+Referer URL: http://localhost/Project/SoftwareHR/dashboard
+>>>>>>> 7a22fec2aa15f79a8c3d91bd3d27d116c828dc7b
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 deprecationWarning - CORE\src\Core\functions.php, line 311
@@ -36993,7 +37000,275 @@ Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
 Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
 Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 168
 Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+<<<<<<< HEAD
 Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 97
+=======
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 96
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
+[main] - ROOT\webroot\index.php, line 40
+
+
+
+2019-08-08 06:16:36 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord
+Referer URL: http://localhost/Project/SoftwareHR/dashboard
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
+deprecationWarning - CORE\src\Core\functions.php, line 311
+Cake\Http\ServerRequest::session() - CORE\src\Http\ServerRequest.php, line 570
+App\Controller\AppController::beforeFilter() - APP/Controller\AppController.php, line 40
+Cake\Event\EventManager::_callListener() - CORE\src\Event\EventManager.php, line 353
+Cake\Event\EventManager::dispatch() - CORE\src\Event\EventManager.php, line 330
+Cake\Controller\Controller::dispatchEvent() - CORE\src\Event\EventDispatcherTrait.php, line 114
+Cake\Controller\Controller::startupProcess() - CORE\src\Controller\Controller.php, line 677
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 115
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 94
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 235
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Middleware\CsrfProtectionMiddleware::__invoke() - CORE\src\Http\Middleware\CsrfProtectionMiddleware.php, line 123
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 168
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 96
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
+[main] - ROOT\webroot\index.php, line 40
+
+
+
+2019-08-08 06:16:37 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /Attendancerecord?id=1
+Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
+deprecationWarning - CORE\src\Core\functions.php, line 311
+Cake\Http\ServerRequest::session() - CORE\src\Http\ServerRequest.php, line 570
+App\Controller\AppController::beforeFilter() - APP/Controller\AppController.php, line 40
+Cake\Event\EventManager::_callListener() - CORE\src\Event\EventManager.php, line 353
+Cake\Event\EventManager::dispatch() - CORE\src\Event\EventManager.php, line 330
+Cake\Controller\Controller::dispatchEvent() - CORE\src\Event\EventDispatcherTrait.php, line 114
+Cake\Controller\Controller::startupProcess() - CORE\src\Controller\Controller.php, line 677
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 115
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 94
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 235
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Middleware\CsrfProtectionMiddleware::__invoke() - CORE\src\Http\Middleware\CsrfProtectionMiddleware.php, line 123
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 168
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 96
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
+[main] - ROOT\webroot\index.php, line 40
+
+
+
+2019-08-08 06:16:40 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord
+Referer URL: http://localhost/Project/SoftwareHR/Attendancerecord?id=1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
+deprecationWarning - CORE\src\Core\functions.php, line 311
+Cake\Http\ServerRequest::session() - CORE\src\Http\ServerRequest.php, line 570
+App\Controller\AppController::beforeFilter() - APP/Controller\AppController.php, line 40
+Cake\Event\EventManager::_callListener() - CORE\src\Event\EventManager.php, line 353
+Cake\Event\EventManager::dispatch() - CORE\src\Event\EventManager.php, line 330
+Cake\Controller\Controller::dispatchEvent() - CORE\src\Event\EventDispatcherTrait.php, line 114
+Cake\Controller\Controller::startupProcess() - CORE\src\Controller\Controller.php, line 677
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 115
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 94
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 235
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Middleware\CsrfProtectionMiddleware::__invoke() - CORE\src\Http\Middleware\CsrfProtectionMiddleware.php, line 123
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 168
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 96
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
+[main] - ROOT\webroot\index.php, line 40
+
+
+
+2019-08-08 06:16:42 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /leave-setting
+Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
+deprecationWarning - CORE\src\Core\functions.php, line 311
+Cake\Http\ServerRequest::session() - CORE\src\Http\ServerRequest.php, line 570
+App\Controller\AppController::beforeFilter() - APP/Controller\AppController.php, line 40
+Cake\Event\EventManager::_callListener() - CORE\src\Event\EventManager.php, line 353
+Cake\Event\EventManager::dispatch() - CORE\src\Event\EventManager.php, line 330
+Cake\Controller\Controller::dispatchEvent() - CORE\src\Event\EventDispatcherTrait.php, line 114
+Cake\Controller\Controller::startupProcess() - CORE\src\Controller\Controller.php, line 677
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 115
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 94
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 235
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Middleware\CsrfProtectionMiddleware::__invoke() - CORE\src\Http\Middleware\CsrfProtectionMiddleware.php, line 123
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 168
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 96
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
+[main] - ROOT\webroot\index.php, line 40
+
+
+
+2019-08-08 06:16:45 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord
+Referer URL: http://localhost/Project/SoftwareHR/leave-setting
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
+deprecationWarning - CORE\src\Core\functions.php, line 311
+Cake\Http\ServerRequest::session() - CORE\src\Http\ServerRequest.php, line 570
+App\Controller\AppController::beforeFilter() - APP/Controller\AppController.php, line 40
+Cake\Event\EventManager::_callListener() - CORE\src\Event\EventManager.php, line 353
+Cake\Event\EventManager::dispatch() - CORE\src\Event\EventManager.php, line 330
+Cake\Controller\Controller::dispatchEvent() - CORE\src\Event\EventDispatcherTrait.php, line 114
+Cake\Controller\Controller::startupProcess() - CORE\src\Controller\Controller.php, line 677
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 115
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 94
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 235
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Middleware\CsrfProtectionMiddleware::__invoke() - CORE\src\Http\Middleware\CsrfProtectionMiddleware.php, line 123
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 168
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 96
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
+[main] - ROOT\webroot\index.php, line 40
+
+
+
+2019-08-08 06:16:56 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /Attendancerecord?id=1
+Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
+deprecationWarning - CORE\src\Core\functions.php, line 311
+Cake\Http\ServerRequest::session() - CORE\src\Http\ServerRequest.php, line 570
+App\Controller\AppController::beforeFilter() - APP/Controller\AppController.php, line 40
+Cake\Event\EventManager::_callListener() - CORE\src\Event\EventManager.php, line 353
+Cake\Event\EventManager::dispatch() - CORE\src\Event\EventManager.php, line 330
+Cake\Controller\Controller::dispatchEvent() - CORE\src\Event\EventDispatcherTrait.php, line 114
+Cake\Controller\Controller::startupProcess() - CORE\src\Controller\Controller.php, line 677
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 115
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 94
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 235
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Middleware\CsrfProtectionMiddleware::__invoke() - CORE\src\Http\Middleware\CsrfProtectionMiddleware.php, line 123
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 168
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 96
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
+[main] - ROOT\webroot\index.php, line 40
+
+
+
+2019-08-08 06:16:58 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord
+Referer URL: http://localhost/Project/SoftwareHR/Attendancerecord?id=1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
+deprecationWarning - CORE\src\Core\functions.php, line 311
+Cake\Http\ServerRequest::session() - CORE\src\Http\ServerRequest.php, line 570
+App\Controller\AppController::beforeFilter() - APP/Controller\AppController.php, line 40
+Cake\Event\EventManager::_callListener() - CORE\src\Event\EventManager.php, line 353
+Cake\Event\EventManager::dispatch() - CORE\src\Event\EventManager.php, line 330
+Cake\Controller\Controller::dispatchEvent() - CORE\src\Event\EventDispatcherTrait.php, line 114
+Cake\Controller\Controller::startupProcess() - CORE\src\Controller\Controller.php, line 677
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 115
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 94
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 235
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Middleware\CsrfProtectionMiddleware::__invoke() - CORE\src\Http\Middleware\CsrfProtectionMiddleware.php, line 123
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 168
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 96
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
+[main] - ROOT\webroot\index.php, line 40
+
+
+
+2019-08-08 06:17:31 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord
+Referer URL: http://localhost/Project/SoftwareHR/Attendancerecord?id=1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
+deprecationWarning - CORE\src\Core\functions.php, line 311
+Cake\Http\ServerRequest::session() - CORE\src\Http\ServerRequest.php, line 570
+App\Controller\AppController::beforeFilter() - APP/Controller\AppController.php, line 40
+Cake\Event\EventManager::_callListener() - CORE\src\Event\EventManager.php, line 353
+Cake\Event\EventManager::dispatch() - CORE\src\Event\EventManager.php, line 330
+Cake\Controller\Controller::dispatchEvent() - CORE\src\Event\EventDispatcherTrait.php, line 114
+Cake\Controller\Controller::startupProcess() - CORE\src\Controller\Controller.php, line 677
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 115
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 94
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 235
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Middleware\CsrfProtectionMiddleware::__invoke() - CORE\src\Http\Middleware\CsrfProtectionMiddleware.php, line 123
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 168
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+>>>>>>> 7a22fec2aa15f79a8c3d91bd3d27d116c828dc7b
 Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
 Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 96
 Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
