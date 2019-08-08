@@ -100,8 +100,8 @@ class FileuploadrecordController extends AppController
     public function add()
     {
         //adasd
-        require_once(ROOT . DS . 'vendor' . DS . 'XLSXReader.php');
-        //require('XLSXReader.php');
+        // require_once(ROOT . DS . 'vendor' . DS . 'XLSXReader.php');
+        require('XLSXReader.php');
         $fileuploadrecord = $this->Fileuploadrecord->newEntity();
         if ($this->request->is('post')) {
 
@@ -117,7 +117,6 @@ class FileuploadrecordController extends AppController
 
                                         }
                                         require 'dbconnect.php';
-                                        // $conn=mysqli_connect('localhost','root','','hr_software');
 
                                     //data saved in fileuploadrecord table
                                         $newDate = date("Y-m-d", strtotime($mydt));
@@ -182,6 +181,7 @@ class FileuploadrecordController extends AppController
                                                                     $Punch_Records=$arr[14];
                                                                     //echo $max;
                                                                     $query = "INSERT INTO attendancerecord(empId,empName,Att_Date,InTime,OutTime,Shift,S_InTime,S_OutTime,WorkDurr,OT,TotDurr,LateBy,EarlyGoingBy,Att_Status,Punch_Records,id_fileuploadrecord) VALUES('$empId','$empName','$Att_Date','$InTime','$OutTime','$Shift','$S_InTime','$S_OutTime','$WorkDurr','$OT','$TotDurr','$LateBy','$EarlyGoingBy','$Att_Status','$Punch_Records','$max')";
+                                                                    require 'dbconnect.php';
                                                                     mysqli_query($conn,$query);
                                                              
                                     }
