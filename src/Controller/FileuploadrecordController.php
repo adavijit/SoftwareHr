@@ -99,7 +99,7 @@ class FileuploadrecordController extends AppController
 
     public function add()
     {
-        //adasd
+        
         // require_once(ROOT . DS . 'vendor' . DS . 'XLSXReader.php');
         require('XLSXReader.php');
         $fileuploadrecord = $this->Fileuploadrecord->newEntity();
@@ -186,6 +186,7 @@ class FileuploadrecordController extends AppController
                                                              
                                     }
                                     return $this->redirect(['controller'=>'Fileuploadrecord','action' => 'index']);
+
                                                                  
                                     $this->set(compact('fileuploadrecord'));
 
