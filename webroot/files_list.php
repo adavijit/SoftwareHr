@@ -63,7 +63,7 @@ use Cake\Routing\Router;
                                 
                                             echo "<td class='actions'><a href='$p'> <i class='icon-file' style='right-padding:7px;'></i></a>
                                             &nbsp;<a download href=$path><span class='glyphicon glyphicon-download-alt' style='right-padding:7px;'></span></a>
-                                            &nbsp;&nbsp;<a id='delete' onclick='deleteAjax($row[id])'><i class='icon-trash-1' style='right-padding:7px;'></i></a></td> ";
+                                            &nbsp;&nbsp;<a data-toggle='modal' data-target='#confirmModal' id='delete' onclick='deleteAjax($row[id])'><i class='icon-trash-1' style='right-padding:7px;'></i></a></td> ";
                     
                     
                                             // $path= "http://localhost/SoftwareHr/webroot/".$fileuploadrecord->att_sheetPath;
@@ -170,21 +170,56 @@ use Cake\Routing\Router;
                         
     
                 <script>
+                var globalId = '';
                     function deleteAjax(id){
-                console.log(id);
-                if(confirm('Are you sure?')){
+                        globalId = id;
+                } 
+                function ajaxDelete()
+                {
+                    
+               
                     $.ajax({
                     type:"post",
                     url:"delete.php",
                     data:{
-                        id:id
+                        id:globalId
                         },
-                    success:function(data){
-                    
+                    success:()=>{
+                      
                         location.reload();
+                        
                     }
                     });
-                }
                 
-                } 
+                
+                }
                 </script>
+<!-- Confirm -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModal" aria-hidden="true">
+  <input type="hidden" id="xyz" name="xyz" value="">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0 pb-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="icon-cancel-1"></i>
+        </button>
+      </div>
+      <div class="modal-body text-center messagestatuspop">
+        <div class="iconstatus redcolr mb-3"><i class="icon-error"></i></div>
+        <h4 class="mb-3">Are you sure?</h4>
+    
+      </div>
+     
+      <div class="modal-footer border-top-0 justify-content-center mb-3">
+        <button type='button' data-dismiss='modal' aria-label='Close' onClick='ajaxDelete();' class='btn bluebutton'>Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+body{
+    background-color:white;
+}
+
+</style>
