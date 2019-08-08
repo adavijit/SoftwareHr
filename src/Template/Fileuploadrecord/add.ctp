@@ -3,8 +3,8 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Fileuploadrecord $fileuploadrecord
  */
-
-
+use Cake\Routing\Router;
+require '../webroot/dbconnect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +41,7 @@
               <li onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'EmpGeneralInfo','action'=>'index']) ?>' "  style="cursor:pointer;background-colour:#1B679F;">
               View Records</li>
             </a>
-              <a class="activeclass">
+              <a>
                 <li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'AllRecordsSave','action'=>'index']) ?>' "  style="cursor:pointer;">Add new Records</li>
               </a>
             </ul>
@@ -49,8 +49,8 @@
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
-          
-              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
+            <!-- <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>              -->
+              <a class="activeclass"><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
           <li>
@@ -72,11 +72,8 @@
           <li>
             <a id="parent7" class="parent" onclick="changeActive('parent7');" href="javascript:void(0);"><i class="icon-file"></i> <span>Settings</span></a>
             <ul class="subchildlink">
-              <a class="activeclass"><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'SetHoliday','action'=>'index']) ?>' "  style="cursor:pointer;">Holiday Setting</li></a>             
+              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'SetHoliday','action'=>'index']) ?>' "  style="cursor:pointer;">Holiday Setting</li></a>             
               <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'EmpGrp','action'=>'index']) ?>' "  style="cursor:pointer;">Employee group setting </li></a>
-            
-            
-            
             </ul>
           </li>
         </ul>
@@ -92,13 +89,13 @@
       <div class="row">
         <div class="col-auto ml-auto align-middle">
          <a href="javascript:void(0)" class="usernameboxdiv ml-auto d-block">
-          <span class="userpicbox mr-2"><img src="../../images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
-          <span class="usernamed">Welcome <?php echo $username?></span>
+          <span class="userpicbox mr-2"><img src="../images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
+          <span class="usernamed">Welcome <?php echo $username ?></span>
         </a>
          <div id="drop">
         <div class="logouuserdiv">
-          <div class="imagepic"><img src="../../images/User.png" alt="Navsoft Training" title="Navsoft Training"></div>
-          <div class="spantext"><h5 class="mb-0"><?php echo $username?></h5><a href="javascript:void(0)"><?php echo $email?></a></div>
+          <div class="imagepic"><img src="../images/User.png" alt="Navsoft Training" title="Navsoft Training"></div>
+          <div class="spantext"><h5 class="mb-0"><?php echo $username ?></h5><a href="javascript:void(0)"><?php echo $email ?></a></div>
         </div>
         <div class="footerbottom">
           <a href="javascript:void" onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Users','action'=>'logout']) ?>' "><i class="icon-turn-off-1"></i> Logout</a>
@@ -113,7 +110,8 @@
       <div class="bodypart">
         <div class="row pageheadertop mb-3">
         <div class="col"><h2>Upload Attendance</h2></div>
-        <div class="col-auto"><a href="index"> <button type="button" class="btn outlineblue mr-2">Cancel</button> </a>
+        <!-- <div class="col-auto"><a href="index"> <button type="button" class="btn outlineblue mr-2">Cancel</button> </a> -->
+        <button type="button" class="btn outlineblue mr-2"><a href="<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>">Cancel</a></button>
        <button name='submit' type="submit" class="btn redbutton">Save</button></a></div>
       </div>
 
@@ -161,7 +159,6 @@
               $test = date("Y"); 
                   for ($i=1990;$i<=$test;$i++)
                     echo "<option>$i</option>";
-
               ?>
               
             </select> 
@@ -240,11 +237,38 @@
   </body>
 </html>
 
-
-
-
-
-
-
-  <!--action form-->
-  
+<script>
+$(document).ready(function(){
+    $(".menuhomem").click(function(){
+    $(".main-content").toggleClass("minleftmenu");
+    });
+    });
+    $('.usernameboxdiv').click( function(event){
+        
+        event.stopPropagation();
+        
+        $('#drop').toggle();
+        
+    });
+    
+    $(document).click( function(){
+        $('#drop').hide();
+    });
+    $(document).ready(function(){
+ // $(".subchildlink").hide();
+ $('.parent').siblings().toggle();
+ $('#parent3').siblings().show();
+});
+function changeActive(id){
+      
+      let x= document.getElementById(id).id;
+      // console.log(x);
+      let idName = '#'+x;
+      // console.log(idName);
+     $('.parent').siblings().hide();
+      $(idName).siblings().toggle();
+      $('.parent').removeClass('activeclass');
+      $(idName).addClass('activeclass');
+    //  $('.dashboard').removeClass('activeclass');
+    }
+</script>

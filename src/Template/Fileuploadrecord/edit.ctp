@@ -3,6 +3,9 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Fileuploadrecord $fileuploadrecord
  */
+use Cake\Routing\Router;
+require 'dbconnect.php';
+
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
