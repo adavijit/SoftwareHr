@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\Fileuploadrecord[]|\Cake\Collection\CollectionInterface $fileuploadrecord
  */
 use Cake\Routing\Router;
-
+require 'dbconnect.php';
 
 ?>
 
