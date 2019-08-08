@@ -15,16 +15,15 @@ namespace Composer\Plugin;
 use Composer\Composer;
 use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\IO\IOInterface;
-use Composer\Package\CompletePackage;
 use Composer\Package\Package;
 use Composer\Package\Version\VersionParser;
 use Composer\Repository\RepositoryInterface;
+use Composer\Package\AliasPackage;
 use Composer\Package\PackageInterface;
 use Composer\Package\Link;
 use Composer\Semver\Constraint\Constraint;
 use Composer\DependencyResolver\Pool;
 use Composer\Plugin\Capability\Capability;
-use Composer\Util\PackageSorter;
 
 /**
  * Plugin manager
@@ -254,10 +253,8 @@ class PluginManager
      */
     private function loadRepository(RepositoryInterface $repo)
     {
-        $packages = $repo->getPackages();
-        $sortedPackages = array_reverse(PackageSorter::sortPackages($packages));
-        foreach ($sortedPackages as $package) {
-            if (!($package instanceof CompletePackage)) {
+        foreach ($repo->getPackages() as $package) { /** @var PackageInterface $package */
+            if ($package instanceof AliasPackage) {
                 continue;
             }
             if ('composer-plugin' === $package->getType()) {

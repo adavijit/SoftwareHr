@@ -233,16 +233,12 @@ class RuleSetGenerator
         }
     }
 
-    protected function addConflictRules($ignorePlatformReqs = false)
+    protected function addConflictRules()
     {
         /** @var PackageInterface $package */
         foreach ($this->addedPackages as $package) {
             foreach ($package->getConflicts() as $link) {
                 if (!isset($this->addedPackagesByNames[$link->getTarget()])) {
-                    continue;
-                }
-
-                if ($ignorePlatformReqs && preg_match(PlatformRepository::PLATFORM_PACKAGE_REGEX, $link->getTarget())) {
                     continue;
                 }
 
@@ -366,7 +362,7 @@ class RuleSetGenerator
 
         $this->addRulesForJobs($ignorePlatformReqs);
 
-        $this->addConflictRules($ignorePlatformReqs);
+        $this->addConflictRules();
 
         // Remove references to packages
         $this->addedPackages = $this->addedPackagesByNames = null;

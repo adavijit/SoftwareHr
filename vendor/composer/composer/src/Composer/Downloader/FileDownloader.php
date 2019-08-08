@@ -125,7 +125,7 @@ class FileDownloader implements DownloaderInterface, ChangeReportInterface
         $fileName = $this->getFileName($package, $path);
 
         $processedUrl = $this->processUrl($package, $url);
-        $origin = RemoteFilesystem::getOrigin($processedUrl);
+        $hostname = parse_url($processedUrl, PHP_URL_HOST);
 
         $preFileDownloadEvent = new PreFileDownloadEvent(PluginEvents::PRE_FILE_DOWNLOAD, $this->rfs, $processedUrl);
         if ($this->eventDispatcher) {
@@ -150,7 +150,7 @@ class FileDownloader implements DownloaderInterface, ChangeReportInterface
                 $retries = 3;
                 while ($retries--) {
                     try {
-                        $rfs->copy($origin, $processedUrl, $fileName, $this->outputProgress, $package->getTransportOptions());
+                        $rfs->copy($hostname, $processedUrl, $fileName, $this->outputProgress, $package->getTransportOptions());
                         break;
                     } catch (TransportException $e) {
                         // if we got an http response with a proper code, then requesting again will probably not help, abort

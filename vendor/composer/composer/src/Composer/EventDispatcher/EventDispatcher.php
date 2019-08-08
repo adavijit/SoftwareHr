@@ -196,9 +196,7 @@ class EventDispatcher
                     }
 
                     try {
-                        $scriptEvent = new Script\Event($scriptName, $event->getComposer(), $event->getIO(), $event->isDevMode(), $args, $flags);
-                        $scriptEvent->setOriginatingEvent($event);
-                        $return = $this->dispatch($scriptName, $scriptEvent);
+                        $return = $this->dispatch($scriptName, new Script\Event($scriptName, $event->getComposer(), $event->getIO(), $event->isDevMode(), $args, $flags));
                     } catch (ScriptExecutionException $e) {
                         $this->io->writeError(sprintf('<error>Script %s was called via %s</error>', $callable, $event->getName()), true, IOInterface::QUIET);
                         throw $e;
@@ -246,12 +244,6 @@ class EventDispatcher
 
                 if (substr($exec, 0, 5) === '@php ') {
                     $exec = $this->getPhpExecCommand() . ' ' . substr($exec, 5);
-                } else {
-                    $finder = new PhpExecutableFinder();
-                    $phpPath = $finder->find(false);
-                    if ($phpPath) {
-                        putenv('PHP_BINARY=' . $phpPath);
-                    }
                 }
 
                 if (0 !== ($exitCode = $this->process->execute($exec))) {

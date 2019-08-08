@@ -19,7 +19,6 @@ use Composer\Util\Filesystem;
 use Composer\Util\Git as GitUtil;
 use Composer\Util\Platform;
 use Composer\Util\ProcessExecutor;
-use Composer\Cache;
 
 /**
  * @author Jordi Boggiano <j.boggiano@seld.be>
@@ -52,7 +51,7 @@ class GitDownloader extends VcsDownloader implements DvcsDownloaderInterface
         $msg = "Cloning ".$this->getShortHash($ref);
 
         $command = 'git clone --no-checkout %url% %path% && cd '.$flag.'%path% && git remote add composer %url% && git fetch composer';
-        if ($gitVersion && version_compare($gitVersion, '2.3.0-rc0', '>=') && Cache::isUsable($cachePath)) {
+        if ($gitVersion && version_compare($gitVersion, '2.3.0-rc0', '>=')) {
             $this->io->writeError('', true, IOInterface::DEBUG);
             $this->io->writeError(sprintf('    Cloning to cache at %s', ProcessExecutor::escape($cachePath)), true, IOInterface::DEBUG);
             try {

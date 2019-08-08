@@ -13,7 +13,6 @@
 namespace Composer\Repository\Vcs;
 
 use Composer\Config;
-use Composer\Cache;
 use Composer\Util\Hg as HgUtils;
 use Composer\Util\ProcessExecutor;
 use Composer\Util\Filesystem;
@@ -38,10 +37,6 @@ class HgDriver extends VcsDriver
         if (Filesystem::isLocalPath($this->url)) {
             $this->repoDir = $this->url;
         } else {
-            if (!Cache::isUsable($this->config->get('cache-vcs-dir'))) {
-                throw new \RuntimeException('HgDriver requires a usable cache directory, and it looks like you set it to be disabled');
-            }
-
             $cacheDir = $this->config->get('cache-vcs-dir');
             $this->repoDir = $cacheDir . '/' . preg_replace('{[^a-z0-9]}i', '-', $this->url) . '/';
 
@@ -66,9 +61,8 @@ class HgDriver extends VcsDriver
                 // clean up directory and do a fresh clone into it
                 $fs->removeDirectory($this->repoDir);
 
-                $repoDir = $this->repoDir;
-                $command = function ($url) use ($repoDir) {
-                    return sprintf('hg clone --noupdate %s %s', ProcessExecutor::escape($url), ProcessExecutor::escape($repoDir));
+                $command = function ($url) {
+                    return sprintf('hg clone --noupdate %s %s', ProcessExecutor::escape($url), ProcessExecutor::escape($this->repoDir));
                 };
 
                 $hgUtils->runCommand($command, $this->url, $this->repoDir);

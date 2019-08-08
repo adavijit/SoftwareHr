@@ -1,9 +1,10 @@
 <?php
 namespace App\Controller;
 require 'dbconnect.php';
+use PHPExcel; 
+use PHPExcel_IOFactory;
 $conn=$conn;
-use Aspera\Spreadsheet\XLSX\Reader;
-use Aspera\Spreadsheet\XLSX\SharedStringsConfiguration;
+
 /*use PhpExcel\Classes\PhpExcel;
 use PhpExcel\Classes\PhpExcel\IOFactory;*/
 // use PhpOffice\PhpExcel\Classes\PhpExcel;
@@ -139,12 +140,26 @@ class FileuploadrecordController extends AppController
                                             $max=$test['id'];
                                             
                                         }
+                                        $objReader = PHPExcel_IOFactory::createReader('Excel2007');
+                                        $objReader->setReadDataOnly(true); //optional
+                                        $objPHPExcel = $objReader->load($myPath);
+                                        $objWorksheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);;
+
+$i=1;
+array_shift($objWorksheet);
+$test_array = array();
+foreach($objWorksheet as $key=>$val){
+    if($i < 500)
+        $test_array[$i] = $val;
+    $i++;   
+}
+
+
                             
-                            
-                                    $xlsx = new Reader($myTmp);
-                                    $data = $xlsx->getSheetData('Sheet1');
+                                    // $xlsx = new Reader($myTmp);
+                                    // $data = $xlsx->getSheetData('Sheet1');
                                     $a=0;
-                                    foreach($data as $temp)
+                                    foreach($test_array as $temp)
                                     {
                                                             $arr = array();
                                                                     if($a<=3)
@@ -192,6 +207,7 @@ class FileuploadrecordController extends AppController
                                                                     }
                                                              
                                     }
+                                   
                                     return $this->redirect(['controller'=>'Fileuploadrecord','action' => 'index']);
 
                                                                  

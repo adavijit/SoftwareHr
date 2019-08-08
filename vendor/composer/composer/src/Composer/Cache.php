@@ -44,7 +44,7 @@ class Cache
         $this->whitelist = $whitelist;
         $this->filesystem = $filesystem ?: new Filesystem();
 
-        if (!self::isUsable($cacheDir)) {
+        if (preg_match('{(^|[\\\\/])(\$null|NUL|/dev/null)([\\\\/]|$)}', $cacheDir)) {
             $this->enabled = false;
 
             return;
@@ -57,11 +57,6 @@ class Cache
             $this->io->writeError('<warning>Cannot create cache directory ' . $this->root . ', or directory is not writable. Proceeding without cache</warning>');
             $this->enabled = false;
         }
-    }
-
-    public static function isUsable($path)
-    {
-        return !preg_match('{(^|[\\\\/])(\$null|nul|NUL|/dev/null)([\\\\/]|$)}', $path);
     }
 
     public function isEnabled()
@@ -189,8 +184,7 @@ class Cache
     public function clear()
     {
         if ($this->enabled) {
-            $this->filesystem->emptyDirectory($this->root);
-            return true;
+            return $this->filesystem->removeDirectory($this->root);
         }
 
         return false;

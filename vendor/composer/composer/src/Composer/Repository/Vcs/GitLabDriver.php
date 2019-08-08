@@ -67,9 +67,9 @@ class GitLabDriver extends VcsDriver
     private $isPrivate = true;
 
     /**
-     * @var bool true if the origin has a port number or a path component in it
+     * @var int port number
      */
-    private $hasNonstandardOrigin = false;
+    protected $portNumber;
 
     const URL_REGEX = '#^(?:(?P<scheme>https?)://(?P<domain>.+?)(?::(?P<port>[0-9]+))?/|git@(?P<domain2>[^:]+):)(?P<parts>.+)/(?P<repo>[^/]+?)(?:\.git|/)?$#';
 
@@ -94,10 +94,11 @@ class GitLabDriver extends VcsDriver
             ? $match['scheme']
             : (isset($this->repoConfig['secure-http']) && $this->repoConfig['secure-http'] === false ? 'http' : 'https')
         ;
-        $this->originUrl = $this->determineOrigin($configuredDomains, $guessedDomain, $urlParts, $match['port']);
+        $this->originUrl = $this->determineOrigin($configuredDomains, $guessedDomain, $urlParts);
 
-        if (false !== strpos($this->originUrl, ':') || false !== strpos($this->originUrl, '/')) {
-            $this->hasNonstandardOrigin = true;
+        if (!empty($match['port']) && true === is_numeric($match['port'])) {
+            // If it is an HTTP based URL, and it has a port
+            $this->portNumber = (int) $match['port'];
         }
 
         $this->namespace = implode('/', $urlParts);
@@ -258,7 +259,10 @@ class GitLabDriver extends VcsDriver
      */
     public function getApiUrl()
     {
-        return $this->scheme.'://'.$this->originUrl.'/api/v4/projects/'.$this->urlEncodeAll($this->namespace).'%2F'.$this->urlEncodeAll($this->repository);
+        $domainName = $this->originUrl;
+        $portNumber = (true === is_numeric($this->portNumber)) ? sprintf(':%s', $this->portNumber) : '';
+
+        return $this->scheme.'://'.$domainName.$portNumber.'/api/v4/projects/'.$this->urlEncodeAll($this->namespace).'%2F'.$this->urlEncodeAll($this->repository);
     }
 
     /**
@@ -356,10 +360,6 @@ class GitLabDriver extends VcsDriver
      */
     protected function generateSshUrl()
     {
-        if ($this->hasNonstandardOrigin) {
-            return 'ssh://git@'.$this->originUrl.'/'.$this->namespace.'/'.$this->repository.'.git';
-        }
-
         return 'git@' . $this->originUrl . ':'.$this->namespace.'/'.$this->repository.'.git';
     }
 
@@ -458,7 +458,7 @@ class GitLabDriver extends VcsDriver
         $guessedDomain = !empty($match['domain']) ? $match['domain'] : $match['domain2'];
         $urlParts = explode('/', $match['parts']);
 
-        if (false === self::determineOrigin((array) $config->get('gitlab-domains'), $guessedDomain, $urlParts, $match['port'])) {
+        if (false === self::determineOrigin((array) $config->get('gitlab-domains'), $guessedDomain, $urlParts)) {
             return false;
         }
 
@@ -492,23 +492,16 @@ class GitLabDriver extends VcsDriver
      * @param  array       $urlParts
      * @return bool|string
      */
-    private static function determineOrigin(array $configuredDomains, $guessedDomain, array &$urlParts, $portNumber)
+    private static function determineOrigin(array $configuredDomains, $guessedDomain, array &$urlParts)
     {
-        if (in_array($guessedDomain, $configuredDomains) || ($portNumber && in_array($guessedDomain.':'.$portNumber, $configuredDomains))) {
-            if ($portNumber) {
-                return $guessedDomain.':'.$portNumber;
-            }
+        if (in_array($guessedDomain, $configuredDomains)) {
             return $guessedDomain;
-        }
-
-        if ($portNumber) {
-            $guessedDomain .= ':'.$portNumber;
         }
 
         while (null !== ($part = array_shift($urlParts))) {
             $guessedDomain .= '/' . $part;
 
-            if (in_array($guessedDomain, $configuredDomains) || ($portNumber && in_array(preg_replace('{:\d+}', '', $guessedDomain), $configuredDomains))) {
+            if (in_array($guessedDomain, $configuredDomains)) {
                 return $guessedDomain;
             }
         }

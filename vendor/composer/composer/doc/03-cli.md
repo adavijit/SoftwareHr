@@ -22,8 +22,6 @@ The following options are available with every command:
 * **--quiet (-q):** Do not output any message.
 * **--no-interaction (-n):** Do not ask any interactive question.
 * **--no-plugins:** Disables plugins.
-* **--no-cache:** Disables the use of the cache directory. Same as setting the COMPOSER_CACHE_DIR
-  env var to /dev/null (or NUL on Windows).
 * **--working-dir (-d):** If specified, use the given directory as working directory.
 * **--profile:** Display timing and memory usage information
 * **--ansi:** Force ANSI output.
@@ -258,10 +256,6 @@ The check-platform-reqs command checks that your PHP and extensions versions
 match the platform requirements of the installed packages. This can be used
 to verify that a production server has all the extensions needed to run a
 project after installing it for example.
-
-Unlike update/install, this command will ignore config.platform settings and
-check the real platform packages so you can be certain you have the required
-platform dependencies.
 
 ## global
 
@@ -802,40 +796,58 @@ COMPOSER=composer-other.json php composer.phar install
 
 The generated lock file will use the same name: `composer-other.lock` in this example.
 
-### COMPOSER_ALLOW_SUPERUSER
+### COMPOSER_ROOT_VERSION
 
-If set to 1, this env disables the warning about running commands as root/super user.
-It also disables automatic clearing of sudo sessions, so you should really only set this
-if you use Composer as super user at all times like in docker containers.
+By setting this var you can specify the version of the root package, if it can
+not be guessed from VCS info and is not present in `composer.json`.
 
-### COMPOSER_AUTH
+### COMPOSER_VENDOR_DIR
 
-The `COMPOSER_AUTH` var allows you to set up authentication as an environment variable.
-The contents of the variable should be a JSON formatted object containing http-basic,
-github-oauth, bitbucket-oauth, ... objects as needed, and following the
-[spec from the config](06-config.md#gitlab-oauth).
+By setting this var you can make Composer install the dependencies into a
+directory other than `vendor`.
 
 ### COMPOSER_BIN_DIR
 
 By setting this option you can change the `bin` ([Vendor Binaries](articles/vendor-binaries.md))
 directory to something other than `vendor/bin`.
 
-### COMPOSER_CACHE_DIR
+### http_proxy or HTTP_PROXY
 
-The `COMPOSER_CACHE_DIR` var allows you to change the Composer cache directory,
-which is also configurable via the [`cache-dir`](06-config.md#cache-dir) option.
+If you are using Composer from behind an HTTP proxy, you can use the standard
+`http_proxy` or `HTTP_PROXY` env vars. Simply set it to the URL of your proxy.
+Many operating systems already set this variable for you.
 
-By default it points to `$COMPOSER_HOME/cache` on \*nix and macOS, and
-`C:\Users\<user>\AppData\Local\Composer` (or `%LOCALAPPDATA%/Composer`) on Windows.
+Using `http_proxy` (lowercased) or even defining both might be preferable since
+some tools like git or curl will only use the lower-cased `http_proxy` version.
+Alternatively you can also define the git proxy using
+`git config --global http.proxy <proxy url>`.
 
-### COMPOSER_CAFILE
+If you are using Composer in a non-CLI context (i.e. integration into a CMS or
+similar use case), and need to support proxies, please provide the `CGI_HTTP_PROXY`
+environment variable instead. See [httpoxy.org](https://httpoxy.org/) for further
+details.
 
-By setting this environmental value, you can set a path to a certificate bundle
-file to be used during SSL/TLS peer verification.
+### no_proxy or NO_PROXY
 
-### COMPOSER_DISCARD_CHANGES
+If you are behind a proxy and would like to disable it for certain domains, you
+can use the `no_proxy` or `NO_PROXY` env var. Simply set it to a comma separated list of
+domains the proxy should *not* be used for.
 
-This env var controls the [`discard-changes`](06-config.md#discard-changes) config option.
+The env var accepts domains, IP addresses, and IP address blocks in CIDR
+notation. You can restrict the filter to a particular port (e.g. `:80`). You
+can also set it to `*` to ignore the proxy for all HTTP requests.
+
+### HTTP_PROXY_REQUEST_FULLURI
+
+If you use a proxy but it does not support the request_fulluri flag, then you
+should set this env var to `false` or `0` to prevent Composer from setting the
+request_fulluri option.
+
+### HTTPS_PROXY_REQUEST_FULLURI
+
+If you use a proxy but it does not support the request_fulluri flag for HTTPS
+requests, then you should set this env var to `false` or `0` to prevent Composer
+from setting the request_fulluri option.
 
 ### COMPOSER_HOME
 
@@ -861,10 +873,45 @@ This file allows you to set [repositories](05-repositories.md) and
 In case global configuration matches _local_ configuration, the _local_
 configuration in the project's `composer.json` always wins.
 
-### COMPOSER_HTACCESS_PROTECT
+### COMPOSER_CACHE_DIR
 
-Defaults to `1`. If set to `0`, Composer will not create `.htaccess` files in the
-composer home, cache, and data directories.
+The `COMPOSER_CACHE_DIR` var allows you to change the Composer cache directory,
+which is also configurable via the [`cache-dir`](06-config.md#cache-dir) option.
+
+By default it points to `$COMPOSER_HOME/cache` on \*nix and macOS, and
+`C:\Users\<user>\AppData\Local\Composer` (or `%LOCALAPPDATA%/Composer`) on Windows.
+
+### COMPOSER_PROCESS_TIMEOUT
+
+This env var controls the time Composer waits for commands (such as git
+commands) to finish executing. The default value is 300 seconds (5 minutes).
+
+### COMPOSER_CAFILE
+
+By setting this environmental value, you can set a path to a certificate bundle
+file to be used during SSL/TLS peer verification.
+
+### COMPOSER_AUTH
+
+The `COMPOSER_AUTH` var allows you to set up authentication as an environment variable.
+The contents of the variable should be a JSON formatted object containing http-basic,
+github-oauth, bitbucket-oauth, ... objects as needed, and following the
+[spec from the config](06-config.md#gitlab-oauth).
+
+### COMPOSER_DISCARD_CHANGES
+
+This env var controls the [`discard-changes`](06-config.md#discard-changes) config option.
+
+### COMPOSER_NO_INTERACTION
+
+If set to 1, this env var will make Composer behave as if you passed the
+`--no-interaction` flag to every command. This can be set on build boxes/CI.
+
+### COMPOSER_ALLOW_SUPERUSER
+
+If set to 1, this env disables the warning about running commands as root/super user.
+It also disables automatic clearing of sudo sessions, so you should really only set this
+if you use Composer as super user at all times like in docker containers.
 
 ### COMPOSER_MEMORY_LIMIT
 
@@ -876,66 +923,9 @@ If set to 1, this env changes the default path repository strategy to `mirror` i
 of `symlink`. As it is the default strategy being set it can still be overwritten by
 repository options.
 
-### COMPOSER_NO_INTERACTION
+### COMPOSER_HTACCESS_PROTECT
 
-If set to 1, this env var will make Composer behave as if you passed the
-`--no-interaction` flag to every command. This can be set on build boxes/CI.
-
-### COMPOSER_PROCESS_TIMEOUT
-
-This env var controls the time Composer waits for commands (such as git
-commands) to finish executing. The default value is 300 seconds (5 minutes).
-
-### COMPOSER_ROOT_VERSION
-
-By setting this var you can specify the version of the root package, if it can
-not be guessed from VCS info and is not present in `composer.json`.
-
-### COMPOSER_VENDOR_DIR
-
-By setting this var you can make Composer install the dependencies into a
-directory other than `vendor`.
-
-### http_proxy or HTTP_PROXY
-
-If you are using Composer from behind an HTTP proxy, you can use the standard
-`http_proxy` or `HTTP_PROXY` env vars. Simply set it to the URL of your proxy.
-Many operating systems already set this variable for you.
-
-Using `http_proxy` (lowercased) or even defining both might be preferable since
-some tools like git or curl will only use the lower-cased `http_proxy` version.
-Alternatively you can also define the git proxy using
-`git config --global http.proxy <proxy url>`.
-
-If you are using Composer in a non-CLI context (i.e. integration into a CMS or
-similar use case), and need to support proxies, please provide the `CGI_HTTP_PROXY`
-environment variable instead. See [httpoxy.org](https://httpoxy.org/) for further
-details.
-
-### HTTP_PROXY_REQUEST_FULLURI
-
-If you use a proxy but it does not support the request_fulluri flag, then you
-should set this env var to `false` or `0` to prevent Composer from setting the
-request_fulluri option.
-
-### HTTPS_PROXY_REQUEST_FULLURI
-
-If you use a proxy but it does not support the request_fulluri flag for HTTPS
-requests, then you should set this env var to `false` or `0` to prevent Composer
-from setting the request_fulluri option.
-
-### COMPOSER_SELF_UPDATE_TARGET
-
-If set, makes the self-update command write the new Composer phar file into that path instead of overwriting itself. Useful for updating Composer on read-only filesystem.
-
-### no_proxy or NO_PROXY
-
-If you are behind a proxy and would like to disable it for certain domains, you
-can use the `no_proxy` or `NO_PROXY` env var. Simply set it to a comma separated list of
-domains the proxy should *not* be used for.
-
-The env var accepts domains, IP addresses, and IP address blocks in CIDR
-notation. You can restrict the filter to a particular port (e.g. `:80`). You
-can also set it to `*` to ignore the proxy for all HTTP requests.
+Defaults to `1`. If set to `0`, Composer will not create `.htaccess` files in the
+composer home, cache, and data directories.
 
 &larr; [Libraries](02-libraries.md)  |  [Schema](04-schema.md) &rarr;

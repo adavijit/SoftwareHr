@@ -168,25 +168,13 @@ EOT
         if ($repositories) {
             $config = Factory::createConfig($io);
             $repos = array(new PlatformRepository);
-            $createDefaultPackagistRepo = true;
             foreach ($repositories as $repo) {
-                $repoConfig = RepositoryFactory::configFromString($io, $config, $repo);
-                if (
-                    (isset($repoConfig['packagist']) && $repoConfig === array('packagist' => false))
-                    || (isset($repoConfig['packagist.org']) && $repoConfig === array('packagist.org' => false))
-                ) {
-                    $createDefaultPackagistRepo = false;
-                    continue;
-                }
-                $repos[] = RepositoryFactory::createRepo($io, $config, $repoConfig);
+                $repos[] = RepositoryFactory::fromString($io, $config, $repo);
             }
-
-            if ($createDefaultPackagistRepo) {
-                $repos[] = RepositoryFactory::createRepo($io, $config, array(
-                    'type' => 'composer',
-                    'url' => 'https://repo.packagist.org',
-                ));
-            }
+            $repos[] = RepositoryFactory::createRepo($io, $config, array(
+                'type' => 'composer',
+                'url' => 'https://repo.packagist.org',
+            ));
 
             $this->repos = new CompositeRepository($repos);
             unset($repos, $config, $repositories);

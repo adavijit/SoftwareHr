@@ -51,7 +51,6 @@ class ProcessExecutor
 
                 return '://'.$m['user'].':***@';
             }, $command);
-            $safeCommand = preg_replace("{--password (.*[^\\\\]\') }", '--password \'***\' ', $safeCommand);
             $this->io->writeError('Executing command ('.($cwd ?: 'CWD').'): '.$safeCommand);
         }
 

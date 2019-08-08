@@ -34,8 +34,6 @@ class JsonFile
     const JSON_PRETTY_PRINT = 128;
     const JSON_UNESCAPED_UNICODE = 256;
 
-    const COMPOSER_SCHEMA_PATH = '/../../../res/composer-schema.json';
-
     private $path;
     private $rfs;
     private $io;
@@ -146,11 +144,10 @@ class JsonFile
      * Validates the schema of the current json file according to composer-schema.json rules
      *
      * @param  int                     $schema a JsonFile::*_SCHEMA constant
-     * @param  string|null             $schemaFile a path to the schema file
      * @throws JsonValidationException
      * @return bool                    true on success
      */
-    public function validateSchema($schema = self::STRICT_SCHEMA, $schemaFile = null)
+    public function validateSchema($schema = self::STRICT_SCHEMA)
     {
         $content = file_get_contents($this->path);
         $data = json_decode($content);
@@ -159,9 +156,7 @@ class JsonFile
             self::validateSyntax($content, $this->path);
         }
 
-        if (null === $schemaFile) {
-            $schemaFile = __DIR__ . self::COMPOSER_SCHEMA_PATH;
-        }
+        $schemaFile = __DIR__ . '/../../../res/composer-schema.json';
 
         // Prepend with file:// only when not using a special schema already (e.g. in the phar)
         if (false === strpos($schemaFile, '://')) {
