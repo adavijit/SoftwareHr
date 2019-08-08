@@ -114,6 +114,7 @@ class ComposerStaticInit55536d7977d1c1643542057b1c2ff42c
         'A' => 
         array (
             'Aura\\Intl\\' => 10,
+            'Aspera\\Spreadsheet\\XLSX\\' => 24,
             'App\\Test\\' => 9,
             'App\\' => 4,
             'Ajgl\\Twig\\Extension\\' => 20,
@@ -124,8 +125,8 @@ class ComposerStaticInit55536d7977d1c1643542057b1c2ff42c
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'Zend\\Diactoros\\' => 
         array (
@@ -314,6 +315,10 @@ class ComposerStaticInit55536d7977d1c1643542057b1c2ff42c
         'Aura\\Intl\\' => 
         array (
             0 => __DIR__ . '/..' . '/aura/intl/src',
+        ),
+        'Aspera\\Spreadsheet\\XLSX\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aspera/xlsx-reader/lib',
         ),
         'App\\Test\\' => 
         array (

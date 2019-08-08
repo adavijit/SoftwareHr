@@ -2,9 +2,8 @@
 namespace App\Controller;
 require 'dbconnect.php';
 $conn=$conn;
-require 'XLSXReader.php';
-use App\Controller\AppController;
-use XLSXReader;
+use Aspera\Spreadsheet\XLSX\Reader;
+use Aspera\Spreadsheet\XLSX\SharedStringsConfiguration;
 /*use PhpExcel\Classes\PhpExcel;
 use PhpExcel\Classes\PhpExcel\IOFactory;*/
 // use PhpOffice\PhpExcel\Classes\PhpExcel;
@@ -102,7 +101,7 @@ class FileuploadrecordController extends AppController
     {
         
         // require_once(ROOT . DS . 'vendor' . DS . 'XLSXReader.php');
-        require 'XLSXReader.php';
+      
         $fileuploadrecord = $this->Fileuploadrecord->newEntity();
         if ($this->request->is('post')) {
 
@@ -131,7 +130,7 @@ class FileuploadrecordController extends AppController
                                         }
                                         else
                                         $this->Flash->error(__('The fileuploadrecord could not be saved. Please, try again.'));
-                                        require 'dbconnect.php';
+                                       
                                     // $conn=mysqli_connect('localhost','root','','hr_software');                                   
                                     $sql=mysqli_query($conn,"SELECT id FROM fileuploadrecord ORDER BY id DESC LIMIT 1");
                                     $max=0;
@@ -140,8 +139,9 @@ class FileuploadrecordController extends AppController
                                             $max=$test['id'];
                                             
                                         }
-                            // echo $max;
-                                    $xlsx = new XLSXReader($myTmp);
+                            
+                            
+                                    $xlsx = new Reader($myTmp);
                                     $data = $xlsx->getSheetData('Sheet1');
                                     $a=0;
                                     foreach($data as $temp)
