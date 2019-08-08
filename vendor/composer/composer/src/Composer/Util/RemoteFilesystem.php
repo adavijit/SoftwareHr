@@ -321,6 +321,8 @@ class RemoteFilesystem
                 $errorMessage .= "\n";
             }
             $errorMessage .= preg_replace('{^file_get_contents\(.*?\): }', '', $msg);
+
+            return true;
         });
         try {
             $result = $this->getRemoteContents($originUrl, $fileUrl, $ctx, $http_response_header);
@@ -494,6 +496,8 @@ class RemoteFilesystem
                     $errorMessage .= "\n";
                 }
                 $errorMessage .= preg_replace('{^file_put_contents\(.*?\): }', '', $msg);
+
+                return true;
             });
             $result = (bool) file_put_contents($fileName, $result);
             restore_error_handler();
@@ -1105,5 +1109,18 @@ class RemoteFilesystem
 
             $io->writeError('<'.$type.'>'.ucfirst($type).' from '.$url.': '.$data[$type].'</'.$type.'>');
         }
+    }
+
+    public static function getOrigin($urlOrPath)
+    {
+        $hostPort = parse_url($urlOrPath, PHP_URL_HOST);
+        if (!$hostPort) {
+            return $urlOrPath;
+        }
+        if (parse_url($urlOrPath, PHP_URL_PORT)) {
+            $hostPort .= ':'.parse_url($urlOrPath, PHP_URL_PORT);
+        }
+
+        return $hostPort;
     }
 }
