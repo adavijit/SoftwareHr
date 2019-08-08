@@ -37278,10 +37278,17 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
 
 
 
+<<<<<<< HEAD
+2019-08-08 06:47:44 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\SoftwareHr\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\SoftwareHr\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord/add
+Referer URL: http://localhost/SoftwareHr/fileuploadrecord
+=======
 2019-08-08 06:18:06 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
  You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
 Request URL: /fileuploadrecord/add
 Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord
+>>>>>>> 879ec8ec71ff6e040bad1e93e7289b98ffddd2ea
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 deprecationWarning - CORE\src\Core\functions.php, line 311
@@ -37311,10 +37318,17 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
 
 
 
+<<<<<<< HEAD
+2019-08-08 06:47:44 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\SoftwareHr\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\SoftwareHr\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord/images/logo.png
+Referer URL: http://localhost/SoftwareHr/fileuploadrecord/add
+=======
 2019-08-08 06:18:06 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
  You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
 Request URL: /fileuploadrecord/images/logo.png
 Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord/add
+>>>>>>> 879ec8ec71ff6e040bad1e93e7289b98ffddd2ea
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 deprecationWarning - CORE\src\Core\functions.php, line 311
@@ -37344,6 +37358,12 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
 
 
 
+<<<<<<< HEAD
+2019-08-08 06:47:46 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\SoftwareHr\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\SoftwareHr\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord
+Referer URL: http://localhost/SoftwareHr/dashboard
+=======
 2019-08-08 06:19:19 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
  You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
 Request URL: /fileuploadrecord/add
@@ -37837,6 +37857,7 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
  You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
 Request URL: /fileuploadrecord/js/bootstrap.min.js
 Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord/index
+>>>>>>> 879ec8ec71ff6e040bad1e93e7289b98ffddd2ea
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 deprecationWarning - CORE\src\Core\functions.php, line 311
@@ -37856,7 +37877,11 @@ Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
 Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
 Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 168
 Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+<<<<<<< HEAD
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+=======
 Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 97
+>>>>>>> 879ec8ec71ff6e040bad1e93e7289b98ffddd2ea
 Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
 Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 96
 Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
@@ -37866,10 +37891,17 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
 
 
 
+<<<<<<< HEAD
+2019-08-08 06:47:48 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\SoftwareHr\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\SoftwareHr\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord
+Referer URL: http://localhost/SoftwareHr/fileuploadrecord
+=======
 2019-08-08 06:19:52 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
  You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
 Request URL: /fileuploadrecord/add
 Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord
+>>>>>>> 879ec8ec71ff6e040bad1e93e7289b98ffddd2ea
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 deprecationWarning - CORE\src\Core\functions.php, line 311
@@ -37899,6 +37931,12 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
 
 
 
+<<<<<<< HEAD
+2019-08-08 06:47:51 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\SoftwareHr\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\SoftwareHr\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord/add
+Referer URL: http://localhost/SoftwareHr/fileuploadrecord
+=======
 2019-08-08 06:19:52 Notice: Notice (8): Undefined variable: fileuploadrecord in [D:\xampp\htdocs\Project\SoftwareHR\src\Template\Fileuploadrecord\add.ctp, line 112]
 Request URL: /fileuploadrecord/add
 Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord
@@ -37966,6 +38004,7 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
  You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
 Request URL: /dashboard
 Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord/add
+>>>>>>> 879ec8ec71ff6e040bad1e93e7289b98ffddd2ea
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 deprecationWarning - CORE\src\Core\functions.php, line 311
@@ -37995,10 +38034,17 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
 
 
 
+<<<<<<< HEAD
+2019-08-08 06:47:51 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\SoftwareHr\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\SoftwareHr\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord/images/logo.png
+Referer URL: http://localhost/SoftwareHr/fileuploadrecord/add
+=======
 2019-08-08 06:20:39 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
  You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
 Request URL: /emp-grp
 Referer URL: http://localhost/Project/SoftwareHR/dashboard
+>>>>>>> 879ec8ec71ff6e040bad1e93e7289b98ffddd2ea
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 deprecationWarning - CORE\src\Core\functions.php, line 311
@@ -38018,6 +38064,9 @@ Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
 Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
 Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 168
 Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+<<<<<<< HEAD
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 97
+=======
 Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
 Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
 Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 96
@@ -38184,6 +38233,7 @@ Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
 Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 168
 Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
 Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+>>>>>>> 879ec8ec71ff6e040bad1e93e7289b98ffddd2ea
 Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
 Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 96
 Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
@@ -38193,10 +38243,16 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
 
 
 
+<<<<<<< HEAD
+2019-08-08 06:48:02 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\SoftwareHr\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\SoftwareHr\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord/add
+=======
 2019-08-08 06:21:20 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
  You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
 Request URL: /fileuploadrecord/add
 Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord
+>>>>>>> 879ec8ec71ff6e040bad1e93e7289b98ffddd2ea
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 deprecationWarning - CORE\src\Core\functions.php, line 311
@@ -38226,6 +38282,12 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
 
 
 
+<<<<<<< HEAD
+2019-08-08 06:48:02 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\SoftwareHr\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\SoftwareHr\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord/images/logo.png
+Referer URL: http://localhost/SoftwareHr/fileuploadrecord/add
+=======
 2019-08-08 06:21:20 Notice: Notice (8): Undefined variable: fileuploadrecord in [D:\xampp\htdocs\Project\SoftwareHR\src\Template\Fileuploadrecord\add.ctp, line 112]
 Request URL: /fileuploadrecord/add
 Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord
@@ -38260,6 +38322,7 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
  You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
 Request URL: /fileuploadrecord/images/logo.png
 Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord/add
+>>>>>>> 879ec8ec71ff6e040bad1e93e7289b98ffddd2ea
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 deprecationWarning - CORE\src\Core\functions.php, line 311
@@ -38289,10 +38352,16 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
 
 
 
+<<<<<<< HEAD
+2019-08-08 06:48:51 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\SoftwareHr\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\SoftwareHr\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord/add
+=======
 2019-08-08 06:25:39 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
  You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
 Request URL: /fileuploadrecord/add
 Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord
+>>>>>>> 879ec8ec71ff6e040bad1e93e7289b98ffddd2ea
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 deprecationWarning - CORE\src\Core\functions.php, line 311
@@ -38322,12 +38391,20 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
 
 
 
+<<<<<<< HEAD
+2019-08-08 06:48:51 Notice: Notice (8): Undefined variable: fileuploadrecord in [D:\xampp\htdocs\SoftwareHr\src\Template\Fileuploadrecord\add.ctp, line 110]
+Request URL: /fileuploadrecord/add
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
+include - APP/Template\Fileuploadrecord\add.ctp, line 110
+=======
 2019-08-08 06:25:39 Notice: Notice (8): Undefined variable: fileuploadrecord in [D:\xampp\htdocs\Project\SoftwareHR\src\Template\Fileuploadrecord\add.ctp, line 107]
 Request URL: /fileuploadrecord/add
 Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 include - APP/Template\Fileuploadrecord\add.ctp, line 107
+>>>>>>> 879ec8ec71ff6e040bad1e93e7289b98ffddd2ea
 Cake\View\View::_evaluate() - CORE\src\View\View.php, line 1419
 Cake\View\View::_render() - CORE\src\View\View.php, line 1380
 Cake\View\View::render() - CORE\src\View\View.php, line 880
@@ -38352,10 +38429,17 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
 
 
 
+<<<<<<< HEAD
+2019-08-08 06:48:51 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\SoftwareHr\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\SoftwareHr\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord/images/logo.png
+Referer URL: http://localhost/SoftwareHr/fileuploadrecord/add
+=======
 2019-08-08 06:25:39 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
  You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
 Request URL: /fileuploadrecord/images/logo.png
 Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord/add
+>>>>>>> 879ec8ec71ff6e040bad1e93e7289b98ffddd2ea
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 deprecationWarning - CORE\src\Core\functions.php, line 311
@@ -38385,10 +38469,17 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
 
 
 
+<<<<<<< HEAD
+2019-08-08 06:50:06 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\SoftwareHr\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\SoftwareHr\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord/add
+Referer URL: http://localhost/SoftwareHr/fileuploadrecord/add
+=======
 2019-08-08 06:25:44 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
  You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
 Request URL: /dashboard
 Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord/add
+>>>>>>> 879ec8ec71ff6e040bad1e93e7289b98ffddd2ea
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 deprecationWarning - CORE\src\Core\functions.php, line 311
@@ -38418,10 +38509,17 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
 
 
 
+<<<<<<< HEAD
+2019-08-08 06:50:12 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\SoftwareHr\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\SoftwareHr\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /fileuploadrecord
+Referer URL: http://localhost/SoftwareHr/fileuploadrecord/add
+=======
 2019-08-08 06:25:49 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
  You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
 Request URL: /fileuploadrecord
 Referer URL: http://localhost/Project/SoftwareHR/dashboard
+>>>>>>> 879ec8ec71ff6e040bad1e93e7289b98ffddd2ea
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 deprecationWarning - CORE\src\Core\functions.php, line 311
@@ -38451,10 +38549,17 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
 
 
 
+<<<<<<< HEAD
+2019-08-08 06:50:24 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\SoftwareHr\src\Controller\AppController.php, line: 40
+ You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\SoftwareHr\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
+Request URL: /Attendancerecord?id=169
+Referer URL: http://localhost/SoftwareHr/fileuploadrecord
+=======
 2019-08-08 06:25:53 Notice: Deprecated (16384): ServerRequest::session() is deprecated. Use getSession() instead. The setter part will be removed. - D:\xampp\htdocs\Project\SoftwareHR\src\Controller\AppController.php, line: 40
  You can disable deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED` in your config/app.php. in [D:\xampp\htdocs\Project\SoftwareHR\vendor\cakephp\cakephp\src\Core\functions.php, line 311]
 Request URL: /dashboard
 Referer URL: http://localhost/Project/SoftwareHR/fileuploadrecord
+>>>>>>> 879ec8ec71ff6e040bad1e93e7289b98ffddd2ea
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 deprecationWarning - CORE\src\Core\functions.php, line 311
