@@ -1,9 +1,10 @@
 <?php
 namespace App\Controller;
 require 'dbconnect.php';
+use PHPExcel; 
+use PHPExcel_IOFactory;
 $conn=$conn;
-use App\Controller\AppController;
-use XLSXReader;
+
 /*use PhpExcel\Classes\PhpExcel;
 use PhpExcel\Classes\PhpExcel\IOFactory;*/
 // use PhpOffice\PhpExcel\Classes\PhpExcel;
@@ -101,7 +102,7 @@ class FileuploadrecordController extends AppController
     {
         
         // require_once(ROOT . DS . 'vendor' . DS . 'XLSXReader.php');
-        require('XLSXReader.php');
+      
         $fileuploadrecord = $this->Fileuploadrecord->newEntity();
         if ($this->request->is('post')) {
 
@@ -125,12 +126,12 @@ class FileuploadrecordController extends AppController
                                         if ($this->Fileuploadrecord->save($fileuploadrecord)) {
                                             $this->Flash->success(__('The fileuploadrecord has been saved.'));
                                             
-                                            $this->Flash->success(__('data saved in attendance'));
+                                            
                                             //return $this->redirect(['controller'=>'Fileuploadrecord','action' => '/index']);
                                         }
                                         else
                                         $this->Flash->error(__('The fileuploadrecord could not be saved. Please, try again.'));
-                                        require 'dbconnect.php';
+                                       
                                     // $conn=mysqli_connect('localhost','root','','hr_software');                                   
                                     $sql=mysqli_query($conn,"SELECT id FROM fileuploadrecord ORDER BY id DESC LIMIT 1");
                                     $max=0;
@@ -139,11 +140,27 @@ class FileuploadrecordController extends AppController
                                             $max=$test['id'];
                                             
                                         }
-                            // echo $max;
-                                    $xlsx = new XLSXReader($myTmp);
-                                    $data = $xlsx->getSheetData('Sheet1');
+                                        $objReader = PHPExcel_IOFactory::createReader('Excel2007');
+                                        $objReader->setReadDataOnly(true); //optional
+                                        $objPHPExcel = $objReader->load($myPath);
+                                        $objWorksheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);;
+
+$i=1;
+array_shift($objWorksheet);
+$test_array = array();
+foreach($objWorksheet as $key=>$val){
+    if($i < 500)
+        $test_array[$i] = $val;
+    $i++;   
+}
+
+
+                            
+                                    // $xlsx = new Reader($myTmp);
+                                    // $data = $xlsx->getSheetData('Sheet1');
                                     $a=0;
-                                    foreach($data as $temp){
+                                    foreach($test_array as $temp)
+                                    {
                                                             $arr = array();
                                                                     if($a<=3)
                                                             {
@@ -182,9 +199,15 @@ class FileuploadrecordController extends AppController
                                                                     //echo $max;
                                                                     $query = "INSERT INTO attendancerecord(empId,empName,Att_Date,InTime,OutTime,Shift,S_InTime,S_OutTime,WorkDurr,OT,TotDurr,LateBy,EarlyGoingBy,Att_Status,Punch_Records,id_fileuploadrecord) VALUES('$empId','$empName','$Att_Date','$InTime','$OutTime','$Shift','$S_InTime','$S_OutTime','$WorkDurr','$OT','$TotDurr','$LateBy','$EarlyGoingBy','$Att_Status','$Punch_Records','$max')";
                                                                     require 'dbconnect.php';
-                                                                    mysqli_query($conn,$query);
+                                                                    if(mysqli_query($conn,$query)){
+                                                                        $this->Flash->success(__('data saved in attendance'));
+                                                                    }
+                                                                    else{
+                                                                        $this->Flash->error(__('data not saved in attendance'));
+                                                                    }
                                                              
                                     }
+                                   
                                     return $this->redirect(['controller'=>'Fileuploadrecord','action' => 'index']);
 
                                                                  

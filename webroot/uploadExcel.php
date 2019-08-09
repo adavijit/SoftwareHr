@@ -6,7 +6,7 @@ require 'dbconnect.php';
 
 $name = $_FILES['excelSheet']['name'];
 $tmp_name = $_FILES['excelSheet']['tmp_name'];
-require('XLSXReader.php');
+require 'XLSXReader.php';
 $xlsx = new XLSXReader($tmp_name);
 
 
