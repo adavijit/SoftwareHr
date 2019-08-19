@@ -1,6 +1,7 @@
 <?php
 use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
+require '../webroot/dbconnect.php';
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\EmpGeneralInfo $empGeneralInfo
@@ -48,7 +49,7 @@ use Cake\Routing\Router;
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
-          
+            <!-- <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>              -->
               <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
@@ -63,10 +64,10 @@ use Cake\Routing\Router;
             </ul>
           </li>
           <li>
-            <a id="parent5" class="parent" onclick="changeActive('parent5');" href="javascript:void(0);"><i class="icon-department"></i> <span>Employee Designation</span></a>
+            <a id="parent5" onclick="changeActive('parent5')" class="parent" href="<?php echo Router::url(['controller'=>'Designation','action'=>'index']) ?>"><i class="icon-home"></i> <span>Employe Designation</span></a>
           </li>
           <li>
-            <a id="parent6" class="parent" onclick="changeActive('parent6');" href="javascript:void(0);"><i class="icon-briefcase"></i> <span>Employee Department</span></a>
+            <a id="parent6" onclick="changeActive('parent6')" class="parent" href="<?php echo Router::url(['controller'=>'Departmenttable','action'=>'index']) ?>"><i class="icon-home"></i> <span>Employe Department</span></a>
           </li>
           <li>
             <a id="parent7" class="parent" onclick="changeActive('parent7');" href="javascript:void(0);"><i class="icon-file"></i> <span>Settings</span></a>
@@ -315,7 +316,7 @@ use Cake\Routing\Router;
                    
                      if($empGeneralInfo->empId==$temp['empId'])
                      {
-                         $degreeName=$temp['highestQualification'];
+                         $degreeName=$temp['degreeNames'];
                          $yearOfPassing=$temp['yearOfPassing'];
                          $institution=$temp['institution'];
                          $doc= $temp['documentPath'];
@@ -331,12 +332,93 @@ use Cake\Routing\Router;
               <?php $id= base64_encode($empGeneralInfo->empId);?>
               <a href="<?php  echo Router::url(array('controller'=>'AllRecordsEdit', 'div'=>'2','action'=>'index','id'=>$id))  ?>" class="penciledit"><i class="icon-pencil"></i></a>
               <div class="row">
-                <div class="col-6"><label class="employlabel">Degree Name</label></div>
-                <div class="col-6"><label class="employlabel">:  <?php echo $degreeName ?></label></div>
-                <div class="col-6"><label class="employlabel">Year of Passing</label></div>
-                <div class="col-6"><label class="employlabel">:  <?php echo $yearOfPassing ?></label></div>
-                <div class="col-6"><label class="employlabel">Institution</label></div>
-                <div class="col-6"><label class="employlabel">:  <?php echo $institution ?></label></div>
+          
+                <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>Degree Names</th>
+        <th>Years of passing</th>
+       
+        <th>Institution</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+     
+       <?php
+$x='';
+$y='';
+$z='';
+$arr=array();
+$brr=array();
+$crr=array();
+$n = strlen($degreeName);
+$n2 =  strlen($yearOfPassing);
+$n3= strlen($institution);
+for($i=0;$i<strlen($degreeName);$i++)
+{
+    if($degreeName[$i]!=';')
+    {
+        $x.=$degreeName[$i];
+        $n--;
+    }
+    elseif($n!=0 || $degreeName[$i]!=';'){
+        array_push($arr,$x);
+        $x='';
+        $n--;
+    }
+    
+}
+for($i=0;$i<strlen($yearOfPassing);$i++)
+{
+    if($yearOfPassing[$i]!=';')
+    {
+        $y.=$yearOfPassing[$i];
+        $n2--;
+    }
+    elseif($n2!=0 || $yearOfPassing[$i]!=';'){
+        array_push($brr,$y);
+        $y='';
+        $n2--;
+    }
+    
+}
+for($i=0;$i<strlen($institution);$i++)
+{
+    if($institution[$i]!=';')
+    {
+        $z.=$institution[$i];
+        $n3--;
+    }
+    elseif($n3!=0 || $institution[$i]!=';'){
+        array_push($crr,$z);
+        $z='';
+        $n3--;
+    }
+    
+}
+
+array_push($arr,$x);
+array_push($brr,$y);
+array_push($crr,$z);
+
+for($i=0;$i<count($arr);$i++)
+{
+
+ echo " <tr><td>$arr[$i]</td>";
+ echo "<td>$brr[$i]</td>";
+ echo "<td>$crr[$i]</td>  </tr>";
+}
+
+      
+
+
+      ?>
+     
+    
+     
+    </tbody>
+  </table>
                 <div class="col-6"><label class="employlabel">Documents</label></div>
                 <?php if($doc=='' || $doc=='upload/') 
                echo  "<div class='col-6'><label class='employlabel'>: <a>No Documents</a></label></div>";
@@ -408,10 +490,72 @@ use Cake\Routing\Router;
               <?php $id= base64_encode($empGeneralInfo->empId);?>
               <a href="<?php  echo Router::url(array('controller'=>'AllRecordsEdit', 'div'=>'3','action'=>'index','id'=>$id))  ?>" class="penciledit"><i class="icon-pencil"></i></a>
               <div class="row">
-                <div class="col-6"><label class="employlabel">Skill Name</label></div>
-                <div class="col-6"><label class="employlabel">:   <?php echo $skillName ?></label></div>
-                <div class="col-6"><label class="employlabel">Years of Experience</label></div>
-                <div class="col-6"><label class="employlabel">:   <?php echo $yearOfExp ?></label></div>
+           
+                <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>Skill Names</th>
+        <th>Years of experience</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+     
+       <?php
+$x='';
+$y='';
+$arr=array();
+$brr=array();
+$n = strlen($skillName);
+$n2 =  strlen($yearOfExp);
+for($i=0;$i<strlen($skillName);$i++)
+{
+    if($skillName[$i]!=';')
+    {
+        $x.=$skillName[$i];
+        $n--;
+    }
+    elseif($n!=0 || $skillName[$i]!=';'){
+        array_push($arr,$x);
+        $x='';
+        $n--;
+    }
+    
+}
+for($i=0;$i<strlen($yearOfExp);$i++)
+{
+    if($yearOfExp[$i]!=';')
+    {
+        $y.=$yearOfExp[$i];
+        $n2--;
+    }
+    elseif($n2!=0 || $yearOfExp[$i]!=';'){
+        array_push($brr,$y);
+        $y='';
+        $n2--;
+    }
+    
+}
+
+array_push($arr,$x);
+array_push($brr,$y);
+
+for($i=0;$i<count($arr);$i++)
+{
+
+ echo " <tr><td>$arr[$i]</td>";
+ echo "<td>$brr[$i]</td>  </tr>";
+}
+
+      
+
+
+      ?>
+     
+    
+     
+    </tbody>
+  </table>
                 <div class="col-6"><label class="employlabel">Documents</label></div>
                 <?php if($doc=='' || $doc=='upload/') 
                echo  "<div class='col-6'><label class='employlabel'>: <a>No Documents</a></label></div>";
@@ -458,7 +602,7 @@ use Cake\Routing\Router;
 
           <?php
               $companyName='';
-              $yearsOfExp='';
+              $yearsInCompany='';
               $designationE='';
               $departmentE='';
              
@@ -471,9 +615,10 @@ use Cake\Routing\Router;
                      if($empGeneralInfo->empId==$temp['empId'])
                      {
                          //$companyName=$temp['skillName'];
-                         $yearOfExp=$temp['experience'];
-                         $designationE=$temp['designation'];
-                         $departmentE=$temp['department'];
+                         $companyName=$temp['experience'];
+                         $designationE=$temp['designationId'];
+                         $departmentE=$temp['departmentId'];
+                         $yearsInCompany=$temp['yearsInCompany'];
                          $doc= $temp['documentPath'];
                          
                      }
@@ -487,14 +632,124 @@ use Cake\Routing\Router;
               <?php $id= base64_encode($empGeneralInfo->empId);?>
               <a href="<?php  echo Router::url(array('controller'=>'AllRecordsEdit', 'div'=>'4','action'=>'index','id'=>$id))  ?>" class="penciledit"><i class="icon-pencil"></i></a>
               <div class="row">
-                <div class="col-6"><label class="employlabel">Company Name</label></div>
-                <div class="col-6"><label class="employlabel">:  <?php echo $companyName ?></label></div>
-                <div class="col-6"><label class="employlabel">Years of Experience</label></div>
-                <div class="col-6"><label class="employlabel">:  <?php echo $yearOfExp ?></label></div>
-                <div class="col-6"><label class="employlabel">Designation</label></div>
-                <div class="col-6"><label class="employlabel">:  <?php echo $designationE ?></label></div>
-                <div class="col-6"><label class="employlabel">Department</label></div>
-                <div class="col-6"><label class="employlabel">:  <?php echo $departmentE ?></label></div>
+             
+                <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>Company names</th>
+        <th>Years of experience</th>
+       
+        <th>Designation</th>
+        <th>Department</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+     
+       <?php
+$w='';
+$x='';
+$y='';
+$z='';
+$arr=array();
+$brr=array();
+$crr=array();
+$drr=array();
+$n = strlen($companyName);
+$n2 =strlen($yearsInCompany);
+$n3= strlen($designationE);
+$n4= strlen($departmentE);
+for($i=0;$i<strlen($companyName);$i++)
+{
+    if($companyName[$i]!=';')
+    {
+        $w.=$companyName[$i];
+        $n--;
+    }
+    elseif($n!=0 || $companyName[$i]!=';'){
+        array_push($arr,$w);
+        $w='';
+        $n--;
+    }
+    
+}
+for($i=0;$i<strlen($yearsInCompany);$i++)
+{
+    if($yearsInCompany[$i]!=';')
+    {
+        $x.=$yearsInCompany[$i];
+        $n2--;
+    }
+    elseif($n2!=0 || $yearsInCompany[$i]!=';'){
+        array_push($brr,$x);
+        $x='';
+        $n2--;
+    }
+    
+}
+for($i=0;$i<strlen($designationE);$i++)
+{
+    if($designationE[$i]!=';')
+    {
+        $y.=$designationE[$i];
+        $n3--;
+    }
+    elseif($n3!=0 || $designationE[$i]!=';'){
+        array_push($crr,$y);
+        $y='';
+        $n3--;
+    }
+    
+}
+
+for($i=0;$i<strlen($departmentE);$i++)
+{
+    if($departmentE[$i]!=';')
+    {
+        $z.=$departmentE[$i];
+        $n4--;
+    }
+    elseif($n4!=0 || $departmentE[$i]!=';'){
+        array_push($drr,$z);
+        $z='';
+        $n4--;
+    }
+    
+}
+array_push($arr,$w);
+array_push($brr,$x);
+array_push($crr,$y);
+array_push($drr,$z);
+
+for($i=0;$i<count($arr);$i++)
+{
+
+ echo " <tr><td>$arr[$i]</td>";
+ echo "<td>$brr[$i]</td>";
+ $res= mysqli_query($conn,"SELECT * FROM designation WHERE id = $crr[$i]");
+ foreach($res as $temp)
+ {
+  echo "<td>$temp[designation]</td>";
+ }
+ $res2= mysqli_query($conn,"SELECT * FROM departmenttable WHERE id = $drr[$i]");
+ foreach($res2 as $temp)
+ {
+  echo "<td>$temp[department]</td>";
+ }
+
+
+
+}
+
+      
+
+
+      ?>
+     
+    
+     
+    </tbody>
+  </table>
                 <div class="col-6"><label class="employlabel">Documents</label></div>
                 <?php if($doc=='' || $doc=='upload/') 
                echo  "<div class='col-6'><label class='employlabel'>: <a>No Documents</a></label></div>";

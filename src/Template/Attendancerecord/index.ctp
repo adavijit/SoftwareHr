@@ -48,7 +48,18 @@ require 'dbconnect.php';
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
-            <a class = "activeclass"><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>             
+            <?php 
+            require 'dbconnect.php';
+            $sql=mysqli_query($conn,"SELECT id FROM fileuploadrecord ORDER BY id DESC LIMIT 1");
+            $max=0;
+            foreach($sql as $test)
+                {
+                    $max=$test['id'];
+                    
+                }
+            
+            ?>
+            <a class="activeclass"><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index','id'=>$max]) ?>' "  style="cursor:pointer;">Attendance Records</li></a>                    
               <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
@@ -121,26 +132,46 @@ while($row3 = $result1->fetch_assoc()){
     <div class="bodytransition">
       <div class="bodypart">
         <div class="row pageheadertop mb-3">
-        <div class="col"><h2>Attendance List For: <?= $month?>-<?= $year?></h2></div>
-      
-        <div class="col-md-6">
+        <div class="col-md-3"><h2>Attendance List For: <?= $month?>-<?= $year?></h2></div>
+       
+        <div class="col-auto">
           <div class="row">
-            <div class="col-auto">
+          <div class="col-auto">
+            <div class="form-group addcustomcss">
+             <select class="form-control rounded-0" id="sheet" name="sheet" value="">
+              <option>Select Sheet</option>
+              <?php 
+               $result_gen = mysqli_query($conn,"SELECT * FROM fileuploadrecord");
+               $row_gen = mysqli_num_rows($result_gen);
+              if($row_gen > 0){
+                while($result_data_gen=$result_gen->fetch_assoc()){?>
+                  <option value=<?php echo $result_data_gen['id'] ?>><?=$result_data_gen['att_sheetName']?></option>
+                  <?php
+                }
+              }?>
+            </select> 
+        
+        </div>
+        </div>
+      
+        
+          
+        <div class="col-auto">
           <div class="form-group addcustomcss">
              <select class="form-control rounded-0" id="empName" name="empName" value="">
               <option>Employee Name</option>
               <?php 
-               $result_gen = mysqli_query($conn,"SELECT * FROM emp_general_info");
+               $result_gen = mysqli_query($conn,"SELECT DISTINCT empId,empName FROM attendancerecord WHERE id_fileuploadrecord=$_GET[id]");
                $row_gen = mysqli_num_rows($result_gen);
               if($row_gen > 0){
                 while($result_data_gen=$result_gen->fetch_assoc()){?>
-                  <option><?=$result_data_gen['empName']?></option>
+                  <option value="<?php echo $result_data_gen['empId']?> "><?=$result_data_gen['empName']."(Id-".$result_data_gen['empId'].")"?></option>
                   <?php
                 }
               }?>
             </select> 
           </div>
-        </div>
+       </div>
 
         <div class="col-auto">
           <div class="form-group addcustomcss">
@@ -152,6 +183,7 @@ while($row3 = $result1->fetch_assoc()){
             </select> 
           </div>
         </div>
+        
         <div class="col-auto">
           <div class="form-group addcustomcss">
              <select class="form-control rounded-0" id="WorkDurr" name="WorkDurr">
@@ -163,16 +195,18 @@ while($row3 = $result1->fetch_assoc()){
             </select> 
           </div>
         </div>
-        
         <div class="col-auto pt-2">
           <input type="checkbox" class="" id="LateBy" id="LateBy" >
                 <label for="LateBy">LateBy</label>
         </div>
-
+      
+       
         <div class="col-auto"><button type="button" class="btn orangebutton rounded-circle" id="download"><i class="icon-download-1" ></i></button></div>
         <div class="col-auto"><button type="button" class="btn outlineblue rounded-circle px-0" onclick="return RefreshWindow();"><i class="icon-refresh-button"></i></button></div>
-      </div>
-    </div>
+        </div> 
+        </div>
+        </div>
+    
     
         
         <!-- <div class="col-auto">
@@ -192,15 +226,7 @@ while($row3 = $result1->fetch_assoc()){
           <!-- <div class="form-group addcustomcss">
              <select class="form-control rounded-0" id="empName" name="empName" value="">
               <option>Employee Name</option>
-              <?php 
-               $result_gen = mysqli_query($conn,"SELECT * FROM emp_general_info");
-               $row_gen = mysqli_num_rows($result_gen);
-              if($row_gen > 0){
-                while($result_data_gen=$result_gen->fetch_assoc()){?>
-                  <option><?=$result_data_gen['empName']?></option>
-                  <?php
-                }
-              }?>
+              
             </select> 
           </div> -->
           <!-- <div class="col-auto">
@@ -250,15 +276,7 @@ while($row3 = $result1->fetch_assoc()){
         
 
       </div>
-      
-        <!-- </div> -->
-      <!-- </div>
-
-      </div>
-    </div>           -->
-
-<!-- </div> -->
-<div class="row mb-5">
+      <div class="row mb-5">
 
           <div class="pageloadleft"><label>Show</label><select id="show"><option>10</option>
           <option>20</option>
@@ -268,6 +286,14 @@ while($row3 = $result1->fetch_assoc()){
         
 
 </div>
+        <!-- </div> -->
+      <!-- </div>
+
+      </div>
+    </div>           -->
+
+<!-- </div> -->
+
       
     </div>
     <!-- body container end here -->
@@ -324,7 +350,7 @@ while($row3 = $result1->fetch_assoc()){
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -390,8 +416,19 @@ var empName = '';
 var check= '';
 var status = '';
 var show = '';
+var sheet = '';
 var id= <?php echo $_GET['id']?>;
+
+<?php $path=  Router::url(['controller'=>'Attendancerecord','action'=>'edit']);?>
 // var id = $_GET['id'];
+$("#sheet").change(function(){
+ sheet = document.getElementById('sheet').value;
+console.log(window.location.href.split('?')[0]);
+var url = window.location.href.split('?')[0] + "?id=" + sheet; 
+window.open(url,"_self");
+// window.location.href('')
+// window.location.href='';
+});
 
 $("#WorkDurr,#empName,#LateBy,#status,#show").change(function(){
  console.log(document.getElementById('show').value);
@@ -423,8 +460,9 @@ status = document.getElementById('status').value;
               check:check,
               status:status,
               show:show,
-              id:id
-              },
+              id:id,
+              path: "<?php echo $path;?>"
+            },
               success:function(data){
                   $('#ttt').html(data);
               }
@@ -453,8 +491,10 @@ filter_all();
                 page:page,
                 id:id,
                 show:show,
-                test:1
+                test:1,
+                path: "<?php echo $path;?>"
               },
+              
               success:function(data){
                   $('#ttt').html(data);
               }

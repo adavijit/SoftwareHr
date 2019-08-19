@@ -84,6 +84,18 @@ $id=base64_decode($_GET['id']);
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
+            <?php 
+            require 'dbconnect.php';
+            $sql=mysqli_query($conn,"SELECT id FROM fileuploadrecord ORDER BY id DESC LIMIT 1");
+            $max=0;
+            foreach($sql as $test)
+                {
+                    $max=$test['id'];
+                    
+                }
+            
+            ?>
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index','id'=>$max]) ?>' "  style="cursor:pointer;">Attendance Records</li></a>                     -->
               <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
@@ -98,10 +110,10 @@ $id=base64_decode($_GET['id']);
             </ul>
           </li>
           <li>
-            <a id="parent5" class="parent" onclick="changeActive('parent5');" href="javascript:void(0);"><i class="icon-department"></i> <span>Employee Designation</span></a>
+            <a id="parent5" onclick="changeActive('parent5')" class="parent" href="<?php echo Router::url(['controller'=>'Designation','action'=>'index']) ?>"><i class="icon-home"></i> <span>Employe Designation</span></a>
           </li>
           <li>
-            <a id="parent6" class="parent" onclick="changeActive('parent6');" href="javascript:void(0);"><i class="icon-briefcase"></i> <span>Employee Department</span></a>
+            <a id="parent6" onclick="changeActive('parent6')" class="parent" href="<?php echo Router::url(['controller'=>'Departmenttable','action'=>'index']) ?>"><i class="icon-home"></i> <span>Employe Department</span></a>
           </li>
           <li>
             <a id="parent7" class="parent" onclick="changeActive('parent7');" href="javascript:void(0);"><i class="icon-file"></i> <span>Settings</span></a>
@@ -485,52 +497,131 @@ foreach($result as $temp)
     </div>
     
 <!-- ______________________________________________Academic STARTS HERE___________________________________________-->
-<?php
-              $degreeName='';
-              $yearOfPassing='';
-              $institution='';
-                        
-              $academic = TableRegistry::get('academicdetails');
-                 $query2 = $academic->find('all');
-                 //print_r($query);
-                 foreach($query2 as $temp){
-                   
-                     if($id==$temp['empId'])
-                     {
-                         $degreeName=$temp['highestQualification'];
-                         $yearOfPassing=$temp['yearOfPassing'];
-                         $institution=$temp['institution'];
-                         $doc= $temp['documentPath'];
-                         
-                     }
-                 }
-
-          ?>
 
     <div id="menu2" class="tab-pane fade">
      <h3 class="mb-3">Employee Academic Information</h3>
-      <div class="row">
+     <div class="col">
+        <div class="form-group addcustomcss">
+        <button id="addNewAcademic" class="btn outlineblue mr-2" type="button" >Add&nbsp;<i class="icon-add-plus-button" style="color:blue"></i></button>
+        </div> 
+     <?php
+  $degreeName='';
+  $yearOfPassing='';
+  $institution='';
+  $countAcademic=0;
+  $academic = TableRegistry::get('academicdetails');
+     $query2 = $academic->find('all');
+     //print_r($query);
+     foreach($query2 as $temp){
+       
+         if($id==$temp['empId'])
+         {
+             
+             $degreeName=$temp['degreeNames'];
+             $yearOfPassing=$temp['yearOfPassing'];
+             $institution=$temp['institution'];
+             $doc= $temp['documentPath'];
+             
+         }
+     }
+   
+$x='';
+$y='';
+$z='';
+$arr=array();
+$brr=array();
+$crr=array();
+$n = strlen($degreeName);
+$n2 =  strlen($yearOfPassing);
+$n3= strlen($institution);
+for($i=0;$i<strlen($degreeName);$i++)
+{
+    if($degreeName[$i]!=';')
+    {
+        $x.=$degreeName[$i];
+        $n--;
+      
+    }
+    elseif($n!=0 || $degreeName[$i]!=';'){
+        array_push($arr,$x);
+        $x='';
+        $n--;
+        $countAcademic++;
+    }
+    
+}
+$countAcademic++;
+for($i=0;$i<strlen($yearOfPassing);$i++)
+{
+    if($yearOfPassing[$i]!=';')
+    {
+        $y.=$yearOfPassing[$i];
+        $n2--;
+    }
+    elseif($n2!=0 || $yearOfPassing[$i]!=';'){
+        array_push($brr,$y);
+        $y='';
+        $n2--;
+    }
+    
+}
+for($i=0;$i<strlen($institution);$i++)
+{
+    if($institution[$i]!=';')
+    {
+        $z.=$institution[$i];
+        $n3--;
+    }
+    elseif($n3!=0 || $institution[$i]!=';'){
+        array_push($crr,$z);
+        $z='';
+        $n3--;
+    }
+    
+}
 
-        <div class="col-sm-4 mb-2">
+array_push($arr,$x);
+array_push($brr,$y);
+array_push($crr,$z);
+
+for($i=0;$i<count($arr);$i++)
+{
+ $test = $arr[$i];
+?>
+
+
+      <div class="row">
+      <div class="col-sm-2 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Degree Name</label>
-             <input id="degreeName" value="<?php echo $degreeName ?>" placeholder="Degree Name" class="form-control rounded-0" width="100%" /> 
+             <input name="degreeName[]" value="<?php echo $test?>" id="degreeName" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-          <label class="labelform">Year of passing</label>
-            <input id="yearOfPassing" value="<?php echo $yearOfPassing ?>" placeholder="Year of Passing" class="form-control rounded-0" width="100%" /> 
+          <label class="labelform">Year of Passing</label>
+            <input name="yearOfPassing[]" value="<?php echo $brr[$i]?>" id="yearOfPassing"  class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Institution</label>
-            <input id="institution" value="<?php echo $institution ?>" placeholder="Institution" class="form-control rounded-0" width="100%" /> 
+            <input name="institution[]" value="<?php echo $crr[$i]?>" id="institution"  class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
-      </div>
-      <h3 class="my-3">Academic Informations</h3>
+        <div class="col-sm-1 mb-2">
+        <div class="form-group addcustomcss">
+        <button id="removeNewAcademic" type="button" class="btn rounded-circle" ><i class="icon-cancel-1" style="color:red"></i></button>
+        </div>   
+        </div>
+        </div>
+        
+<?php } ?>
+</div>
+
+
+      
+      <h3  id="initialAcademic" class="my-3">Academic Informations</h3>
       <ul class="imageuploadlist p-0 m-0">
         <li id='empAcademicOpen'><div  onclick="document.getElementById('empAcademicFile').click()"  class="imageuploadsect imagoutlinebor"><a  class="m-0"><p><?php echo $doc ?></p></a></div></li>
         <input type="file" style='visibility: hidden;' id="empAcademicFile" name="" >
@@ -540,110 +631,259 @@ foreach($result as $temp)
      
     ?>
     <!-- ______________________________________________SKILLS STARTS HERE___________________________________________-->
-    <?php
-              $skillName='';
-              $yearOfExp='';
-             
-                        
-              $skills = TableRegistry::get('professionalskill');
-                 $query3 = $skills->find('all');
-                 //print_r($query);
-                 foreach($query3 as $temp){
-                   
-                     if($id==$temp['empId'])
-                     {
-                         $skillName=$temp['skillName'];
-                         $yearOfExp=$temp['experience'];
-                         $doc= $temp['documentPath'];
-                         
-                     }
-                 }
-
-          ?>
-
+   
     <div id="menu3" class="tab-pane fade">
-      <h3 class="mb-3">Employee Skills Information</h3>
-      <div class="row">
+    <h3 class="mb-3">Employee Academic Information</h3>
+     <div class="col">
+        <div class="form-group addcustomcss">
+        <button id="addNewSkill" class="btn outlineblue mr-2" type="button" >Add&nbsp;<i class="icon-add-plus-button" style="color:blue"></i></button>
+        </div> 
+     <?php
+           $skillName='';
+           $yearOfExp='';
+           $countSkill=0;
+                     
+           $skills = TableRegistry::get('professionalskill');
+              $query3 = $skills->find('all');
+              //print_r($query);
+              foreach($query3 as $temp){
+                
+                  if($id==$temp['empId'])
+                  {
+                      
+                      $skillName=$temp['skillName'];
+                      $yearOfExp=$temp['experience'];
+                      $doc= $temp['documentPath'];
+                      
+                  }
+              }
+  $x='';
+  $y='';
+  $prr=array();
+  $qrr=array();
+  $n = strlen($skillName);
+  $n2 =  strlen($yearOfExp);
+  for($i=0;$i<strlen($skillName);$i++)
+  {
+      if($skillName[$i]!=';')
+      {
+          $x.=$skillName[$i];
+          $n--;
+      }
+      elseif($n!=0 || $skillName[$i]!=';'){
+        $countSkill++;
+          array_push($prr,$x);
+          $x='';
+          $n--;
+      }
+      
+  }
+  $countSkill++;
+  for($i=0;$i<strlen($yearOfExp);$i++)
+  {
+      if($yearOfExp[$i]!=';')
+      {
+          $y.=$yearOfExp[$i];
+          $n2--;
+      }
+      elseif($n2!=0 || $yearOfExp[$i]!=';'){
+          array_push($qrr,$y);
+          $y='';
+          $n2--;
+      }
+      
+  }
+  
+  array_push($prr,$x);
+  array_push($qrr,$y);
+  
+      
+  
+for($i=0;$i<count($prr);$i++)
+{
+ 
+?>
 
-        <div class="col-sm-4 mb-2">
-          <div class="form-group addcustomcss">
+
+      <div class="row">
+      <div class="col-sm-2 mb-2">
+      <div class="form-group addcustomcss">
           <label class="labelform">Skill Name</label>
-             <input value="<?php echo $skillName ?>" id="skillName" placeholder="Skill Name" class="form-control rounded-0" width="100%" /> 
+             <input name="skillName[]" id="skillName" value="<?php  echo $prr[$i]?>"  class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
-          <div class="form-group addcustomcss">
+        <div class="form-group addcustomcss">
           <label class="labelform">Years of Experience</label>
-            <input id="yearsOfExp" value="<?php echo $yearOfExp ?>" placeholder="Years of Experience" class="form-control rounded-0" width="100%" /> 
+            <input name="yearsOfExp[]" value="<?php  echo $qrr[$i]?>" id="yearsOfExp" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
-        <div class="col-sm-4 mb-2">
-          <div class="form-group addcustomcss">
-          <label class="labelform">Institution</label>
-            <input id="expInstitution" value="<?php echo $institution?>" placeholder="Institution" class="form-control rounded-0" width="100%" /> 
-          </div>
+        <div class="col-sm-1 mb-2">
+        <div class="form-group addcustomcss">
+        <button id="removeNewSkill" type="button" class="btn rounded-circle" ><i class="icon-cancel-1" style="color:red"></i></button>
+        </div>   
         </div>
-      </div>
-      <h3 class="my-3">Skill Informations</h3>
+        </div>
+        
+<?php } ?>
+</div>
+
+
+      <h3 id="initialSkill" class="my-3">Skill Informations</h3>
       <ul class="imageuploadlist p-0 m-0">
         <li id="empSkillOpen"><div  onclick="document.getElementById('empSkillFile').click()" class="imageuploadsect imagoutlinebor"><a class="m-0"><p><?php echo $doc; ?></p></a></div></li>
         <input type="file"  style='visibility: hidden;' id="empSkillFile" name="">
       </ul>
     </div>
     <!-- ______________________________________________Employee Experience STARTS HERE___________________________________________-->
-    <?php
-              $companyName='';
-              $yearsOfExp='';
-              $designationE='';
-              $departmentE='';
-             
-                        
-              $exp = TableRegistry::get('experiencedetails');
-                 $query4 = $exp->find('all');
-                 //print_r($query);
-                 foreach($query4 as $temp){
-                   
-                     if($id==$temp['empId'])
-                     {
-                         //$companyName=$temp['skillName'];
-                         $yearOfExp=$temp['experience'];
-                         $designationE=$temp['designation'];
-                         $departmentE=$temp['department'];
-                         $doc= $temp['documentPath'];
-                         
-                     }
-                 }
-
-          ?>
+   
     <div id="menu4" class="tab-pane fade">
       <h3 class="mb-3">Employee Experience Information</h3>
-      <div class="row">
+      <div class="col">
+        <div class="form-group addcustomcss">
+        <button id="addNewExp" class="btn outlineblue mr-2" type="button" >Add&nbsp;<i class="icon-add-plus-button" style="color:blue"></i></button>
+        </div> 
+     <?php
+  
+  $companyName='';
+  $yearsInCompany='';
+  $designationE='';
+  $departmentE='';
+ $countExp = 0;
+            
+  $exp = TableRegistry::get('experiencedetails');
+     $query4 = $exp->find('all');
+     //print_r($query);
+     foreach($query4 as $temp){
+       
+         if($id==$temp['empId'])
+         {
+           
+             $companyName=$temp['experience'];
+             $designationE=$temp['designationId'];
+             $departmentE=$temp['departmentId'];
+             $yearsInCompany=$temp['yearsInCompany'];
+             $doc= $temp['documentPath'];
+             
+         }
+     }
+     $w='';
+     $x='';
+     $y='';
+     $z='';
+     $arr=array();
+     $brr=array();
+     $crr=array();
+     $drr=array();
+     $n = strlen($companyName);
+     $n2 =strlen($yearsInCompany);
+     $n3= strlen($designationE);
+     $n4= strlen($departmentE);
+     for($i=0;$i<strlen($companyName);$i++)
+     {
+         if($companyName[$i]!=';')
+         {
+             $w.=$companyName[$i];
+             $n--;
+         }
+         elseif($n!=0 || $companyName[$i]!=';'){
+             array_push($arr,$w);
+             $w='';
+             $n--;
+             $countExp++;
+         }
+         
+     }
+     $countExp++;
+     for($i=0;$i<strlen($yearsInCompany);$i++)
+     {
+         if($yearsInCompany[$i]!=';')
+         {
+             $x.=$yearsInCompany[$i];
+             $n2--;
+         }
+         elseif($n2!=0 || $yearsInCompany[$i]!=';'){
+             array_push($brr,$x);
+             $x='';
+             $n2--;
+         }
+         
+     }
+     for($i=0;$i<strlen($designationE);$i++)
+     {
+         if($designationE[$i]!=';')
+         {
+             $y.=$designationE[$i];
+             $n3--;
+         }
+         elseif($n3!=0 || $designationE[$i]!=';'){
+             array_push($crr,$y);
+             $y='';
+             $n3--;
+         }
+         
+     }
+     for($i=0;$i<strlen($departmentE);$i++)
+     {
+         if($departmentE[$i]!=';')
+         {
+             $z.=$departmentE[$i];
+             $n4--;
+         }
+         elseif($n3!=0 || $departmentE[$i]!=';'){
+             array_push($drr,$z);
+             $z='';
+             $n4--;
+         }
+         
+     }
+     array_push($arr,$w);
+     array_push($brr,$x);
+     array_push($crr,$y);
+     array_push($drr,$z);
 
-        <div class="col-sm-3 mb-2">
+     for($i=0;$i<count($arr);$i++)
+{
+ 
+?>
+
+
+      <div class="row">
+     
+      <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Company Name</label>
-             <input id="companyName" value="<?php echo $companyName?>" placeholder="Company Name" class="form-control rounded-0" width="100%" /> 
+             <input name="companyName[]" value="<?php  echo $arr[$i]?>" id="companyName" placeholder="Company Name" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
-            
           <label class="labelform">Years of Experience</label>
-            <input id="expYears" value="<?php echo $yearOfExp?>" placeholder="Years of Experience" class="form-control rounded-0" width="100%" /> 
+            <input name="expYears[]" id="expYears" value="<?php  echo $brr[$i]?>" placeholder="Years of Experience" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Designation</label>
-            <select  id="designation" class="form-control rounded-0">
-            <option><?php echo $designationE?></option>
+         
+            <select  name="designation[]"   id="designation" class="form-control rounded-0">
             <?php
               $sql="SELECT * FROM designation";
               $res=mysqli_query($conn,$sql);
               foreach($res as $row)
               {
-                if($row[designation]!=$designationE)
-                echo "<option>$row[designation]</option>";
+                if($crr[$i]==$row[id])
+                echo "<option value=$row[id]>$row[designation]</option>";
+              }
+
+            ?>
+            <?php
+              $sql="SELECT * FROM designation";
+              $res=mysqli_query($conn,$sql);
+              foreach($res as $row)
+              {
+                if($crr[$i]!=$row[id])
+                echo "<option value=$row[id]>$row[designation]</option>";
               }
 
             ?>
@@ -651,27 +891,45 @@ foreach($result as $temp)
                 </select>
           </div>
         </div>
-        <div class="col-sm-3 mb-2">
+        <div class="col-sm-2 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Department</label>
-            <select id="department" class="form-control rounded-0">
-                  <option><?php echo $departmentE?></option>
+            <select name="department[]" id="department" class="form-control rounded-0">
+                  
                   <?php
-                  //$conn = mysqli_connect("localhost","root","","hr_software");
                   $sql1="SELECT * FROM departmenttable";
                     $res1=mysqli_query($conn,$sql1);
                     foreach($res1 as $row1)
                     {
-                      if($row1[department]!=$departmentE)
-                      echo "<option>$row1[department]</option>";
+                      if($drr[$i]==$row[id])
+                      echo "<option value=$row[id]>$row1[department]</option>";
+                    }
+
+                  ?>
+                  <?php
+                  $sql1="SELECT * FROM departmenttable";
+                    $res1=mysqli_query($conn,$sql1);
+                    foreach($res1 as $row1)
+                    {
+                      if($drr[$i]!=$row[id])
+                      echo "<option value=$row[id]>$row1[department]</option>";
                     }
 
                   ?>
                 </select>
           </div>
         </div>
-      </div>
-      <h3 class="my-3">Experience Informations</h3>
+        <div class="col-sm-1 mb-2">
+        <div class="form-group addcustomcss">
+        <button id="removeNewExp" type="button" class="btn rounded-circle" ><i class="icon-cancel-1" style="color:red"></i></button>
+        </div>   
+        </div>
+        </div>
+        
+<?php } ?>
+</div>
+
+      <h3 id="initialExp" class="my-3">Experience Informations</h3>
       <ul class="imageuploadlist p-0 m-0">
      
         <li id="empExpOpen"><div onclick="document.getElementById('empExpFile').click()" class="imageuploadsect imagoutlinebor"><p><?php echo $doc?></p></a></div></li>
@@ -780,7 +1038,7 @@ function deleteDoc(docId){
           docName: name
         },
         success: function (data){
-         console.log(data);
+         
          $("#refresh1").load(" #refresh1");
         } 
     });
@@ -851,7 +1109,7 @@ else{
 
     form_data.append('id', id);
      //General Info insertion       
-     console.log(temp1);
+    
     form_data.append('temp1',temp1);
     form_data.append('temp2',temp2);
     form_data.append('employeeName', $('#employeeName').val());
@@ -882,25 +1140,55 @@ else{
 
 
     //Academic Details insertion
+    academicX =academicX + <?php echo $countAcademic?>;
     form_data.append('temp4',temp4);
-    form_data.append('degreeName', $('#degreeName').val());
-    form_data.append('yearOfPassing', $('#yearOfPassing').val());
-    form_data.append('institution', $('#institution').val());
-    
+    for (var aca = 0; aca <academicX; aca++) {
+      var ax = document.getElementsByName("degreeName[]")[aca].value;
+      var ay = document.getElementsByName("yearOfPassing[]")[aca].value;
+     var az = document.getElementsByName("institution[]")[aca].value;
+     if(ax!='')
+     form_data.append('degreeName[]',ax);
+     if(ay!='')
+    form_data.append('yearOfPassing[]', ay);
+    if(az!='')
+    form_data.append('institution[]', az);
+    }
 
     //Skill Details insertion
     form_data.append('temp5',temp5);
-    form_data.append('skillName', $('#skillName').val());
-    form_data.append('yearsOfExp', $('#yearsOfExp').val());
-    form_data.append('expInstitution', $('#expInstitution').val()); 
+    skillX =skillX + <?php echo $countSkill?>;
+    for (var skl = 0; skl <skillX; skl++) {
+      var tx = document.getElementsByName("skillName[]")[skl].value;
+      var ty = document.getElementsByName("yearsOfExp[]")[skl].value;
+
+     if(tx!='')
+       form_data.append('skillName[]', tx);
+       if(ty!='')
+       form_data.append('yearsOfExp[]', ty);
+     
+    }
+    
+   
      
 
-    //Employee Experience insertion
+   // Employee Experience insertion
     form_data.append('temp6',temp6);
-    form_data.append('companyName', $('#companyName').val());
-    form_data.append('expYears', $('#expYears').val());
-    form_data.append('designation', $('#designation').val());  
-    form_data.append('department', $('#department').val());   
+    expX = expX + <?php echo $countExp?>;
+    for (var exp = 0; exp <expX; exp++) {
+      var ew = document.getElementsByName("companyName[]")[exp].value;
+      var ex = document.getElementsByName("expYears[]")[exp].value;
+     var ey = document.getElementsByName("designation[]")[exp].value;
+     var ez = document.getElementsByName("department[]")[exp].value;
+     if(ew!='')
+       form_data.append('companyName[]', ew);
+       if(ex!='')
+       form_data.append('expYears[]', ex);
+       if(ey!='')
+       form_data.append('designation[]', ey);
+       if(ez!='')
+       form_data.append('department[]', ez); 
+    }
+   
     
 
 
@@ -914,9 +1202,8 @@ else{
         processData: false,
         contentType: false,
         success: function (data){
-          // console.log(data);
-          
-        jQuery("#successmessage").modal('show');
+       
+      jQuery("#successmessage").modal('show');
      
         },
         
@@ -983,7 +1270,7 @@ $(this).hide();
 });
 
 $('body').on('change', '#empAcademicFile', function() {
-  console.log("pppppp");
+ 
   var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
         if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) 
         {
@@ -1158,3 +1445,74 @@ function changeActive(id){
   cursor:pointer;
 }
 </style>
+<script>
+
+///////////////start emp skill upload ///////////////
+
+
+
+var fieldHTML = '<div class="row"><div class="col-sm-2 mb-2"><div class="form-group addcustomcss"><label class="labelform">Skill Name</label><input name="skillName[]" id="skillName" placeholder="Skill Name" class="form-control rounded-0" width="100%" /> </div></div><div class="col-sm-4 mb-2"><div class="form-group addcustomcss"><label class="labelform">Years of Experience</label><input name="yearsOfExp[]" id="yearsOfExp" placeholder="Years of Experience" class="form-control rounded-0" width="100%" /> </div></div><div class="col-sm-4 mb-2"><div class="col-sm-2 mb-2"><div class="form-group addcustomcss"><button id="removeNewSkill" type="button" class="btn rounded-circle" ><i class="icon-cancel-1"style="color:red"></i></button></div></div></div>';
+    var skillX = 0; //Initial field counter is 1
+ //Once add button is clicked
+ $('#addNewSkill').click(function(){
+        
+        //Check maximum number of input fields
+       
+        skillX++; //Increment field counter
+            $('#initialSkill').before(fieldHTML); //Add field html
+        
+    });
+    
+    //Once remove button is clicked
+ $('body').on('click', '#removeNewSkill', function(e){
+        e.preventDefault();
+        $(this).parent('div').parent('div').parent('div').remove(); //Remove field html
+        skillX--; //Decrement field counter
+  });
+
+
+///////////////start emp academic upload ///////////////
+var fieldHTML2 = '<div class="row"><div class="col-sm-2 mb-2"><div class="form-group addcustomcss"><label class="labelform">Degree Name</label> <input name="degreeName[]" id="degreeName" placeholder="Degree Name" class="form-control rounded-0" width="100%" /> </div></div><div class="col-sm-4 mb-2"><div class="form-group addcustomcss"><label class="labelform">Year of Passing</label><input name="yearOfPassing[]" id="yearOfPassing" placeholder="Year of Passing" class="form-control rounded-0" width="100%" /> </div></div><div class="col-sm-4 mb-2"><div class="form-group addcustomcss"><label class="labelform">Institution</label><input name="institution[]" id="institution" placeholder="Institution" class="form-control rounded-0" width="100%" /> </div></div><div class="col-sm-2 mb-2"><div class="form-group addcustomcss"><button id="removeNewAcademic" type="button" class="btn rounded-circle" ><i class="icon-cancel-1" style="color:red"></i></button></div></div></div>';
+var academicX = 0; //Initial field counter is 1
+ //Once add button is clicked
+ $('#addNewAcademic').click(function(){
+        
+        //Check maximum number of input fields
+    
+        academicX++; //Increment field counter
+            $('#initialAcademic').before(fieldHTML2); //Add field html
+        
+    });
+    
+    //Once remove button is clicked
+ $('body').on('click', '#removeNewAcademic', function(e){
+        e.preventDefault();
+        $(this).parent('div').parent('div').parent('div').remove(); //Remove field html
+        academicX--; //Decrement field counter
+  });
+
+
+///////////////start emp exp upload ///////////////
+var fieldHTML3 = '<div class="row"><div class="col-sm-3 mb-2"><div class="form-group addcustomcss"><label class="labelform">Company Name</label><input id="companyName" name="companyName[]" placeholder="Company Name" class="form-control rounded-0" width="100%" /> </div></div><div class="col-sm-3 mb-2"><div class="form-group addcustomcss"><label class="labelform">Years of Experience</label><input name="expYears[]" id="expYears" placeholder="Years of Experience" class="form-control rounded-0" width="100%" /> </div></div><div class="col-sm-3 mb-2">  <div class="form-group addcustomcss"><label class="labelform">Designation</label><select  name="designation[]"  id="designation" class="form-control rounded-0"><option>Designation</option><?php $sql1="SELECT * FROM designation";$res1=mysqli_query($conn,$sql1); foreach($res1 as $desg){ echo "<option value=$desg[id]>$desg[designation]</option>"; } ?></select></div></div><div class="col-sm-2 mb-2"><div class="form-group addcustomcss"><label class="labelform">Department</label><select id="department" name="department[]" class="form-control rounded-0"><option>Department</option><?php $sql1="SELECT * FROM departmenttable";$res1=mysqli_query($conn,$sql1); foreach($res1 as $dept){ echo "<option value=$dept[id]>$dept[department]</option>"; } ?></select></div></div><div class="col-sm-1 mb-2"><div class="form-group addcustomcss"><button id="removeNewAcademic" type="button" class="btn rounded-circle" ><i class="icon-cancel-1" style="color:red"></i></button></div>   </div></div>';
+
+
+var expX = 0; //Initial field counter is 1
+ //Once add button is clicked
+ $('#addNewExp').click(function(){
+        
+        //Check maximum number of input fields
+       
+        expX++; //Increment field counter
+            $('#initialExp').before(fieldHTML3); //Add field html
+        
+    });
+    
+    //Once remove button is clicked
+ $('body').on('click', '#removeNewAcademic', function(e){
+        e.preventDefault();
+        $(this).parent('div').parent('div').parent('div').remove(); //Remove field html
+        expX--; //Decrement field counter
+  });
+
+
+</script>

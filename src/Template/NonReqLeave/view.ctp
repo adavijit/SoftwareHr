@@ -28,7 +28,7 @@ use Cake\Routing\Router;
     <section class="leftmenu">
     <a href="javascript:void(0)" class="menuhomem"><i class="icon-add-plus-button"></i></a>
       <div class="leftpadd">
-        <a href="javascript:void(0);" class="leftlogo"><img src="images/logo.png" alt=""></a>
+        <a href="javascript:void(0);" class="leftlogo"><img src="../../webroot/images/logo.png" alt=""></a>
         <div class="leftmain-link">
         <ul class="listofnav">
           <li>
@@ -49,7 +49,7 @@ use Cake\Routing\Router;
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
-         
+            <!-- <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>              -->
               <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
@@ -88,12 +88,12 @@ use Cake\Routing\Router;
       <div class="row">
         <div class="col-auto ml-auto align-middle">
          <a href="javascript:void(0)" class="usernameboxdiv ml-auto d-block">
-          <span class="userpicbox mr-2"><img src="../images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
+          <span class="userpicbox mr-2"><img src="../../webroot/images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
           <span class="usernamed">Welcome <?php echo $username?></span>
         </a>
          <div id="drop">
         <div class="logouuserdiv">
-          <div class="imagepic"><img src="../images/User.png" alt="Navsoft Training" title="Navsoft Training"></div>
+          <div class="imagepic"><img src="../../webroot/images/User.png" alt="Navsoft Training" title="Navsoft Training"></div>
           <div class="spantext"><h5 class="mb-0"><?php echo $username?></h5><a href="javascript:void(0)"><?php echo $email?></a></div>
         </div>
         <div class="footerbottom">
@@ -166,9 +166,9 @@ use Cake\Routing\Router;
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-          <label class="labelform">Balance Leave</label>
+          <label class="labelform">Leave Setting Year</label>
 
-            <input id="" value="<?= h($nonReqLeave->balance_leave) ?>" type="text" name="balance_leave" placeholder="Current Leave Balance" class="form-control rounded-0" width="100%"style="background-color:white;" disabled   /> 
+            <input id="" value="<?= h($nonReqLeave->leave_year) ?>" type="text" name="leave_year" placeholder="Current Leave Balance" class="form-control rounded-0" width="100%"style="background-color:white;" disabled   /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
@@ -260,6 +260,7 @@ use Cake\Routing\Router;
         $('#datepicker4').datepicker({
             uiLibrary: 'bootstrap4'
         });
+
     </script>
 
   </body>

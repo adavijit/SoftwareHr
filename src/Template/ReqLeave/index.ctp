@@ -50,8 +50,19 @@ require 'dbconnect.php'
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
-           
-              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
+             <?php 
+            require 'dbconnect.php';
+            $sql=mysqli_query($conn,"SELECT id FROM fileuploadrecord ORDER BY id DESC LIMIT 1");
+            $max=0;
+            foreach($sql as $test)
+                {
+                    $max=$test['id'];
+                    
+                }
+            
+            ?>
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index','id'=>$max]) ?>' "  style="cursor:pointer;">Attendance Records</li></a>             
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
           <li>
@@ -113,7 +124,10 @@ require 'dbconnect.php'
       <div class="bodypart">
         <div class="row pageheadertop mb-3">
         <div class="col"><h2>View Requested Leave</h2></div>
-        <div onClick="javascipt:window.location.href='<?php echo Router::url(['action'=>'add']) ?>' " class="col-auto"><button type="button" class="btn orangebutton rounded-circle"><a><i class="icon-add-plus-button" style="color:white"></i></a> </button></div>
+        <?php 
+
+        ?>
+        <div class="col-auto"><button type="button" class="btn orangebutton rounded-circle"><a href="<?php echo Router::url( ['action' => 'add'])?>" ><i class="icon-add-plus-button" style="color:white"></i></a> </button></div>
       </div>
       <div>
         <table class="table employtable">
@@ -131,6 +145,11 @@ require 'dbconnect.php'
   </thead>
   <tbody>
   <?php foreach ($reqLeave as $reqLeave): ?>
+  <?php 
+  $date = date("Y");
+  if($reqLeave->approval_states=="remove"||$reqLeave->leave_year!=$date){
+    continue;
+  }?>
     <tr>
     <?php  $test=0?>
         <td><?= h($reqLeave->emp_name) ?></td>
@@ -145,42 +164,83 @@ require 'dbconnect.php'
                       $x=$r['no_of_holiday'];
                     }
                 }
-                $emp=mysqli_query($conn,"Select * from req_leave");
+                $emp=mysqli_query($conn,"Select * from req_leave where empId=$reqLeave->empId && leave_year=$reqLeave->leave_year");
                 {
                   while($r1=mysqli_fetch_assoc($emp)){
-                    if(($r1['empId']==$reqLeave->empId)
-                    &&($reqLeave->leave_year==$r1['leave_year'])
-                    && ($reqLeave->approval_states=="Done")
-                    &&($reqLeave->req_id>=$r1['req_id'])){
+                    if(($reqLeave->approval_states=="Done")
+                    &&($reqLeave->req_id >= $r1['req_id'])){
                       $y=$y+$r1['no_of_day_requested'];
                       // echo $y;
                       // echo $x-$y;
                     }
-                    elseif(( $r1['empId']==$reqLeave->empId)
-                    &&($reqLeave->leave_year==$r1['leave_year'])&& 
-                    ($reqLeave->approval_states=="Inactive")
-                    &&($reqLeave->req_id>$r1['req_id'])){
+                    elseif(($reqLeave->approval_states=="Inactive")
+                    &&($reqLeave->req_id > $r1['req_id'])){
                         $y=$y+$r1['no_of_day_requested'];
                       // echo $y;
                       // echo $x-$y;
                     }
                     else{
-                      // echo "abc".$r1['req_id'];
+                      // echo "abc";
                     }
                   }
                 }
-                echo $x-$y;
+                $x1 = $x-$y;
+                $y1=0;
+                $emp1=mysqli_query($conn,"Select * from non_req_leave where empId=$reqLeave->empId && leave_year=$reqLeave->leave_year");
+                
+                while($r2=mysqli_fetch_assoc($emp1)){
+                  // echo "123";
+                  if($reqLeave->starting_date->format("Y-m-d") > $r2['ending_date']){
+                    
+                    $y1=$y1+$r2['no_of_day'];
+                  }
+                    // else
+                    // echo "$r2[ending_date]";
+                  }
+                
+                echo $x1-$y1;
+                $emp2=mysqli_query($conn,"Update req_leave set balance_leave=$x1-$y1 where req_id=$reqLeave->req_id");
+                
                 ?></td>
-        <td><?= h($reqLeave->starting_date) ?></td>
-        <td><?= h($reqLeave->ending_date) ?></td>
+        <td><?= $reqLeave->starting_date->i18nFormat('dd/MM/Y'); ?></td>
+        <td><?= $reqLeave->ending_date->i18nFormat('dd/MM/Y'); ?></td>
         <td><?= h($reqLeave->approval_states) ?></td>
         <td class="actions">
-            <?php echo "<a href='$reqLeave->documentPath' download><i class='icon-download-1' style='color:#039E14'></i></a>" ?>
+        
+            <?php 
+            if($reqLeave->documentPath==NULL){
+            // echo '<a ><i onClick="myFunction5()" class="icon-download-1" style="color:#C0C0C0"></i></a>';
+            echo '<a href="';
+            echo Router::url( ["action" => "download", $reqLeave->req_id]);
+            echo '" ><i class="icon-download-1" style="color:#C0C0C0"></i></a>';
+            }
+            else{           
+            echo "<a href='$reqLeave->documentPath' download><i class='icon-download-1' style='color:#039E14'></i></a>";
+            }
+             ?>
 
         <a href="<?php echo Router::url( ['action' => 'view', $reqLeave->req_id])?>" >&nbsp; <i class="icon-file" style="color:blue;">&nbsp;</i></a> 
-
-            <a href="<?php echo Router::url( ['action' => 'edit', $reqLeave->req_id])?>" ><i class="icon-pencil" style="color:black"></i>&nbsp;</a>
-            <a href="<?php echo Router::url( ['action' => 'delete', $reqLeave->req_id])?>" ><i onlick="myFunction3()" class="icon-trash-1" style="color:red"></i></a>        
+        <?php 
+          if($reqLeave->approval_states=="Done"){
+            echo '<a href="';
+            echo Router::url( ["action" => "edit1", $reqLeave->req_id]);
+            echo '" ><i class="icon-pencil" style="color:#C0C0C0"></i>&nbsp;</a>';
+          }
+          else{
+            echo '<a href="';
+            echo Router::url( ["action" => "edit", $reqLeave->req_id]);
+            echo '" ><i class="icon-pencil" style="color:black"></i>&nbsp;</a>';
+          }
+        ?>
+            
+            <!-- <a href="<?php echo Router::url( ['action' => 'delete', $reqLeave->req_id])?>" ><i onClick="myFunction3()" class="icon-trash-1" style="color:red"></i></a>         -->
+            <?= $this->Form->postLink('<i class="icon-trash-1" style="color:red"></i> ',
+            ['action' => 'delete', $reqLeave->req_id], 
+            [
+                'escape' => false,
+                'confirm' => __('Are you sure?\n you want to delete the leave request of {0} for the date {1} to {2}?',$reqLeave->emp_name,$reqLeave->starting_date,$reqLeave->ending_date)
+            ]
+        ) ?>
         </td>
     </tr>
     <?php endforeach; ?>
@@ -196,7 +256,7 @@ require 'dbconnect.php'
           <nav aria-label="Page navigation example">
   <ul class="pagination paginationcss">
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
+      <!-- <a class="page-link" href="#" aria-label="Previous">
         <
       </a>
     </li>
@@ -206,7 +266,13 @@ require 'dbconnect.php'
     <li class="page-item">
       <a class="page-link" href="#" aria-label="Next">
         >
-      </a>
+      </a> -->
+      <?php   echo $this->Paginator->prev('< ' . __('Prev'), array('tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item'), null, array('class' => 'page-item'));
+    echo "&nbsp;";echo "&nbsp;";echo "&nbsp;";
+    echo $this->Paginator->numbers(array('separator' => '','tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item')); echo "&nbsp;"; echo "&nbsp;";echo "&nbsp;";
+    echo $this->Paginator->next(__('Next').' >', array('tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item'), null, array('class' => 'page-item'));
+    
+    ?>
     </li>
   </ul>
 </nav>
@@ -260,6 +326,8 @@ function myFunction3()
   console.log("click");
   alert("Request will be deleted");
 }
+
+
 
 $(document).ready(function(){
     $(".menuhomem").click(function(){

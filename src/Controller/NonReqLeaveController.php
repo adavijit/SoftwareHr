@@ -17,6 +17,19 @@ class NonReqLeaveController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
+    public $paginate = [        
+        'limit' => 5,
+        'order' => [
+            'NonReqLeave.starting_date' => 'desc'
+        ]
+
+    ];
+    
+    public function initialize()
+    {
+        parent:: initialize();
+        $this->loadComponent('Paginator');
+    }
     public function index()
     {
         $nonReqLeave = $this->paginate($this->NonReqLeave);
@@ -50,6 +63,15 @@ class NonReqLeaveController extends AppController
         $nonReqLeave = $this->NonReqLeave->newEntity();
         if ($this->request->is('post')) {
             $nonReqLeave = $this->NonReqLeave->patchEntity($nonReqLeave, $this->request->getData());
+            if($nonReqLeave->empId==0||$nonReqLeave->ending_date==Null
+                ||$nonReqLeave->starting_date==Null||$nonReqLeave->department==Null
+                ||$nonReqLeave->designationId==0||$nonReqLeave->no_of_day==0
+                ||$nonReqLeave->leave_type==Null||$nonReqLeave->leave_year==0
+                ||$nonReqLeave->fullday_half==Null||$nonReqLeave->reason==NULL)
+            {
+                $this->Flash->error(__('Enter All Field Properly'));
+            }
+            else{
             $myName = $this->request->getData()['file']['name'];
             $mytmp = $this->request -> getData()['file']['tmp_name'];
 
@@ -86,6 +108,7 @@ class NonReqLeaveController extends AppController
             $this->Flash->error(__('The non req leave could not be saved. Please, try again.'));
         }
         $this->set(compact('nonReqLeave'));
+        }
     }
 
     /**
@@ -100,6 +123,9 @@ class NonReqLeaveController extends AppController
         $nonReqLeave = $this->NonReqLeave->get($id, [
             'contain' => []
         ]);
+        $tr = TableRegistry::get('non_req_leave');
+        $trFind= $tr->find('all');
+        // echo"<pre>";print_r($trFind);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $nonReqLeave = $this->NonReqLeave->patchEntity($nonReqLeave, $this->request->getData());
             $myName = $this->request->getData()['file']['name'];
@@ -161,4 +187,15 @@ class NonReqLeaveController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    public function download($id = null)
+    {
+        // $this->request->allowMethod(['post', 'delete']);
+        $nonReqLeave = $this->NonReqLeave->get($id);
+       
+            $this->Flash->error(__("No file available"));
+
+        return $this->redirect(['action' => 'index']);
+    }
 }
+
+

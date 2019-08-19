@@ -1,5 +1,8 @@
 <?php
+
 require 'dbconnect.php';
+$pa=$_POST['path'];
+$previd = $_POST['id'];
 
             if($_POST['show']=='')
             $record_per_page = 10;
@@ -46,6 +49,7 @@ require 'dbconnect.php';
                 <th>Early Going By</th>
                 <th>Attendance Status</th>
                 <th>Punch Card Records</th>
+                <th>Action</th>
                         </tr>
             </thead>
             
@@ -76,6 +80,8 @@ require 'dbconnect.php';
                                          echo "<td>$row1[EarlyGoingBy]</td>";
                                          echo "<td>$row1[Att_Status]</td>";
                                          echo "<td>$row1[Punch_Records]</td>";
+                                         $p= $pa."/$row1[id]"."?previd=".$previd;
+                                         echo "<td><button><a href= '$p'>Edit</a></button></td>"; 
                                          //echo "<td>$row1[id_fileuploadrecord]</td>";
                         }
                         ?>
@@ -121,6 +127,7 @@ else if(isset($_POST['test']))
                         <th>Early Going By</th>
                         <th>Attendance Status</th>
                         <th>Punch Card Records</th>
+                        <th>Action</th>
                                 </tr>
                     </thead>
                     
@@ -151,7 +158,9 @@ else if(isset($_POST['test']))
                                                         echo "<td>$row1[EarlyGoingBy]</td>";
                                                         echo "<td>$row1[Att_Status]</td>";
                                                         echo "<td>$row1[Punch_Records]</td>";
-                                                        //echo "<td>$row1[id_fileuploadrecord]</td>";
+                                                        $p= $pa."/$row1[id]"."?previd=".$previd;
+                                                        echo "<td><button><a href='$p'>Edit</a></button></td>"; 
+                                                         //echo "<td>$row1[id_fileuploadrecord]</td>";
                         }
                         ?>
                         </tbody>
@@ -195,7 +204,7 @@ else if(isset($_POST['test']))
 
                             if($empName!="Employee Name")
                             {                   
-                                            $sql.=" AND empName='$empName'";
+                                            $sql.=" AND empId='$empName'";
                             }
                             if($status!='All')
                             {
@@ -216,7 +225,7 @@ else if(isset($_POST['test']))
                                                         else
                                                         $WorkDurr = $WorkDurr.":".$t.":".$t;
                                     
-                                                    $sql.=" AND WorkDurr<='$WorkDurr' AND LateBy!='00:00:00'";
+                                                    $sql.="AND LateBy!='00:00:00' AND WorkDurr > '00:00:00' AND WorkDurr <='$WorkDurr' ";
                                                 }
                                             
                                             else{
@@ -224,7 +233,7 @@ else if(isset($_POST['test']))
                                                     $sql.=" AND LateBy!='00:00:00'";
                                                 }
                                 }
-                                if($WorkDurr!="Work duration")
+                                if($WorkDurr!="Work duration" && $_POST['check']!=1)
 
                                 {
                                             
@@ -239,7 +248,7 @@ else if(isset($_POST['test']))
                                                         else
                                                         $WorkDurr = $WorkDurr.":".$t.":".$t;
                                                 // }
-                                                $sql.=" AND WorkDurr<='$WorkDurr'";
+                                                $sql.=" AND WorkDurr > '00:00:00' AND  WorkDurr<='$WorkDurr'";
                                 
                                 }
 
@@ -270,6 +279,7 @@ else if(isset($_POST['test']))
                                     <th>Early Going By</th>
                                     <th>Attendance Status</th>
                                     <th>Punch Card Records</th>
+                                    <th>Action</th>
                                             </tr>
                                 </thead>
                                 
@@ -299,7 +309,9 @@ else if(isset($_POST['test']))
                                                                             echo "<td>$row1[EarlyGoingBy]</td>";
                                                                             echo "<td>$row1[Att_Status]</td>";
                                                                             echo "<td>$row1[Punch_Records]</td>";
-                                                                            //echo "<td>$row1[id_fileuploadrecord]</td>";
+                                                                            $p= $pa."/$row1[id]"."?previd=".$previd;
+                                                                            echo "<td><button><a href='$p'>Edit</a></button></td>"; 
+                                                                             //echo "<td>$row1[id_fileuploadrecord]</td>";
                                                                         // }
                                                                         ?>
                                                                     </tr>

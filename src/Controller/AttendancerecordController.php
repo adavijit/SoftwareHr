@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+require 'dbconnect.php';
 /**
  * Attendancerecord Controller
  *
@@ -19,7 +19,6 @@ class AttendancerecordController extends AppController
      */
     public function index()
     {
-       
         $attendancerecord = $this->paginate($this->Attendancerecord);
 
         $this->set(compact('attendancerecord'));
@@ -67,18 +66,31 @@ class AttendancerecordController extends AppController
      * @param string|null $id Attendancerecord id.
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     
      */
+    public function time_format($the_value){
+        //$the_value = $arr[7];
+                        $total = $the_value * 24; //multiply by the 24 hours
+                        $hours = floor($total); //Gets the natural number part
+                        $minute_fraction = $total - $hours; //Now has only the decimal part
+                        $minutes = $minute_fraction * 60; //Get the number of minutes
+                        $display = $hours . ":" . $minutes;
+                        return $display;
+    }
     public function edit($id = null)
     {
         $attendancerecord = $this->Attendancerecord->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
+        
             $attendancerecord = $this->Attendancerecord->patchEntity($attendancerecord, $this->request->getData());
+                 
             if ($this->Attendancerecord->save($attendancerecord)) {
                 $this->Flash->success(__('The attendancerecord has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+                $previd=$this->request->getData('previd');
+                // echo $previd;
+                return $this->redirect(['action' => 'index','id' => $previd]);
             }
             $this->Flash->error(__('The attendancerecord could not be saved. Please, try again.'));
         }

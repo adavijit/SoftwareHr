@@ -22,4 +22,32 @@ if($changeId==3)
     
     $sql="DELETE FROM emp_general_info WHERE empId='$id' ";
 }
+if($changeId==4)
+{
+    echo "$id";
+
+    $sql="DELETE FROM designation WHERE id='$id' ";
+}
+if($changeId==5)
+{
+    $sql="UPDATE designation SET designationStatus='Inactive' WHERE id='$id' ";
+}
+if($changeId==6)
+{
+    $sql="UPDATE designation SET designationStatus='Active' WHERE id='$id' ";
+}
+if($changeId==7)
+{
+    $sql="UPDATE departmenttable SET departmentStatus='Inactive' WHERE id='$id' ";
+}
+if($changeId==8)
+{
+    $sql="UPDATE departmenttable SET departmentStatus='Active' WHERE id='$id' ";
+}
+if($changeId==9)
+{
+    echo "$id";
+
+    $sql="DELETE FROM departmenttable WHERE id='$id' ";
+}
 mysqli_query($conn,$sql);

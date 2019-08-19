@@ -50,6 +50,7 @@ require 'dbconnect.php';
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
+            <!-- <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>              -->
               <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
@@ -144,19 +145,33 @@ require 'dbconnect.php';
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Designation</label>
-            <input id="" value="<?= h($nonReqLeave->designationId) ?>" type="text" name="designationId" placeholder="Designation" class="form-control rounded-0" width="100%"    /> 
+            <!-- <input id="" value="<?= h($nonReqLeave->designationId) ?>" type="text" name="designationId" placeholder="Designation" class="form-control rounded-0" width="100%"    />  -->
+            <select class="form-control rounded-0" width="100%" name="designationId" id="">
+                <option value="<?= h($nonReqLeave->designationId) ?>"><?= h($nonReqLeave->designationId) ?> </option>
+                <option value="1">Designation 1</option>
+                <option value="2">Designation 2</option>
+                <option value="3">Designation 3</option>
+                <option value="4">Designation 4</option>
+              </select>
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Department</label>
-          <input id="" value="<?= h($nonReqLeave->department) ?>" type="text" name="department" placeholder="Department" class="form-control rounded-0" width="100%"    />  
+          <!-- <input id="" value="<?= h($nonReqLeave->department) ?>" type="text" name="department" placeholder="Department" class="form-control rounded-0" width="100%"    />   -->
+          <select class="form-control rounded-0" width="100%" name="department" id="">
+                <option value="<?= h($nonReqLeave->department) ?>"><?= h($nonReqLeave->department) ?> </option>
+                <option>department 1</option>
+                <option>department 2</option>
+                <option>department 3</option>
+                <option>department 4</option>
+          </select>
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">No of Days Requested</label>
-            <input id="" value="<?= h($nonReqLeave->no_of_day) ?>" type="text" name="no_of_day_requested" placeholder="No. of Days Requested" class="form-control rounded-0" width="100%"    /> 
+            <input id="" value="<?= h($nonReqLeave->no_of_day) ?>" type="text" name="no_of_day" placeholder="No. of Days Requested" class="form-control rounded-0" width="100%"    /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
@@ -201,20 +216,34 @@ require 'dbconnect.php';
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-          <label class="labelform">Balance Leave</label>
-            <input id="" value="<?= h($nonReqLeave->balance_leave) ?>" type="text" name="balance_leave" placeholder="Current Leave Balance" class="form-control rounded-0" width="100%"    /> 
+          <label class="labelform">Leave Setting Year</label>
+            <!-- <input id="" value="<?= h($nonReqLeave->balance_leave) ?>" type="text" name="balance_leave" placeholder="Current Leave Balance" class="form-control rounded-0" width="100%"    />  -->
+            <select name="leave_year" class="form-control rounded-0">
+              <option value="<?= h($nonReqLeave->leave_year) ?>"><?php echo "$nonReqLeave->leave_year" ?></option>
+              <?php
+                // $conn = mysqli_connect("localhost","root","","hr_software");
+                $dd_res=mysqli_query($conn,"Select financial_year from leave_setting");
+                while($r=mysqli_fetch_row($dd_res))
+                { 
+                  if($nonReqLeave->leave_year!=$r[0]){
+                    echo "<option value='$r[0]'> $r[0] </option>";
+                  }    
+                }
+              ?>
+            </select> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Starting Date</label>
-            <input id="datepicker" value="<?= h($nonReqLeave->starting_date) ?>" name="starting_date" placeholder="Leave Starting Date" class="form-control rounded-0" width="100%"    />
+          
+            <input id="datepicker" readonly value="<?php echo $nonReqLeave->starting_date->i18nFormat('M/dd/Y');?>" name="starting_date" placeholder="Leave Starting Date" class="form-control rounded-0" width="100%"  style="background-color:white;"  />
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Ending Date</label>
-            <input id="datepicker2" value="<?= h($nonReqLeave->ending_date) ?>" name="ending_date" placeholder="Leave Ending Date" class="form-control rounded-0" width="100%"    /> 
+            <input id="datepicker2" readonly value="<?= $nonReqLeave->ending_date->i18nFormat('M/dd/Y'); ?>" name="ending_date" placeholder="Leave Ending Date" class="form-control rounded-0" width="100%" style="background-color:white;"   /> 
           </div>
         </div>
         <!-- <div class="col-sm-4 mb-2">
@@ -296,9 +325,13 @@ require 'dbconnect.php';
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
  <script>
+        var sd = new Date(), ed=new Date();
         $('#datepicker').datepicker({
-            uiLibrary: 'bootstrap4'
+            uiLibrary: 'bootstrap4',
+            
         });
+        // $('#datepicker').datepicker('update');
+
         $('#datepicker2').datepicker({
             uiLibrary: 'bootstrap4'
         });

@@ -56,7 +56,19 @@ $data1='';
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
-           
+            <?php 
+            require 'dbconnect.php';
+            $sql=mysqli_query($conn,"SELECT id FROM fileuploadrecord ORDER BY id DESC LIMIT 1");
+            $max=0;
+            foreach($sql as $test)
+                {
+                    $max=$test['id'];
+                    
+                }
+            
+            ?>
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index','id'=>$max]) ?>' "  style="cursor:pointer;">Attendance Records</li></a>       
+                       
               <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
@@ -71,10 +83,10 @@ $data1='';
             </ul>
           </li>
           <li>
-            <a id="parent5" class="parent" onclick="changeActive('parent5');" href="javascript:void(0);"><i class="icon-department"></i> <span>Employee Designation</span></a>
+            <a id="parent5" onclick="changeActive('parent5')" class="parent" href="<?php echo Router::url(['controller'=>'Designation','action'=>'index']) ?>"><i class="icon-home"></i> <span>Employe Designation</span></a>
           </li>
           <li>
-            <a id="parent6" class="parent" onclick="changeActive('parent6');" href="javascript:void(0);"><i class="icon-briefcase"></i> <span>Employee Department</span></a>
+            <a id="parent6" onclick="changeActive('parent6')" class="parent" href="<?php echo Router::url(['controller'=>'Departmenttable','action'=>'index']) ?>"><i class="icon-home"></i> <span>Employe Department</span></a>
           </li>
           <li>
             <a id="parent7" class="parent" onclick="changeActive('parent7');" href="javascript:void(0);"><i class="icon-file"></i> <span>Settings</span></a>
@@ -167,12 +179,13 @@ $data1='';
                 <div class="row">
                   <div class="col"><span class="numbering">
                   <?php
-                  $qr= mysqli_query($conn,"SELECT * FROM new_leave WHERE status='inactive' ");
+                  $qr= mysqli_query($conn,"SELECT * FROM req_leave WHERE approval_states='inactive' ");
                   $res= mysqli_num_rows($qr);
                   echo $res;
                   ?>
                   </span></div>
-                  <div class="col-auto"><i class="icon-bar-chart-1"></i></div>
+                  <div onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'ReqLeave','action'=>'remove']) ?>' "  style="cursor:pointer;" class="col-auto"><i class="icon-bar-chart-1"></i></div>
+                  <!-- <div class="col-auto"><i class="icon-bar-chart-1"></i></div> -->
                 </div>
               </div>
             </div>

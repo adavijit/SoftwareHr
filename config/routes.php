@@ -63,7 +63,6 @@ Router::scope('/', function (RouteBuilder $routes) {
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
     $routes->connect('/', ['controller' => 'Users', 'action' => 'login']);
-    $routes->connect('Attendancerecord', ['controller' => 'Attendancerecord', 'action' => 'index']);
     //$routes->connect('Dashboard', ['controller' => 'Dashboard', 'action' => 'index']);
 
     /**

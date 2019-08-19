@@ -49,7 +49,19 @@ use Cake\ORM\TableRegistry;
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
-        
+            <?php 
+            require 'dbconnect.php';
+            $sql=mysqli_query($conn,"SELECT id FROM fileuploadrecord ORDER BY id DESC LIMIT 1");
+            $max=0;
+            foreach($sql as $test)
+                {
+                    $max=$test['id'];
+                    
+                }
+            
+            ?>
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index','id'=>$max]) ?>' "  style="cursor:pointer;">Attendance Records</li></a>       
+                      
               <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
@@ -64,10 +76,10 @@ use Cake\ORM\TableRegistry;
             </ul>
           </li>
           <li>
-            <a id="parent5" class="parent" onclick="changeActive('parent5');" href="javascript:void(0);"><i class="icon-department"></i> <span>Employee Designation</span></a>
+            <a id="parent5" onclick="changeActive('parent5')" class="parent" href="<?php echo Router::url(['controller'=>'Designation','action'=>'index']) ?>"><i class="icon-home"></i> <span>Employe Designation</span></a>
           </li>
           <li>
-            <a id="parent6" class="parent" onclick="changeActive('parent6');" href="javascript:void(0);"><i class="icon-briefcase"></i> <span>Employee Department</span></a>
+            <a id="parent6" onclick="changeActive('parent6')" class="parent" href="<?php echo Router::url(['controller'=>'Departmenttable','action'=>'index']) ?>"><i class="icon-home"></i> <span>Employe Department</span></a>
           </li>
           <li>
             <a id="parent7" class="parent" onclick="changeActive('parent7');" href="javascript:void(0);"><i class="icon-file"></i> <span>Settings</span></a>
@@ -116,8 +128,9 @@ use Cake\ORM\TableRegistry;
        
         
         <input type="file" name="file" id="excelSheet" style="display:none;">
-        <div class="col-auto"><button  data-toggle="modal" data-target="#exampleModal2" type="button" class="btn orangebutton rounded-circle"><i   class="icon-add-plus-button"></i></button></div>
-     
+        <!-- <div class="col-auto"><button  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'AllRecordsSave','action'=>'index']) ?>' "   type="button" class="btn orangebutton rounded-circle"><i   class="icon-add-plus-button"></i></button></div> -->
+        <div class="col-auto"> <button data-toggle="modal" data-target="#exampleModal2" type="button" class="btn outlineblue mr-2">Import employee</button></div>
+        <div class="col-auto"> <button onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'AllRecordsSave','action'=>'index']) ?>' "  type="button" class="btn outlineblue mr-2">Add employee</button></div>
       </div>
       <div>
         <table class="table employtable" id="changeActiveStatus">
@@ -128,7 +141,7 @@ use Cake\ORM\TableRegistry;
       <th scope="col">Date of Joining</th>
       <th scope="col">Sex</th>
       <th scope="col">Mobile Number</th>
-      <th scope="col">Locations</th>
+      <th scope="col">Location</th>
       <th scope="col">Blood Group</th>
       <th scope="col">Action</th>
       <th scope="col">Status</th>
@@ -179,7 +192,8 @@ use Cake\ORM\TableRegistry;
                 
             
                 <td class="actions">
-                  
+                <a style='color:black;' href="<?php echo Router::url(['controller'=>'EmpGeneralInfo','action'=>'view',$empGeneralInfo->empId]) ?>" ><i class='icon-file'></i>  </a>
+               <?php echo "&nbsp;";?>
                 <a style='color:black;' href="<?php echo Router::url(['controller'=>'AllRecordsEdit','action'=>'index' ,'id'=>base64_encode($empGeneralInfo->empId),'div'=>'5' ]); ?>" ><i class='icon-pencil'></i>  </a>
                <?php echo "&nbsp;";
 
@@ -283,34 +297,7 @@ use Cake\ORM\TableRegistry;
   </div>
 </div>
 
- <!--  modal box  -->
- <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header modalheadercust">
-        <h3 class="modal-title"><i class="icon-file"></i> Add excel file</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <i class="icon-cancel-1"></i>
-        </button>
-      </div>
-      <div class="modal-body modalbodycustom">
-        <h4 class="mb-3">Select file</h4>
-        <div class="row">
-        <ul class="imageuploadlist p-0 m-0">
-     &nbsp;
-     <li id="replaceFile"><div onclick="document.getElementById('excelSheet').click()" class="imageuploadsect imagoutlinebor"><i class="icon-add-plus-button"></i></a></div></li>
-     
-   </ul>
-         
-        </div>
-      </div>
-      <div class="modal-footer justify-content-between">
-        <button type="button" class="btn redbutton" data-dismiss="modal">Cancel</button>
-        <button onclick="uploadExcel();"  type="button" class="btn bluebutton">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
+ 
 
 <!-- Confirm -->
 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModal" aria-hidden="true">
@@ -382,6 +369,33 @@ use Cake\ORM\TableRegistry;
     </div>
   </div>
 </div>
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header modalheadercust">
+        <h3 class="modal-title"><i class="icon-file"></i> Add excel file</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="icon-cancel-1"></i>
+        </button>
+      </div>
+      <div class="modal-body modalbodycustom">
+        <h4 class="mb-3">Select file</h4>
+        <div class="row">
+        <ul class="imageuploadlist p-0 m-0">
+     &nbsp;
+     <li id="replaceFile"><div onclick="document.getElementById('excelSheet').click()" class="imageuploadsect imagoutlinebor"><i class="icon-add-plus-button"></i></a></div></li>
+     
+   </ul>
+         
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn redbutton" data-dismiss="modal">Cancel</button>
+        <button onclick="uploadExcel();"  type="button" class="btn bluebutton">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="errormessage" tabindex="-1" role="dialog" aria-labelledby="errormessage" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -419,32 +433,6 @@ function deleteS(id){
 }     
 
 
-  function uploadExcel(){
-    var form_data = new FormData(); 
-      console.log("asd");
-      form_data.append('excelSheet', $('#excelSheet').prop('files')[0]);
-      $.ajax({
-        type: "POST",
-        url: "uploadExcel.php",
-        data:form_data,
-        processData: false,
-        contentType: false,
-        success: function (data){
-          //alert(data);
-          location.reload();
-        
-          $('#successmessage').modal("show");
-
-         
-          
-        },
-        error: function(data){
-          $('#errormessage').modal("show");
-        }
-    });
-    
-    
-}
 
   
 
@@ -471,21 +459,7 @@ function deleteS(id){
     return false;
 }
 
-$('body').on('change', '#excelSheet', function() {
-  var fileExtension = ['xls', 'xlsx'];
-        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) 
-        {
-          
-       $('#exampleModal2').modal("hide");
-       $('#errormessage').modal("show");
-      
-        }
-        else{
-          var x = $(this).val().replace(/.*(\/|\\)/, '');
-  $( "#replaceFile" ).replaceWith("<li><div  class='imageuploadsect'><p style='text-align:center; overflow:hidden height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li>");
-  
-} 
-});
+
 
 $(document).ready(function(){
     $(".menuhomem").click(function(){
@@ -529,6 +503,24 @@ $(document).ready(function(){
 
     </script>
     <script>
+    
+
+$('body').on('change', '#excelSheet', function() {
+  var fileExtension = ['xls', 'xlsx'];
+        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) 
+        {
+          
+       $('#exampleModal2').modal("hide");
+       $('#errormessage').modal("show");
+      
+        }
+        else{
+          var x = $(this).val().replace(/.*(\/|\\)/, '');
+  $( "#replaceFile" ).replaceWith("<li><div  class='imageuploadsect'><p style='text-align:center; overflow:hidden height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li>");
+  
+} 
+});
+
       function changeActive(id){
       let x= document.getElementById(id).id;
       let idName = '#'+x;
@@ -537,4 +529,30 @@ $(document).ready(function(){
       $('.parent').removeClass('activeclass');
       $(idName).addClass('activeclass');
     }
+    function uploadExcel(){
+    var form_data = new FormData(); 
+     
+      form_data.append('excelSheet', $('#excelSheet').prop('files')[0]);
+      $.ajax({
+        type: "POST",
+        url: "uploadExcel.php",
+        data:form_data,
+        processData: false,
+        contentType: false,
+        success: function (data){
+          //alert(data);
+          $('#exampleModal2').modal("hide");
+       
+          $('#successmessage').modal("show");
+          setTimeout(function(){
+           location.reload();
+           }, 3000);
+        },
+        error: function(data){
+          $('#errormessage').modal("show");
+        }
+    });
+    
+    
+} 
     </script>

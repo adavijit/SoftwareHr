@@ -177,62 +177,6 @@
         ]
     },
     {
-        "name": "aspera/xlsx-reader",
-        "version": "v0.7.5",
-        "version_normalized": "0.7.5.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/AsperaGmbH/xlsx-reader.git",
-            "reference": "ef65b20b8718565368639d2aea2cd4f896af65ca"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/AsperaGmbH/xlsx-reader/zipball/ef65b20b8718565368639d2aea2cd4f896af65ca",
-            "reference": "ef65b20b8718565368639d2aea2cd4f896af65ca",
-            "shasum": ""
-        },
-        "require": {
-            "ext-xmlreader": "*",
-            "ext-zip": "*",
-            "php": ">= 5.6.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "5.*"
-        },
-        "time": "2019-07-22T15:05:57+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Aspera\\Spreadsheet\\XLSX\\": "lib/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Aspera GmbH",
-                "email": "info@aspera.com",
-                "homepage": "https://www.aspera.com"
-            },
-            {
-                "name": "Martins Pilsetnieks",
-                "email": "pilsetnieks@gmail.com",
-                "homepage": "http://www.nuovo.lv/"
-            }
-        ],
-        "description": "Spreadsheet reader library for Microsoft Excel XLSX files",
-        "homepage": "https://bitbucket-prod.aspera.usu.grp/projects/SMARTTRACK/repos/xlsx-reader/",
-        "keywords": [
-            "excel",
-            "spreadsheet",
-            "xls",
-            "xlsx"
-        ]
-    },
-    {
         "name": "aura/intl",
         "version": "3.0.0",
         "version_normalized": "3.0.0.0",
@@ -3481,55 +3425,6 @@
         "description": "PHAR file format utilities, for when PHP phars you up",
         "keywords": [
             "phra"
-        ]
-    },
-    {
-        "name": "shuchkin/simplexlsx",
-        "version": "0.8.8",
-        "version_normalized": "0.8.8.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/shuchkin/simplexlsx.git",
-            "reference": "eb1073b171824e1c685a8f95b4fb631b775fab45"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/shuchkin/simplexlsx/zipball/eb1073b171824e1c685a8f95b4fb631b775fab45",
-            "reference": "eb1073b171824e1c685a8f95b4fb631b775fab45",
-            "shasum": ""
-        },
-        "require": {
-            "ext-libxml": "*",
-            "ext-simplexml": "*",
-            "ext-zlib": "*"
-        },
-        "time": "2019-06-19T17:28:00+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": [
-                "src/SimpleXLSX.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Sergey Shuchkin (SMSPILOT)",
-                "email": "sergey.shuchkin@gmail.com",
-                "homepage": "http://www.shuchkin.ru/"
-            }
-        ],
-        "description": "Parse and retrieve data from Excel XLSx files. MS Excel 2007 workbooks PHP reader.",
-        "homepage": "https://github.com/shuchkin/simplexlsx",
-        "keywords": [
-            "backend",
-            "excel",
-            "parser",
-            "php",
-            "xlsx"
         ]
     },
     {

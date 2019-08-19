@@ -50,6 +50,7 @@ use Cake\Routing\Router;
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
+            <!-- <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>              -->
               <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
@@ -216,8 +217,20 @@ use Cake\Routing\Router;
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-          <label class="labelform">Balance Leave</label>
-            <input id="" name="balance_leave" class="form-control rounded-0" width="100%" /> 
+          <label class="labelform">Leave Setting Year</label>
+            <!-- <input id="" type="text" name="balance_leave" class="form-control rounded-0" width="100%" />  -->
+            <select name="leave_year" class="form-control rounded-0">
+              <option></option>
+              <?php
+              $date = date("Y");
+                $dd_res=mysqli_query($conn,"Select * from leave_setting");
+                while($r=mysqli_fetch_assoc($dd_res))
+                { 
+                  if($r['financial_year']==$date)
+                    echo "<option value='$r[financial_year]'> $r[financial_year] </option>";
+                }
+              ?>
+            </select> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">

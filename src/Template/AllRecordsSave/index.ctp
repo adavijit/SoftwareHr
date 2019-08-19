@@ -45,7 +45,19 @@ require 'dbconnect.php';
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
-              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
+            <?php 
+            require 'dbconnect.php';
+            $sql=mysqli_query($conn,"SELECT id FROM fileuploadrecord ORDER BY id DESC LIMIT 1");
+            $max=0;
+            foreach($sql as $test)
+                {
+                    $max=$test['id'];
+                    
+                }
+            
+            ?>
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index','id'=>$max]) ?>' "  style="cursor:pointer;">Attendance Records</li></a>
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
           <li>
@@ -59,10 +71,10 @@ require 'dbconnect.php';
             </ul>
           </li>
           <li>
-            <a id="parent5" class="parent" onclick="changeActive('parent5');" href="javascript:void(0);"><i class="icon-department"></i> <span>Employee Designation</span></a>
+            <a id="parent5" onclick="changeActive('parent5')" class="parent" href="<?php echo Router::url(['controller'=>'Designation','action'=>'index']) ?>"><i class="icon-home"></i> <span>Employe Designation</span></a>
           </li>
           <li>
-            <a id="parent6" class="parent" onclick="changeActive('parent6');" href="javascript:void(0);"><i class="icon-briefcase"></i> <span>Employee Department</span></a>
+            <a id="parent6" onclick="changeActive('parent6')" class="parent" href="<?php echo Router::url(['controller'=>'Departmenttable','action'=>'index']) ?>"><i class="icon-home"></i> <span>Employe Department</span></a>
           </li>
           <li>
             <a id="parent7" class="parent" onclick="changeActive('parent7');" href="javascript:void(0);"><i class="icon-file"></i> <span>Settings</span></a>
@@ -87,7 +99,7 @@ require 'dbconnect.php';
         <div class="col-auto ml-auto align-middle">
          <a href="javascript:void(0)" class="usernameboxdiv ml-auto d-block">
           <span class="userpicbox mr-2"><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
-          <span class="usernamed"><?php echo $username?></span>
+          <span class="usernamed">Welcome <?php echo $username?></span>
         </a>
          <div id="drop">
         <div class="logouuserdiv">
@@ -140,7 +152,7 @@ require 'dbconnect.php';
             <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Date of Birth</label>
-            <input id="dob" placeholder="Date of Birth" class="form-control rounded-0" width="100%" />
+            <input id="dob"    placeholder="Date of Birth" class="form-control rounded-0" width="100%" />
           </div>
         </div>
             <div class="col-sm-4">
@@ -327,26 +339,32 @@ foreach($result as $temp)
      <h3 class="mb-3">Employee Academic Information</h3>
       <div class="row">
 
-        <div class="col-sm-4 mb-2">
+        <div class="col-sm-2 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Degree Name</label>
-             <input id="degreeName" placeholder="Degree Name" class="form-control rounded-0" width="100%" /> 
+             <input name="degreeName[]" id="degreeName" placeholder="Degree Name" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Year of Passing</label>
-            <input id="yearOfPassing" placeholder="Year of Passing" class="form-control rounded-0" width="100%" /> 
+            <input name="yearOfPassing[]" id="yearOfPassing" placeholder="Year of Passing" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Institution</label>
-            <input id="institution" placeholder="Institution" class="form-control rounded-0" width="100%" /> 
+            <input name="institution[]" id="institution" placeholder="Institution" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
+        <div class="col-sm-2 mb-2">
+        <div class="form-group addcustomcss">
+        <button id="addNewAcademic" type="button" class="btn rounded-circle" ><i class="icon-add-plus-button" style="color:blue"></i></button>
+        </div>   
+        </div>
       </div>
-      <h3 class="my-3">Academic Informations</h3>
+      
+      <h3 id="initialAcademic" class="my-3">Academic Informations</h3>
       <ul class="imageuploadlist p-0 m-0">
         <li id='empAcademicOpen'><div  onclick="document.getElementById('empAcademicFile').click()"  class="imageuploadsect imagoutlinebor"><a  class="m-0"><i class="icon-add-plus-button"></i></a></div></li>
         <input type="file" style='visibility: hidden;' multiple="multiple" id="empAcademicFile" name="empAcademicFile[]" >
@@ -355,28 +373,33 @@ foreach($result as $temp)
     <!-- ______________________________________________SKILLS STARTS HERE___________________________________________-->
     <div id="menu3" class="tab-pane fade">
       <h3 class="mb-3">Employee Skills Information</h3>
-      <div class="row">
+      <div  class="row">
 
-        <div class="col-sm-4 mb-2">
+        <div class="col-sm-2 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Skill Name</label>
-             <input id="skillName" placeholder="Skill Name" class="form-control rounded-0" width="100%" /> 
+             <input name="skillName[]" id="skillName" placeholder="Skill Name" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Years of Experience</label>
-            <input id="yearsOfExp" placeholder="Years of Experience" class="form-control rounded-0" width="100%" /> 
+            <input name="yearsOfExp[]" id="yearsOfExp" placeholder="Years of Experience" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Institution</label>
-            <input id="expInstitution" placeholder="Institution" class="form-control rounded-0" width="100%" /> 
+            <input name="expInstitution[]" id="expInstitution" placeholder="Institution" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
+        <div class="col-sm-2 mb-2">
+        <div class="form-group addcustomcss">
+        <button id="addNewSkill" type="button" class="btn rounded-circle" ><i class="icon-add-plus-button" style="color:blue"></i></button>
+        </div>   
+        </div>
       </div>
-      <h3 class="my-3">Academic Informations</h3>
+      <h3 id="initialSkill" class="my-3">Skill Informations</h3>
       <ul class="imageuploadlist p-0 m-0">
         <li id="empSkillOpen"><div  onclick="document.getElementById('empSkillFile').click()" class="imageuploadsect imagoutlinebor"><a class="m-0"><i class="icon-add-plus-button"></i> </a></div></li>
         <input type="file"   multiple="multiple"  style='visibility: hidden;' id="empSkillFile" name="empSkillFile[]">
@@ -390,26 +413,26 @@ foreach($result as $temp)
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Company Name</label>
-             <input id="companyName" placeholder="Company Name" class="form-control rounded-0" width="100%" /> 
+             <input name="companyName[]" id="companyName" placeholder="Company Name" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Years of Experience</label>
-            <input id="expYears" placeholder="Years of Experience" class="form-control rounded-0" width="100%" /> 
+            <input name="expYears[]" id="expYears" placeholder="Years of Experience" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Designation</label>
-            <select  id="designation" class="form-control rounded-0">
+            <select name="designation[]"  id="designation" class="form-control rounded-0">
             <option>Designation</option>
             <?php
               $sql="SELECT * FROM designation";
               $res=mysqli_query($conn,$sql);
               foreach($res as $row)
               {
-                echo "<option>$row[designation]</option>";
+                echo "<option value=$row[id]>$row[designation]</option>";
               }
 
             ?>
@@ -417,25 +440,30 @@ foreach($result as $temp)
                 </select>
           </div>
         </div>
-        <div class="col-sm-3 mb-2">
+        <div class="col-sm-2 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Department</label>
-            <select id="department" class="form-control rounded-0">
+            <select name="department[]" id="department" class="form-control rounded-0">
                   <option>Department</option>
                   <?php
                   $sql1="SELECT * FROM departmenttable";
                     $res1=mysqli_query($conn,$sql1);
                     foreach($res1 as $row1)
                     {
-                      echo "<option>$row1[department]</option>";
+                      echo "<option value=$row[id]>$row1[department]</option>";
                     }
 
                   ?>
                 </select>
           </div>
         </div>
+        <div class="col-sm-1 mb-2">
+        <div class="form-group addcustomcss">
+        <button id="addNewExp" type="button" class="btn rounded-circle" ><i class="icon-add-plus-button" style="color:blue"></i></button>
+        </div>   
+        </div>
       </div>
-      <h3 class="my-3">Skill Informations</h3>
+      <h3 id="initialExp" class="my-3">Skill Informations</h3>
       <ul class="imageuploadlist p-0 m-0">
      
         <li id="empExpOpen"><div onclick="document.getElementById('empExpFile').click()" class="imageuploadsect imagoutlinebor"><i class="icon-add-plus-button"></i></a></div></li>
@@ -496,6 +524,7 @@ foreach($result as $temp)
   </div>
 </div>
     
+<!--  modal box  -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -555,11 +584,12 @@ function onclickFunction(){
     //validation check
     if(empName!='' && validateEmail(officeEmail) && phoneNumber!='' && dateOfJoining!='')
     {
-      for(var p = 0; p < tempData.length ; p++)
+    
+    //General Info 
+    for(var p = 0; p < tempData.length ; p++)
     {
      form_data.append('empGenFile[]', tempData[p][0]);
     }
-    //General Info insertion
     form_data.append('profilePhoto', $('#getPhoto').prop('files')[0]);
     form_data.append('employeeName', $('#employeeName').val());
     form_data.append('dob', $('#dob').val());
@@ -592,10 +622,19 @@ function onclickFunction(){
 
 
     //Academic Details insertion
-    form_data.append('degreeName', $('#degreeName').val());
-    form_data.append('yearOfPassing', $('#yearOfPassing').val());
-    form_data.append('institution', $('#institution').val());
-  
+   
+    for (var aca = 0; aca <academicX; aca++) {
+      var ax = document.getElementsByName("degreeName[]")[aca].value;
+      var ay = document.getElementsByName("yearOfPassing[]")[aca].value;
+     var az = document.getElementsByName("institution[]")[aca].value;
+     if(ax!='')
+     form_data.append('degreeName[]',ax);
+     if(ay!='')
+    form_data.append('yearOfPassing[]', ay);
+    if(az!='')
+    form_data.append('institution[]', az);
+    }
+   
     var ins3 = document.getElementById('empContFile').files.length;
     for (var x = 0; x < ins3; x++) {
     form_data.append('empAcademicFile[]', $('#empAcademicFile').prop('files')[x]);
@@ -603,19 +642,46 @@ function onclickFunction(){
 
 
     //Skill Details insertion
-    form_data.append('skillName', $('#skillName').val());
-    form_data.append('yearsOfExp', $('#yearsOfExp').val());
-    form_data.append('expInstitution', $('#expInstitution').val()); 
+   
+   
+ 
+
+    for (var skl = 0; skl <skillX; skl++) {
+      var tx = document.getElementsByName("skillName[]")[skl].value;
+      var ty = document.getElementsByName("yearsOfExp[]")[skl].value;
+     var tz = document.getElementsByName("expInstitution[]")[skl].value;
+     if(tx!='')
+       form_data.append('skillName[]', tx);
+       if(ty!='')
+       form_data.append('yearsOfExp[]', ty);
+       if(tz!='')
+       form_data.append('expInstitution[]', tz); 
+    }
+   
+    
+
     var ins4 = document.getElementById('empSkillFile').files.length;
     for (var x = 0; x < ins4; x++) {
     form_data.append('empSkillFile[]', $('#empSkillFile').prop('files')[x]);
     }
 
     //Employee Experience insertion
-    form_data.append('companyName', $('#companyName').val());
-    form_data.append('expYears', $('#expYears').val());
-    form_data.append('designation', $('#designation').val());  
-    form_data.append('department', $('#department').val());   
+    for (var exp = 0; exp <expX; exp++) {
+      var ew = document.getElementsByName("companyName[]")[exp].value;
+      var ex = document.getElementsByName("expYears[]")[exp].value;
+     var ey = document.getElementsByName("designation[]")[exp].value;
+     var ez = document.getElementsByName("department[]")[exp].value;
+     if(ew!='')
+       form_data.append('companyName[]', ew);
+       if(ex!='')
+       form_data.append('expYears[]', ex);
+       if(ey!='')
+       form_data.append('designation[]', ey);
+       if(ez!='')
+       form_data.append('department[]', ez); 
+    }
+   
+     
     var ins5 = document.getElementById('empExpFile').files.length;
     for (var x = 0; x < ins5; x++) {
     form_data.append('empExpFile[]', $('#empExpFile').prop('files')[x]);
@@ -629,7 +695,8 @@ function onclickFunction(){
         processData: false,
         contentType: false,
         success: function (data){
-        $('#successmessage').modal("show");
+          console.log(data);
+    //    $('#successmessage').modal("show");
         },
         error: function(data)
         {
@@ -706,12 +773,11 @@ $(this).hide();
 });
 
 $('body').on('change', '#empSkillFile', function() {
-  console.log("qqqqq");
   var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
         if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) 
         {
          var x = $(this).val().replace(/.*(\/|\\)/, '');
-         //console.log(x);
+      
   $( "#empSkillOpen" ).replaceWith("<li><div  class='imageuploadsect'><p style='text-align:center; overflow:hidden height:inherit; width:inherit;' class='m-0'>"+x+"</p></div></li>");
   
         }
@@ -896,6 +962,93 @@ function closeDel(indx)
   $("ref1").load('#ref1');
 }
 ///////////////end emp gen file //////
+
+///////////////start emp skill upload ///////////////
+
+
+
+    var fieldHTML = '<div class="row"><div class="col-sm-2 mb-2"><div class="form-group addcustomcss"><label class="labelform">Skill Name</label><input name="skillName[]" id="skillName" placeholder="Skill Name" class="form-control rounded-0" width="100%" /> </div></div><div class="col-sm-4 mb-2"><div class="form-group addcustomcss"><label class="labelform">Years of Experience</label><input name="yearsOfExp[]" id="yearsOfExp" placeholder="Years of Experience" class="form-control rounded-0" width="100%" /> </div></div><div class="col-sm-4 mb-2"><div class="form-group addcustomcss"><label class="labelform">Institution</label><input  name="expInstitution[]"  id="expInstitution" placeholder="Institution" class="form-control rounded-0" width="100%" /> </div></div><div class="col-sm-2 mb-2"><div class="form-group addcustomcss"><button id="removeNewSkill" type="button" class="btn rounded-circle" ><i class="icon-cancel-1"style="color:red"></i></button></div></div></div>';
+    var skillX = 1; //Initial field counter is 1
+ //Once add button is clicked
+ $('#addNewSkill').click(function(){
+        
+        //Check maximum number of input fields
+       
+        skillX++; //Increment field counter
+            $('#initialSkill').before(fieldHTML); //Add field html
+        
+    });
+    
+    //Once remove button is clicked
+ $('body').on('click', '#removeNewSkill', function(e){
+        e.preventDefault();
+        $(this).parent('div').parent('div').parent('div').remove(); //Remove field html
+        skillX--; //Decrement field counter
+  });
+
+
+///////////////start emp academic upload ///////////////
+var fieldHTML2 = '<div class="row"><div class="col-sm-2 mb-2"><div class="form-group addcustomcss"><label class="labelform">Degree Name</label> <input name="degreeName[]" id="degreeName" placeholder="Degree Name" class="form-control rounded-0" width="100%" /> </div></div><div class="col-sm-4 mb-2"><div class="form-group addcustomcss"><label class="labelform">Year of Passing</label><input name="yearOfPassing[]" id="yearOfPassing" placeholder="Year of Passing" class="form-control rounded-0" width="100%" /> </div></div><div class="col-sm-4 mb-2"><div class="form-group addcustomcss"><label class="labelform">Institution</label><input name="institution[]" id="institution" placeholder="Institution" class="form-control rounded-0" width="100%" /> </div></div><div class="col-sm-2 mb-2"><div class="form-group addcustomcss"><button id="removeNewAcademic" type="button" class="btn rounded-circle" ><i class="icon-cancel-1" style="color:red"></i></button></div></div></div>';
+var academicX = 1; //Initial field counter is 1
+ //Once add button is clicked
+ $('#addNewAcademic').click(function(){
+        
+        //Check maximum number of input fields
+       
+        academicX++; //Increment field counter
+            $('#initialAcademic').before(fieldHTML2); //Add field html
+        
+    });
+    
+    //Once remove button is clicked
+ $('body').on('click', '#removeNewAcademic', function(e){
+        e.preventDefault();
+        $(this).parent('div').parent('div').parent('div').remove(); //Remove field html
+        academicX--; //Decrement field counter
+  });
+
+
+///////////////start emp exp upload ///////////////
+var fieldHTML3 = '<div class="row"><div class="col-sm-3 mb-2"><div class="form-group addcustomcss"><label class="labelform">Company Name</label><input id="companyName" name="companyName[]" placeholder="Company Name" class="form-control rounded-0" width="100%" /> </div></div><div class="col-sm-3 mb-2"><div class="form-group addcustomcss"><label class="labelform">Years of Experience</label><input name="expYears[]" id="expYears" placeholder="Years of Experience" class="form-control rounded-0" width="100%" /> </div></div><div class="col-sm-3 mb-2">  <div class="form-group addcustomcss"><label class="labelform">Designation</label><select  name="designation[]"  id="designation" class="form-control rounded-0"><option>Designation</option><?php $sql1="SELECT * FROM designation";$res1=mysqli_query($conn,$sql1); foreach($res1 as $desg){ echo "<option value=$desg[id]>$desg[designation]</option>"; } ?></select></div></div><div class="col-sm-2 mb-2"><div class="form-group addcustomcss"><label class="labelform">Department</label><select id="department" name="department[]" class="form-control rounded-0"><option>Department</option><?php $sql1="SELECT * FROM departmenttable";$res1=mysqli_query($conn,$sql1); foreach($res1 as $dept){ echo "<option value=$dept[id]>$dept[department]</option>"; } ?></select></div></div><div class="col-sm-1 mb-2"><div class="form-group addcustomcss"><button id="removeNewAcademic" type="button" class="btn rounded-circle" ><i class="icon-cancel-1" style="color:red"></i></button></div>   </div></div>';
+
+
+var expX = 1; //Initial field counter is 1
+ //Once add button is clicked
+ $('#addNewExp').click(function(){
+        
+        //Check maximum number of input fields
+       
+        expX++; //Increment field counter
+            $('#initialExp').before(fieldHTML3); //Add field html
+        
+    });
+    
+    //Once remove button is clicked
+ $('body').on('click', '#removeNewAcademic', function(e){
+        e.preventDefault();
+        $(this).parent('div').parent('div').parent('div').remove(); //Remove field html
+        expX--; //Decrement field counter
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 <style>
 .thumb{

@@ -49,6 +49,7 @@ use Cake\Routing\Router;
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
+            <!-- <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>              -->
               <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
@@ -90,12 +91,12 @@ use Cake\Routing\Router;
       <div class="row">
         <div class="col-auto ml-auto align-middle">
          <a href="javascript:void(0)" class="usernameboxdiv ml-auto d-block">
-          <span class="userpicbox mr-2"><img src="../images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
+          <span class="userpicbox mr-2"><img src="../../webroot/images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
           <span class="usernamed">Welcome <?php echo $username ?></span>
         </a>
          <div id="drop">
         <div class="logouuserdiv">
-          <div class="imagepic"><img src="../images/User.png" alt="Navsoft Training" title="Navsoft Training"></div>
+          <div class="imagepic"><img src="../../webroot/images/User.png" alt="Navsoft Training" title="Navsoft Training"></div>
           <div class="spantext"><h5 class="mb-0"><?php echo $username ?></h5><a href="javascript:void(0)"><?php echo $email ?></a></div>
         </div>
         <div class="footerbottom">
@@ -126,49 +127,49 @@ use Cake\Routing\Router;
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Employee Name</label>
-             <input id="" value="<?= h($reqLeave->emp_name) ?>" type="text" nae="emp_name" placeholder="Employee Name" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
+             <input id="" value="<?= h($reqLeave->emp_name) ?>" type="text" nae="emp_name" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Designation</label>
-            <input id="" value="<?= h($reqLeave->designationId) ?>" type="text" name="designationId" placeholder="Designation" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
+            <input id="" value="<?= h($reqLeave->designationId) ?>" type="text" name="designationId" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Department</label>
-          <input id="" value="<?= h($reqLeave->department) ?>" type="text" name="department" placeholder="Department" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/>  
+          <input id="" value="<?= h($reqLeave->department) ?>" type="text" name="department" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/>  
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">No. of Days Requested</label>
-            <input id="" value="<?= h($reqLeave->no_of_day_requested) ?>" type="text" name="no_of_day_requested" placeholder="No. of Days Requested" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
+            <input id="" value="<?= h($reqLeave->no_of_day_requested) ?>" type="text" name="no_of_day_requested" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Leave Type</label>
-            <input id="" value="<?= h($reqLeave->leave_type) ?>" type="text" name="leave_type" placeholder="No. of Days Requested" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
+            <input id="" value="<?= h($reqLeave->leave_type) ?>" type="text" name="leave_type"  class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-          <label class="labelform">Current Leave Balance</label>
-            <input id="" value="<?= h($reqLeave->balance_leave) ?>" type="text" name="balance_leave" placeholder="Current Leave Balance" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
+          <label class="labelform">Leave Setting Year</label>
+            <input id="" value="<?= h($reqLeave->leave_year) ?>" type="text" name="leave_year" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Leave Starting Date</label>
-            <input value="<?= h($reqLeave->starting_date) ?>" name="starting_date" placeholder="Leave Starting Date" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/>
+            <input value="<?= h($reqLeave->starting_date) ?>" name="starting_date" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/>
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Leave Ending Date</label>
-            <input value="<?= h($reqLeave->ending_date) ?>" name="ending_date" placeholder="Leave Ending Date" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
+            <input value="<?= h($reqLeave->ending_date) ?>" name="ending_date" class="form-control rounded-0" width="100%" style="background-color:white;" disabled/> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">

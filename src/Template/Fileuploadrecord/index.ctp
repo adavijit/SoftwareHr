@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\Fileuploadrecord[]|\Cake\Collection\CollectionInterface $fileuploadrecord
  */
 use Cake\Routing\Router;
-require 'dbconnect.php';
+
 
 ?>
 
@@ -29,6 +29,7 @@ require 'dbconnect.php';
     <title>Welcome to Navsoft Training</title>
   </head>
   <body>
+  
   <section class="main-content">
     <!-- left menu section start here -->
     <section class="leftmenu">
@@ -54,7 +55,18 @@ require 'dbconnect.php';
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
+            <?php 
+            require 'dbconnect.php';
+            $sql=mysqli_query($conn,"SELECT id FROM fileuploadrecord ORDER BY id DESC LIMIT 1");
+            $max=0;
+            foreach($sql as $test)
+                {
+                    $max=$test['id'];
+                    
+                }
             
+            ?>
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index','id'=>$max]) ?>' "  style="cursor:pointer;">Attendance Records</li></a>             
               <a class="activeclass"><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
@@ -92,17 +104,17 @@ require 'dbconnect.php';
     
     <!-- right part section start here -->
     <section class="rightpart">
-    <header class="header-resize">
+      <header class="header-resize">
       <div class="row">
         <div class="col-auto ml-auto align-middle">
          <a href="javascript:void(0)" class="usernameboxdiv ml-auto d-block">
           <span class="userpicbox mr-2"><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></span>
-          <span class="usernamed">Welcome <?php echo $username?></span>
+          <span class="usernamed">Welcome <?php echo $username ?></span>
         </a>
          <div id="drop">
         <div class="logouuserdiv">
           <div class="imagepic"><img src="images/User.png" alt="Navsoft Training" title="Navsoft Training"></div>
-          <div class="spantext"><h5 class="mb-0"><?php echo $username?></h5><a href="javascript:void(0)"><?php echo $email?></a></div>
+          <div class="spantext"><h5 class="mb-0"><?php echo $username ?></h5><a href="javascript:void(0)"><?php echo $email ?></a></div>
         </div>
         <div class="footerbottom">
           <a href="javascript:void" onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Users','action'=>'logout']) ?>' "><i class="icon-turn-off-1"></i> Logout</a>
@@ -115,9 +127,8 @@ require 'dbconnect.php';
     <div class="bodytransition">
       <div class="bodypart">
         <div class="row pageheadertop mb-3">
-        <div class="col"><h2>View Employee Records</h2></div> 
-        
-        <div class="col-auto"><a href='fileuploadrecord/add'><button type="button" class="btn orangebutton rounded-circle"><i class="icon-add-plus-button"></i></button></a></div>
+        <div class="col"><h2>Attendance Files List </h2></div> 
+               
         <div class="col-auto">
              <div class="form-group addcustomcss">
                       <input  placeholder="select Date" class="form-control" id="dt" value='' width="100%" />
@@ -162,6 +173,7 @@ require 'dbconnect.php';
             <!-- <label for="form1" class="labelform">Year</label> -->
           </div>
         </div>
+        <div class="col-auto"><a href='fileuploadrecord/add'><button type="submit" name="Submit" value="submit" class="btn redbutton">Add</button></a></div>
         <div class="col-auto"><button type="button" class="btn outlineblue rounded-circle px-0" onclick="return RefreshWindow();"><i class="icon-refresh-button"></i></button></div>
       </div>
       <div id="table_list">

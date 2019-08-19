@@ -50,6 +50,7 @@ require 'dbconnect.php';
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
+            <!-- <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>              -->
               <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
@@ -148,13 +149,27 @@ require 'dbconnect.php';
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Designation</label>
-            <input id="" value="<?= h($reqLeave->designationId) ?>" type="text" name="designationId" placeholder="Designation" class="form-control rounded-0" width="100%"    /> 
+            <!-- <input id="" value="<?= h($reqLeave->designationId) ?>" type="text" name="designationId" class="form-control rounded-0" width="100%"    />  -->
+            <select class="form-control rounded-0" width="100%" name="designationId" id="">
+                <option value="<?= h($reqLeave->designationId) ?>"><?= h($reqLeave->designationId) ?> </option>
+                <option value="1">Designation 1</option>
+                <option value="2">Designation 2</option>
+                <option value="3">Designation 3</option>
+                <option value="4">Designation 4</option>
+              </select>
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Department</label>
-          <input id="" value="<?= h($reqLeave->department) ?>" type="text" name="department" placeholder="Department" class="form-control rounded-0" width="100%"    />  
+          <!-- <input id="" value="<?= h($reqLeave->department) ?>" type="text" name="department" placeholder="Department" class="form-control rounded-0" width="100%"    />   -->
+          <select class="form-control rounded-0" width="100%" name="department" id="">
+                <option value="<?= h($reqLeave->department) ?>"><?= h($reqLeave->department) ?> </option>
+                <option>department 1</option>
+                <option>department 2</option>
+                <option>department 3</option>
+                <option>department 4</option>
+          </select>
           </div>
         </div>
         <div class="col-sm-4 mb-2">
@@ -186,7 +201,7 @@ require 'dbconnect.php';
         <!-- <?php echo "$reqLeave->leave_year" ?> -->
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-          <label class="labelform">Current Leave Balance</label>
+          <label class="labelform">Leave Setting Year</label>
             <!-- <input id="" value="<?= h($reqLeave->balance_leave) ?>" type="text" name="balance_leave" placeholder="Current Leave Balance" class="form-control rounded-0" width="100%"    />  -->
             <select name="leave_year" class="form-control rounded-0">
               <option value="<?= h($reqLeave->leave_year) ?>"><?php echo "$reqLeave->leave_year" ?></option>
@@ -195,7 +210,9 @@ require 'dbconnect.php';
                 $dd_res=mysqli_query($conn,"Select financial_year from leave_setting");
                 while($r=mysqli_fetch_row($dd_res))
                 { 
+                  if($reqLeave->leave_year!=$r[0]){
                     echo "<option value='$r[0]'> $r[0] </option>";
+                  }    
                 }
               ?>
             </select> 
@@ -204,13 +221,13 @@ require 'dbconnect.php';
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Leave Starting Date</label>
-            <input id="datepicker" value="<?= h($reqLeave->starting_date) ?>" name="starting_date" placeholder="Leave Starting Date" class="form-control rounded-0" width="100%"    />
+            <input id="datepicker" readonly value="<?= $reqLeave->starting_date->i18nFormat('M/dd/Y'); ?>" name="starting_date" placeholder="Leave Starting Date" class="form-control rounded-0" width="100%"    />
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Leave Ending Date</label>
-            <input id="datepicker2" value="<?= h($reqLeave->ending_date) ?>" name="ending_date" placeholder="Leave Ending Date" class="form-control rounded-0" width="100%"    /> 
+            <input id="datepicker2" readonly value="<?= $reqLeave->ending_date->i18nFormat('M/dd/Y'); ?>" name="ending_date" placeholder="Leave Ending Date" class="form-control rounded-0" width="100%"    /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
@@ -232,6 +249,7 @@ require 'dbconnect.php';
                 if(strtolower($reqLeave->approval_states)=="inactive"){
                   echo "<option>$reqLeave->approval_states</option>";
                   echo "<option>active</option>";
+                  echo "<option>remove</option>";
                 }
               }
             ?>

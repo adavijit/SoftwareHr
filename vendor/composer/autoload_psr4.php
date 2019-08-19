@@ -54,7 +54,6 @@ return array(
     'CakePHP\\' => array($vendorDir . '/cakephp/cakephp-codesniffer/CakePHP'),
     'Bake\\' => array($vendorDir . '/cakephp/bake/src'),
     'Aura\\Intl\\' => array($vendorDir . '/aura/intl/src'),
-    'Aspera\\Spreadsheet\\XLSX\\' => array($vendorDir . '/aspera/xlsx-reader/lib'),
     'App\\Test\\' => array($baseDir . '/tests'),
     'App\\' => array($baseDir . '/src'),
     'Ajgl\\Twig\\Extension\\' => array($vendorDir . '/ajgl/breakpoint-twig-extension/src'),

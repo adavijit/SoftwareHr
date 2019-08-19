@@ -53,8 +53,19 @@ require 'dbconnect.php'
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
-          
-              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
+            <?php 
+            require 'dbconnect.php';
+            $sql=mysqli_query($conn,"SELECT id FROM fileuploadrecord ORDER BY id DESC LIMIT 1");
+            $max=0;
+            foreach($sql as $test)
+                {
+                    $max=$test['id'];
+                    
+                }
+            
+            ?>
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index','id'=>$max]) ?>' "  style="cursor:pointer;">Attendance Records</li></a>       
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
           <li>
@@ -172,8 +183,13 @@ require 'dbconnect.php'
       
         <a href="<?php echo Router::url( ['action' => 'view', $leaveSetting->id])?>" ><i class="icon-file" style="right-border:7px;"></i></a> &nbsp;
         <a href="<?php echo Router::url( ['action' => 'edit', $leaveSetting->id])?>" ><i class="icon-pencil" style="color:black"></i></a> &nbsp;
-        <a href="<?php echo Router::url( ['action' => 'delete', $leaveSetting->id])?>" ><i class="icon-trash-1" style="color:red"></i></a>
-        
+         <?= $this->Form->postLink('<i class="icon-trash-1" style="color:red"></i> ',
+            ['action' => 'delete', $leaveSetting->id], 
+            [
+                'escape' => false,
+                'confirm' => __('Are you sure, you want to delete the leave setting of year {0}?', $leaveSetting->financial_year)
+            ]
+        ) ?>
       </td>
     </tr>
   <?php endforeach; ?>
@@ -190,7 +206,7 @@ require 'dbconnect.php'
           <nav aria-label="Page navigation example">
   <ul class="pagination paginationcss">
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
+      <!-- <a class="page-link" href="#" aria-label="Previous">
         <
       </a>
     </li>
@@ -200,7 +216,13 @@ require 'dbconnect.php'
     <li class="page-item">
       <a class="page-link" href="#" aria-label="Next">
         >
-      </a>
+      </a> -->
+      <?php   echo $this->Paginator->prev('< ' . __('Prev'), array('tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item'), null, array('class' => 'page-item'));
+    echo "&nbsp;";echo "&nbsp;";echo "&nbsp;";
+    echo $this->Paginator->numbers(array('separator' => '','tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item')); echo "&nbsp;"; echo "&nbsp;";echo "&nbsp;";
+    echo $this->Paginator->next(__('Next').' >', array('tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item'), null, array('class' => 'page-item'));
+    
+    ?>
     </li>
   </ul>
 </nav>

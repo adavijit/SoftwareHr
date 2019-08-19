@@ -1,7 +1,5 @@
 <?php
 require 'dbconnect.php';
-// $conn=mysqli_connect('localhost','root','','hr_software');
-
 
 
 $name = $_FILES['excelSheet']['name'];

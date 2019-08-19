@@ -111,6 +111,17 @@ class FileuploadrecordController extends AppController
                                         $myTmp = $this->request->getData()['file']['tmp_name'];
                                         $mydt= $this->request->getData('dtOfUpload');
                                         $myExt = substr(strrchr($mySheet,"."),1);
+                                        if($myExt!='xlsx')
+                                        {
+                                            $this->Flash->error(__('Only xlsx file needs to be uploaded.'));
+
+                                            return $this->redirect(['controller'=>'Fileuploadrecord','action' => 'add']);
+                                        }
+                                       
+                                          
+                                        
+                                       
+
                                         $myPath = "upload/".$mySheet;
                                         if(move_uploaded_file($myTmp,$myPath)){
                                             $fileuploadrecord->att_sheetPath = $myPath;

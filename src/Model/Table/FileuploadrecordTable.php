@@ -69,6 +69,14 @@ class FileuploadrecordTable extends Table
         $validator
             ->date('dtOfUpload')
             ->allowEmptyDate('dtOfUpload');
+;
+            $validator
+            ->add('file', [
+                'validExtension' => [
+                    'rule' => ['extension',['xlsx']], // default  ['gif', 'jpeg', 'png', 'jpg']
+                    'message' => __('only this file extension is allowed: .xlsx')
+                ]
+    ]);
 
         return $validator;
     }

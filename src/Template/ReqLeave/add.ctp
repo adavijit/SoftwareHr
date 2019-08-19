@@ -50,7 +50,7 @@ require '../webroot/dbconnect.php';
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
-        
+            <!-- <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>              -->
               <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
@@ -115,6 +115,7 @@ require '../webroot/dbconnect.php';
         <div class="col"><h2>Add Employee Leave Request</h2></div>
         <div class="col-auto">
           <button type="button" class="btn outlineblue mr-2"><a href="<?php echo Router::url(['controller'=>'ReqLeave','action'=>'index']) ?>">Cancel</a></button> 
+         
          <button type="submit" name="submit" class="btn redbutton">Save</button>
         </div>
       </div>
@@ -199,9 +200,11 @@ require '../webroot/dbconnect.php';
             <select name="leave_year" class="form-control rounded-0">
               <option></option>
               <?php
+              $date = date("Y");
                 $dd_res=mysqli_query($conn,"Select * from leave_setting");
                 while($r=mysqli_fetch_assoc($dd_res))
-                { 
+                {  
+                  if($r['financial_year']==$date)
                     echo "<option value='$r[financial_year]'> $r[financial_year] </option>";
                 }
               ?>

@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\NonReqLeave[]|\Cake\Collection\CollectionInterface $nonReqLeave
  */
 use Cake\Routing\Router;
+require 'dbconnect.php'
 
 ?>
 
@@ -50,8 +51,19 @@ use Cake\Routing\Router;
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
+            <?php 
+            require 'dbconnect.php';
+            $sql=mysqli_query($conn,"SELECT id FROM fileuploadrecord ORDER BY id DESC LIMIT 1");
+            $max=0;
+            foreach($sql as $test)
+                {
+                    $max=$test['id'];
+                    
+                }
             
-              <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
+            ?>
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index','id'=>$max]) ?>' "  style="cursor:pointer;">Attendance Records</li></a>      
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
           <li>
@@ -128,20 +140,85 @@ use Cake\Routing\Router;
   </thead>
   <tbody>
   <?php foreach ($nonReqLeave as $nonReqLeave): ?>
+  <?php 
+  $date = date("Y");
+  if($nonReqLeave->leave_year!=$date){
+    continue;
+  }?>
     <tr>
     <?php  $test=0?>
         <td><?= h($nonReqLeave->emp_name) ?></td>
         <td><?= $this->Number->format($nonReqLeave->no_of_day) ?></td>
-        <td><?= $this->Number->format($nonReqLeave->balance_leave) ?></td>
-        <td><?= h($nonReqLeave->starting_date) ?></td>
-        <td><?= h($nonReqLeave->ending_date) ?></td>
+        <td><?php $dd_res=mysqli_query($conn,"Select * from leave_setting");
+        $x=0;
+        $y=0;
+                while($r=mysqli_fetch_assoc($dd_res))
+                { 
+                    if($r['financial_year']==$nonReqLeave->leave_year){
+                      $x=$r['no_of_holiday'];
+                    }
+                }
+                $emp=mysqli_query($conn,"Select * from non_req_leave where empId=$nonReqLeave->empId && leave_year=$nonReqLeave->leave_year");
+                {
+                  while($r1=mysqli_fetch_assoc($emp)){
+                    if($nonReqLeave->starting_date->format("Y-m-d") >= $r1['starting_date']){
+                      $y=$y+$r1['no_of_day'];
+                      // echo $y;
+                      // echo $x-$y;
+                    }
+                   
+                    else{
+                      // echo "abc";
+                    }
+                  }
+                }
+                $x1 = $x-$y;
+                $y1=0;
+                $emp1=mysqli_query($conn,"Select * from req_leave where empId=$nonReqLeave->empId && leave_year=$nonReqLeave->leave_year");
+                
+                  while($r2=mysqli_fetch_assoc($emp1)){
+                    // echo "123";
+                    if($nonReqLeave->starting_date->format("Y-m-d") > $r2['ending_date']){
+                      $y1=$y1+$r2['no_of_day_requested'];
+                    }
+                    
+                    else
+                     
+                      echo "\n";
+                  }
+                
+                echo $x1-$y1;
+                $emp2=mysqli_query($conn,"Update non_req_leave set balance_leave=$x1-$y1 where non_req_id=$nonReqLeave->non_req_id");
+                
+                ?></td>
+        <td><?= $nonReqLeave->starting_date->i18nFormat('dd/MM/Y'); ?></td>
+        <td><?= $nonReqLeave->ending_date->i18nFormat('dd/MM/Y'); ?></td>
         <td><?= h($nonReqLeave->inform_status) ?></td>
         <td class="actions">
-        <?php echo "<a href='$nonReqLeave->documentPath' download><i class='icon-download-1' style='color:#039E14'></i></a>" ?>
+        <?php 
+        if($nonReqLeave->documentPath==NULL){
+          echo '<a href="';
+          echo Router::url( ["action" => "download", $nonReqLeave->non_req_id]);
+          echo '" ><i class="icon-download-1" style="color:#C0C0C0"></i></a>';
+          }
+          else{           
+          echo "<a href='$nonReqLeave->documentPath' download><i class='icon-download-1' style='color:#039E14'></i></a>";
+          }
+           ?>
+
+        <!-- echo "<a href='$nonReqLeave->documentPath' download><i class='icon-download-1' style='color:#039E14'></i></a>"
+         ?> -->
         <a href="<?php echo Router::url( ['action' => 'view', $nonReqLeave->non_req_id])?>" >&nbsp; <i class="icon-file" style="color:blue;">&nbsp;</i></a> 
 
             <a href="<?php echo Router::url( ['action' => 'edit', $nonReqLeave->non_req_id])?>" ><i class="icon-pencil" style="color:black"></i>&nbsp;</a>
-            <a href="<?php echo Router::url( ['action' => 'delete', $nonReqLeave->non_req_id])?>" ><i onlick="myFunction3()" class="icon-trash-1" style="color:red"></i></a>        
+            <!-- <a href="<?php echo Router::url( ['action' => 'delete', $nonReqLeave->non_req_id])?>" ><i onlick="myFunction3()" class="icon-trash-1" style="color:red"></i></a>         -->
+            <?= $this->Form->postLink('<i class="icon-trash-1" style="color:red"></i> ',
+            ['action' => 'delete', $nonReqLeave->non_req_id], 
+            [
+                'escape' => false,
+                'confirm' => __('Are you sure?\nYou want to delete the leave request of "{0}" for the date {1} to {2}?',$nonReqLeave->emp_name,$nonReqLeave->starting_date,$nonReqLeave->ending_date)
+            ]
+        ) ?>
         </td>
     </tr>
     <?php endforeach; ?>
@@ -157,7 +234,7 @@ use Cake\Routing\Router;
           <nav aria-label="Page navigation example">
   <ul class="pagination paginationcss">
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
+      <!-- <a class="page-link" href="#" aria-label="Previous">
         <
       </a>
     </li>
@@ -167,8 +244,15 @@ use Cake\Routing\Router;
     <li class="page-item">
       <a class="page-link" href="#" aria-label="Next">
         >
-      </a>
+      </a> -->
+       <?php   echo $this->Paginator->prev('< ' . __('Prev'), array('tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item'), null, array('class' => 'page-item'));
+    echo "&nbsp;";echo "&nbsp;";echo "&nbsp;";
+    echo $this->Paginator->numbers(array('separator' => '','tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item')); echo "&nbsp;"; echo "&nbsp;";echo "&nbsp;";
+    echo $this->Paginator->next(__('Next').' >', array('tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'page-item'), null, array('class' => 'page-item'));
+    
+    ?>
     </li>
+    
   </ul>
 </nav>
         </div>
@@ -211,7 +295,10 @@ use Cake\Routing\Router;
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+ 
   </body>
 </html>
 <script>
@@ -253,7 +340,6 @@ function changeActive(id){
       $(idName).siblings().toggle();
       $('.parent').removeClass('activeclass');
       $(idName).addClass('activeclass');
-    //  $('.dashboard').removeClass('activeclass');
     }
 </script>
 

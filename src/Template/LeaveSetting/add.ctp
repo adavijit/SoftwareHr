@@ -55,7 +55,7 @@ var x;
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
-            
+            <!-- <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>              -->
               <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
@@ -137,7 +137,7 @@ var x;
              <option></option>
              <?php 
               $date = date("Y");
-              for($i=1998; $i<=$date;$i++)
+              for($i=$date; $i>=1998;$i--)
                 echo "<option>$i</option>";
              ?>
               
@@ -215,9 +215,9 @@ var x;
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
-          <label class="labelform">Week Days Off</label>
-            <input type="text" id="" name="weekly_days_off" class="form-control rounded-0" width="100%" />
+          <label class="labelform">Allowable leaves per month</label>
 
+            <input type="text" name="allow_per_month" id="" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-3 mb-2">
@@ -249,11 +249,12 @@ var x;
             <input type="text" name="no_of_holiday" id="" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
+        
         <div class="col-sm-3 mb-2">
           <div class="form-group addcustomcss">
-          <label class="labelform">Allowable leaves per month</label>
+          <label class="labelform">Week Days Off</label>
+            <input type="text" id="" name="weekly_days_off" class="form-control rounded-0" width="100%" />
 
-            <input type="text" name="allow_per_month" id="" class="form-control rounded-0" width="100%" /> 
           </div>
         </div>
         <div class="col-sm-3 mb-2">

@@ -1,6 +1,61 @@
 <?php
+print_r($_POST);
 $id=$_POST['id'];
 require 'dbconnect.php';
+/////////////////
+    $empSkillNames='';
+    $empSkillYearOfExp ='';
+    $empSkillInstitution='';
+    $academicName='';
+    $academicYearOfPassing='';
+    $academicInstitution='';
+    $expCompanyName='';
+    $expYears='';
+    $designation='';
+    $department='';
+if(isset($_POST['skillName'])){
+    
+for($skl=0;$skl<count($_POST['skillName']);$skl++)
+{
+    $empSkillNames.=$_POST['skillName'][$skl]. ";";
+    $empSkillYearOfExp.=$_POST['yearsOfExp'][$skl]. ";";
+    $empSkillInstitution.=$_POST['expInstitution'][$skl]. ";";
+
+}
+$empSkillNames =substr($empSkillNames, 0, -1);
+$empSkillYearOfExp =substr($empSkillYearOfExp, 0, -1);
+$empSkillInstitution =substr($empSkillInstitution, 0, -1);
+}
+////
+if(isset($_POST['degreeName'])){
+    for($aca=0;$aca<count($_POST['degreeName']);$aca++)
+{
+    $academicName.=$_POST['degreeName'][$aca]. ";";
+    $academicYearOfPassing.=$_POST['yearOfPassing'][$aca]. ";";
+    $academicInstitution.=$_POST['institution'][$aca]. ";";
+
+}
+$academicName =substr($academicName, 0, -1);
+$academicYearOfPassing =substr($academicYearOfPassing, 0, -1);
+$academicInstitution =substr($academicInstitution, 0, -1);
+}
+////
+if(isset($_POST['companyName'])){
+    for($exp=0;$exp<count($_POST['companyName']);$exp++)
+{
+    $expCompanyName.=$_POST['companyName'][$exp]. ";";
+    $expYears.=$_POST['expYears'][$exp]. ";";
+    $designation.=$_POST['designation'][$exp]. ";";
+    $department.=$_POST['department'][$exp]. ";";
+}
+
+$expCompanyName =substr($expCompanyName, 0, -1);
+$expYears =substr($expYears, 0, -1);
+$designation =substr($designation, 0, -1);
+
+$department =substr($department, 0, -1);
+}
+
 /////////////////
 if(isset($_POST['deleteId'])){
  
@@ -56,7 +111,7 @@ $bloodGroup=$_POST['bloodGroup'];
 $emergencyContact=$_POST['emergencyContact'];
 
 $activeStat='Active';
-$designation=$_POST['designation'];
+
 $x=4;
 if($_POST['temp1']==0 && $_POST['temp2']==0)
 {
@@ -93,7 +148,7 @@ if($_POST['temp1']==1 && $_POST['temp2']==0)
     $empGenFilePath ="upload/".$empGenFile;
     
     $sql1="UPDATE emp_general_info SET empName='$employeeName',dob='$dob',nationality='$nationality',bloodGroup='$bloodGroup',emergencyContact='$emergencyContact',probationCompletionDate='$probationDate',
-    documentPath='$empGenFilePath',sex='$sex',dateOfJoining='$dateOfJoining',designation='$designation' WHERE empId = '$id' ";
+    documentPath='$empGenFilePath',sex='$sex',dateOfJoining='$dateOfJoining',designationId='$designation',departmentId='$departmentId' WHERE empId = '$id' ";
 if(mysqli_query($conn,$sql1))
 {
     if(move_uploaded_file($empGenFileTemp,$empGenFilePath) )
@@ -118,7 +173,7 @@ if($_POST['temp1']==0 && $_POST['temp2']==1)
    
     
     $sql1="UPDATE emp_general_info SET empName='$employeeName',dob='$dob',nationality='$nationality',photoPath='$photoPath',bloodGroup='$bloodGroup',emergencyContact='$emergencyContact',probationCompletionDate='$probationDate',
-    sex='$sex',dateOfJoining='$dateOfJoining',designation='$designation' WHERE empId = '$id' ";
+    sex='$sex',dateOfJoining='$dateOfJoining',designationId='$designation',departmentId='$departmentId' WHERE empId = '$id' ";
 if(mysqli_query($conn,$sql1))
 {
     if(move_uploaded_file($myPhotoTemp,$photoPath) || move_uploaded_file($empGenFileTemp,$empGenFilePath) )
@@ -139,7 +194,7 @@ if($_POST['temp1']==1 && $_POST['temp2']==1)
 {
    
     
-    $sql1="UPDATE emp_general_info SET empName='$employeeName',dob='$dob',nationality='$nationality',bloodGroup='$bloodGroup',emergencyContact='$emergencyContact',probationCompletionDate='$probationDate',sex='$sex',dateOfJoining='$dateOfJoining',designation='$designation' WHERE empId = '$id' ";
+    $sql1="UPDATE emp_general_info SET empName='$employeeName',dob='$dob',nationality='$nationality',bloodGroup='$bloodGroup',emergencyContact='$emergencyContact',probationCompletionDate='$probationDate',sex='$sex',dateOfJoining='$dateOfJoining',designationId='$designation',departmentId='$departmentId' WHERE empId = '$id' ";
 if(mysqli_query($conn,$sql1))
 {
         echo "Success";
@@ -165,7 +220,7 @@ $aadharNO=$_POST['aadharNO'];
 $empContFile= $_FILES['empContFile']['name'];
 $empContFileTemp = $_FILES['empContFile']['tmp_name'];
 $empContFilePath ="upload/".$empContFile;
-$sql2="UPDATE employeecontact SET mobileId='$phoneNumber',officeEmail='$officeEmail',personalEmail='$personalEmail',presentAddress='$presentAddress',permanentAddress='$permanentAddress',PANno='$panNO',PFno='$pfNO',ESICno='$esicNO',aadharNo='$aadharNO',documentPath='$empContFilePath' WHERE empId='$id' ";
+$sql2="UPDATE employeecontact SET UANno = '$uanNO' ,mobileId='$phoneNumber',officeEmail='$officeEmail',personalEmail='$personalEmail',presentAddress='$presentAddress',permanentAddress='$permanentAddress',PANno='$panNO',PFno='$pfNO',ESICno='$esicNO',aadharNo='$aadharNO',documentPath='$empContFilePath' WHERE empId='$id' ";
 
 if(mysqli_query($conn,$sql2))
 {
@@ -193,7 +248,7 @@ $esicNO=$_POST['esicNO'];
 $uanNO=$_POST['uanNO'];
 $aadharNO=$_POST['aadharNO'];
 
-$sql2="UPDATE employeecontact SET mobileId='$phoneNumber',officeEmail='$officeEmail',personalEmail='$personalEmail',presentAddress='$presentAddress',permanentAddress='$permanentAddress',PANno='$panNO',PFno='$pfNO',ESICno='$esicNO',aadharNo='$aadharNO' WHERE empId='$id' ";
+$sql2="UPDATE employeecontact SET UANno = '$uanNO',mobileId='$phoneNumber',officeEmail='$officeEmail',personalEmail='$personalEmail',presentAddress='$presentAddress',permanentAddress='$permanentAddress',PANno='$panNO',PFno='$pfNO',ESICno='$esicNO',aadharNo='$aadharNO' WHERE empId='$id' ";
 
 if(mysqli_query($conn,$sql2))
 {
@@ -203,13 +258,11 @@ if(mysqli_query($conn,$sql2))
 
 if($_POST['temp4']==0)
 {
-$degreeName=$_POST['degreeName'];
-$yearOfPassing=$_POST['yearOfPassing'];
-$institution=$_POST['institution'];
+
 $empAcademicFile= $_FILES['empAcademicFile']['name'];
 $empAcademicFileTemp = $_FILES['empAcademicFile']['tmp_name'];
 $empAcademicFilePath ="upload/".$empAcademicFile;
-$sql3="UPDATE academicdetails SET yearOfPassing='$yearOfPassing',institution='$institution',documentPath='$empAcademicFilePath' WHERE empId='$id' ";
+$sql3="UPDATE academicdetails SET degreeNames='$academicName', yearOfPassing='$academicYearOfPassing',institution='$academicInstitution',documentPath='$empAcademicFilePath' WHERE empId='$id' ";
 
 if(mysqli_query($conn,$sql3))
 {
@@ -224,10 +277,8 @@ if(mysqli_query($conn,$sql3))
 
 }
 else{
-    $degreeName=$_POST['degreeName'];
-$yearOfPassing=$_POST['yearOfPassing'];
-$institution=$_POST['institution'];
-$sql3="UPDATE academicdetails SET yearOfPassing='$yearOfPassing',institution='$institution'  WHERE empId='$id' ";
+   
+$sql3="UPDATE academicdetails SET degreeNames='$academicName', yearOfPassing='$academicYearOfPassing',institution='$academicInstitution' WHERE empId='$id' ";
 
 if(mysqli_query($conn,$sql3))
 {
@@ -237,14 +288,10 @@ if(mysqli_query($conn,$sql3))
 if($_POST['temp5']==0)
 {
 
-
-$skillName=$_POST['skillName'];
-$yearsOfExp=$_POST['yearsOfExp'];
-$expInstitution=$_POST['expInstitution'];
 $empSkillFile= $_FILES['empSkillFile']['name'];
 $empSkillFileTemp = $_FILES['empSkillFile']['tmp_name'];
 $empSkillFilePath ="upload/".$empSkillFile;
-$sql4="UPDATE professionalskill SET skillName='$skillName',experience='$yearsOfExp',documentPath='$empSkillFilePath' WHERE empId='$id'";
+$sql4="UPDATE professionalskill SET skillName='$empSkillNames',experience='$empSkillYearOfExp',documentPath='$empSkillFilePath' WHERE empId='$id'";
 
 
 if(mysqli_query($conn,$sql4))
@@ -259,12 +306,9 @@ if(mysqli_query($conn,$sql4))
 }
 }
 else{
-  
-$skillName=$_POST['skillName'];
-$yearsOfExp=$_POST['yearsOfExp'];
-$expInstitution=$_POST['expInstitution'];
 
-$sql4="UPDATE professionalskill SET skillName='$skillName',experience='$yearsOfExp' WHERE empId='$id'";
+
+$sql4="UPDATE professionalskill SET skillName='$empSkillNames',experience='$empSkillYearOfExp' WHERE empId='$id'";
 
 
 if(mysqli_query($conn,$sql4))
@@ -275,14 +319,11 @@ if(mysqli_query($conn,$sql4))
 }
 if($_POST['temp6']==0)
 {
-$companyName=$_POST['companyName'];
-$expYears=$_POST['expYears'];
-$designation=$_POST['designation'];
-$department=$_POST['department'];
+
 $empExpFile= $_FILES['empExpFile']['name'];
 $empExpFileTemp = $_FILES['empExpFile']['tmp_name'];
 $empExpFilePath ="upload/".$empExpFile;
-$sql5="UPDATE experiencedetails SET experience='$expYears',designation='$designation',department='$department',documentPath='$empExpFilePath' WHERE empId='$id'";
+$sql5="UPDATE experiencedetails SET experience='$expYears',designationId='$designation',departmentId='$department',documentPath='$empExpFilePath' WHERE empId='$id'";
 
 if(mysqli_query($conn,$sql5))
 {
@@ -297,12 +338,8 @@ if(mysqli_query($conn,$sql5))
 
 }
 else{
-    $companyName=$_POST['companyName'];
-    $expYears=$_POST['expYears'];
-    $designation=$_POST['designation'];
-    $department=$_POST['department'];
-    
-    $sql5="UPDATE experiencedetails SET experience='$expYears',designation='$designation',department='$department' WHERE empId='$id'";
+  
+    $sql5="UPDATE experiencedetails SET experience='$expYears',designationId='$designation',departmentId='$department' WHERE empId='$id'";
     
     if(mysqli_query($conn,$sql5))
     {

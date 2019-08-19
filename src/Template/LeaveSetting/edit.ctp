@@ -51,7 +51,7 @@ require '../webroot/dbconnect.php';
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
-          
+            <!-- <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>              -->
               <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
@@ -143,13 +143,13 @@ require '../webroot/dbconnect.php';
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Season Tenure Start Date</label>
-            <input id="datepicker" value="<?= h($leaveSetting->starting_date) ?>" name="starting_date" class="form-control rounded-0" width="100%"   /> 
+            <input id="datepicker" readonly value="<?= $leaveSetting->starting_date->i18nFormat('M/dd/Y'); ?>" name="starting_date" class="form-control rounded-0" width="100%"   /> 
           </div>
         </div>
         <div class="col-sm-4 mb-2">
           <div class="form-group addcustomcss">
           <label class="labelform">Season Tenure End Date</label>
-            <input id="datepicker2" value="<?= h($leaveSetting->ending_date) ?>" name="ending_date" class="form-control rounded-0" width="100%"   />
+            <input id="datepicker2" readonly value="<?= $leaveSetting->ending_date->i18nFormat('M/dd/Y'); ?>" name="ending_date" class="form-control rounded-0" width="100%"   />
           </div>
         </div>
         <div class="col-sm-4 mb-2">

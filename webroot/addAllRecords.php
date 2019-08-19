@@ -1,13 +1,61 @@
 <?php
 
 require 'dbconnect.php';
+    $empSkillNames='';
+    $empSkillYearOfExp ='';
+ 
+    $academicName='';
+    $academicYearOfPassing='';
+    $academicInstitution='';
+    $expCompanyName='';
+    $expYears='';
+    $designation='';
+    $department='';
+if(isset($_POST['skillName'])){
+    
+for($skl=0;$skl<count($_POST['skillName']);$skl++)
+{
+    $empSkillNames.=$_POST['skillName'][$skl]. ";";
+    $empSkillYearOfExp.=$_POST['yearsOfExp'][$skl]. ";";
+
+}
+$empSkillNames =substr($empSkillNames, 0, -1);
+$empSkillYearOfExp =substr($empSkillYearOfExp, 0, -1);
+}
+////
+if(isset($_POST['degreeName'])){
+    for($aca=0;$aca<count($_POST['degreeName']);$aca++)
+{
+    $academicName.=$_POST['degreeName'][$aca]. ";";
+    $academicYearOfPassing.=$_POST['yearOfPassing'][$aca]. ";";
+    $academicInstitution.=$_POST['institution'][$aca]. ";";
+
+}
+$academicName =substr($academicName, 0, -1);
+$academicYearOfPassing =substr($academicYearOfPassing, 0, -1);
+$academicInstitution =substr($academicInstitution, 0, -1);
+}
+////
+if(isset($_POST['companyName'])){
+    for($exp=0;$exp<count($_POST['companyName']);$exp++)
+{
+    $expCompanyName.=$_POST['companyName'][$exp]. ";";
+    $expYears.=$_POST['expYears'][$exp]. ";";
+    $designation.=$_POST['designation'][$exp]. ";";
+    $department.=$_POST['department'][$exp]. ";";
+}
+
+$expCompanyName =substr($expCompanyName, 0, -1);
+$expYears =substr($expYears, 0, -1);
+$designation =substr($designation, 0, -1);
+
+$department =substr($department, 0, -1);
+}
 
 $myPhoto= $_FILES['profilePhoto']['name'];
 $myPhotoTemp= $_FILES['profilePhoto']['tmp_name'];
 $photoPath= "upload/".$myPhoto;
-// if(move_uploaded_file($myPhotoTemp,$photoPath)){
-//     echo "success";
-// }
+
 $employeeName=$_POST['employeeName'];
 $dob=date("Y-m-d",strtotime($_POST['dob']));
 $sex=$_POST['sex'];
@@ -103,10 +151,10 @@ $empGenFilePath =substr($empGenFilePath, 0, -1);
 
 
 $activeStat='Active';
-$designation=$_POST['designation'];
+
 $x=4;
-$sql1="INSERT INTO emp_general_info(empName,dob,nationality,photoPath,bloodGroup,emergencyContact,probationCompletionDate,documentPath,sex,emp_status,dateOfJoining,designation)
-VALUES('$employeeName','$dob','$nationality','$photoPath','$bloodGroup','$emergencyContact','$probationDate','$empGenFilePath','$sex','$activeStat','$dateOfJoining','$designation')";
+$sql1="INSERT INTO emp_general_info(empName,dob,nationality,photoPath,bloodGroup,emergencyContact,probationCompletionDate,documentPath,sex,emp_status,dateOfJoining,designationId,departmentId,empLocation)
+VALUES('$employeeName','$dob','$nationality','$photoPath','$bloodGroup','$emergencyContact','$probationDate','$empGenFilePath','$sex','$activeStat','$dateOfJoining','$designation','$department','$location')";
 
 if(mysqli_query($conn,$sql1))
 {
@@ -160,9 +208,7 @@ if(mysqli_query($conn,$sql2))
 }
 
 /////////////////////////////////ACADEMIC DETAILS///////////////////////////////////////////////////
-$degreeName=$_POST['degreeName'];
-$yearOfPassing=$_POST['yearOfPassing'];
-$institution=$_POST['institution'];
+
 $empAcademicFilePath='';
 for($i=0; $i<count($_FILES['empAcademicFile']['name']); $i++){
 
@@ -175,8 +221,8 @@ for($i=0; $i<count($_FILES['empAcademicFile']['name']); $i++){
 
 $empAcademicFilePath =substr($empAcademicFilePath, 0, -1);
 
-$sql3="INSERT INTO academicdetails(empId,yearOfPassing,institution,documentPath)
-VALUES('$max','$yearOfPassing','$institution','$empAcademicFilePath')";
+$sql3="INSERT INTO academicdetails(empId,degreeNames,yearOfPassing,institution,documentPath)
+VALUES('$max','$academicName','$academicYearOfPassing','$academicInstitution','$empAcademicFilePath')";
 
 if(mysqli_query($conn,$sql3))
 {
@@ -184,9 +230,7 @@ if(mysqli_query($conn,$sql3))
 }
 
 ///////////////////////////////////SKILL DETAILS//////////////////////////////////////////
-$skillName=$_POST['skillName'];
-$yearsOfExp=$_POST['yearsOfExp'];
-$expInstitution=$_POST['expInstitution'];
+
 $empSkillFilePath='';
 for($i=0; $i<count($_FILES['empSkillFile']['name']); $i++){
 
@@ -200,7 +244,7 @@ for($i=0; $i<count($_FILES['empSkillFile']['name']); $i++){
 $empSkillFilePath =substr($empSkillFilePath, 0, -1);
 
 $sql4="INSERT INTO professionalskill(empId,skillName,experience,documentPath)
-VALUES('$max','$skillName','$expInstitution','$empSkillFilePath')";
+VALUES('$max','$empSkillNames','$empSkillYearOfExp','$empSkillFilePath')";
 
 if(mysqli_query($conn,$sql4))
 {
@@ -209,10 +253,6 @@ if(mysqli_query($conn,$sql4))
 
 ////////////////////////EXPERIENCE DETAILS//////////////////////////////
 
-$companyName=$_POST['companyName'];
-$expYears=$_POST['expYears'];
-$designation=$_POST['designation'];
-$department=$_POST['department'];
 $empExpFilePath='';
 for($i=0; $i<count($_FILES['empExpFile']['name']); $i++){
 
@@ -225,8 +265,8 @@ for($i=0; $i<count($_FILES['empExpFile']['name']); $i++){
 
 $empExpFilePath =substr($empExpFilePath, 0, -1);
 
-$sql5="INSERT INTO experiencedetails(empId,experience,designation,department,documentPath)
-VALUES('$max','$expYears','$designation','$department','$empExpFilePath')";
+$sql5="INSERT INTO experiencedetails(empId,experience,designationId,departmentId,documentPath,yearsInCompany)
+VALUES('$max','$expCompanyName','$designation','$department','$empExpFilePath','$expYears')";
 
 if(mysqli_query($conn,$sql5))
 {

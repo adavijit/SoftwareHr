@@ -141,7 +141,7 @@ use Cake\Routing\Router;
                             
                                     echo "<td class='actions'><a href='$p'> <i class='icon-file' style='right-padding:7px;'></i></a>
                                     &nbsp;<a download href=$path><span class='glyphicon glyphicon-download-alt' style='right-padding:7px;'></span></a>
-                                    &nbsp;&nbsp;<a id='delete' onclick='deleteAjax($row[id])'><i class='icon-trash-1' style='right-padding:7px;'></i></a></td> ";
+                                    &nbsp;&nbsp;<a id='delete' onclick='deleteAjax($row[id])'><i  class='icon-trash-1' style='color:red;right-padding:7px;'></i></a></td> ";
                                
                         // $path= "http://localhost/SoftwareHr/webroot/".$fileuploadrecord->att_sheetPath;
                         ?>

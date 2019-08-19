@@ -18,6 +18,11 @@ class LeaveSettingController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
+    public $paginate = [        
+        'limit' => 10
+    ];
+    
+    
     public function index()
     {
         $leaveSetting = $this->paginate($this->LeaveSetting);
@@ -49,30 +54,53 @@ class LeaveSettingController extends AppController
      */
     public function add()
     {
+        $test1 = TableRegistry::get('leave_setting');
+        $test = $test1->find('all');
         $leaveSetting = $this->LeaveSetting->newEntity();
+        $count=0;
         if ($this->request->is('post')) {
             $leaveSetting = $this->LeaveSetting->patchEntity($leaveSetting, $this->request->getData());
-            
-            // $xx = $this->request->getData('id');
-            // echo $xx;
-            // var_dump($leaveSetting);
-            $myDt1 = $this->request->getData('starting_date');
-            $myDt2 = $this->request->getData('ending_date');
-            $strtDate = date("Y-m-d", strtotime($myDt1));
-            $leaveSetting->starting_date = $strtDate;
-            $endDate = date("Y-m-d", strtotime($myDt2));
-            $leaveSetting->ending_date = $endDate;
-            if ($this->LeaveSetting->save($leaveSetting)) {
-              
-                $this->Flash->success(__('The leave setting has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+            foreach($test as $temp){
+                if($leaveSetting->financial_year==$temp['financial_year'] ){
+                    // $this->Flash->error(__('Leave Setting is already saved for this Financial Year'));
+                    $count=1;
+                    break;
+                }
             }
-            $this->Flash->error(__('The leave setting could not be saved. Please, try again.'));
+            if($count==1){
+                $this->Flash->error(__('Leave Setting is already saved for this Financial Year'));
+            }
+            else{
+                if($leaveSetting->financial_year==0||$leaveSetting->starting_date==Null
+                    ||$leaveSetting->starting_date==Null||$leaveSetting->holiday_group==Null
+                    ||$leaveSetting->no_of_hours==0||$leaveSetting->weekly_days_off==Null
+                    ||$leaveSetting->leave_type==Null||$leaveSetting->no_of_holiday==0
+                    ||$leaveSetting->allow_per_month==0||$leaveSetting->threshold==0
+                    ||$leaveSetting->approved_by==Null)
+                {
+                    $this->Flash->error(__('Enter All Field Properly'));
+                }
+                
+                else{
+                    
+                    $myDt1 = $this->request->getData('starting_date');
+                    $myDt2 = $this->request->getData('ending_date');
+                    $strtDate = date("Y-m-d", strtotime($myDt1));
+                    $leaveSetting->starting_date = $strtDate;
+                    $endDate = date("Y-m-d", strtotime($myDt2));
+                    $leaveSetting->ending_date = $endDate;
+                        if ($this->LeaveSetting->save($leaveSetting)) {
+                        
+                            $this->Flash->success(__('The leave setting has been saved.'));
+                            return $this->redirect(['action' => 'index']);
+                        }
+                    $this->Flash->error(__('The leave setting could not be saved. Please, try again.'));
+                    
+                    $this->set(compact('leaveSetting'));
+                }
+            }
         }
-        $this->set(compact('leaveSetting'));
     }
-
     /**
      * Edit method
      *
@@ -85,13 +113,18 @@ class LeaveSettingController extends AppController
         $leaveSetting = $this->LeaveSetting->get($id, [
             'contain' => []
         ]);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $leaveSetting = $this->LeaveSetting->patchEntity($leaveSetting, $this->request->getData());
             $myDt1 = $this->request->getData('starting_date');
             $myDt2 = $this->request->getData('ending_date');
             $strtDate = date("Y-m-d", strtotime($myDt1));
             $leaveSetting->starting_date = $strtDate;
+            
             $endDate = date("Y-m-d", strtotime($myDt2));
+            echo $strtDate;
+            echo $endDate;
+            die('AAA');
             $leaveSetting->ending_date = $endDate;
             if ($this->LeaveSetting->save($leaveSetting)) {
                 $this->Flash->success(__('The leave setting has been saved.'));

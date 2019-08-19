@@ -28,7 +28,7 @@ require '../webroot/dbconnect.php';
     <section class="leftmenu">
     <a href="javascript:void(0)" class="menuhomem"><i class="icon-add-plus-button"></i></a>
       <div class="leftpadd">
-        <a href="javascript:void(0);" class="leftlogo"><img src="images/logo.png" alt=""></a>
+        <a href="javascript:void(0);" class="leftlogo"><img src="../images/logo.png" alt=""></a>
         <div class="leftmain-link">
         <ul class="listofnav">
           <li>
@@ -49,7 +49,19 @@ require '../webroot/dbconnect.php';
           <li>
             <a id="parent3" class="parent" onclick="changeActive('parent3');" href="javascript:void(0);"><i class="icon-file"></i> <span>Employee Attendance</span></a>
             <ul class="subchildlink">
-            <!-- <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index']) ?>' "  style="cursor:pointer;">Attendance Records</li></a>              -->
+            <?php 
+            require 'dbconnect.php';
+            $sql=mysqli_query($conn,"SELECT id FROM fileuploadrecord ORDER BY id DESC LIMIT 1");
+            $max=0;
+            foreach($sql as $test)
+                {
+                    $max=$test['id'];
+                    
+                }
+            
+            ?>
+            <a><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Attendancerecord','action'=>'index','id'=>$max]) ?>' "  style="cursor:pointer;">Attendance Records</li></a>             
+          
               <a class="activeclass"><li  onClick="javascipt:window.location.href='<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>' "  style="cursor:pointer;">File upload records</li></a>
             </ul>
           </li>
@@ -112,7 +124,7 @@ require '../webroot/dbconnect.php';
         <div class="col"><h2>Upload Attendance</h2></div>
         <!-- <div class="col-auto"><a href="index"> <button type="button" class="btn outlineblue mr-2">Cancel</button> </a> -->
         <button type="button" class="btn outlineblue mr-2"><a href="<?php echo Router::url(['controller'=>'Fileuploadrecord','action'=>'index']) ?>">Cancel</a></button>
-       <button name='submit' type="submit" class="btn redbutton">Save</button></a></div>
+       <button data-toggle='modal' data-target='#successmessage'   name='submit' type="submit" class="btn redbutton">Save</button></a></div>
       </div>
 
       <!-- tab start here  -->
@@ -208,7 +220,24 @@ require '../webroot/dbconnect.php';
     <!-- right part section end here -->    
     </section>
 
-
+    <div class="modal fade" id="successmessage" tabindex="-1" role="dialog" aria-labelledby="successmessage" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0 pb-0">
+        
+      </div>
+      <div class="modal-body text-center messagestatuspop">
+        <div class="iconstatus redcolr mb-3"><i class="icon-error"></i></div>
+        <h4 class="mb-3">Loading...</h4>
+        
+        
+        
+      </div>
+     
+      
+    </div>
+  </div>
+</div>
     
 
     <!-- Optional JavaScript -->
@@ -239,6 +268,7 @@ require '../webroot/dbconnect.php';
 
 <script>
 $(document).ready(function(){
+  
     $(".menuhomem").click(function(){
     $(".main-content").toggleClass("minleftmenu");
     });

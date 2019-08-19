@@ -1,10 +1,10 @@
 <?php
 /////////DATABASE
-$type="http://";
-$server_name = "localhost";
-$userName="root";
-$password="";
-$databaseName="hr_software";
+$type="https://";
+$server_name = "192.168.0.65";
+$userName="hrsoftware";
+$password="hrsoftware";
+$databaseName="hrsoftware";
 $conn = mysqli_connect($server_name,$userName,$password,$databaseName);
 
 
